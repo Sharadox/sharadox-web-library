@@ -1,3 +1,5 @@
+import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+
 /** "What we build" section. `key` picks each card's live visual. */
 export const SERVICES = {
   eyebrow: { en: "What we build", pt: "O que construímos" },
@@ -5,7 +7,7 @@ export const SERVICES = {
   items: [
     {
       key: "web",
-      tag: "01 — Web",
+      tag: separate("01", "Web"),
       title: { en: "Websites", pt: "Websites" },
       lead: { en: "Fast, beautiful, found.", pt: "Rápidos, bonitos, encontrados." },
       text: {
@@ -15,7 +17,7 @@ export const SERVICES = {
     },
     {
       key: "platform",
-      tag: "02 — Platforms",
+      tag: separate("02", "Platforms"),
       title: { en: "Platforms", pt: "Plataformas" },
       lead: { en: "The engine behind the business.", pt: "O motor por trás do negócio." },
       text: {
@@ -25,7 +27,7 @@ export const SERVICES = {
     },
     {
       key: "applications",
-      tag: "03 — Apps",
+      tag: separate("03", "Apps"),
       title: { en: "Apps", pt: "Aplicações" },
       lead: { en: "In every pocket.", pt: "Em todos os bolsos." },
       text: {
@@ -36,16 +38,16 @@ export const SERVICES = {
   ],
   notifications: {
     en: [
-      ["New booking", "Table for 4 · 8:00 PM"],
-      ["Payment received", "€84.50 · Visa"],
-      ["Order ready", "#2041 · Pick-up"],
-      ["New customer", "Ana M. · Lisbon"],
+      ["New booking", separate("Table for 4", "8:00 PM")],
+      ["Payment received", separate("€84.50", "Visa")],
+      ["Order ready", separate("#2041", "Pick-up")],
+      ["New customer", separate("Ana M.", "Lisbon")],
     ],
     pt: [
-      ["Nova reserva", "Mesa para 4 · 20:00"],
-      ["Pagamento recebido", "€84,50 · Visa"],
-      ["Encomenda pronta", "#2041 · Recolha"],
-      ["Novo cliente", "Ana M. · Lisboa"],
+      ["Nova reserva", separate("Mesa para 4", "20:00")],
+      ["Pagamento recebido", separate("€84,50", "Visa")],
+      ["Encomenda pronta", separate("#2041", "Recolha")],
+      ["Novo cliente", separate("Ana M.", "Lisboa")],
     ],
   },
 } as const;
