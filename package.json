@@ -37,15 +37,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">=19"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    }
+    "next": ">=16",
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "scripts": {
-    "build": "rm -rf distribution && tsc -p tsconfig.build.json && sass --no-source-map source:distribution && node script/rewrite-style-import/index.ts",
+    "build": "rm -rf distribution && tsc -p tsconfig.build.json && sass --no-source-map --load-path=source source:distribution && node script/rewrite-style-import/index.ts && node script/copy-asset/index.ts",
     "lint": "eslint --max-warnings=0 .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -69,6 +66,8 @@
     "@testing-library/react": "^16.3.3",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^6.3.0",
     "eslint": "9.39.5",
     "eslint-config-prettier": "^10.1.8",
@@ -76,6 +75,7 @@
     "happy-dom": "^21.0.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
+    "next": "16.4.5",
     "prettier": "^3.9.10",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
@@ -90,5 +90,12 @@
     "type": "git",
     "url": "git+https://github.com/Sharadox/sharadox-web-library.git"
   },
-  "homepage": "https://github.com/Sharadox/sharadox-web-library#readme"
+  "homepage": "https://github.com/Sharadox/sharadox-web-library#readme",
+  "dependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "@sharadox/email-web-library": "^0.2.0",
+    "@sharadox/web-library": "^0.1.0",
+    "motion": "^12.43.0",
+    "three": "^0.180.0"
+  }
 }

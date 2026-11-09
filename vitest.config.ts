@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [react()],
   // The library imports itself by package name; in tests that resolves to the TypeScript source.
   resolve: { alias: [{ find: new RegExp(`^${name}/(.*)$`), replacement: `${source}$1` }] },
+  css: { preprocessorOptions: { scss: { loadPaths: [source] } } },
   test: {
     environment: "happy-dom",
     css: { modules: { classNameStrategy: "non-scoped" } },
