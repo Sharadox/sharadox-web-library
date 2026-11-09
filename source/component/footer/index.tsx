@@ -1,3 +1,4 @@
+import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import Link from "next/link";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
@@ -33,7 +34,7 @@ export function Footer({ locale }: FooterProperties) {
         Sharadox
       </div>
       <p className={`${styles.legal} monospace`}>
-        © {new Date().getFullYear()} Sharadox · {translate(FOOTER.rights, locale)}
+        {separate(`© ${new Date().getFullYear()} Sharadox`, translate(FOOTER.rights, locale))}
       </p>
     </footer>
   );
