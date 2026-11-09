@@ -1,0 +1,8 @@
+import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
+import type { Locale } from "@sharadox/sharadox-web-library/utility/locale/type";
+
+export interface ContactFormProperties {
+  locale: Locale;
+  /** The application's server action, which calls `sendContact`. */
+  action: (state: ContactState, form: FormData) => Promise<ContactState>;
+}
