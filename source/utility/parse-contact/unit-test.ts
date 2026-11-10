@@ -12,7 +12,7 @@ describe("parseContact", () => {
   it("accepts and trims a valid message", () => {
     expect(parseContact(form(valid), 10_000)).toEqual({
       kind: "valid",
-      value: { name: "Ana", email: "ana@example.com", company: "", message: "Hello", locale: "pt" },
+      value: { name: "Ana", email: "ana@example.com", company: "", message: "Hello", locale: "pt", services: [] },
     });
   });
   it("flags the honeypot and too-fast submissions as bots", () => {

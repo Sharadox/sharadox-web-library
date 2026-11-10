@@ -1,5 +1,2 @@
-/**
- * The Sharadox text separator, used wherever two labels sit side by side (page titles, the footer, tags, details,
- * email subjects). Change it here and every Sharadox text follows.
- */
-export const SEPARATOR = "·";
+/** The character that joins labels in every Sharadox text, spaced on both sides by `separate()`. Change it here only. */
+export const SEPARATOR = "•";

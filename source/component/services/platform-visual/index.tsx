@@ -16,16 +16,16 @@ export function PlatformVisual() {
     <div className={styles.visual} aria-hidden>
       <svg viewBox="0 0 340 270">
         <defs>
-          <radialGradient id="coreGlow">
-            <stop offset="0" stopColor="#fff" stopOpacity=".35" />
-            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          <radialGradient id="platform-core-glow">
+            <stop offset="0" stopColor="var(--foreground)" stopOpacity=".3" />
+            <stop offset="1" stopColor="var(--foreground)" stopOpacity="0" />
           </radialGradient>
         </defs>
-        <circle cx={CENTER_X} cy={CENTER_Y} r="70" fill="url(#coreGlow)" />
+        <circle cx={CENTER_X} cy={CENTER_Y} r="70" fill="url(#platform-core-glow)" />
         {NODES.map((node, index) => (
           <path
             key={`path${index}`}
-            id={`edge${index}`}
+            id={`platform-edge-${index}`}
             d={`M${node.x},${node.y} Q${(node.x + CENTER_X) / 2 + (index % 2 ? 26 : -26)},${(node.y + CENTER_Y) / 2} ${CENTER_X},${CENTER_Y}`}
             className={styles.edge}
           />
@@ -39,7 +39,7 @@ export function PlatformVisual() {
               keyTimes="0;1"
               calcMode="linear"
             >
-              <mpath href={`#edge${index}`} />
+              <mpath href={`#platform-edge-${index}`} />
             </animateMotion>
           </circle>
         ))}

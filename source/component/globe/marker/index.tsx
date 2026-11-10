@@ -6,7 +6,7 @@ import { latitudeLongitudeToVector } from "@sharadox/sharadox-web-library/utilit
 import type { MarkerProperties } from "@sharadox/sharadox-web-library/component/globe/marker/type";
 
 /** A city dot lying flat on the surface. */
-export function Marker({ latitude, longitude, home = false }: MarkerProperties) {
+export function Marker({ latitude, longitude, color, home = false }: MarkerProperties) {
   const ring = useRef<Mesh>(null);
   const position = useMemo(() => latitudeLongitudeToVector(latitude, longitude, 1.004), [latitude, longitude]);
   const quaternion = useMemo(
@@ -23,12 +23,12 @@ export function Marker({ latitude, longitude, home = false }: MarkerProperties) 
     <group position={position} quaternion={quaternion}>
       <mesh>
         <circleGeometry args={[home ? 0.014 : 0.008, 20]} />
-        <meshBasicMaterial color="#fff" transparent opacity={home ? 1 : 0.85} />
+        <meshBasicMaterial color={color} transparent opacity={home ? 1 : 0.85} />
       </mesh>
       {home && (
         <mesh ref={ring}>
           <ringGeometry args={[0.014, 0.018, 40]} />
-          <meshBasicMaterial color="#fff" transparent opacity={0.8} depthWrite={false} />
+          <meshBasicMaterial color={color} transparent opacity={0.8} depthWrite={false} />
         </mesh>
       )}
     </group>

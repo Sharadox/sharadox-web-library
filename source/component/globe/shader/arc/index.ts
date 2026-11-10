@@ -10,13 +10,14 @@ export const ARC_SHADER = {
   fragment: /* glsl */ `
     uniform float time;
     uniform float offset;
+    uniform vec3 color;
     varying float alongArc;
     void main() {
       float phase = fract(time * 0.16 + offset);
       float pulse = smoothstep(0.0, 0.16, 0.16 - abs(alongArc - phase * 1.3 + 0.15));
       float base = 0.10;
       float ends = smoothstep(0.0, 0.04, alongArc) * smoothstep(1.0, 0.96, alongArc);
-      gl_FragColor = vec4(vec3(1.0), (base + pulse * 0.95) * ends);
+      gl_FragColor = vec4(color, (base + pulse * 0.95) * ends);
     }
   `,
 };

@@ -18,12 +18,12 @@
   right: 0;
   top: 6px;
   height: 1px;
-  background: var(--line);
+  @include dashed(horizontal);
   span {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), #fff);
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    background: linear-gradient(90deg, tint(20%), var(--foreground));
+    box-shadow: 0 0 12px tint(60%);
   }
   @include below(860px) {
     left: 5px;

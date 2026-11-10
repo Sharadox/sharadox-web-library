@@ -1,10 +1,21 @@
+import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import styles from "./index.module.scss";
 import type { SectionProperties } from "@sharadox/sharadox-web-library/component/section/type";
 
-/** A full-width page section with the standard width and vertical rhythm. */
-export function Section({ id, className, children }: SectionProperties) {
+/**
+ * A page section inside the grid frame: the side rails every section shares, a line on top that draws itself in,
+ * and "+" marks where they meet.
+ */
+export function Section({ id, className, padded = true, crosses = true, children }: SectionProperties) {
   return (
-    <section id={id} className={[styles.section, className].filter(Boolean).join(" ")}>
+    <section id={id} className={[styles.section, padded && styles.padded, className].filter(Boolean).join(" ")}>
+      <span className={styles.line} aria-hidden />
+      {crosses && (
+        <>
+          <Cross corner="top-left" />
+          <Cross corner="top-right" />
+        </>
+      )}
       {children}
     </section>
   );

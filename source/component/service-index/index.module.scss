@@ -1,0 +1,83 @@
+@use "style/token" as *;
+
+.index {
+  position: relative;
+  width: min(100% - 2 * var(--gutter), var(--maximum-width));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid var(--line);
+  border-top: 0;
+  @include below(960px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.cell {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 22px 22px 24px;
+  overflow: hidden;
+  animation: rise 0.9s $ease both;
+  &:not(:last-of-type) {
+    border-right: 1px solid var(--line);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, tint(7%), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+  &:hover .arrow {
+    opacity: 1;
+    transform: none;
+  }
+  @include below(960px) {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line);
+    &:nth-of-type(odd) {
+      border-right: 1px solid var(--line) !important;
+    }
+    &:last-of-type {
+      grid-column: span 2;
+      border-bottom: 0;
+      border-right: 0 !important;
+    }
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.number {
+  font-size: 11.5px;
+  color: var(--foreground-3);
+}
+.title {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-size: 15.5px;
+}
+.kinds {
+  font-size: 11.5px;
+  color: var(--foreground-2);
+}
+.arrow {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translate(-4px, -4px);
+  transition:
+    opacity 0.3s,
+    transform 0.4s $ease;
+}

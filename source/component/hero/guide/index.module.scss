@@ -1,0 +1,94 @@
+@use "style/token" as *;
+
+.guide {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(75% 70% at 60% 45%, #000 30%, transparent 85%);
+}
+.column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  @include dashed(vertical, var(--line-2), 5px, 5px);
+  transform-origin: top;
+  animation: grow-down 1.6s $ease both;
+}
+.row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  @include dashed(horizontal, var(--line-2), 5px, 5px);
+  transform-origin: left;
+  animation: grow-across 1.6s $ease both;
+}
+@keyframes grow-down {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes grow-across {
+  from {
+    transform: scaleX(0);
+  }
+}
+.beam {
+  position: absolute;
+  opacity: 0;
+}
+.down {
+  top: 0;
+  width: 1px;
+  height: 120px;
+  margin-left: -0.5px;
+  background: linear-gradient(180deg, transparent, var(--foreground));
+  animation: beam-down 7s 1.4s linear infinite;
+}
+.across {
+  left: 0;
+  height: 1px;
+  width: 160px;
+  margin-top: -0.5px;
+  background: linear-gradient(90deg, transparent, var(--foreground));
+  animation: beam-across 9s 2.2s linear infinite;
+}
+.late {
+  animation-delay: 4.6s;
+}
+@keyframes beam-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px);
+  }
+  8% {
+    opacity: 1;
+  }
+  45%,
+  100% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+}
+@keyframes beam-across {
+  0% {
+    opacity: 0;
+    transform: translateX(-160px);
+  }
+  8% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .beam {
+    display: none;
+  }
+}

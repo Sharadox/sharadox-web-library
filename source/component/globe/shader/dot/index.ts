@@ -16,12 +16,13 @@ export const DOT_SHADER = {
     }
   `,
   fragment: /* glsl */ `
+    uniform vec3 color;
     varying float opacity;
     void main() {
       vec2 fromCenter = gl_PointCoord - 0.5;
       float distanceFromCenter = length(fromCenter);
       if (distanceFromCenter > 0.5) discard;
-      gl_FragColor = vec4(vec3(1.0), smoothstep(0.5, 0.1, distanceFromCenter) * opacity);
+      gl_FragColor = vec4(color, smoothstep(0.5, 0.1, distanceFromCenter) * opacity);
     }
   `,
 };

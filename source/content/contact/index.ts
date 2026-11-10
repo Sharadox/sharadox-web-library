@@ -2,16 +2,19 @@
 export const CONTACT = {
   /** Display name of the email the contact form sends (from web@email.sharadox.com). */
   senderName: "Sharadox Web Application",
+  /** First part of the email subject: "Contact • Name (Company)". */
+  subject: "Contact",
   eyebrow: { en: "Contact", pt: "Contacto" },
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {
-    en: "Tell us what you want to build. We'll get back to you shortly.",
-    pt: "Conte-nos o que quer construir. Respondemos em breve.",
+    en: "Tell us about your brand and what you need. We'll get back to you shortly.",
+    pt: "Fale-nos da sua marca e do que precisa. Respondemos em breve.",
   },
   name: { en: "Name", pt: "Nome" },
   email: { en: "Email", pt: "Email" },
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
-  message: { en: "What are you building?", pt: "O que quer construir?" },
+  services: { en: "What do you need?", pt: "Do que precisa?" },
+  message: { en: "Tell us about your project", pt: "Fale-nos do seu projeto" },
   send: { en: "Send message", pt: "Enviar mensagem" },
   sending: { en: "Sending…", pt: "A enviar…" },
   sent: {

@@ -2,12 +2,13 @@
 
 .hero {
   position: relative;
-  min-height: 100svh;
-  max-width: var(--maximum-width);
+  min-height: min(100svh, 980px);
+  width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin: 0 auto;
-  padding: 96px var(--padding) 40px;
+  padding: 104px var(--padding) 56px;
+  border-inline: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 24px;
   @include below(900px) {
@@ -16,43 +17,36 @@
     gap: 0;
   }
 }
-.grid {
-  position: absolute;
-  inset: 0 -50vw;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(60% 60% at 62% 50%, #000 10%, transparent 70%);
-  opacity: 0.55;
-  @include below(900px) {
-    mask-image: radial-gradient(70% 40% at 50% 28%, #000 10%, transparent 70%);
-  }
-}
 .copy {
   position: relative;
   z-index: 2;
+}
+.eyebrow {
+  padding: 6px 12px 6px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  background: shade(60%);
+  backdrop-filter: blur(6px);
 }
 .live {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+  background: var(--foreground);
+  box-shadow: 0 0 0 0 tint(60%);
   animation: live 2.4s infinite;
 }
 @keyframes live {
   70% {
-    box-shadow: 0 0 0 9px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 9px tint(0%);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 tint(0%);
   }
 }
 .title {
   margin: 26px 0 26px;
-  font-size: clamp(3rem, 7.2vw, 6.6rem);
+  font-size: clamp(3rem, 7vw, 6.4rem);
   letter-spacing: -0.06em;
   line-height: 0.95;
   @include below(900px) {
@@ -68,13 +62,13 @@
   display: inline-block;
 }
 .dim {
-  background: linear-gradient(180deg, #fff 10%, #6b6b6b 120%);
+  background: linear-gradient(180deg, var(--foreground) 10%, var(--foreground-3) 120%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .subtitle {
-  max-width: 30rem;
+  max-width: 31rem;
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   color: var(--foreground-2);
   line-height: 1.55;
@@ -87,9 +81,10 @@
 }
 .globe {
   position: relative;
+  z-index: 1;
   aspect-ratio: 1;
-  width: 132%;
-  margin: -6% -26% -6% 0;
+  width: 128%;
+  margin: -6% -24% -6% 0;
   justify-self: end;
   @include below(900px) {
     order: -1;

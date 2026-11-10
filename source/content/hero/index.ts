@@ -11,10 +11,10 @@ export const HERO = {
     pt: ["Tecnologias", "que simplificam", "o mundo."],
   },
   subtitle: {
-    en: "We design and build websites, platforms and apps — fast to use, effortless to run, made to last.",
-    pt: "Desenhamos e construímos websites, plataformas e aplicações — rápidas de usar, fáceis de gerir, feitas para durar.",
+    en: "One studio for your whole brand — identity, websites, platforms, apps, social media and campaigns, designed, built and grown as one.",
+    pt: "Um só estúdio para toda a sua marca — identidade, websites, plataformas, aplicações, redes sociais e campanhas, desenhados, construídos e geridos como um todo.",
   },
   primary: { en: "Start a project", pt: "Iniciar projeto" },
-  secondary: { en: "What we build", pt: "O que construímos" },
+  secondary: { en: "Explore services", pt: "Ver serviços" },
   drag: { en: "Drag to explore", pt: "Arraste para explorar" },
 } as const;

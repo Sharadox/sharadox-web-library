@@ -7,12 +7,13 @@
   width: min(78%, 520px);
   border-radius: 12px;
   border: 1px solid var(--line-2);
-  background: #0c0c0c;
+  background: var(--card);
   overflow: hidden;
   box-shadow:
-    0 30px 80px -20px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(255, 255, 255, 0.02);
-  transform: perspective(900px) rotateX(8deg);
+    0 30px 80px -20px shade(90%),
+    0 0 0 1px tint(2%);
+  transform: perspective(900px) rotateX(10deg) rotateY(-8deg) translateZ(20px);
+  animation: float 7s ease-in-out infinite;
 }
 .bar {
   display: flex;
@@ -25,7 +26,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #2a2a2a;
+    background: var(--line-2);
   }
 }
 .url {
@@ -34,7 +35,7 @@
   color: var(--foreground-3);
   padding: 3px 10px;
   border-radius: 6px;
-  background: #151515;
+  background: var(--surface);
 }
 .body {
   padding: 16px;
@@ -43,7 +44,7 @@
 }
 .skeleton {
   border-radius: 6px;
-  background: linear-gradient(90deg, #161616, #222, #161616);
+  background: linear-gradient(90deg, var(--surface), tint(14%), var(--surface));
   background-size: 200% 100%;
   opacity: 0;
   transform: translateY(8px);
@@ -91,14 +92,15 @@
 }
 .score {
   position: absolute;
-  right: 9%;
-  bottom: 12%;
+  right: 7%;
+  bottom: 10%;
+  transform: translateZ(60px);
   width: 74px;
   height: 74px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(10, 10, 10, 0.9);
+  background: shade(90%);
   border: 1px solid var(--line-2);
   backdrop-filter: blur(8px);
   svg {
@@ -113,13 +115,18 @@
 }
 .track {
   fill: none;
-  stroke: #1f1f1f;
+  stroke: var(--line-2);
   stroke-width: 3;
 }
 .progress {
   fill: none;
-  stroke: #fff;
+  stroke: var(--foreground);
   stroke-width: 3;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.1s linear;
+}
+@keyframes float {
+  50% {
+    transform: perspective(900px) rotateX(6deg) rotateY(-4deg) translateZ(20px) translateY(-6px);
+  }
 }

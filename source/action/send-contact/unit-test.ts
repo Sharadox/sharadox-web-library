@@ -40,6 +40,18 @@ describe("sendContact", () => {
     expect(message.to).toBe("email@sharadox.com");
     expect(message.replyTo).toEqual({ name: "Ana", address: "ana@example.com" });
     expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");
+    expect(message.subject).toBe("Contact • Ana (Café)");
+  });
+  it("leaves the company out of the subject when there is none, and lists the services asked for", async () => {
+    const sendContact = await load();
+    const data = form({ ...valid, company: "" });
+    data.append("service", "graphic-design");
+    data.append("service", "social-media");
+    data.append("service", "not-a-service");
+    await sendContact(data, "1.2.3.5");
+    const message = send.mock.calls[0]![0];
+    expect(message.subject).toBe("Contact • Ana");
+    expect(message.text).toContain("Services: Graphic Design, Social Media\n");
   });
   it("fakes success for bots without sending", async () => {
     const sendContact = await load();

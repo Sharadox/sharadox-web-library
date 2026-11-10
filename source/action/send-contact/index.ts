@@ -1,6 +1,7 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { createEmailSender, EmailError, readEmailServerConfiguration } from "@sharadox/email-web-library";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
+import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { escapeHtml } from "@sharadox/web-library/html/escape";
 import { parseContact } from "@sharadox/sharadox-web-library/utility/parse-contact";
@@ -20,15 +21,17 @@ export async function sendContact(form: FormData, ip: string): Promise<ContactSt
   // Bots get a fake success so they don't retry.
   if (parsed.kind === "bot") return { status: "sent" };
   if (parsed.kind === "invalid") return { status: "invalid" };
-  const { name, email, company, message, locale } = parsed.value;
+  const { name, email, company, message, locale, services } = parsed.value;
 
   if (!allow(ip)) return { status: "rate-limited" };
 
-  const subject = separate("New project enquiry", company ? `${name} (${company})` : name);
-  const text = `Name: ${name}\nEmail: ${email}\nCompany: ${company || "—"}\nLanguage: ${locale}\nIP: ${ip}\n\n${message}`;
+  const subject = separate(CONTACT.subject, company ? `${name} (${company})` : name);
+  const needs = SERVICES.items.filter((service) => services.includes(service.key)).map((service) => service.title.en);
+  const text = `Name: ${name}\nEmail: ${email}\nCompany: ${company || "—"}\nServices: ${needs.join(", ") || "—"}\nLanguage: ${locale}\nIP: ${ip}\n\n${message}`;
   const html = `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#111">
     <p style="color:#666;font-size:13px;margin:0 0 16px">New enquiry from sharadox.com (${escapeHtml(locale)})</p>
     <p style="margin:0">${separate(`<b>${escapeHtml(name)}</b>`, company && escapeHtml(company))}<br><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+    ${needs.length ? `<p style="margin:12px 0 0;color:#444">${escapeHtml(separate(...needs))}</p>` : ""}
     <hr style="border:0;border-top:1px solid #eee;margin:18px 0">
     <p style="white-space:pre-wrap;margin:0">${escapeHtml(message)}</p></div>`;
 
