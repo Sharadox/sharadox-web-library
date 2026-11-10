@@ -13,9 +13,21 @@ export const CONTACT = {
   name: { en: "Name", pt: "Nome" },
   email: { en: "Email", pt: "Email" },
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
-  services: { en: "What do you need?", pt: "Do que precisa?" },
+  needs: {
+    label: { en: "What do you need?", pt: "Do que precisa?" },
+    /** Everyday words, so anyone knows what to tick. `en` is also how they appear in the email. */
+    options: [
+      { key: "website", en: "Website", pt: "Website" },
+      { key: "platform", en: "Platform", pt: "Plataforma" },
+      { key: "mobile-app", en: "Mobile App", pt: "App Móvel" },
+      { key: "logo", en: "Logo", pt: "Logótipo" },
+      { key: "social-media", en: "Social Media", pt: "Redes Sociais" },
+      { key: "ads", en: "Ads", pt: "Anúncios" },
+      { key: "other", en: "Others", pt: "Outros" },
+    ],
+  },
   message: { en: "Tell us about your project", pt: "Fale-nos do seu projeto" },
-  send: { en: "Send message", pt: "Enviar mensagem" },
+  send: { en: "Send Message", pt: "Enviar Mensagem" },
   sending: { en: "Sending…", pt: "A enviar…" },
   sent: {
     en: "Thank you — your message is on its way. We'll be in touch soon.",
@@ -37,3 +49,6 @@ export const CONTACT = {
   },
   direct: { en: "Or write to us directly", pt: "Ou escreva-nos diretamente" },
 } as const;
+
+/** One of the "What do you need?" choices. */
+export type NeedKey = (typeof CONTACT.needs.options)[number]["key"];

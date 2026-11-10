@@ -20,7 +20,7 @@ export function Cursor() {
       y = event.clientY;
       const target = event.target as HTMLElement;
       ring.current?.classList.toggle(styles.hot!, !!target.closest("a, button, input, textarea, label, [data-hot]"));
-      ring.current?.classList.toggle(styles.grab!, !!target.closest("canvas"));
+      ring.current?.classList.toggle(styles.grab!, !!target.closest("canvas, [data-grab]"));
     };
     const loop = () => {
       ringX += (x - ringX) * 0.18;

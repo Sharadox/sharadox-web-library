@@ -7,7 +7,6 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   border: 1px solid var(--line);
-  border-top: 0;
   @include below(960px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -15,6 +14,7 @@
 .cell {
   position: relative;
   display: grid;
+  align-content: start;
   gap: 6px;
   padding: 22px 22px 24px;
   overflow: hidden;
