@@ -1,5 +1,6 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { createEmailSender, EmailError, readEmailServerConfiguration } from "@sharadox/email-web-library";
+import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { escapeHtml } from "@sharadox/web-library/html/escape";
 import { parseContact } from "@sharadox/sharadox-web-library/utility/parse-contact";
@@ -34,7 +35,8 @@ export async function sendContact(form: FormData, ip: string): Promise<ContactSt
   try {
     const configuration = readEmailServerConfiguration();
     await createEmailSender(configuration).send({
-      from: { name: "Sharadox Website", address: process.env.EMAIL_SENDER_ADDRESS || configuration.username },
+      from: { name: CONTACT.senderName, address: process.env.EMAIL_SENDER_ADDRESS || configuration.username },
+      // Replying to the email answers the visitor at the address they typed in the form.
       to: SITE.email,
       replyTo: { name: name.replace(/[\r\n]+/g, " "), address: email },
       subject: subject.replace(/[\r\n]+/g, " ").slice(0, 300),

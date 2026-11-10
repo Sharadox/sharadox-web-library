@@ -36,7 +36,7 @@ describe("sendContact", () => {
     const sendContact = await load();
     expect(await sendContact(form(valid), "1.2.3.4")).toEqual({ status: "sent" });
     const message = send.mock.calls[0]![0];
-    expect(message.from).toEqual({ name: "Sharadox Website", address: "web@email.sharadox.com" });
+    expect(message.from).toEqual({ name: "Sharadox Web Application", address: "web@email.sharadox.com" });
     expect(message.to).toBe("email@sharadox.com");
     expect(message.replyTo).toEqual({ name: "Ana", address: "ana@example.com" });
     expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");
