@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Reveal } from "@sharadox/web-library/animation/reveal";
 import { translate } from "@sharadox/web-library/internationalization/translate";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
@@ -9,19 +10,20 @@ import type { CapabilityProperties } from "@sharadox/sharadox-web-library/compon
 
 /** "Capabilities": every deliverable of every discipline, as columns of a ruled sheet. */
 export function Capability({ locale }: CapabilityProperties) {
+  const rows = 1 + Math.max(...SERVICES.items.map((service) => service.capabilities[locale].length));
   return (
     <Section id="capabilities" padded={false}>
       <div className={styles.heading}>
         <SectionHeading eyebrow={translate(CAPABILITY.eyebrow, locale)} title={translate(CAPABILITY.title, locale)} />
       </div>
-      <div className={styles.sheet}>
+      <div className={styles.sheet} style={{ "--rows": rows } as CSSProperties}>
         {SERVICES.items.map((service, column) => (
           <div key={service.key} className={styles.column}>
             <a href={`#${service.key}`} className={styles.title}>
               <span className="monospace">{service.number}</span>
               {translate(service.title, locale)}
             </a>
-            <ul>
+            <ul role="list">
               {service.capabilities[locale].map((capability, row) => (
                 <li key={capability}>
                   <Reveal delay={column * 0.05 + row * 0.04} y={8} blur={0} margin="-5% 0px">

@@ -42,16 +42,16 @@ describe("sendContact", () => {
     expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");
     expect(message.subject).toBe("Contact • Ana (Café)");
   });
-  it("leaves the company out of the subject when there is none, and lists the services asked for", async () => {
+  it("leaves the company out of the subject when there is none, and lists what the visitor needs", async () => {
     const sendContact = await load();
     const data = form({ ...valid, company: "" });
-    data.append("service", "graphic-design");
-    data.append("service", "social-media");
-    data.append("service", "not-a-service");
+    data.append("need", "logo");
+    data.append("need", "other");
+    data.append("need", "not-a-need");
     await sendContact(data, "1.2.3.5");
     const message = send.mock.calls[0]![0];
     expect(message.subject).toBe("Contact • Ana");
-    expect(message.text).toContain("Services: Graphic Design, Social Media\n");
+    expect(message.text).toContain("Needs: Logo, Others\n");
   });
   it("fakes success for bots without sending", async () => {
     const sendContact = await load();

@@ -26,20 +26,12 @@
     color: var(--foreground);
   }
 }
-.system {
+.icon {
   width: 15px;
   height: 15px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.3;
   stroke-linecap: round;
-}
-/* Half background, half foreground of the style it stands for. */
-.swatch {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 1px solid var(--foreground-3);
-  background-clip: padding-box;
-  box-shadow: inset -6.5px 0 0 currentColor;
+  stroke-linejoin: round;
 }

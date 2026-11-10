@@ -6,6 +6,8 @@
 .sheet {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  /* Each column spans the title row plus one row per capability, shared by all columns, so lines line up. */
+  grid-auto-rows: auto;
   border-top: 1px solid var(--line);
   @include below(960px) {
     grid-template-columns: repeat(2, 1fr);
@@ -16,6 +18,13 @@
 }
 .column {
   position: relative;
+  display: grid;
+  grid-row: span var(--rows);
+  grid-template-rows: subgrid;
+  @include below(600px) {
+    grid-row: auto;
+    grid-template-rows: none;
+  }
   &:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -26,12 +35,12 @@
     @include dashed(vertical);
   }
   ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    display: contents;
   }
   li {
     position: relative;
+    display: flex;
+    align-items: center;
     padding: 13px 20px;
     font-size: 14.5px;
     color: var(--foreground-2);

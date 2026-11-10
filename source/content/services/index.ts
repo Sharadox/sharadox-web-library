@@ -15,8 +15,8 @@ export const SERVICES = {
         pt: "Websites que conquistam. Plataformas que gerem o negócio.",
       },
       text: {
-        en: "From a website that loads in an instant, ranks on search and turns visitors into customers, to the bookings, orders, payments and dashboards behind it.",
-        pt: "De um website que abre num instante, aparece nas pesquisas e transforma visitas em clientes, às reservas, encomendas, pagamentos e dashboards por trás dele.",
+        en: "A website that loads in an instant, ranks on search and turns visitors into customers. And behind it, a platform built around how you work — bookings, orders, payments, stock and invoicing in one place, the repetitive tasks done automatically — so your team spends its time on customers, not on admin.",
+        pt: "Um website que abre num instante, aparece nas pesquisas e transforma visitas em clientes. E por trás dele, uma plataforma feita à medida da forma como trabalha — reservas, encomendas, pagamentos, stock e faturação num só lugar, as tarefas repetitivas feitas automaticamente — para que a sua equipa dedique o tempo aos clientes, não à burocracia.",
       },
       capabilities: {
         en: [
@@ -24,7 +24,7 @@ export const SERVICES = {
           "Online stores",
           "Bookings and ordering",
           "Dashboards and internal tools",
-          "Integrations and APIs",
+          "Business automation and integrations",
           "Search engine optimisation",
         ],
         pt: [
@@ -32,7 +32,7 @@ export const SERVICES = {
           "Lojas online",
           "Reservas e encomendas",
           "Dashboards e ferramentas internas",
-          "Integrações e APIs",
+          "Automação do negócio e integrações",
           "Otimização para motores de busca",
         ],
       },
