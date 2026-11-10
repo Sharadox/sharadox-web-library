@@ -10,13 +10,13 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 1.6px solid #fff;
+  border: 1.6px solid var(--foreground);
   position: relative;
   &::after {
     content: "";
     position: absolute;
     inset: -1.6px 4px;
     border-radius: 50%;
-    border: 1.2px solid rgba(255, 255, 255, 0.7);
+    border: 1.2px solid var(--foreground-2);
   }
 }

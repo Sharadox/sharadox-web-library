@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import styles from "./index.module.scss";
-import type { AppVisualProperties } from "@sharadox/sharadox-web-library/component/services/application-visual/type";
+import type { MobileVisualProperties } from "@sharadox/sharadox-web-library/component/services/mobile-visual/type";
 
 /** A phone with business notifications sliding in. */
-export function ApplicationVisual({ locale }: AppVisualProperties) {
+export function MobileVisual({ locale }: MobileVisualProperties) {
   const items = SERVICES.notifications[locale];
   const [tick, setTick] = useState(0);
   useEffect(() => {

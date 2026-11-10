@@ -1,6 +1,9 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useStyle } from "@sharadox/web-library/style/use-style";
+import { globeColors } from "@sharadox/sharadox-web-library/component/globe/color";
+import { STYLE_CONFIGURATION } from "@sharadox/sharadox-web-library/content/style";
 import { HOME } from "@sharadox/sharadox-web-library/content/globe";
 import { useGlobeDrag } from "@sharadox/sharadox-web-library/hook/globe-drag";
 import { useLandPoints } from "@sharadox/sharadox-web-library/hook/land-points";
@@ -11,10 +14,12 @@ import { World } from "@sharadox/sharadox-web-library/component/globe/world";
 
 /**
  * Interactive dot globe (default export so the hero can load it lazily).
- * Pauses rendering when off-screen and falls back to a static sphere without WebGL.
+ * Drawn in the colours of the style in use. Pauses rendering when off-screen and falls back to a static sphere without WebGL.
  */
 export default function Globe() {
   const data = useLandPoints();
+  const { style } = useStyle(STYLE_CONFIGURATION);
+  const colors = useMemo(() => globeColors(style), [style]);
   const [visible, setVisible] = useState(true);
   // Client-only component (loaded without server rendering), so the browser APIs are safe here.
   const [webGl] = useState(supportsWebGl);
@@ -44,7 +49,7 @@ export default function Globe() {
           frameloop={visible ? "always" : "never"}
           aria-label="Interactive globe"
         >
-          <World data={data} drag={drag} />
+          <World data={data} drag={drag} colors={colors} />
         </Canvas>
       ) : (
         <div className={styles.fallback} aria-hidden />

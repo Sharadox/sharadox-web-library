@@ -1,0 +1,76 @@
+@use "style/token" as *;
+
+.heading {
+  padding: clamp(72px, 10vw, 128px) var(--padding) 0;
+}
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--line);
+  @include below(960px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include below(600px) {
+    grid-template-columns: 1fr;
+  }
+}
+.column {
+  position: relative;
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    @include dashed(vertical);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    position: relative;
+    padding: 13px 20px;
+    font-size: 14.5px;
+    color: var(--foreground-2);
+    transition: color 0.25s;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      @include dashed(horizontal, var(--line));
+    }
+    &:hover {
+      color: var(--foreground);
+    }
+  }
+  @include below(960px) {
+    border-bottom: 1px solid var(--line);
+    &:nth-child(2n)::after {
+      display: none;
+    }
+  }
+  @include below(600px) {
+    &::after {
+      display: none;
+    }
+  }
+}
+.title {
+  display: grid;
+  gap: 6px;
+  padding: 22px 20px 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--line);
+  span {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--foreground-3);
+  }
+}

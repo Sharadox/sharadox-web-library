@@ -2,8 +2,10 @@
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
+import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
 import { GlobePlaceholder } from "@sharadox/sharadox-web-library/component/globe/placeholder";
+import { HeroGuide } from "@sharadox/sharadox-web-library/component/hero/guide";
 import { HERO } from "@sharadox/sharadox-web-library/content/hero";
 import { translate } from "@sharadox/web-library/internationalization/translate";
 import styles from "./index.module.scss";
@@ -15,15 +17,17 @@ const Globe = dynamic(() => import("@sharadox/sharadox-web-library/component/glo
 });
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** First screen: the slogan rising line by line beside the interactive globe. */
+/** First screen, inside the grid frame: the slogan rising line by line beside the interactive globe. */
 export function Hero({ locale }: HeroProperties) {
   const lines = HERO.lines[locale];
   return (
     <section className={styles.hero}>
-      <div className={styles.grid} aria-hidden />
+      <HeroGuide />
+      <Cross corner="bottom-left" />
+      <Cross corner="bottom-right" />
       <div className={styles.copy}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.1 }}>
-          <Eyebrow>
+          <Eyebrow className={styles.eyebrow}>
             <span className={styles.live} aria-hidden /> {translate(HERO.eyebrow, locale)}
           </Eyebrow>
         </motion.div>

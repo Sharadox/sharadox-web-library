@@ -1,5 +1,5 @@
-// Sharadox — black canvas, white type, light as the only accent.
-// Colours and sizes live as CSS custom properties in styles/global; these are build-time helpers.
+// Sharadox design helpers. Colours are CSS custom properties set by the active style (content/style: Black, White…),
+// so everything here works in every style. Only build-time helpers live in this file.
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 /// Below a viewport width.
@@ -15,4 +15,35 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   inset: 0;
   display: grid;
   place-items: center;
+}
+
+/// The foreground colour at an opacity, for lights, glows and hairlines that follow the style.
+@function tint($amount) {
+  @return color-mix(in srgb, var(--foreground) $amount, transparent);
+}
+
+/// The background colour at an opacity, for frosted bars and shadows that follow the style.
+@function shade($amount) {
+  @return color-mix(in srgb, var(--background) $amount, transparent);
+}
+
+/// A dashed hairline drawn with a gradient, so the dash length is exact: `horizontal` or `vertical`.
+@mixin dashed($direction: horizontal, $color: var(--line-2), $dash: 4px, $gap: 4px) {
+  @if $direction == horizontal {
+    background: linear-gradient(90deg, $color 50%, transparent 0) 0 0 / #{$dash + $gap} 1px repeat-x;
+  } @else {
+    background: linear-gradient(180deg, $color 50%, transparent 0) 0 0 / 1px #{$dash + $gap} repeat-y;
+  }
+}
+
+/// Animates something in as it scrolls into view (CSS scroll-driven animation, where supported, and only when the
+/// visitor allows motion). The element's normal styles are its final state, so it is complete everywhere else.
+@mixin on-scroll($keyframes, $range: entry 10% cover 40%) {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: $keyframes linear both;
+      animation-timeline: view();
+      animation-range: $range;
+    }
+  }
 }

@@ -6,9 +6,10 @@ export const ATMOSPHERE_SHADER = {
   fragment: /* glsl */ `
     varying vec3 viewNormal;
     uniform float strength;
+    uniform vec3 color;
     void main() {
       float intensity = smoothstep(0.0, 0.55, -viewNormal.z);
-      gl_FragColor = vec4(vec3(1.0), intensity * intensity * strength);
+      gl_FragColor = vec4(color, intensity * intensity * strength);
     }
   `,
 };

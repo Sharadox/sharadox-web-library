@@ -1,4 +1,4 @@
-/** Technologies shown in the marquee. */
+/** Technologies and tools shown in the marquee: code, design and marketing. */
 export const STACK = [
   "Next.js",
   "React",
@@ -11,5 +11,12 @@ export const STACK = [
   "Vercel",
   "Three.js",
   "WebGL",
+  "Figma",
+  "Blender",
+  "Illustrator",
+  "After Effects",
+  "Meta Ads",
+  "Google Ads",
+  "Google Analytics",
   "AI",
 ] as const;

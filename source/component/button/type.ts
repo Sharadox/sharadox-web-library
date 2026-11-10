@@ -4,7 +4,7 @@ export interface ButtonProperties {
   children: ReactNode;
   /** Renders a link when set, otherwise a button. */
   href?: string;
-  variant?: "white" | "ghost";
+  variant?: "solid" | "ghost";
   size?: "medium" | "small" | "block";
   /** Adds an arrow that nudges right on hover. */
   arrow?: boolean;

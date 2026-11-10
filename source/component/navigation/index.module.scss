@@ -11,40 +11,61 @@
     backdrop-filter 0.4s;
 }
 .scrolled {
-  background: rgba(0, 0, 0, 0.6);
+  background: shade(65%);
   backdrop-filter: blur(16px) saturate(1.6);
   border-color: var(--line);
 }
 .inner {
-  max-width: var(--maximum-width);
+  width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin: 0 auto;
   height: 64px;
   padding: 0 var(--padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
+  @include below(520px) {
+    padding: 0 12px;
+  }
 }
 .links {
   display: flex;
-  gap: 30px;
+  gap: 28px;
   font-size: 14px;
   color: var(--foreground-2);
   a {
+    position: relative;
     transition: color 0.2s;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 1px;
+      background: var(--foreground);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s $ease;
+    }
   }
   a:hover {
     color: var(--foreground);
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
-  @include below(820px) {
+  @include below(960px) {
     display: none;
   }
 }
 .end {
   display: flex;
   align-items: center;
-  gap: 12px;
-  @include below(420px) {
+  gap: 10px;
+  @include below(520px) {
+    gap: 6px;
     .callToAction {
       display: none;
     }

@@ -8,7 +8,7 @@ import { latitudeLongitudeToVector } from "@sharadox/sharadox-web-library/utilit
 import type { DotsProperties } from "@sharadox/sharadox-web-library/component/globe/dots/type";
 
 /** The land, drawn as twinkling points that fade towards the globe's edge. */
-export function Dots({ data }: DotsProperties) {
+export function Dots({ data, colors }: DotsProperties) {
   const { gl } = useThree();
   const material = useRef<ShaderMaterial>(null);
   const geometry = useMemo(() => {
@@ -26,8 +26,12 @@ export function Dots({ data }: DotsProperties) {
     return points;
   }, [data]);
   const uniforms = useMemo(
-    () => ({ time: { value: 0 }, pointSize: { value: 2.6 * Math.min(gl.getPixelRatio(), 2) } }),
-    [gl],
+    () => ({
+      time: { value: 0 },
+      pointSize: { value: 2.6 * Math.min(gl.getPixelRatio(), 2) },
+      color: { value: colors.ink },
+    }),
+    [gl, colors],
   );
   useFrame((_, deltaSeconds) => {
     if (material.current) material.current.uniforms.time!.value += deltaSeconds;

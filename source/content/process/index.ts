@@ -11,19 +11,22 @@ export const PROCESS = {
     {
       number: "02",
       title: { en: "Design", pt: "Desenhar" },
-      text: { en: "Every pixel has to earn its place.", pt: "Cada pixel tem de merecer o seu lugar." },
+      text: {
+        en: "One identity, every pixel earning its place.",
+        pt: "Uma identidade, cada pixel a merecer o seu lugar.",
+      },
     },
     {
       number: "03",
       title: { en: "Build", pt: "Construir" },
-      text: { en: "A modern stack, tested and fast.", pt: "Tecnologia moderna, testada e rápida." },
+      text: { en: "Modern technology, tested and fast.", pt: "Tecnologia moderna, testada e rápida." },
     },
     {
       number: "04",
-      title: { en: "Evolve", pt: "Evoluir" },
+      title: { en: "Grow", pt: "Crescer" },
       text: {
-        en: "Launch is the beginning. We keep improving.",
-        pt: "O lançamento é o começo. Continuamos a melhorar.",
+        en: "Launch is the beginning. We measure, learn and keep improving.",
+        pt: "O lançamento é o começo. Medimos, aprendemos e continuamos a melhorar.",
       },
     },
   ],

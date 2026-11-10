@@ -1,11 +1,11 @@
 import styles from "./index.module.scss";
 import type { ButtonProperties } from "@sharadox/sharadox-web-library/component/button/type";
 
-/** Pill button or link. */
+/** Pill button or link: solid (the foreground colour) or ghost (outlined). */
 export function Button({
   children,
   href,
-  variant = "white",
+  variant = "solid",
   size = "medium",
   arrow,
   disabled,

@@ -1,0 +1,50 @@
+.cross {
+  --cross-size: 21px;
+  position: absolute;
+  z-index: 3;
+  width: var(--cross-size);
+  height: var(--cross-size);
+  margin: calc(var(--cross-size) / -2);
+  pointer-events: none;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: var(--foreground-3);
+  }
+  &::before {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform: translateX(-0.5px);
+  }
+  &::after {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-0.5px);
+  }
+}
+.top-left {
+  top: -0.5px;
+  left: -0.5px;
+}
+.top-right {
+  top: -0.5px;
+  right: -0.5px;
+  margin-right: calc(var(--cross-size) / -2);
+  margin-left: 0;
+}
+.bottom-left {
+  bottom: -0.5px;
+  left: -0.5px;
+  margin-bottom: calc(var(--cross-size) / -2);
+  margin-top: 0;
+}
+.bottom-right {
+  bottom: -0.5px;
+  right: -0.5px;
+  margin: 0 calc(var(--cross-size) / -2) calc(var(--cross-size) / -2) 0;
+}
