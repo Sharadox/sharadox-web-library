@@ -37,12 +37,13 @@
     text-transform: uppercase;
     color: var(--foreground-3);
   }
+  /* Only the "Cookie Preferences" button looks like a link; the style switch keeps its own look. */
   a,
-  button {
+  [data-preferences-link] {
     width: fit-content;
     transition: color 0.2s;
   }
-  button {
+  [data-preferences-link] {
     padding: 0;
     border: 0;
     background: none;
@@ -51,7 +52,7 @@
     text-align: left;
   }
   a:hover,
-  button:hover {
+  [data-preferences-link]:hover {
     color: var(--foreground);
   }
   @include below(900px) {
