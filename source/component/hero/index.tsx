@@ -21,7 +21,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export function Hero({ locale }: HeroProperties) {
   const lines = HERO.lines[locale];
   return (
-    <section className={styles.hero}>
+    <section id="home" className={styles.hero}>
       <HeroGuide />
       <Cross corner="bottom-left" />
       <Cross corner="bottom-right" />
