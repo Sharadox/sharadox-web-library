@@ -4,7 +4,7 @@ import type { Translated } from "@sharadox/sharadox-web-library/utility/locale/t
 export const SITE = {
   name: "Sharadox",
   url: "https://sharadox.com",
-  email: "email@sharadox.com",
+  email: "contact@sharadox.com",
   slogan: {
     en: "Technologies that simplify the world",
     pt: "Tecnologias que simplificam o mundo",

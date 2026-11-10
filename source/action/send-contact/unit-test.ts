@@ -24,7 +24,7 @@ describe("sendContact", () => {
   beforeEach(() => {
     vi.resetModules();
     send.mockReset();
-    send.mockResolvedValue({ messageId: "<id@example.com>", accepted: ["email@sharadox.com"], rejected: [] });
+    send.mockResolvedValue({ messageId: "<id@example.com>", accepted: ["contact@sharadox.com"], rejected: [] });
     vi.stubEnv("EMAIL_SERVER_HOST", "smtp.example.com");
     vi.stubEnv("EMAIL_SERVER_USERNAME", "AKIAEXAMPLE");
     vi.stubEnv("EMAIL_SENDER_ADDRESS", "web@email.sharadox.com");
@@ -37,7 +37,7 @@ describe("sendContact", () => {
     expect(await sendContact(form(valid), "1.2.3.4")).toEqual({ status: "sent" });
     const message = send.mock.calls[0]![0];
     expect(message.from).toEqual({ name: "Sharadox Web Application", address: "web@email.sharadox.com" });
-    expect(message.to).toBe("email@sharadox.com");
+    expect(message.to).toBe("contact@sharadox.com");
     expect(message.replyTo).toEqual({ name: "Ana", address: "ana@example.com" });
     expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");
     expect(message.subject).toBe("Contact • Ana (Café)");

@@ -46,5 +46,5 @@ it("sends as Sharadox Web Application and replying answers the visitor", async (
   const message = received.at(-1)!;
   expect(message).toMatch(/^From: Sharadox Web Application <web@email\.sharadox\.com>$/m);
   expect(message).toMatch(/^Reply-To: =\?UTF-8\?Q\?Ana_S=C3=A1\?= <ana@example\.pt>$/m);
-  expect(message).toMatch(/^To: email@sharadox\.com$/m);
+  expect(message).toMatch(/^To: contact@sharadox\.com$/m);
 });
