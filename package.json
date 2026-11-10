@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/sharadox-web-library",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Sharadox's own website building blocks: content, components, brand and actions for sharadox-web-application, plus the preview notice and agency credit used on client demos.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
@@ -67,6 +67,7 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/smtp-server": "^3.5.13",
     "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^6.3.0",
     "eslint": "9.39.5",
@@ -80,6 +81,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "sass": "^1.108.1",
+    "smtp-server": "^3.21.3",
     "turbo": "^2.11.10",
     "typedoc": "^0.28.20",
     "typescript": "6.0.3",

@@ -57,13 +57,13 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               <input name="name" required autoComplete="name" maxLength={120} />
             </label>
             <label className={styles.field}>
-              <span>{translate(CONTACT.email, locale)}</span>
-              <input name="email" type="email" required autoComplete="email" maxLength={200} />
+              <span>{translate(CONTACT.company, locale)}</span>
+              <input name="company" autoComplete="organization" maxLength={160} />
             </label>
           </div>
           <label className={styles.field}>
-            <span>{translate(CONTACT.company, locale)}</span>
-            <input name="company" autoComplete="organization" maxLength={160} />
+            <span>{translate(CONTACT.email, locale)}</span>
+            <input name="email" type="email" required autoComplete="email" maxLength={200} />
           </label>
           <label className={styles.field}>
             <span>{translate(CONTACT.message, locale)}</span>

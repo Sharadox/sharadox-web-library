@@ -1,4 +1,5 @@
 .marquee {
+  --marquee-gap: 12px;
   overflow: hidden;
   border-block: 1px solid var(--line);
   padding: 22px 0;
@@ -6,9 +7,14 @@
 }
 .track {
   display: flex;
-  gap: 12px;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 120s linear infinite;
+}
+/* Each group ends with the same gap that separates the pills, so both groups are exactly the same width. */
+.group {
+  display: flex;
+  gap: var(--marquee-gap);
+  padding-right: var(--marquee-gap);
 }
 .pill {
   padding: 9px 16px;
@@ -20,6 +26,11 @@
 }
 @keyframes marquee {
   to {
-    transform: translateX(calc(-50% - 6px));
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
   }
 }
