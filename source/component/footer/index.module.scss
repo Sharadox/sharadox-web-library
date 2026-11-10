@@ -37,11 +37,21 @@
     text-transform: uppercase;
     color: var(--foreground-3);
   }
-  a {
+  a,
+  button {
     width: fit-content;
     transition: color 0.2s;
   }
-  a:hover {
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+    text-align: left;
+  }
+  a:hover,
+  button:hover {
     color: var(--foreground);
   }
   @include below(900px) {

@@ -1,0 +1,143 @@
+@use "style/token" as *;
+
+.indicator {
+  --page: 0;
+  --within: 0;
+  position: fixed;
+  z-index: 40;
+  right: max(14px, calc((100vw - var(--maximum-width)) / 2 - 92px));
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 14px 0;
+  animation: enter 1s 1.2s $ease both;
+  ol {
+    position: relative;
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  @include below(1180px) {
+    display: none;
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translate(16px, -50%);
+  }
+}
+/* The rail fills with the page's progress. */
+.rail {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  @include dashed(vertical, var(--line-2), 3px, 3px);
+  span {
+    position: absolute;
+    inset: 0 0 auto;
+    height: calc(var(--page) * 100%);
+    background: linear-gradient(180deg, transparent, var(--foreground));
+    box-shadow: 0 0 8px tint(60%);
+  }
+}
+.indicator a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 26px;
+  padding-right: 0;
+  color: var(--foreground-3);
+  transition: color 0.3s;
+  &:hover {
+    color: var(--foreground);
+  }
+}
+.number {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+.tick {
+  position: relative;
+  width: 12px;
+  height: 1px;
+  background: var(--line-2);
+  transition:
+    width 0.6s $ease,
+    background 0.3s;
+  span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: var(--foreground);
+  }
+}
+/* Names sit to the left in a frosted pill: hidden until hovered, flashing in when their section becomes current. */
+.name {
+  position: absolute;
+  right: 64px;
+  padding: 5px 11px;
+  border-radius: 99px;
+  border: 1px solid var(--line-2);
+  background: shade(75%);
+  backdrop-filter: blur(10px);
+  color: var(--foreground);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  filter: blur(4px);
+  pointer-events: none;
+  transition:
+    opacity 0.35s,
+    transform 0.5s $ease,
+    filter 0.35s;
+}
+.indicator:hover .name {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.current {
+  color: var(--foreground) !important;
+  .tick {
+    width: 34px;
+    background: tint(25%);
+    span {
+      width: calc(var(--within) * 100%);
+      box-shadow: 0 0 8px tint(70%);
+    }
+  }
+  .name {
+    animation: flash 2.2s $ease both;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+    filter: blur(4px);
+  }
+  15%,
+  70% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(4px);
+    filter: blur(2px);
+  }
+}
+.indicator:hover .current .name {
+  animation: none;
+}

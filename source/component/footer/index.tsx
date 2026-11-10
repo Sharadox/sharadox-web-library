@@ -1,5 +1,7 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/web-library/internationalization/translate";
+import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
+import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { LocaleLink } from "@sharadox/sharadox-web-library/component/locale-link";
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
@@ -42,6 +44,7 @@ export function Footer({ locale }: FooterProperties) {
           <a href="#capabilities">{translate(NAVIGATION.capabilities, locale)}</a>
           <a href="#process">{translate(NAVIGATION.process, locale)}</a>
           <a href="#contact">{translate(NAVIGATION.contact, locale)}</a>
+          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <a href="#top">{translate(FOOTER.top, locale)} ↑</a>
         </nav>
         <div className={styles.settings}>
