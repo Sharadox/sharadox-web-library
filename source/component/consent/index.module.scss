@@ -3,7 +3,7 @@
 .consent {
   position: fixed;
   z-index: 60;
-  left: max(16px, calc((100vw - var(--maximum-width)) / 2 + 16px));
+  right: max(16px, calc((100vw - var(--maximum-width)) / 2 + 16px));
   bottom: 16px;
   width: min(410px, calc(100vw - 32px));
   padding: 20px 20px 18px;
