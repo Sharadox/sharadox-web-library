@@ -1,5 +1,7 @@
 /** Contact section and form copy. */
 export const CONTACT = {
+  /** Display name of the email the contact form sends (from web@email.sharadox.com). */
+  senderName: "Sharadox Web Application",
   eyebrow: { en: "Contact", pt: "Contacto" },
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {
