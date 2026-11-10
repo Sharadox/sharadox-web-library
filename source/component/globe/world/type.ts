@@ -1,3 +1,4 @@
+import type { GlobeColors } from "@sharadox/sharadox-web-library/component/globe/color/type";
 import type { GlobeDrag } from "@sharadox/sharadox-web-library/hook/globe-drag/type";
 
 export interface WorldProperties {
@@ -5,4 +6,5 @@ export interface WorldProperties {
   data: Float32Array;
   /** Supplies the rotation each frame. */
   drag: GlobeDrag;
+  colors: GlobeColors;
 }

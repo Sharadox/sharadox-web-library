@@ -1,6 +1,32 @@
+@use "style/token" as *;
+
 .section {
   position: relative;
-  max-width: var(--maximum-width);
-  margin: 0 auto;
-  padding: clamp(80px, 12vw, 150px) var(--padding);
+  width: min(100% - 2 * var(--gutter), var(--maximum-width));
+  margin-inline: auto;
+  border-inline: 1px solid var(--line);
+}
+.padded {
+  padding: clamp(72px, 10vw, 128px) var(--padding);
+}
+.line {
+  position: absolute;
+  left: calc(-1 * var(--gutter));
+  right: calc(-1 * var(--gutter));
+  top: -0.5px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line) var(--gutter),
+    var(--line) calc(100% - var(--gutter)),
+    transparent
+  );
+  transform-origin: left;
+  @include on-scroll(draw, entry 0% entry 60%);
+}
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
 }

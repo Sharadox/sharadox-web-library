@@ -1,16 +1,66 @@
 @use "style/token" as *;
 
-.cards {
+.heading {
+  padding: clamp(72px, 10vw, 128px) var(--padding) 0;
+}
+/* Cells share hairlines: the grid's background shows through 1px gaps. */
+.grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  @include below(860px) {
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  > div {
+    background: var(--background);
+  }
+  @include below(960px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include below(640px) {
     grid-template-columns: 1fr;
   }
 }
-.wide {
-  grid-column: span 2;
-  @include below(860px) {
+.reveal {
+  height: 100%;
+  > article {
+    height: 100%;
+  }
+}
+.web-application {
+  grid-column: span 4;
+  @include below(960px) {
+    grid-column: span 2;
+  }
+  @include below(640px) {
     grid-column: auto;
+  }
+}
+.mobile-application,
+.graphic-design,
+.social-media,
+.marketing-campaign {
+  grid-column: span 2;
+  @include below(960px) {
+    grid-column: auto;
+  }
+}
+.split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  > * {
+    position: relative !important;
+    inset: auto !important;
+  }
+  > *:last-child {
+    border-left: 1px dashed var(--line-2);
+  }
+  @include below(640px) {
+    grid-template-columns: 1fr;
+    > *:last-child {
+      display: none !important;
+    }
   }
 }

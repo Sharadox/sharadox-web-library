@@ -7,7 +7,7 @@
   display: grid;
   gap: 14px;
   padding: clamp(22px, 3vw, 34px);
-  border-radius: 22px;
+  border-radius: 18px;
   background: var(--card);
   border: 1px solid var(--line);
   isolation: isolate;
@@ -17,11 +17,7 @@
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background: radial-gradient(
-      500px circle at var(--pointer-x) var(--pointer-y),
-      rgba(255, 255, 255, 0.05),
-      transparent 60%
-    );
+    background: radial-gradient(500px circle at var(--pointer-x) var(--pointer-y), tint(5%), transparent 60%);
   }
 }
 .row {
@@ -45,7 +41,7 @@
     font: inherit;
     font-size: 15px;
     color: var(--foreground);
-    background: #000;
+    background: var(--background);
     border: 1px solid var(--line-2);
     border-radius: 12px;
     padding: 13px 14px;
@@ -55,9 +51,70 @@
     resize: vertical;
     &:focus {
       outline: none;
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+      border-color: tint(50%);
+      box-shadow: 0 0 0 4px tint(6%);
     }
+  }
+}
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 2px;
+  padding: 0;
+  border: 0;
+  legend {
+    float: left;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 9px;
+    font-size: 13px;
+    color: var(--foreground-2);
+  }
+}
+.chip {
+  position: relative;
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border-radius: 99px;
+    border: 1px solid var(--line-2);
+    font-size: 13.5px;
+    color: var(--foreground-2);
+    transition:
+      color 0.2s,
+      background 0.2s,
+      border-color 0.2s;
+    &::before {
+      content: "+";
+      font-family: var(--monospace);
+      transition: transform 0.3s $ease;
+    }
+  }
+  &:hover span {
+    color: var(--foreground);
+    border-color: tint(30%);
+  }
+  input:checked + span {
+    background: var(--foreground);
+    border-color: var(--foreground);
+    color: var(--background);
+    &::before {
+      transform: rotate(45deg);
+    }
+  }
+  input:focus-visible + span {
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
   }
 }
 .honeypot {
@@ -69,7 +126,7 @@
 }
 .error {
   font-size: 14px;
-  color: #ff8a8a;
+  color: var(--error);
   a {
     text-decoration: underline;
   }
@@ -89,7 +146,7 @@
   width: 56px;
   height: 56px;
   fill: none;
-  stroke: #fff;
+  stroke: var(--foreground);
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;

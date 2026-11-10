@@ -1,7 +1,11 @@
 .marquee {
   --marquee-gap: 12px;
+  position: relative;
+  width: min(100% - 2 * var(--gutter), var(--maximum-width));
+  margin-inline: auto;
   overflow: hidden;
-  border-block: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-bottom: 0;
   padding: 22px 0;
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
