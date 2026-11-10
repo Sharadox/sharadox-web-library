@@ -4,7 +4,6 @@ import { useActionState, useEffect, useRef } from "react";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
-import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { useSpotlight } from "@sharadox/web-library/pointer/spotlight";
 import { translate } from "@sharadox/web-library/internationalization/translate";
@@ -67,11 +66,11 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
             <input name="email" type="email" required autoComplete="email" maxLength={200} />
           </label>
           <fieldset className={styles.services}>
-            <legend>{translate(CONTACT.services, locale)}</legend>
-            {SERVICES.items.map((service) => (
-              <label key={service.key} className={styles.chip}>
-                <input type="checkbox" name="service" value={service.key} />
-                <span>{translate(service.title, locale)}</span>
+            <legend>{translate(CONTACT.needs.label, locale)}</legend>
+            {CONTACT.needs.options.map((need) => (
+              <label key={need.key} className={styles.chip}>
+                <input type="checkbox" name="need" value={need.key} />
+                <span>{need[locale]}</span>
               </label>
             ))}
           </fieldset>

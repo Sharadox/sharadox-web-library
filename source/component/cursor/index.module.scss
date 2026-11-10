@@ -3,7 +3,8 @@
 :global(.has-cursor) button {
   cursor: none;
 }
-:global(.has-cursor) canvas {
+:global(.has-cursor) canvas,
+:global(.has-cursor) [data-grab] {
   cursor: none !important;
 }
 .dot,
