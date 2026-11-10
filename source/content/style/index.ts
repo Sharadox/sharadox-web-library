@@ -31,7 +31,8 @@ const WHITE = {
 /**
  * Every Sharadox style (what other projects call a theme). Add a dark or light style here — name, scheme and the
  * same palette keys — and it appears in the style switch; `defaults` picks the one "System" uses for each scheme.
- * Dark is the fallback when the device's preference is unknown.
+ * The site opens in Black (`defaultChoice`); set it to "system" to follow the device instead. Dark is the fallback
+ * when the device's preference is unknown.
  */
 export const STYLE_CONFIGURATION = {
   styles: [
@@ -41,6 +42,7 @@ export const STYLE_CONFIGURATION = {
   defaults: { dark: "black", light: "white" },
   fallback: "dark",
   storageKey: "style",
+  defaultChoice: "black",
 } as const satisfies StyleConfiguration;
 
 /** Names shown in the style switch. Style names are proper names, the same in every language. */

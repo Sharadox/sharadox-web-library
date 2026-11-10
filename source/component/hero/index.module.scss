@@ -20,6 +20,7 @@
 .copy {
   position: relative;
   z-index: 2;
+  container-type: inline-size;
 }
 .eyebrow {
   padding: 6px 12px 6px 10px;
@@ -46,7 +47,9 @@
 }
 .title {
   margin: 26px 0 26px;
-  font-size: clamp(3rem, 7vw, 6.4rem);
+  /* Each line stays on one line: the size follows the column so the longest line ("que simplificam") fits. */
+  font-size: min(clamp(3rem, 7vw, 6.4rem), 14.6cqi);
+  white-space: nowrap;
   letter-spacing: -0.06em;
   line-height: 0.95;
   @include below(900px) {
