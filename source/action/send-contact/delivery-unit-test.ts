@@ -1,5 +1,5 @@
 import { SMTPServer } from "smtp-server";
-import { afterAll, beforeAll, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, expect, test, vi } from "vitest";
 
 /** A local SMTP server that accepts any login and keeps the raw messages, to check the real headers. */
 const received: string[] = [];
@@ -29,7 +29,7 @@ beforeAll(async () => {
 });
 afterAll(() => new Promise<void>((resolve) => server.close(resolve)));
 
-it("sends as Sharadox Web Application and replying answers the visitor", async () => {
+test("sends as Sharadox Web Application and replying answers the visitor", async () => {
   const { sendContact } = await import("@sharadox/sharadox-web-library/action/send-contact");
   const form = new FormData();
   for (const [name, value] of Object.entries({

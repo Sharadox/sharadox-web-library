@@ -1,5 +1,5 @@
 import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
-import { Reveal } from "@sharadox/web-library/animation/reveal";
+import { Reveal } from "@sharadox/animation-web-library/reveal";
 import styles from "./index.module.scss";
 import type { SectionHeadProperties } from "@sharadox/sharadox-web-library/component/section-heading/type";
 

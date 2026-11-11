@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Reveal } from "@sharadox/web-library/animation/reveal";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { Reveal } from "@sharadox/animation-web-library/reveal";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";

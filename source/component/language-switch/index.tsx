@@ -1,7 +1,7 @@
-import { translate } from "@sharadox/web-library/internationalization/translate";
-import { LocaleLink } from "@sharadox/sharadox-web-library/component/locale-link";
+import { translate } from "@sharadox/internationalization-web-library/translate";
+import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
 import { NAVIGATION } from "@sharadox/sharadox-web-library/content/navigation";
-import { LOCALES } from "@sharadox/sharadox-web-library/utility/locale";
+import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { LanguageSwitchProperties } from "@sharadox/sharadox-web-library/component/language-switch/type";
 
@@ -9,7 +9,7 @@ import type { LanguageSwitchProperties } from "@sharadox/sharadox-web-library/co
 export function LanguageSwitch({ locale }: LanguageSwitchProperties) {
   return (
     <div className={styles.switch} role="group" aria-label={translate(NAVIGATION.language, locale)}>
-      {LOCALES.map((other) => (
+      {LOCALES.locales.map((other) => (
         <LocaleLink key={other} locale={other} current={other === locale}>
           {other.toUpperCase()}
         </LocaleLink>

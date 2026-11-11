@@ -1,8 +1,8 @@
 "use client";
-import { useCountUp } from "@sharadox/web-library/animation/count-up";
-import { useInView } from "@sharadox/web-library/animation/in-view";
-import { languageTag } from "@sharadox/web-library/internationalization/locale";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { useCountUp } from "@sharadox/animation-web-library/count-up";
+import { useInView } from "@sharadox/animation-web-library/in-view";
+import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import styles from "./index.module.scss";
 import type { SocialVisualProperties } from "@sharadox/sharadox-web-library/component/services/social-visual/type";
@@ -26,7 +26,7 @@ export function SocialVisual({ locale }: SocialVisualProperties) {
           <span className={`${styles.label} monospace`}>{translate(SERVICES.visual.followers, locale)}</span>
           <span className={`${styles.growth} monospace`}>+38%</span>
         </div>
-        <span className={styles.count}>{followers.toLocaleString(languageTag(locale))}</span>
+        <span className={styles.count}>{followers.toLocaleString(LOCALES.languageTag(locale))}</span>
         <svg viewBox="0 0 260 96" className={styles.chart}>
           <defs>
             <linearGradient id="social-area" x1="0" x2="0" y1="0" y2="1">

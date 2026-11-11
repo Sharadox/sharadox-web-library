@@ -1,8 +1,8 @@
-import { ImageResponse } from "next/og";
+import { shareImage } from "@sharadox/metadata-web-library/share-image";
 import { readFile } from "node:fs/promises";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { horizonDots } from "@sharadox/sharadox-web-library/utility/horizon-dots";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import type { ShareImageOptions } from "@sharadox/sharadox-web-library/component/share-image/type";
 
 /** Fonts ship with the library (distribution/asset/font), found relative to this compiled file. */
@@ -11,7 +11,7 @@ const font = (file: string) => readFile(new URL(`../../asset/font/${file}`, impo
 /** Share card (Open Graph and Twitter): black canvas, a dotted planet rising from the bottom, the slogan in Geist. */
 export async function renderShareImage({ locale, width, height }: ShareImageOptions) {
   const [semiBold, monospace] = await Promise.all([font("Geist-SemiBold.ttf"), font("GeistMono-Regular.ttf")]);
-  return new ImageResponse(
+  return shareImage(
     <div
       style={{
         width: "100%",

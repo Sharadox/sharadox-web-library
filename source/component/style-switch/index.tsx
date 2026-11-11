@@ -1,8 +1,8 @@
 "use client";
-import { SYSTEM_STYLE } from "@sharadox/web-library/style/definition";
-import { useStyle } from "@sharadox/web-library/style/use-style";
-import { translate } from "@sharadox/web-library/internationalization/translate";
-import { STYLE, STYLE_CONFIGURATION } from "@sharadox/sharadox-web-library/content/style";
+import { classNames } from "@sharadox/web-library/class-name";
+import { useStyle } from "@sharadox/style-web-library/use-style";
+import { translate } from "@sharadox/internationalization-web-library/translate";
+import { STYLE, STYLES } from "@sharadox/sharadox-web-library/content/style";
 import styles from "./index.module.scss";
 import type { StyleSwitchProperties } from "@sharadox/sharadox-web-library/component/style-switch/type";
 
@@ -26,42 +26,31 @@ const ICON = {
 };
 
 /**
- * Picks the style: light styles on the left, System (the default, follows the device) in the middle, dark styles on
- * the right. Light styles show a sun and dark ones a moon; every style in content/style appears automatically.
+ * Picks the colour style: light styles on the left, System (follows the device) in the middle, dark styles on the
+ * right. Light styles show a sun and dark ones a moon; every option in content/style appears automatically.
  */
 export function StyleSwitch({ locale, className }: StyleSwitchProperties) {
-  const { choice, choose } = useStyle(STYLE_CONFIGURATION);
-  const option = (style: (typeof STYLE_CONFIGURATION.styles)[number]) => ({
-    name: style.name,
-    label: STYLE.names[style.name] ?? style.name,
-    icon: ICON[style.scheme],
-  });
-  const options = [
-    ...STYLE_CONFIGURATION.styles.filter((style) => style.scheme === "light").map(option),
-    { name: SYSTEM_STYLE, label: translate(STYLE.system, locale), icon: ICON.system },
-    ...STYLE_CONFIGURATION.styles.filter((style) => style.scheme === "dark").map(option),
-  ];
+  const { choice, choices, choose } = useStyle(STYLES, "color");
   return (
-    <div
-      className={[styles.switch, className].filter(Boolean).join(" ")}
-      role="radiogroup"
-      aria-label={translate(STYLE.label, locale)}
-    >
-      {options.map((item) => (
-        <button
-          key={item.name}
-          type="button"
-          role="radio"
-          aria-checked={choice === item.name}
-          aria-label={item.label}
-          title={item.label}
-          onClick={() => choose(item.name)}
-        >
-          <svg viewBox="0 0 16 16" className={styles.icon} aria-hidden>
-            {item.icon}
-          </svg>
-        </button>
-      ))}
+    <div className={classNames(styles.switch, className)} role="radiogroup" aria-label={translate(STYLE.label, locale)}>
+      {choices.map((item) => {
+        const label = item.kind === "system" ? translate(STYLE.system, locale) : STYLE.names[item.name]!;
+        return (
+          <button
+            key={item.name}
+            type="button"
+            role="radio"
+            aria-checked={choice === item.name}
+            aria-label={label}
+            title={label}
+            onClick={() => choose(item.name)}
+          >
+            <svg viewBox="0 0 16 16" className={styles.icon} aria-hidden>
+              {ICON[item.kind === "system" ? "system" : item.scheme!]}
+            </svg>
+          </button>
+        );
+      })}
     </div>
   );
 }

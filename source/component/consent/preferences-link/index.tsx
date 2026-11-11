@@ -1,5 +1,5 @@
 "use client";
-import { openConsent } from "@sharadox/web-library/privacy/consent";
+import { openConsent } from "@sharadox/consent-web-library/consent";
 import type { PreferencesLinkProperties } from "@sharadox/sharadox-web-library/component/consent/preferences-link/type";
 
 /** Reopens the cookie panel so the visitor can change their answer. */

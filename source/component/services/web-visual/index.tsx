@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useInView } from "@sharadox/web-library/animation/in-view";
+import { useInView } from "@sharadox/animation-web-library/in-view";
 import styles from "./index.module.scss";
 
 const CIRCUMFERENCE = 2 * Math.PI * 22;

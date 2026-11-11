@@ -1,9 +1,9 @@
 import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
-import { Reveal } from "@sharadox/web-library/animation/reveal";
+import { Reveal } from "@sharadox/animation-web-library/reveal";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import { ContactForm } from "@sharadox/sharadox-web-library/component/contact/form";
 import styles from "./index.module.scss";
 import type { ContactProperties } from "@sharadox/sharadox-web-library/component/contact/type";
