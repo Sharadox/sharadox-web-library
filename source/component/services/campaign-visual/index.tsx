@@ -1,6 +1,6 @@
 "use client";
-import { useInView } from "@sharadox/web-library/animation/in-view";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { useInView } from "@sharadox/animation-web-library/in-view";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Stage } from "@sharadox/sharadox-web-library/component/services/campaign-visual/stage";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import styles from "./index.module.scss";

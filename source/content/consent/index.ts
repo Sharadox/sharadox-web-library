@@ -1,4 +1,4 @@
-import type { ConsentConfiguration } from "@sharadox/web-library/privacy/consent/type";
+import type { ConsentConfiguration } from "@sharadox/consent-web-library/consent/type";
 
 /**
  * The cookie categories. Raise `version` whenever they change, so every visitor is asked again. Required is always

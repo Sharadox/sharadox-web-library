@@ -1,5 +1,5 @@
 "use client";
-import { useMarquee } from "@sharadox/web-library/animation/marquee";
+import { useMarquee } from "@sharadox/animation-web-library/marquee";
 import { STACK } from "@sharadox/sharadox-web-library/content/stack";
 import styles from "./index.module.scss";
 

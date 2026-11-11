@@ -1,6 +1,6 @@
 "use client";
-import { useSpotlight } from "@sharadox/web-library/pointer/spotlight";
-import { useTilt } from "@sharadox/web-library/pointer/tilt";
+import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
+import { useTilt } from "@sharadox/pointer-web-library/tilt";
 import styles from "./index.module.scss";
 import type { CellProperties } from "@sharadox/sharadox-web-library/component/services/cell/type";
 

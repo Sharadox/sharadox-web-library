@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
+import { classNames } from "@sharadox/web-library/class-name";
 import styles from "./index.module.scss";
 import type { MobileVisualProperties } from "@sharadox/sharadox-web-library/component/services/mobile-visual/type";
 
@@ -20,7 +21,10 @@ export function MobileVisual({ locale }: MobileVisualProperties) {
         <div className={`${styles.time} monospace`}>9:41</div>
         <div className={styles.notes}>
           {shown.map(([title, detail], slot) => (
-            <div key={`${tick}-${slot}`} className={`${styles.note} ${styles[`note${slot}`] ?? ""}`}>
+            <div
+              key={`${tick}-${slot}`}
+              className={classNames(styles.note, slot === 1 && styles.note1, slot === 2 && styles.note2)}
+            >
               <span className={styles.icon} />
               <span className={styles.text}>
                 <b>{title}</b>

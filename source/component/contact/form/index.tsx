@@ -5,8 +5,8 @@ import type { ContactState } from "@sharadox/sharadox-web-library/action/send-co
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { useSpotlight } from "@sharadox/web-library/pointer/spotlight";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 
@@ -16,7 +16,8 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
   // When the visitor started filling the form; bots submit faster than humans can.
   const startedAt = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    if (startedAt.current) startedAt.current.value = String(Date.now());
+    // The form is always what mounts first, so the field exists.
+    startedAt.current!.value = String(Date.now());
   }, []);
   const spotlight = useSpotlight<HTMLFormElement>();
   return (

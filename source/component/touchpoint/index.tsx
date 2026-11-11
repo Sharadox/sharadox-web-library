@@ -1,9 +1,9 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Reveal } from "@sharadox/web-library/animation/reveal";
-import { translate } from "@sharadox/web-library/internationalization/translate";
-import { useTilt } from "@sharadox/web-library/pointer/tilt";
+import { Reveal } from "@sharadox/animation-web-library/reveal";
+import { translate } from "@sharadox/internationalization-web-library/translate";
+import { useTilt } from "@sharadox/pointer-web-library/tilt";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { Plate } from "@sharadox/sharadox-web-library/component/touchpoint/plate";

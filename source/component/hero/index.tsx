@@ -7,7 +7,7 @@ import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
 import { GlobePlaceholder } from "@sharadox/sharadox-web-library/component/globe/placeholder";
 import { HeroGuide } from "@sharadox/sharadox-web-library/component/hero/guide";
 import { HERO } from "@sharadox/sharadox-web-library/content/hero";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import styles from "./index.module.scss";
 import type { HeroProperties } from "@sharadox/sharadox-web-library/component/hero/type";
 

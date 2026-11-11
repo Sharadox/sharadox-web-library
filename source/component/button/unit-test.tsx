@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { expect, it } from "vitest";
+import { expect, test } from "vitest";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 
-it("renders a link with href and a button without", () => {
+test("renders a link with href and a button without", () => {
   render(
     <>
       <Button href="#contact">Go</Button>

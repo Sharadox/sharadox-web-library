@@ -1,7 +1,7 @@
 "use client";
 import type { CSSProperties } from "react";
-import { translate } from "@sharadox/web-library/internationalization/translate";
-import { useActiveSection } from "@sharadox/web-library/scroll/active-section";
+import { translate } from "@sharadox/internationalization-web-library/translate";
+import { useActiveSection } from "@sharadox/scroll-web-library/active-section";
 import { SECTION_INDICATOR } from "@sharadox/sharadox-web-library/content/section-indicator";
 import styles from "./index.module.scss";
 import type { SectionIndicatorProperties } from "@sharadox/sharadox-web-library/component/section-indicator/type";

@@ -1,5 +1,5 @@
 "use client";
-import { useInView } from "@sharadox/web-library/animation/in-view";
+import { useInView } from "@sharadox/animation-web-library/in-view";
 import styles from "./index.module.scss";
 
 const SWATCHES = ["var(--foreground)", "var(--foreground-2)", "var(--foreground-3)", "var(--surface)"];
