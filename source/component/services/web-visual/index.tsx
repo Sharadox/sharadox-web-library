@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useEffect, useState } from "react";
 import { useInView } from "@sharadox/animation-web-library/in-view";
 import styles from "./index.module.scss";
@@ -20,7 +21,7 @@ export function WebVisual() {
     return () => clearInterval(timer);
   }, [on]);
   return (
-    <div ref={container} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
+    <div ref={container} className={classNames(styles.visual, on && styles.on)} aria-hidden>
       <div className={styles.browser}>
         <div className={styles.bar}>
           <i />

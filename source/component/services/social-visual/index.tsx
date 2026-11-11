@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useCountUp } from "@sharadox/animation-web-library/count-up";
 import { useInView } from "@sharadox/animation-web-library/in-view";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
@@ -15,7 +16,7 @@ export function SocialVisual({ locale }: SocialVisualProperties) {
   const [container, on] = useInView<HTMLDivElement>();
   const followers = useCountUp(12480, on, 2200);
   return (
-    <div ref={container} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
+    <div ref={container} className={classNames(styles.visual, on && styles.on)} aria-hidden>
       <div className={styles.feed}>
         {POSTS.map((post) => (
           <span key={post} style={{ animationDelay: `${0.2 + post * 0.09}s` }} />

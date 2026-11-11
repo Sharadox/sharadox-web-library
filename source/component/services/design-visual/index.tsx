@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useInView } from "@sharadox/animation-web-library/in-view";
 import styles from "./index.module.scss";
 
@@ -10,7 +11,7 @@ const SWATCHES = ["var(--foreground)", "var(--foreground-2)", "var(--foreground-
 export function DesignVisual() {
   const [container, on] = useInView<HTMLDivElement>();
   return (
-    <div ref={container} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
+    <div ref={container} className={classNames(styles.visual, on && styles.on)} aria-hidden>
       <div className={styles.scene}>
         <div className={`${styles.card} ${styles.palette}`}>
           {SWATCHES.map((color, index) => (

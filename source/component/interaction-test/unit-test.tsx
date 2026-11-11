@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type React from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { installBrowser } from "@sharadox/sharadox-web-library/test-fixture/browser";
+import { installBrowserEnvironment } from "@sharadox/test-web-library/browser-environment";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 
 const Globe = vi.fn<(properties: { palette: { dark: boolean } }) => React.ReactNode>(() => <div data-testid="globe" />);
@@ -12,7 +12,7 @@ const { ContactForm } = await import("@sharadox/sharadox-web-library/component/c
 const { Button } = await import("@sharadox/sharadox-web-library/component/button");
 const { default: SharadoxGlobe } = await import("@sharadox/sharadox-web-library/component/globe");
 
-beforeEach(() => installBrowser());
+beforeEach(() => installBrowserEnvironment());
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();

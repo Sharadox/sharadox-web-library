@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useEffect, useState } from "react";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { LanguageSwitch } from "@sharadox/sharadox-web-library/component/language-switch";
@@ -21,7 +22,7 @@ export function Navigation({ locale }: NavigationProperties) {
     return () => removeEventListener("scroll", update);
   }, []);
   return (
-    <header className={[styles.navigation, scrolled && styles.scrolled].filter(Boolean).join(" ")}>
+    <header className={classNames(styles.navigation, scrolled && styles.scrolled)}>
       <div className={styles.inner}>
         <Wordmark href={`/${locale}`} />
         <nav className={styles.links} aria-label="Main">

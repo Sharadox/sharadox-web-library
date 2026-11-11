@@ -1,6 +1,6 @@
 import { act, cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { installBrowser, revealEverything } from "@sharadox/sharadox-web-library/test-fixture/browser";
+import { installBrowserEnvironment, reportIntersection } from "@sharadox/test-web-library/browser-environment";
 
 vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe: () => <div data-testid="globe" /> }));
 const { Navigation } = await import("@sharadox/sharadox-web-library/component/navigation");
@@ -21,7 +21,7 @@ const { STATEMENT } = await import("@sharadox/sharadox-web-library/content/state
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["setInterval", "clearInterval", "setTimeout", "clearTimeout"] });
-  installBrowser();
+  installBrowserEnvironment();
 });
 afterEach(() => {
   cleanup();
@@ -55,7 +55,7 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
         <StructuredData locale={locale} />
       </>,
     );
-    await act(async () => revealEverything());
+    await act(async () => reportIntersection());
     // The visuals start their timers once in view (score counter, notifications).
     await act(async () => vi.advanceTimersByTime(4000));
     expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(
