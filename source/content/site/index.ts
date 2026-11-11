@@ -5,10 +5,6 @@ export const SITE = {
   name: "Sharadox",
   url: "https://sharadox.com",
   email: "contact@sharadox.com",
-  slogan: {
-    en: "Technologies that simplify the world",
-    pt: "Tecnologias que simplificam o mundo",
-  } satisfies Translated,
   description: {
     en: "Sharadox is a brand studio: graphic design, websites and platforms, mobile apps, social media and marketing campaigns, made simple. Based in the Algarve, Portugal, working worldwide.",
     pt: "A Sharadox é um estúdio de marca: design gráfico, websites e plataformas, aplicações móveis, redes sociais e campanhas de marketing, tornados simples. No Algarve, Portugal, para o mundo.",

@@ -5,6 +5,7 @@ import { StructuredData as JsonLinkedData } from "@sharadox/metadata-web-library
 import { structuredDataGraph } from "@sharadox/metadata-web-library/structured-data-graph";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import type { StructuredDataProperties } from "@sharadox/sharadox-web-library/component/structured-data/type";
+import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 
 /** JSON-LD for search engines: the Sharadox organization with its five services, and the website. */
 export function StructuredData({ locale }: StructuredDataProperties) {
@@ -15,7 +16,7 @@ export function StructuredData({ locale }: StructuredDataProperties) {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
-      slogan: translate(SITE.slogan, locale),
+      slogan: translate(SLOGAN, locale),
       description: translate(SITE.description, locale),
       logo: `${SITE.url}/icon.svg`,
       address: { "@type": "PostalAddress", addressRegion: "Algarve", addressCountry: "PT" },

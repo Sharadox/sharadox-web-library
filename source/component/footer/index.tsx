@@ -8,15 +8,15 @@ import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-swit
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
 import { LICENCE } from "@sharadox/sharadox-web-library/content/licence";
-import { NAVIGATION } from "@sharadox/sharadox-web-library/content/navigation";
+import { LANGUAGE } from "@sharadox/sharadox-web-library/content/language";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { STYLE } from "@sharadox/sharadox-web-library/content/style";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
-
-const LANGUAGE_NAMES = { en: "English", pt: "Português" } as const;
 
 /** Columns of links in the grid, the style and language switches, the big gradient wordmark and the legal line. */
 export function Footer({ locale, path = "" }: FooterProperties) {
@@ -28,13 +28,13 @@ export function Footer({ locale, path = "" }: FooterProperties) {
       <div className={styles.columns}>
         <div className={styles.brand}>
           <Wordmark href={`/${locale}`} />
-          <p className={styles.slogan}>{translate(SITE.slogan, locale)}.</p>
+          <p className={styles.slogan}>{translate(SLOGAN, locale)}</p>
           <a href={`mailto:${SITE.email}`} className={styles.email}>
             {SITE.email}
           </a>
         </div>
-        <nav aria-label={translate(FOOTER.services, locale)}>
-          <h2 className="monospace">{translate(FOOTER.services, locale)}</h2>
+        <nav aria-label={translate(SECTION.services, locale)}>
+          <h2 className="monospace">{translate(SECTION.services, locale)}</h2>
           {SERVICES.items.map((service) => (
             <a key={service.key} href={`${home}#${service.key}`}>
               {translate(service.title, locale)}
@@ -43,9 +43,9 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         </nav>
         <nav aria-label={translate(FOOTER.studio, locale)}>
           <h2 className="monospace">{translate(FOOTER.studio, locale)}</h2>
-          <a href={`${home}#capabilities`}>{translate(NAVIGATION.capabilities, locale)}</a>
-          <a href={`${home}#process`}>{translate(NAVIGATION.process, locale)}</a>
-          <a href={`${home}#contact`}>{translate(NAVIGATION.contact, locale)}</a>
+          <a href={`${home}#${SECTION.capabilities.id}`}>{translate(SECTION.capabilities, locale)}</a>
+          <a href={`${home}#${SECTION.process.id}`}>{translate(SECTION.process, locale)}</a>
+          <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <a href={`/${locale}${LICENCE.path}`} aria-current={path === LICENCE.path ? "page" : undefined}>
             {translate(LICENCE.title, locale)}
@@ -53,11 +53,11 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href="#top">{translate(FOOTER.top, locale)} ↑</a>
         </nav>
         <div className={styles.settings}>
-          <h2 className="monospace">{translate(FOOTER.language, locale)}</h2>
+          <h2 className="monospace">{translate(LANGUAGE.label, locale)}</h2>
           <span className={styles.languages}>
             {LOCALES.locales.map((other) => (
               <LocaleLink key={other} locale={other} href={`/${other}${path}`} current={other === locale}>
-                {LANGUAGE_NAMES[other]}
+                {LANGUAGE.names[other]}
               </LocaleLink>
             ))}
           </span>

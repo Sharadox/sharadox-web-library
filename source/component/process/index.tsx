@@ -5,6 +5,7 @@ import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { PROCESS } from "@sharadox/sharadox-web-library/content/process";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import { Step } from "@sharadox/sharadox-web-library/component/process/step";
 import type { ProcessProperties } from "@sharadox/sharadox-web-library/component/process/type";
@@ -16,7 +17,7 @@ export function Process({ locale }: ProcessProperties) {
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const steps = PROCESS.steps;
   return (
-    <Section id="process">
+    <Section id={SECTION.process.id}>
       <SectionHeading eyebrow={translate(PROCESS.eyebrow, locale)} title={translate(PROCESS.title, locale)} />
       <div ref={container} className={styles.process}>
         <div className={styles.line} aria-hidden>

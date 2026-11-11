@@ -8,6 +8,9 @@ import { GlobePlaceholder } from "@sharadox/sharadox-web-library/component/globe
 import { HeroGuide } from "@sharadox/sharadox-web-library/component/hero/guide";
 import { HERO } from "@sharadox/sharadox-web-library/content/hero";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { ACTION } from "@sharadox/sharadox-web-library/content/action";
+import { SLOGAN_LINES } from "@sharadox/sharadox-web-library/content/slogan";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { HeroProperties } from "@sharadox/sharadox-web-library/component/hero/type";
 
@@ -19,9 +22,9 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** First screen, inside the grid frame: the slogan rising line by line beside the interactive globe. */
 export function Hero({ locale }: HeroProperties) {
-  const lines = HERO.lines[locale];
+  const lines = SLOGAN_LINES[locale];
   return (
-    <section id="home" className={styles.hero}>
+    <section id={SECTION.home.id} className={styles.hero}>
       <HeroGuide />
       <Cross corner="bottom-left" />
       <Cross corner="bottom-right" />
@@ -59,10 +62,10 @@ export function Hero({ locale }: HeroProperties) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.9, ease: EASE }}
         >
-          <Button href="#contact" arrow>
-            {translate(HERO.primary, locale)}
+          <Button href={`#${SECTION.contact.id}`} arrow>
+            {translate(ACTION.startProject, locale)}
           </Button>
-          <Button href="#services" variant="ghost">
+          <Button href={`#${SECTION.services.id}`} variant="ghost">
             {translate(HERO.secondary, locale)}
           </Button>
         </motion.div>
