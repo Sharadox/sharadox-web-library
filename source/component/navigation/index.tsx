@@ -5,7 +5,7 @@ import { LanguageSwitch } from "@sharadox/sharadox-web-library/component/languag
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { NAVIGATION } from "@sharadox/sharadox-web-library/content/navigation";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import styles from "./index.module.scss";
 import type { NavigationProperties } from "@sharadox/sharadox-web-library/component/navigation/type";
 

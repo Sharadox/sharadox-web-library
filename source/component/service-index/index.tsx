@@ -1,7 +1,7 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import styles from "./index.module.scss";
 import type { ServiceIndexProperties } from "@sharadox/sharadox-web-library/component/service-index/type";
 

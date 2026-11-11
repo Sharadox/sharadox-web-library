@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/sharadox-web-library",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "Sharadox's own website building blocks: content, components, brand and actions for sharadox-web-application, plus the preview notice and agency credit used on client demos.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
@@ -24,13 +24,14 @@
     "distribution",
     "LICENCA.md",
     "LICENSE.md",
-    "NOTICE.md"
+    "NOTICE.md",
+    "llms.txt"
   ],
   "sideEffects": [
     "**/*.css"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "packageManager": "pnpm@10.34.9",
   "publishConfig": {
@@ -42,16 +43,16 @@
     "react-dom": ">=19"
   },
   "scripts": {
-    "build": "rm -rf distribution && tsc -p tsconfig.build.json && sass --no-source-map --load-path=source source:distribution && node script/rewrite-style-import/index.ts && node script/copy-asset/index.ts",
+    "build": "library-build",
     "lint": "eslint --max-warnings=0 .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --coverage",
     "test:benchmark": "vitest bench --run --passWithNoTests",
     "documentation": "typedoc",
-    "verify": "turbo run format:check lint type-check test:unit test:benchmark build",
-    "prepare": "husky || true"
+    "verify": "turbo run format:check lint type-check test:unit build",
+    "prepare": "turborepo-configuration library && (husky || true)"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,cjs}": [
@@ -60,44 +61,52 @@
     ],
     "*.{json,md,yml,yaml,scss}": "prettier --write"
   },
-  "devDependencies": {
-    "@eslint/js": "^9.39.5",
-    "@testing-library/dom": "^10.4.2",
-    "@testing-library/react": "^16.3.3",
-    "@types/node": "^24.19.2",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@types/smtp-server": "^3.5.13",
-    "@types/three": "^0.187.0",
-    "@vitejs/plugin-react": "^6.3.0",
-    "eslint": "9.39.5",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "happy-dom": "^21.0.4",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.0",
-    "next": "16.4.5",
-    "prettier": "^3.9.10",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "sass": "^1.108.1",
-    "smtp-server": "^3.21.3",
-    "turbo": "^2.11.10",
-    "typedoc": "^0.28.20",
-    "typescript": "6.0.3",
-    "typescript-eslint": "^8.72.2",
-    "vitest": "^5.1.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sharadox/sharadox-web-library.git"
   },
   "homepage": "https://github.com/Sharadox/sharadox-web-library#readme",
   "dependencies": {
-    "@react-three/fiber": "^9.8.2",
-    "@sharadox/email-web-library": "^0.2.0",
-    "@sharadox/web-library": "^0.4.0",
-    "motion": "^12.43.0",
-    "three": "^0.180.0"
+    "@sharadox/animation-web-library": "^0.1.0",
+    "@sharadox/consent-web-library": "^0.1.0",
+    "@sharadox/form-web-library": "^0.1.0",
+    "@sharadox/globe-web-library": "^0.1.0",
+    "@sharadox/internationalization-web-library": "^0.1.0",
+    "@sharadox/metadata-web-library": "^0.1.0",
+    "@sharadox/pointer-web-library": "^0.1.0",
+    "@sharadox/scroll-web-library": "^0.1.0",
+    "@sharadox/style-web-library": "^0.1.0",
+    "@sharadox/web-library": "^0.5.0",
+    "motion": "^12.43.0"
+  },
+  "devDependencies": {
+    "@sharadox/email-web-library": "^0.2.1",
+    "@sharadox/es-lint-configuration-web-library": "^0.1.1",
+    "@sharadox/library-build-web-library": "^0.1.1",
+    "@sharadox/prettier-configuration-web-library": "^0.1.0",
+    "@sharadox/turborepo-configuration-web-library": "^0.1.0",
+    "@sharadox/type-script-configuration-web-library": "^0.2.0",
+    "@sharadox/vitest-configuration-web-library": "^0.1.2",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/smtp-server": "^3.5.13",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "9.39.5",
+    "happy-dom": "^21.0.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "next": "16.4.5",
+    "prettier": "^3.10.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sass": "^1.108.2",
+    "smtp-server": "^3.21.4",
+    "turbo": "^2.11.10",
+    "typedoc": "^0.28.20",
+    "typescript": "6.0.3",
+    "vitest": "^5.1.0"
   }
 }

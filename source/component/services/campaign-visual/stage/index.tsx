@@ -1,6 +1,6 @@
 "use client";
-import { useCountUp } from "@sharadox/web-library/animation/count-up";
-import { languageTag } from "@sharadox/web-library/internationalization/locale";
+import { useCountUp } from "@sharadox/animation-web-library/count-up";
+import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "../index.module.scss";
 import type { StageProperties } from "@sharadox/sharadox-web-library/component/services/campaign-visual/stage/type";
 
@@ -10,7 +10,7 @@ export function Stage({ label, value, start, durationMilliseconds, locale }: Sta
   return (
     <div className={styles.stage}>
       <dt className="monospace">{label}</dt>
-      <dd>{count.toLocaleString(languageTag(locale))}</dd>
+      <dd>{count.toLocaleString(LOCALES.languageTag(locale))}</dd>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { PROCESS } from "@sharadox/sharadox-web-library/content/process";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import styles from "./index.module.scss";
 import { Step } from "@sharadox/sharadox-web-library/component/process/step";
 import type { ProcessProperties } from "@sharadox/sharadox-web-library/component/process/type";

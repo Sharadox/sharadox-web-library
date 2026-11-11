@@ -1,9 +1,9 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
-import { translate } from "@sharadox/web-library/internationalization/translate";
+import { translate } from "@sharadox/internationalization-web-library/translate";
 import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
 import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
-import { LocaleLink } from "@sharadox/sharadox-web-library/component/locale-link";
+import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
@@ -11,7 +11,7 @@ import { NAVIGATION } from "@sharadox/sharadox-web-library/content/navigation";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { STYLE } from "@sharadox/sharadox-web-library/content/style";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { LOCALES } from "@sharadox/sharadox-web-library/utility/locale";
+import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
 
@@ -50,7 +50,7 @@ export function Footer({ locale }: FooterProperties) {
         <div className={styles.settings}>
           <h2 className="monospace">{translate(FOOTER.language, locale)}</h2>
           <span className={styles.languages}>
-            {LOCALES.map((other) => (
+            {LOCALES.locales.map((other) => (
               <LocaleLink key={other} locale={other} current={other === locale}>
                 {LANGUAGE_NAMES[other]}
               </LocaleLink>
