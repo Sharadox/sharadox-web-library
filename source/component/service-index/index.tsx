@@ -6,13 +6,13 @@ import styles from "./index.module.scss";
 import type { ServiceIndexProperties } from "@sharadox/sharadox-web-library/component/service-index/type";
 
 /** The five disciplines in a row of grid cells under the hero, each a shortcut to its section. */
-export function ServiceIndex({ locale }: ServiceIndexProperties) {
+export function ServiceIndex({ locale, base = "" }: ServiceIndexProperties) {
   return (
     <nav className={styles.index} aria-label={translate(SERVICES.eyebrow, locale)}>
       {SERVICES.items.map((service, index) => (
         <a
           key={service.key}
-          href={`#${service.key}`}
+          href={`${base}#${service.key}`}
           className={styles.cell}
           style={{ animationDelay: `${0.9 + index * 0.08}s` }}
         >

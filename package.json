@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/sharadox-web-library",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Sharadox's own website building blocks: content, components, brand and actions for sharadox-web-application, plus the preview notice and agency credit used on client demos.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
@@ -75,7 +75,7 @@
     "@sharadox/metadata-web-library": "^0.1.0",
     "@sharadox/pointer-web-library": "^0.1.0",
     "@sharadox/scroll-web-library": "^0.1.0",
-    "@sharadox/style-web-library": "^0.1.0",
+    "@sharadox/style-web-library": "^0.2.0",
     "@sharadox/web-library": "^0.5.0",
     "marked": "^17.0.6",
     "motion": "^12.43.0"
