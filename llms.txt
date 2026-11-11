@@ -8,3 +8,5 @@
 - component/*: navigation, hero (+ lazy globe), service-index, statement, services (+ visuals), touchpoint, capability, marquee, process, contact (+ form), footer, section-indicator, style-switch, consent (shared ConsentPanel), structured-data, share-image (renderShareImage)
 - style/token Sass helpers: tint, shade, dashed, on-scroll, below, fill-center
 - Licence: Sharadox Verifiable Source Licence 0.1.0 (read and verify only)
+- component/licence Licence({ locale, markdown }) renders the licence page body (marked); content/licence LICENCE { path "/licence", title, eyebrow, description }
+- Navigation, Footer and LanguageSwitch take path? (e.g. "/licence"): section links go to /<locale>#section, language links stay on the page; the footer links to the licence page

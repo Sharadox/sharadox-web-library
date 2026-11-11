@@ -13,7 +13,8 @@ import type { NavigationProperties } from "@sharadox/sharadox-web-library/compon
 const LINKS = ["services", "capabilities", "process", "contact"] as const;
 
 /** Fixed top bar that frosts once the page scrolls, with the style and language switches. */
-export function Navigation({ locale }: NavigationProperties) {
+export function Navigation({ locale, path = "" }: NavigationProperties) {
+  const home = path ? `/${locale}` : "";
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const update = () => setScrolled(scrollY > 24);
@@ -27,15 +28,15 @@ export function Navigation({ locale }: NavigationProperties) {
         <Wordmark href={`/${locale}`} />
         <nav className={styles.links} aria-label="Main">
           {LINKS.map((link) => (
-            <a key={link} href={`#${link}`}>
+            <a key={link} href={`${home}#${link}`}>
               {translate(NAVIGATION[link], locale)}
             </a>
           ))}
         </nav>
         <div className={styles.end}>
           <StyleSwitch locale={locale} className={styles.style} />
-          <LanguageSwitch locale={locale} />
-          <Button href="#contact" size="small" className={styles.callToAction}>
+          <LanguageSwitch locale={locale} path={path} />
+          <Button href={`${home}#contact`} size="small" className={styles.callToAction}>
             {translate(NAVIGATION.callToAction, locale)}
           </Button>
         </div>

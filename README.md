@@ -29,6 +29,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - hero and its guides, service index, statement, the five service cells and their live visuals
   - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
   - Sharadox wrappers around the shared globe and cookie panel, structured data, share image
+  - `Licence`: the licence page's body, rendered from the licence's Markdown
 - **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact • Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application").
 - **`utility/`:** `separate()` (the Sharadox separator) and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`) used by every component's styles.
@@ -42,6 +43,8 @@ import { STYLES } from "@sharadox/sharadox-web-library/content/style";
 ```
 
 - **Sass:** `@use "style/token" as *;` works once `node_modules/@sharadox/sharadox-web-library/distribution` is on the Sass load path (`@sharadox/next-js-configuration-web-library` does this).
+- **Pages other than home:** pass `path` (for example `"/licence"`) to `Navigation` and `Footer`, so section links lead back to the home page and the language links stay on the page.
+- **Licence page:** `<Licence locale={locale} markdown={…} />` with `LICENCA.md` for Portuguese and `LICENSE.md` for English; the footer links to `/<locale>/licence`.
 - **Contact:** the application's server action reads the visitor's IP address and calls `sendContact(form, ip)`.
 
 ## Develop
