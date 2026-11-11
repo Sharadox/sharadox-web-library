@@ -34,7 +34,7 @@ export function StyleSwitch({ locale, className }: StyleSwitchProperties) {
   return (
     <div className={classNames(styles.switch, className)} role="radiogroup" aria-label={translate(STYLE.label, locale)}>
       {choices.map((item) => {
-        const label = item.kind === "system" ? translate(STYLE.system, locale) : (STYLE.names[item.name] ?? item.name);
+        const label = item.kind === "system" ? translate(STYLE.system, locale) : STYLE.names[item.name]!;
         return (
           <button
             key={item.name}

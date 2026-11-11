@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
 import type { ContactActionOptions } from "@sharadox/form-web-library/contact-action/type";
 
-const createContactAction = vi.fn((_options: ContactActionOptions) => vi.fn());
+const createContactAction = vi.fn<(options: ContactActionOptions) => unknown>(() => vi.fn());
 vi.mock("@sharadox/form-web-library/contact-action", () => ({ createContactAction }));
 await import("@sharadox/sharadox-web-library/action/send-contact");
 const options = createContactAction.mock.calls[0]![0];

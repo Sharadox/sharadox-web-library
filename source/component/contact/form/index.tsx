@@ -16,7 +16,8 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
   // When the visitor started filling the form; bots submit faster than humans can.
   const startedAt = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    if (startedAt.current) startedAt.current.value = String(Date.now());
+    // The form is always what mounts first, so the field exists.
+    startedAt.current!.value = String(Date.now());
   }, []);
   const spotlight = useSpotlight<HTMLFormElement>();
   return (

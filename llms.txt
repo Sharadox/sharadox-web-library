@@ -1,0 +1,10 @@
+# @sharadox/sharadox-web-library
+
+> Sharadox's own website library (verifiable source, not open source): content, branded components, styles and contact configuration for sharadox.com, built on the open-source @sharadox/*-web-library topic libraries.
+
+- content/locale LOCALES (defineLocales en/pt); content/style STYLES (colour group: black default, white, system; storageKey "style"); content/separator SEPARATOR "•"
+- utility/separate separate(...parts) with the Sharadox separator
+- action/send-contact sendContact(form, ip) — createContactAction to contact@sharadox.com, subject "Contact • Name (Company)"
+- component/*: navigation, hero (+ lazy globe), service-index, statement, services (+ visuals), touchpoint, capability, marquee, process, contact (+ form), footer, section-indicator, style-switch, consent (shared ConsentPanel), structured-data, share-image (renderShareImage)
+- style/token Sass helpers: tint, shade, dashed, on-scroll, below, fill-center
+- Licence: Sharadox Verifiable Source Licence 0.1.0 (read and verify only)
