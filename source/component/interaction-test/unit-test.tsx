@@ -49,7 +49,7 @@ describe("StyleSwitch", () => {
 });
 
 describe("Globe", () => {
-  test("draws in the colours of the style in use, falling back to the default for unknown styles", () => {
+  test("draws in the colors of the style in use, falling back to the default for unknown styles", () => {
     document.documentElement.setAttribute("data-style-color", "white");
     render(<SharadoxGlobe />);
     expect(Globe.mock.lastCall![0].palette.dark).toBe(false);

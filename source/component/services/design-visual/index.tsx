@@ -6,7 +6,7 @@ import styles from "./index.module.scss";
 const SWATCHES = ["var(--foreground)", "var(--foreground-2)", "var(--foreground-3)", "var(--surface)"];
 
 /**
- * Brand assets floating in 3D: a logo being constructed on its guides, the colour palette and a type specimen.
+ * Brand assets floating in 3D: a logo being constructed on its guides, the color palette and a type specimen.
  */
 export function DesignVisual() {
   const [container, on] = useInView<HTMLDivElement>();

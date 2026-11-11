@@ -25,7 +25,7 @@ export const SERVICES = {
           "Bookings and ordering",
           "Dashboards and internal tools",
           "Business automation and integrations",
-          "Search engine optimisation",
+          "Search engine optimization",
         ],
         pt: [
           "Websites e landing pages",
@@ -73,14 +73,14 @@ export const SERVICES = {
       kinds: { en: ["Brand Assets"], pt: ["Ativos de Marca"] },
       lead: { en: "An identity people remember.", pt: "Uma identidade que fica na memória." },
       text: {
-        en: "Logo, colour, type and every asset the brand needs — from menus and signage to social templates — drawn as one coherent system.",
+        en: "Logo, color, type and every asset the brand needs — from menus and signage to social templates — drawn as one coherent system.",
         pt: "Logótipo, cor, tipografia e todos os ativos de que a marca precisa — de menus e sinalética a modelos para redes sociais — desenhados como um só sistema.",
       },
       capabilities: {
         en: [
           "Logo and identity",
           "Brand guidelines",
-          "Colour and typography",
+          "Color and typography",
           "Print, menus and signage",
           "Packaging",
           "Social and motion templates",

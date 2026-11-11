@@ -11,7 +11,7 @@ const COLOR = STYLES.groups[0];
 const DESTINATIONS = CITIES.map(([latitude, longitude]) => ({ latitude, longitude }));
 
 /**
- * The hero's globe: arcs from Almancil to the world, drawn in the colours of the style in use (default export, so
+ * The hero's globe: arcs from Almancil to the world, drawn in the colors of the style in use (default export, so
  * the hero can load it lazily).
  */
 export default function Globe() {
