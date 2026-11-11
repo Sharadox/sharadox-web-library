@@ -8,6 +8,7 @@ import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { Plate } from "@sharadox/sharadox-web-library/component/touchpoint/plate";
 import { TOUCHPOINT } from "@sharadox/sharadox-web-library/content/touchpoint";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { TouchpointProperties } from "@sharadox/sharadox-web-library/component/touchpoint/type";
 
@@ -22,7 +23,7 @@ export function Touchpoint({ locale }: TouchpointProperties) {
   const spread = useTransform(scrollYProgress, [0, 1], [10, 52]);
   const turn = useTransform(scrollYProgress, [0, 1], [-52, -38]);
   return (
-    <Section id="touchpoints" className={styles.touchpoint}>
+    <Section id={SECTION.touchpoints.id} className={styles.touchpoint}>
       <div className={styles.copy}>
         <SectionHeading eyebrow={translate(TOUCHPOINT.eyebrow, locale)} title={translate(TOUCHPOINT.title, locale)} />
         <Reveal delay={0.1}>

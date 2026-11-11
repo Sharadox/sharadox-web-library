@@ -7,10 +7,10 @@ import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-swit
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { NAVIGATION } from "@sharadox/sharadox-web-library/content/navigation";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+import { ACTION } from "@sharadox/sharadox-web-library/content/action";
 import styles from "./index.module.scss";
 import type { NavigationProperties } from "@sharadox/sharadox-web-library/component/navigation/type";
-
-const LINKS = ["services", "capabilities", "process", "contact"] as const;
 
 /** Fixed top bar that frosts once the page scrolls, with the style and language switches. */
 export function Navigation({ locale, path = "" }: NavigationProperties) {
@@ -27,17 +27,17 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
       <div className={styles.inner}>
         <Wordmark href={`/${locale}`} />
         <nav className={styles.links} aria-label="Main">
-          {LINKS.map((link) => (
-            <a key={link} href={`${home}#${link}`}>
-              {translate(NAVIGATION[link], locale)}
+          {NAVIGATION.links.map((section) => (
+            <a key={section.id} href={`${home}#${section.id}`}>
+              {translate(section, locale)}
             </a>
           ))}
         </nav>
         <div className={styles.end}>
           <StyleSwitch locale={locale} className={styles.style} />
           <LanguageSwitch locale={locale} path={path} />
-          <Button href={`${home}#contact`} size="small" className={styles.callToAction}>
-            {translate(NAVIGATION.callToAction, locale)}
+          <Button href={`${home}#${SECTION.contact.id}`} size="small" className={styles.callToAction}>
+            {translate(ACTION.startProject, locale)}
           </Button>
         </div>
       </div>

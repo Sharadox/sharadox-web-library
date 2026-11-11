@@ -1,12 +1,14 @@
-/** The sections the side indicator lists, in page order: element id and label. */
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+
+/** The sections the side indicator lists, in page order. */
 export const SECTION_INDICATOR = {
   label: { en: "Sections", pt: "Secções" },
   sections: [
-    { id: "home", en: "Home", pt: "Início" },
-    { id: "services", en: "Services", pt: "Serviços" },
-    { id: "touchpoints", en: "One System", pt: "Um Só Sistema" },
-    { id: "capabilities", en: "Capabilities", pt: "Capacidades" },
-    { id: "process", en: "Process", pt: "Processo" },
-    { id: "contact", en: "Contact", pt: "Contacto" },
+    SECTION.home,
+    SECTION.services,
+    SECTION.touchpoints,
+    SECTION.capabilities,
+    SECTION.process,
+    SECTION.contact,
   ],
 } as const;
