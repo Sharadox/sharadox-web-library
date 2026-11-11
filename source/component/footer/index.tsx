@@ -7,7 +7,7 @@ import { LocaleLink } from "@sharadox/internationalization-web-library/locale-li
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
-import { LICENCE } from "@sharadox/sharadox-web-library/content/licence";
+import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
 import { LANGUAGE } from "@sharadox/sharadox-web-library/content/language";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
@@ -47,8 +47,8 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href={`${home}#${SECTION.process.id}`}>{translate(SECTION.process, locale)}</a>
           <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
-          <a href={`/${locale}${LICENCE.path}`} aria-current={path === LICENCE.path ? "page" : undefined}>
-            {translate(LICENCE.title, locale)}
+          <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
+            {translate(LICENSE.title, locale)}
           </a>
           <a href="#top">{translate(FOOTER.top, locale)} ↑</a>
         </nav>
