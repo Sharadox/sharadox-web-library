@@ -26,7 +26,7 @@ const ICON = {
 };
 
 /**
- * Picks the colour style: light styles on the left, System (follows the device) in the middle, dark styles on the
+ * Picks the color style: light styles on the left, System (follows the device) in the middle, dark styles on the
  * right. Light styles show a sun and dark ones a moon; every option in content/style appears automatically.
  */
 export function StyleSwitch({ locale, className }: StyleSwitchProperties) {

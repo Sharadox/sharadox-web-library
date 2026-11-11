@@ -1,4 +1,4 @@
-// Sharadox design helpers. Colours are CSS custom properties set by the active style (content/style: Black, White…),
+// Sharadox design helpers. Colors are CSS custom properties set by the active style (content/style: Black, White…),
 // so everything here works in every style. Only build-time helpers live in this file.
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -9,7 +9,7 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-/// Fills the positioned parent and centres the content.
+/// Fills the positioned parent and centers the content.
 @mixin fill-center {
   position: absolute;
   inset: 0;
@@ -17,12 +17,12 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   place-items: center;
 }
 
-/// The foreground colour at an opacity, for lights, glows and hairlines that follow the style.
+/// The foreground color at an opacity, for lights, glows and hairlines that follow the style.
 @function tint($amount) {
   @return color-mix(in srgb, var(--foreground) $amount, transparent);
 }
 
-/// The background colour at an opacity, for frosted bars and shadows that follow the style.
+/// The background color at an opacity, for frosted bars and shadows that follow the style.
 @function shade($amount) {
   @return color-mix(in srgb, var(--background) $amount, transparent);
 }

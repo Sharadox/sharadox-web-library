@@ -2,13 +2,13 @@
 
 > Sharadox's own website library (verifiable source, not open source): content, branded components, styles and contact configuration for sharadox.com, built on the open-source @sharadox/*-web-library topic libraries.
 
-- content/locale LOCALES (defineLocales en/pt); content/style STYLES (colour group: black default, white, system; storageKey "style"); content/separator SEPARATOR "•"
+- content/locale LOCALES (defineLocales en/pt); content/style STYLES (color group: black default, white, system; storageKey "style"); content/separator SEPARATOR "•"
 - utility/separate separate(...parts) with the Sharadox separator
 - action/send-contact sendContact(form, ip) — createContactAction to contact@sharadox.com, subject "Contact • Name (Company)"
 - component/*: navigation, hero (+ lazy globe), service-index, statement, services (+ visuals), touchpoint, capability, marquee, process, contact (+ form), footer, section-indicator, style-switch, consent (shared ConsentPanel), structured-data, share-image (renderShareImage)
 - style/token Sass helpers: tint, shade, dashed, on-scroll, below, fill-center
-- Licence: Sharadox Verifiable Source Licence 0.1.0 (read and verify only)
-- component/licence Licence({ locale, markdown }) renders the licence page body (marked); content/licence LICENCE { path "/licence", title, eyebrow, description }
-- Navigation, Footer and LanguageSwitch take path? (e.g. "/licence"): section links go to /<locale>#section, language links stay on the page; the footer links to the licence page
+- License: Sharadox Verifiable Source License 0.1.0 (read and verify only)
+- component/license License({ locale, markdown }) renders the license page body (marked); content/license LICENSE { path "/license", title, eyebrow, description }
+- Navigation, Footer and LanguageSwitch take path? (e.g. "/license"): section links go to /<locale>#section, language links stay on the page; the footer links to the license page
 - component/not-found NotFound({ locale, path }) the 404 screen (giant 404 with the live globe as the zero, failed request line, way home); content/not-found NOT_FOUND; ServiceIndex takes base? ("/<locale>" off the home page)
-- content/slogan SLOGAN (with full stop) and SLOGAN_LINES; content/section SECTION { home, services, touchpoints, capabilities, process, contact } with id + names; content/action ACTION.startProject; content/language LANGUAGE { label, names }. SITE.slogan, HERO.lines, HERO.primary, NAVIGATION.<name>, FOOTER.services/language, CAPABILITY.eyebrow and CONTACT.eyebrow were removed in 0.10.0 in favour of these.
+- content/slogan SLOGAN (with full stop) and SLOGAN_LINES; content/section SECTION { home, services, touchpoints, capabilities, process, contact } with id + names; content/action ACTION.startProject; content/language LANGUAGE { label, names }. SITE.slogan, HERO.lines, HERO.primary, NAVIGATION.<name>, FOOTER.services/language, CAPABILITY.eyebrow and CONTACT.eyebrow were removed in 0.10.0 in favor of these.

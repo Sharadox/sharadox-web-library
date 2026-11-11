@@ -29,11 +29,11 @@ const WHITE = {
 };
 
 /**
- * Every Sharadox style (what other projects call a theme), as style groups. The colour group holds Black (dark,
+ * Every Sharadox style (what other projects call a theme), as style groups. The color group holds Black (dark,
  * where the site opens) and White (its exact inverse); add a dark or light option there — name, scheme and the same
  * palette keys — and it appears in the style switch. `systemDefaults` picks what "System" uses for each scheme;
  * set `defaultChoice` to "system" to follow the device from the start. More groups (corners, fonts…) go next to it.
- * The colour choice stays under the "style" storage key, so visitors keep the choice they made before.
+ * The color choice stays under the "style" storage key, so visitors keep the choice they made before.
  */
 export const STYLES = defineStyles({
   groups: [
