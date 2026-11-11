@@ -33,8 +33,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
       '@sharadox/style-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(react@19.3.1)
       '@sharadox/web-library':
         specifier: ^0.5.0
         version: 0.5.0
@@ -813,8 +813,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/style-web-library@0.1.0':
-    resolution: {integrity: sha512-+cytbaLafa2jx/5e6T1ilWK6VMxC1rhxs/hP5abb9cggjYXPMt/q6XpTsfvZ7QDUZoBdTzqG/SzxX/m15iL1Ww==}
+  '@sharadox/style-web-library@0.2.0':
+    resolution: {integrity: sha512-vrZkhXOftO0xBcVboh//kz+2MPaUgK4pON0vgf4TjngK4LdKp55nQePHr/UUSpSoymVVbALFXsJeof420kVtqA==}
     engines: {node: '>=24'}
     peerDependencies:
       react: '>=19'
@@ -2675,7 +2675,7 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/style-web-library@0.1.0(react@19.3.1)':
+  '@sharadox/style-web-library@0.2.0(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.0
       react: 19.3.1
