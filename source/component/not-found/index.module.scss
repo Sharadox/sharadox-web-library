@@ -4,8 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100svh;
+  min-height: min(100svh, 1000px);
   padding: clamp(110px, 14vh, 150px) var(--padding) clamp(36px, 6vh, 64px);
+  /* Phones: content height, so the services follow the buttons without a gap. */
+  @include below(700px) {
+    min-height: 0;
+  }
   text-align: center;
   overflow: hidden;
 }
@@ -49,7 +53,6 @@
   margin: clamp(18px, 4vh, 36px) 0 clamp(8px, 2vh, 18px);
   font-size: clamp(7.5rem, 27vw, 21rem);
   font-weight: 600;
-  letter-spacing: -0.075em;
   line-height: 0.8;
   user-select: none;
 }
@@ -67,7 +70,8 @@
   display: inline-block;
   width: 0.86em;
   height: 0.86em;
-  margin: 0 0.02em;
+  /* Equal space on both sides, so the globe sits centred between the fours. */
+  margin: 0 0.04em;
   touch-action: pan-y;
 }
 .title {
@@ -140,7 +144,7 @@
 }
 .explore {
   margin: auto 0 0;
-  padding-top: 40px;
+  padding-top: 48px;
   color: var(--foreground-3);
   font-size: 12px;
   letter-spacing: 0.08em;
