@@ -54,6 +54,9 @@ importers:
       '@sharadox/prettier-configuration-web-library':
         specifier: ^0.1.0
         version: 0.1.0
+      '@sharadox/test-web-library':
+        specifier: ^0.2.0
+        version: 0.2.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.0
         version: 0.1.0(turbo@2.11.10)
@@ -812,6 +815,21 @@ packages:
     engines: {node: '>=24'}
     peerDependencies:
       react: '>=19'
+
+  '@sharadox/test-web-library@0.2.0':
+    resolution: {integrity: sha512-IRyHswT4jLpHPSO9I6QxtW27HyPFobYgNR7XTfOX54DyPqLViTaT9tHyPB7UonGqP8FKvut/X1+p082ZCVe9FQ==}
+    engines: {node: '>=24'}
+    peerDependencies:
+      '@playwright/test': '>=1.50'
+      motion: '>=12'
+      vitest: '>=5'
+    peerDependenciesMeta:
+      '@playwright/test':
+        optional: true
+      motion:
+        optional: true
+      vitest:
+        optional: true
 
   '@sharadox/turborepo-configuration-web-library@0.1.0':
     resolution: {integrity: sha512-7vRccpzTWe/irYpkWhWcRkBigB2L0GiIA7Zt0faPsZk02Bpy+ipzCeMfXfqyAkQ9yt/EKGGy+OY2IPZbeiG1lw==}
@@ -2653,6 +2671,13 @@ snapshots:
     dependencies:
       '@sharadox/web-library': 0.5.0
       react: 19.3.1
+
+  '@sharadox/test-web-library@0.2.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(vitest@5.1.0)':
+    dependencies:
+      '@sharadox/web-library': 0.5.0
+    optionalDependencies:
+      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      vitest: 5.1.0(@types/node@24.19.2)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))
 
   '@sharadox/turborepo-configuration-web-library@0.1.0(turbo@2.11.10)':
     dependencies:

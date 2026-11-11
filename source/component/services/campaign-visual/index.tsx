@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useInView } from "@sharadox/animation-web-library/in-view";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Stage } from "@sharadox/sharadox-web-library/component/services/campaign-visual/stage";
@@ -16,7 +17,7 @@ const STAGES = [
 export function CampaignVisual({ locale }: CampaignVisualProperties) {
   const [container, on] = useInView<HTMLDivElement>();
   return (
-    <div ref={container} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
+    <div ref={container} className={classNames(styles.visual, on && styles.on)} aria-hidden>
       <div className={styles.scene}>
         {STAGES.map((stage, index) => (
           <span key={stage.key} className={`${styles.plate} ${styles[`plate${index}`]}`} />
