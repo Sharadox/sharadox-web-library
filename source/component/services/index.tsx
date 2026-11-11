@@ -13,6 +13,7 @@ import { SocialVisual } from "@sharadox/sharadox-web-library/component/services/
 import { WebVisual } from "@sharadox/sharadox-web-library/component/services/web-visual";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import type { ServiceKey } from "@sharadox/sharadox-web-library/content/services";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { ServicesProperties } from "@sharadox/sharadox-web-library/component/services/type";
 
@@ -31,7 +32,7 @@ export function Services({ locale }: ServicesProperties) {
     "marketing-campaign": <CampaignVisual locale={locale} />,
   };
   return (
-    <Section id="services" padded={false}>
+    <Section id={SECTION.services.id} padded={false}>
       <div className={styles.heading}>
         <SectionHeading eyebrow={translate(SERVICES.eyebrow, locale)} title={translate(SERVICES.title, locale)} />
       </div>

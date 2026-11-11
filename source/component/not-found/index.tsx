@@ -6,9 +6,10 @@ import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
 import { GlobePlaceholder } from "@sharadox/sharadox-web-library/component/globe/placeholder";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
-import { HERO } from "@sharadox/sharadox-web-library/content/hero";
 import { NOT_FOUND } from "@sharadox/sharadox-web-library/content/not-found";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { ACTION } from "@sharadox/sharadox-web-library/content/action";
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { NotFoundProperties } from "@sharadox/sharadox-web-library/component/not-found/type";
 
@@ -81,8 +82,8 @@ export function NotFound({ locale, path }: NotFoundProperties) {
         <Button href={`/${locale}`} arrow>
           {translate(NOT_FOUND.home, locale)}
         </Button>
-        <Button href={`/${locale}#contact`} variant="ghost">
-          {translate(HERO.primary, locale)}
+        <Button href={`/${locale}#${SECTION.contact.id}`} variant="ghost">
+          {translate(ACTION.startProject, locale)}
         </Button>
       </motion.div>
       <motion.p className={`${styles.explore} monospace`} {...rise(1)}>

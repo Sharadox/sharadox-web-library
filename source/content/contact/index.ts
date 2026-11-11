@@ -4,7 +4,6 @@ export const CONTACT = {
   senderName: "Sharadox Web Application",
   /** First part of the email subject: "Contact • Name (Company)". */
   subject: "Contact",
-  eyebrow: { en: "Contact", pt: "Contacto" },
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {
     en: "Tell us about your brand and what you need. We'll get back to you shortly.",

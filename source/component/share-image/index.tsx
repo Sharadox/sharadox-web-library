@@ -1,9 +1,9 @@
 import { shareImage } from "@sharadox/metadata-web-library/share-image";
 import { readFile } from "node:fs/promises";
-import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { horizonDots } from "@sharadox/sharadox-web-library/utility/horizon-dots";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import type { ShareImageOptions } from "@sharadox/sharadox-web-library/component/share-image/type";
+import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 
 /** Fonts ship with the library (distribution/asset/font), found relative to this compiled file. */
 const font = (file: string) => readFile(new URL(`../../asset/font/${file}`, import.meta.url));
@@ -78,7 +78,7 @@ export async function renderShareImage({ locale, width, height }: ShareImageOpti
           maxWidth: 980,
         }}
       >
-        {translate(SITE.slogan, locale)}.
+        {translate(SLOGAN, locale)}
       </div>
       <div style={{ display: "flex", marginTop: 26, fontFamily: "GeistMono", fontSize: 22, color: "#8f8f8f" }}>
         sharadox.com

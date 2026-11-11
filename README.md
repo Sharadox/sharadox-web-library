@@ -23,7 +23,12 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - `locale`: `LOCALES`, built with `defineLocales`.
   - `style`: `STYLES`, with Black and White in the colour group; colours live only here.
   - `separator`: the Sharadox separator •.
+  - `slogan`: `SLOGAN` (one sentence, always with its full stop) and `SLOGAN_LINES` (the hero's lines, the single source of its words).
+  - `section`: `SECTION`, each home-page section's id and name, used by navigation, footer, section indicator and headings.
+  - `action`: shared calls to action (`ACTION.startProject`).
+  - `language`: `LANGUAGE`, the switches' label and each language's own name.
   - `consent`, `contact`, `services`, `site`, `globe`, and so on.
+- **One source for shared copy:** text used in more than one place lives in its own content module and is imported, never retyped.
 - **`component/`:** the page's branded parts:
   - grid frame, `Cross` marks, navigation and footer
   - hero and its guides, service index, statement, the five service cells and their live visuals

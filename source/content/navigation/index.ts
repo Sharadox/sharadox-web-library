@@ -1,9 +1,6 @@
-/** Top navigation labels. */
+import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+
+/** The sections the top navigation links to, in order. */
 export const NAVIGATION = {
-  services: { en: "Services", pt: "Serviços" },
-  capabilities: { en: "Capabilities", pt: "Capacidades" },
-  process: { en: "Process", pt: "Processo" },
-  contact: { en: "Contact", pt: "Contacto" },
-  callToAction: { en: "Start a Project", pt: "Iniciar Projeto" },
-  language: { en: "Language", pt: "Idioma" },
+  links: [SECTION.services, SECTION.capabilities, SECTION.process, SECTION.contact],
 } as const;
