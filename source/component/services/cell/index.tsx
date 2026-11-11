@@ -1,4 +1,5 @@
 "use client";
+import { classNames } from "@sharadox/web-library/class-name";
 import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
 import { useTilt } from "@sharadox/pointer-web-library/tilt";
 import styles from "./index.module.scss";
@@ -12,7 +13,7 @@ export function Cell({ id, visual, number, kinds, title, lead, text, className }
   const spotlight = useSpotlight<HTMLElement>();
   const tilt = useTilt<HTMLDivElement>(5);
   return (
-    <article id={id} ref={spotlight} className={[styles.cell, className].filter(Boolean).join(" ")}>
+    <article id={id} ref={spotlight} className={classNames(styles.cell, className)}>
       <div ref={tilt} className={styles.visual}>
         <div className={styles.stage}>{visual}</div>
       </div>
