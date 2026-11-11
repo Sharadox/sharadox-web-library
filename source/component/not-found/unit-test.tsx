@@ -1,0 +1,39 @@
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { installBrowserEnvironment } from "@sharadox/test-web-library/browser-environment";
+
+vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe: () => <div data-testid="globe" /> }));
+const { NotFound } = await import("@sharadox/sharadox-web-library/component/not-found");
+const { ServiceIndex } = await import("@sharadox/sharadox-web-library/component/service-index");
+
+beforeEach(() => installBrowserEnvironment());
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
+describe("the 404 page", () => {
+  test.each([
+    ["en", "This page is off the map.", "Back to Home", "Error • 404"],
+    ["pt", "Esta página está fora do mapa.", "Voltar ao Início", "Erro • 404"],
+  ] as const)(
+    "in %s: the heading, the failed request, the way back and the globe as the zero",
+    async (locale, heading, home, eyebrow) => {
+      render(<NotFound locale={locale} path={`/${locale}/old-page`} />);
+      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(heading);
+      expect(screen.getByText(eyebrow)).toBeTruthy();
+      expect(screen.getByText(`/${locale}/old-page`)).toBeTruthy();
+      expect(screen.getByRole("link", { name: home }).getAttribute("href")).toBe(`/${locale}`);
+      expect(screen.getByRole("link", { name: /Start a Project|Iniciar Projeto/ }).getAttribute("href")).toBe(
+        `/${locale}#contact`,
+      );
+      await waitFor(() => expect(screen.getByTestId("globe")).toBeTruthy());
+    },
+  );
+
+  test("its service shortcuts lead to the home page's sections", () => {
+    render(<ServiceIndex locale="en" base="/en" />);
+    expect(screen.getByRole("link", { name: /Web Applications/ }).getAttribute("href")).toBe("/en#web-application");
+  });
+});

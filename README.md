@@ -30,6 +30,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
   - Sharadox wrappers around the shared globe and cookie panel, structured data, share image
   - `Licence`: the licence page's body, rendered from the licence's Markdown
+  - `NotFound`: the 404 screen, a giant 404 whose zero is the live globe, with the failed request and the way back (put `ServiceIndex base="/<locale>"` under it)
 - **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact • Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application").
 - **`utility/`:** `separate()` (the Sharadox separator) and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`) used by every component's styles.

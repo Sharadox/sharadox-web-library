@@ -1,0 +1,154 @@
+@use "style/token" as *;
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100svh;
+  padding: clamp(110px, 14vh, 150px) var(--padding) clamp(36px, 6vh, 64px);
+  text-align: center;
+  overflow: hidden;
+}
+/* A soft light behind the globe, so the zero glows like a planet at night. */
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: min(70vw, 760px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, tint(10%), transparent);
+  pointer-events: none;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--foreground);
+  box-shadow: 0 0 0 0 tint(60%);
+  animation: live 2.4s infinite;
+}
+@keyframes live {
+  70% {
+    box-shadow: 0 0 0 9px tint(0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 tint(0%);
+  }
+}
+.code {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: clamp(18px, 4vh, 36px) 0 clamp(8px, 2vh, 18px);
+  font-size: clamp(7.5rem, 27vw, 21rem);
+  font-weight: 600;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+  user-select: none;
+}
+.digit {
+  display: inline-block;
+  padding: 0.04em 0.02em;
+  background: linear-gradient(180deg, var(--foreground) 15%, transparent 105%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* The zero: the live globe, as tall as the digits and draggable. */
+.world {
+  position: relative;
+  display: inline-block;
+  width: 0.86em;
+  height: 0.86em;
+  margin: 0 0.02em;
+  touch-action: pan-y;
+}
+.title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.4vw, 3.6rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.lineInner {
+  display: inline-block;
+}
+.text {
+  max-width: 34rem;
+  margin: 18px 0 0;
+  color: var(--foreground-2);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.55;
+}
+/* The request that failed, as a terminal would print it. */
+.request {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  margin: 26px 0 0;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: shade(60%);
+  backdrop-filter: blur(8px);
+  color: var(--foreground-3);
+  font-size: 13px;
+}
+.method {
+  color: var(--foreground);
+}
+.path {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--foreground-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status {
+  flex: none;
+}
+.caret {
+  flex: none;
+  width: 7px;
+  height: 14px;
+  background: var(--foreground);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+.explore {
+  margin: auto 0 0;
+  padding-top: 40px;
+  color: var(--foreground-3);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live,
+  .caret {
+    animation: none;
+  }
+}
