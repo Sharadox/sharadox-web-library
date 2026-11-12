@@ -15,7 +15,9 @@ import type { ContactFormProperties } from "@sharadox/sharadox-web-library/compo
 export function ContactForm({ locale, action: sendAction }: ContactFormProperties) {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendAction, { status: "idle" });
   // When the visitor started filling the form; bots submit faster than humans can.
-  const startedAt = useRef<HTMLInputElement>(null);
+  // When the form appeared. It goes into the hidden field as the form is sent: React puts a hidden field back to its
+  // default whenever the form renders again, which silently turned the fill-time check off.
+  const startedAt = useRef(0);
   const needs = useRef<HTMLFieldSetElement>(null);
   // Buttons elsewhere (the service cards) ask for choices: tick them and make them glow for a moment.
   useEffect(() => {
@@ -34,8 +36,7 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
     return () => removeEventListener(CONTACT_NEED_EVENT, tick);
   }, []);
   useEffect(() => {
-    // The form is always what mounts first, so the field exists.
-    startedAt.current!.value = String(Date.now());
+    startedAt.current = Date.now();
   }, []);
   const spotlight = useSpotlight<HTMLFormElement>();
   return (
@@ -59,10 +60,15 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           key="form"
           ref={spotlight}
           action={action}
+          onSubmit={(event) => {
+            (event.currentTarget.elements.namedItem("started-at") as HTMLInputElement).value = String(
+              startedAt.current,
+            );
+          }}
           className={styles.form}
           exit={{ opacity: 0, scale: 0.98 }}
         >
-          <input ref={startedAt} type="hidden" name="started-at" defaultValue="0" />
+          <input type="hidden" name="started-at" defaultValue="0" />
           <input type="hidden" name="locale" value={locale} />
           <div className={styles.honeypot} aria-hidden>
             <label>
