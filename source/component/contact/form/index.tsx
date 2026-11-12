@@ -7,6 +7,7 @@ import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { CONTACT_NEED_EVENT } from "@sharadox/sharadox-web-library/utility/contact-need";
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 
@@ -15,6 +16,23 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
   const [state, action, pending] = useActionState<ContactState, FormData>(sendAction, { status: "idle" });
   // When the visitor started filling the form; bots submit faster than humans can.
   const startedAt = useRef<HTMLInputElement>(null);
+  const needs = useRef<HTMLFieldSetElement>(null);
+  // Buttons elsewhere (the service cards) ask for choices: tick them and make them glow for a moment.
+  useEffect(() => {
+    const tick = (event: Event) => {
+      for (const need of (event as CustomEvent<readonly string[]>).detail) {
+        const input = needs.current?.querySelector<HTMLInputElement>(`input[value="${need}"]`);
+        if (!input) continue;
+        input.checked = true;
+        const chip = input.closest("label")!;
+        chip.removeAttribute("data-requested");
+        void chip.offsetWidth; // restart the glow when the same choice is asked for again
+        chip.setAttribute("data-requested", "");
+      }
+    };
+    addEventListener(CONTACT_NEED_EVENT, tick);
+    return () => removeEventListener(CONTACT_NEED_EVENT, tick);
+  }, []);
   useEffect(() => {
     // The form is always what mounts first, so the field exists.
     startedAt.current!.value = String(Date.now());
@@ -66,7 +84,7 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
             <span>{translate(CONTACT.email, locale)}</span>
             <input name="email" type="email" required autoComplete="email" maxLength={200} />
           </label>
-          <fieldset className={styles.services}>
+          <fieldset ref={needs} className={styles.services}>
             <legend>{translate(CONTACT.needs.label, locale)}</legend>
             {CONTACT.needs.options.map((need) => (
               <label key={need.key} className={styles.chip}>

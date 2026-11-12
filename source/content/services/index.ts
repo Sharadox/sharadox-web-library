@@ -1,3 +1,4 @@
+import type { ServiceAction } from "@sharadox/sharadox-web-library/content/services/type";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 
 /** The five disciplines. `key` is the anchor and picks each cell's live visual; `capabilities` fill the index. */
@@ -7,6 +8,11 @@ export const SERVICES = {
   items: [
     {
       key: "web-application",
+      /** Buttons that open the contact form with these choices ticked. */
+      actions: [
+        { need: "website", label: { en: "Get a Website", pt: "Pedir um Website" } },
+        { need: "platform", label: { en: "Build a Platform", pt: "Criar uma Plataforma" } },
+      ] satisfies readonly ServiceAction[],
       number: "01",
       title: { en: "Web Applications", pt: "Aplicações Web" },
       kinds: { en: ["Websites", "Platforms"], pt: ["Websites", "Plataformas"] },
@@ -39,6 +45,10 @@ export const SERVICES = {
     },
     {
       key: "mobile-application",
+      /** Buttons that open the contact form with these choices ticked. */
+      actions: [
+        { need: "mobile-app", label: { en: "Build an App", pt: "Criar uma App" } },
+      ] satisfies readonly ServiceAction[],
       number: "02",
       title: { en: "Mobile Applications", pt: "Aplicações Móveis" },
       kinds: { en: ["iOS", "Android"], pt: ["iOS", "Android"] },
@@ -68,6 +78,10 @@ export const SERVICES = {
     },
     {
       key: "graphic-design",
+      /** Buttons that open the contact form with these choices ticked. */
+      actions: [
+        { need: "brand-identity", label: { en: "Design My Brand", pt: "Desenhar a Minha Marca" } },
+      ] satisfies readonly ServiceAction[],
       number: "03",
       title: { en: "Graphic Design", pt: "Design Gráfico" },
       kinds: { en: ["Brand Assets"], pt: ["Ativos de Marca"] },
@@ -97,6 +111,10 @@ export const SERVICES = {
     },
     {
       key: "social-media",
+      /** Buttons that open the contact form with these choices ticked. */
+      actions: [
+        { need: "social-media", label: { en: "Grow My Social Media", pt: "Crescer nas Redes Sociais" } },
+      ] satisfies readonly ServiceAction[],
       number: "04",
       title: { en: "Social Media", pt: "Redes Sociais" },
       kinds: { en: ["Growth Plans", "Full Management"], pt: ["Planos de Crescimento", "Gestão Completa"] },
@@ -126,6 +144,10 @@ export const SERVICES = {
     },
     {
       key: "marketing-campaign",
+      /** Buttons that open the contact form with these choices ticked. */
+      actions: [
+        { need: "marketing-campaign", label: { en: "Launch a Campaign", pt: "Lançar uma Campanha" } },
+      ] satisfies readonly ServiceAction[],
       number: "05",
       title: { en: "Marketing Campaigns", pt: "Campanhas de Marketing" },
       kinds: { en: ["Ads", "Launches", "Email"], pt: ["Anúncios", "Lançamentos", "Email"] },

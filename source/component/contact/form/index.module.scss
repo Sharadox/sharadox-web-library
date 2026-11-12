@@ -116,6 +116,18 @@
     outline: 2px solid var(--foreground);
     outline-offset: 2px;
   }
+  /* Ticked by a button elsewhere on the page: a ring that grows and fades, so the visitor sees what was chosen. */
+  &[data-requested] span {
+    animation: requested 1.4s 0.5s $ease both;
+  }
+}
+@keyframes requested {
+  0% {
+    box-shadow: 0 0 0 0 tint(55%);
+  }
+  100% {
+    box-shadow: 0 0 0 14px tint(0%);
+  }
 }
 .honeypot {
   position: absolute;

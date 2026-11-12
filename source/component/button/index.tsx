@@ -1,3 +1,4 @@
+import { classNames } from "@sharadox/web-library/class-name";
 import styles from "./index.module.scss";
 import type { ButtonProperties } from "@sharadox/sharadox-web-library/component/button/type";
 
@@ -10,10 +11,9 @@ export function Button({
   arrow,
   disabled,
   className,
+  onClick,
 }: ButtonProperties) {
-  const classNames = [styles.button, styles[variant], size !== "medium" && styles[size], className]
-    .filter(Boolean)
-    .join(" ");
+  const names = classNames(styles.button, styles[variant], size !== "medium" && styles[size], className);
   const content = (
     <>
       {children}
@@ -25,11 +25,11 @@ export function Button({
     </>
   );
   return href ? (
-    <a href={href} className={classNames}>
+    <a href={href} className={names} onClick={onClick}>
       {content}
     </a>
   ) : (
-    <button className={classNames} disabled={disabled}>
+    <button className={names} disabled={disabled} onClick={onClick}>
       {content}
     </button>
   );

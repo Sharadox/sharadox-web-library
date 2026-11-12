@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type React from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { CONTACT_NEED_EVENT } from "@sharadox/sharadox-web-library/utility/contact-need";
 import { installBrowserEnvironment } from "@sharadox/test-web-library/browser-environment";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 
@@ -23,6 +24,32 @@ afterEach(() => {
   for (const attribute of [...document.documentElement.getAttributeNames()]) {
     if (attribute.startsWith("data-style")) document.documentElement.removeAttribute(attribute);
   }
+});
+
+describe("service card buttons", () => {
+  test("lead to the contact form and tick their choice, with a glow", async () => {
+    const { Services } = await import("@sharadox/sharadox-web-library/component/services");
+    const { ContactForm } = await import("@sharadox/sharadox-web-library/component/contact/form");
+    render(
+      <>
+        <Services locale="en" />
+        <ContactForm locale="en" action={async () => ({ status: "idle" as const })} />
+      </>,
+    );
+    const platform = screen.getByRole("link", { name: "Build a Platform" });
+    expect(platform.getAttribute("href")).toBe("#contact");
+    fireEvent.click(platform);
+    fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
+    fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
+    const checked = [...document.querySelectorAll<HTMLInputElement>('input[name="need"]:checked')].map(
+      (input) => input.value,
+    );
+    expect(checked).toEqual(["website", "platform"]);
+    expect(
+      document.querySelector('input[name="need"][value="website"]')!.closest("label")!.hasAttribute("data-requested"),
+    ).toBe(true);
+    dispatchEvent(new CustomEvent(CONTACT_NEED_EVENT, { detail: ["unknown"] }));
+  });
 });
 
 describe("Navigation", () => {
