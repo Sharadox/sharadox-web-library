@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sharadox/animation-web-library':
-        specifier: ^0.2.1
-        version: 0.2.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.2.2
+        version: 0.2.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
         specifier: ^0.1.0
         version: 0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -737,8 +737,8 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@sharadox/animation-web-library@0.2.1':
-    resolution: {integrity: sha512-p8HTkuHHAwqt18Psqkcg54Pw122fm5roXiEpqJcEhsQnRi4aobZjcIZBL5rmVs9mBYwx2LREjV6GhJXFfFq0dQ==}
+  '@sharadox/animation-web-library@0.2.2':
+    resolution: {integrity: sha512-mZyKRwzHmZ4rpxS46YyNRHju03bJeXJmJVMDkv14xcOu7jG4frSDTkXqJlg9H2NqseOmwv962Yo8B8Gn2JRgYA==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -2595,7 +2595,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.2.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.2.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.6.1
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
