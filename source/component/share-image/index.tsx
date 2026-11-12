@@ -5,12 +5,19 @@ import { translate } from "@sharadox/internationalization-web-library/translate"
 import type { ShareImageOptions } from "@sharadox/sharadox-web-library/component/share-image/type";
 import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 
-/** Fonts ship with the library (distribution/asset/font), found relative to this compiled file. */
-const font = (file: string) => readFile(new URL(`../../asset/font/${file}`, import.meta.url));
+/**
+ * Fonts ship with the library (distribution/asset/font), found relative to this compiled file. Each address is
+ * written out in full: bundlers resolve a `new URL` built from a template to the wrong file (the mono line came out in
+ * Geist).
+ */
+const FONTS = {
+  semiBold: new URL("../../asset/font/Geist-SemiBold.ttf", import.meta.url),
+  monospace: new URL("../../asset/font/GeistMono-Regular.ttf", import.meta.url),
+};
 
 /** Share card (Open Graph and Twitter): black canvas, a dotted planet rising from the bottom, the slogan in Geist. */
 export async function renderShareImage({ locale, width, height }: ShareImageOptions) {
-  const [semiBold, monospace] = await Promise.all([font("Geist-SemiBold.ttf"), font("GeistMono-Regular.ttf")]);
+  const [semiBold, monospace] = await Promise.all([readFile(FONTS.semiBold), readFile(FONTS.monospace)]);
   return shareImage(
     <div
       style={{

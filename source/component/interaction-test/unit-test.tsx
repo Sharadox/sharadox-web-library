@@ -112,9 +112,11 @@ describe("ContactForm", () => {
     return action;
   };
 
-  test("thanks the visitor once sent", async () => {
-    await submit({ status: "sent" });
+  test("thanks the visitor once sent, having told the server when the form appeared", async () => {
+    const action = await submit({ status: "sent" });
     expect(screen.getByRole("status").textContent).toContain("Thank you");
+    const form = (action.mock.calls[0] as unknown as [ContactState, FormData])[1];
+    expect(Number(form.get("started-at"))).toBeGreaterThan(0);
   });
 
   test.each([
