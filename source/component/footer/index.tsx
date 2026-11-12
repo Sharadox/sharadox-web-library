@@ -1,7 +1,5 @@
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
-import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
-import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
@@ -47,7 +45,6 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href={`${home}#${SECTION.capabilities.id}`}>{translate(SECTION.capabilities, locale)}</a>
           <a href={`${home}#${SECTION.process.id}`}>{translate(SECTION.process, locale)}</a>
           <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
-          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
             {translate(LICENSE.title, locale)}
           </a>

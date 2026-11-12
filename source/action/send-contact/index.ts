@@ -7,7 +7,7 @@ import { separate } from "@sharadox/sharadox-web-library/utility/separate";
  * The contact form's work, called by the application's server action (which adds the visitor's IP address). It
  * emails contact@sharadox.com from the sending subdomain (`EMAIL_SENDER_ADDRESS`, through Amazon SES over SMTP:
  * `EMAIL_SERVER_*`) as "Sharadox Web Application", with the visitor as reply-to and the subject
- * "Contact • Name (Company)".
+ * "Contact · Name (Company)".
  */
 export const sendContact = createContactAction({
   to: SITE.email,

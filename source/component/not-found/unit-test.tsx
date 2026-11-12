@@ -18,8 +18,8 @@ afterEach(() => {
 
 describe("the 404 page", () => {
   test.each([
-    ["en", "This page is off the map.", "Back to Home", "Error • 404"],
-    ["pt", "Esta página está fora do mapa.", "Voltar ao Início", "Erro • 404"],
+    ["en", "This page is off the map.", "Back to Home", "Error · 404"],
+    ["pt", "Esta página está fora do mapa.", "Voltar ao Início", "Erro · 404"],
   ] as const)(
     "in %s: the heading, the failed request, the way back and the globe as the zero",
     async (locale, heading, home, eyebrow) => {

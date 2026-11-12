@@ -2,7 +2,7 @@
 export const CONTACT = {
   /** Display name of the email the contact form sends (from web@email.sharadox.com). */
   senderName: "Sharadox Web Application",
-  /** First part of the email subject: "Contact • Name (Company)". */
+  /** First part of the email subject: "Contact · Name (Company)". */
   subject: "Contact",
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {

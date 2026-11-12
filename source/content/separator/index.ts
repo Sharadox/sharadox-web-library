@@ -1,2 +1,4 @@
-/** The character that joins labels in every Sharadox text, spaced on both sides by `separate()`. Change it here only. */
-export const SEPARATOR = "•";
+import { SEPARATOR } from "@sharadox/web-library/text/separator";
+
+/** The character that joins labels in every Sharadox text ("·"), shared by every site from @sharadox/web-library. */
+export { SEPARATOR };
