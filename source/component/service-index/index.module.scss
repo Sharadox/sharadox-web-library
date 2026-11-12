@@ -19,6 +19,7 @@
   padding: 22px 22px 24px;
   overflow: hidden;
   animation: rise 0.9s $ease both;
+  @include skip-entrance;
   &:not(:last-of-type) {
     border-right: 1px solid var(--line);
   }

@@ -16,6 +16,7 @@
   @include dashed(vertical, var(--line-2), 5px, 5px);
   transform-origin: top;
   animation: grow-down 1.6s $ease both;
+  @include skip-entrance;
 }
 .row {
   position: absolute;
@@ -25,6 +26,7 @@
   @include dashed(horizontal, var(--line-2), 5px, 5px);
   transform-origin: left;
   animation: grow-across 1.6s $ease both;
+  @include skip-entrance;
 }
 @keyframes grow-down {
   from {

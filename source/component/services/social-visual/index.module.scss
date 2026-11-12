@@ -20,6 +20,7 @@
     background: linear-gradient(135deg, tint(14%), tint(3%));
     .on & {
       animation: pop 0.6s $ease both;
+      @include skip-entrance;
     }
   }
   span:nth-child(3n + 2) {
@@ -87,11 +88,13 @@
   stroke-dasharray: 1;
   .on & {
     animation: draw-line 2.2s $ease both;
+    @include skip-entrance;
   }
 }
 .area {
   .on & {
     animation: fade 2.2s ease both;
+    @include skip-entrance;
   }
 }
 @keyframes draw-line {
