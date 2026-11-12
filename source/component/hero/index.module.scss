@@ -107,10 +107,11 @@ $globe-canvas: 61.3%;
     justify-self: center;
   }
 }
+/* Just below the globe body, which ends about 9% above the canvas's bottom edge. */
 .hint {
   position: absolute;
   left: 50%;
-  bottom: 13%;
+  bottom: 2%;
   transform: translateX(-50%);
   font-size: 11.5px;
   letter-spacing: 0.06em;
