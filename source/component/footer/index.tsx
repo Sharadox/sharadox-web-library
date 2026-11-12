@@ -13,7 +13,8 @@ import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { STYLE } from "@sharadox/sharadox-web-library/content/style";
-import { SITE } from "@sharadox/sharadox-web-library/content/site";
+import { CopyrightYears } from "@sharadox/time-web-library/copyright-years";
+import { FOUNDED, SITE } from "@sharadox/sharadox-web-library/content/site";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
@@ -69,7 +70,7 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         Sharadox
       </div>
       <p className={`${styles.legal} monospace`}>
-        {separate(`© ${new Date().getFullYear()} Sharadox`, translate(FOOTER.rights, locale))}
+        © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
       </p>
     </footer>
   );
