@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sharadox/animation-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
         specifier: ^0.1.0
         version: 0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -18,11 +18,11 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       '@sharadox/globe-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/internationalization-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.1.0
         version: 0.1.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^0.6.0
+        version: 0.6.0
       marked:
         specifier: ^17.0.6
         version: 17.0.6
@@ -737,9 +737,9 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@sharadox/animation-web-library@0.1.0':
-    resolution: {integrity: sha512-7+hncc2bFCGUn3kMw8zoVVDGO9P2DWcYml6rqFmTUCG/IBJaaRVLu72nUML8TBuPNb/N71aU9/7vbr02HYFtnA==}
-    engines: {node: '>=24'}
+  '@sharadox/animation-web-library@0.2.0':
+    resolution: {integrity: sha512-Va0T58agS696bKoVRBzhQf0wRl0N2pd2cwNjfTSVmfjXQ3DSVOxpQV2g00N8oppCERvl27rfFBwFZxpDVtZmTw==}
+    engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
 
@@ -768,9 +768,9 @@ packages:
     resolution: {integrity: sha512-Gc1AiXK68dagI059PljyRNsw8LKlpS+flRwF/d4DmStfqQX1Ktupvy3m4mtwxXk6Qsm7pgDkkIWHr2eMm66LyA==}
     engines: {node: '>=24'}
 
-  '@sharadox/globe-web-library@0.1.0':
-    resolution: {integrity: sha512-enm4IFoROFnKfRAR2wibVGEh+9bYEz55Nmn7qOIY4weGZhWIk0lDnGHj4ObXXZqoObYUNJ+t7mkEOpKg9YtvXw==}
-    engines: {node: '>=24'}
+  '@sharadox/globe-web-library@0.2.0':
+    resolution: {integrity: sha512-RjPtQgY3+3pwqN0NAoRBwnJgfSZTcLl9/ZCwLhM4D+jtwIX+j+1j3COVKqbQm34xd+fEuo1g7CtzVFmSVejXiQ==}
+    engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
       react: '>=19'
@@ -779,6 +779,13 @@ packages:
   '@sharadox/internationalization-web-library@0.1.0':
     resolution: {integrity: sha512-9JW44ydVqRN5175cZmWWZfl1D/ZNyUZ6TKrXCh8PvHPiaZJGTj4ycFDyk6X4kGdSkcN/mrx2CkpkNFmA7+3o6Q==}
     engines: {node: '>=24'}
+    peerDependencies:
+      next: '>=16'
+      react: '>=19'
+
+  '@sharadox/internationalization-web-library@0.2.0':
+    resolution: {integrity: sha512-dWcR1aka6ggr92rLsnMj4n1edcK/80wPvMUQNRrQBRt8/bzjgQLcL//pyuw0ZZr32ROEMkOgT+/jDWE//ZPlCA==}
+    engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
       react: '>=19'
@@ -857,6 +864,10 @@ packages:
   '@sharadox/web-library@0.5.0':
     resolution: {integrity: sha512-umMmDM2MtqUO9F+d6B2YUK9yljoh+mn5vBTTd1CLXNboqtInYi1ak8sntIAkiMe0MsIOOlZV9g2QStXUJUiWCQ==}
     engines: {node: '>=24'}
+
+  '@sharadox/web-library@0.6.0':
+    resolution: {integrity: sha512-wDZ2AqpbDzihSkHsEPEhVYeJ9lgJW6PUNT8ehYVJEuer19qsdRZCU2Mmb9nx6MVgc0i2jRaC/LeeUywys3IvKw==}
+    engines: {node: '>=26'}
 
   '@shikijs/engine-oniguruma@3.23.0':
     resolution: {integrity: sha512-1nWINwKXxKKLqPibT5f4pAFLej9oZzQTsby8942OTlsJzOBZ0MWKiwzMsd+jhzu8YPCHAswGnnN1YtQfirL35g==}
@@ -2584,9 +2595,9 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/web-library': 0.5.0
+      '@sharadox/web-library': 0.6.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
@@ -2622,10 +2633,10 @@ snapshots:
       '@sharadox/email-web-library': 0.2.1
       '@sharadox/web-library': 0.5.0
 
-  '@sharadox/globe-web-library@0.1.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/globe-web-library@0.2.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
-      '@sharadox/web-library': 0.5.0
+      '@sharadox/web-library': 0.6.0
       d3-geo: 3.1.2
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
@@ -2644,6 +2655,12 @@ snapshots:
   '@sharadox/internationalization-web-library@0.1.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.0
+      next: 16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      react: 19.3.1
+
+  '@sharadox/internationalization-web-library@0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.6.0
       next: 16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
 
@@ -2707,6 +2724,8 @@ snapshots:
       - vite
 
   '@sharadox/web-library@0.5.0': {}
+
+  '@sharadox/web-library@0.6.0': {}
 
   '@shikijs/engine-oniguruma@3.23.0':
     dependencies:

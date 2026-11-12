@@ -4,6 +4,8 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { installBrowserEnvironment } from "@sharadox/test-web-library/browser-environment";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: () => {} }) }));
+
 const Globe = vi.fn<(properties: { palette: { dark: boolean } }) => React.ReactNode>(() => <div data-testid="globe" />);
 vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe }));
 const { Navigation } = await import("@sharadox/sharadox-web-library/component/navigation");

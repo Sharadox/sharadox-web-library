@@ -10,6 +10,7 @@
   transform: translateY(-50%);
   padding: 14px 0;
   animation: enter 1s 1.2s $ease both;
+  @include skip-entrance;
   ol {
     position: relative;
     display: grid;

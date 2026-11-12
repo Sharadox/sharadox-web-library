@@ -47,3 +47,16 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
   }
 }
+
+/// Marks a time-based entrance animation: it plays on a first visit, and shows its final state at once when the page
+/// was rebuilt in place (a soft navigation, such as switching language). Pass one duration per listed animation to
+/// keep loops running, for example `skip-entrance(0s, 2.4s)` for `entrance …, shimmer 2.4s infinite`.
+@mixin skip-entrance($durations...) {
+  @if length($durations) == 0 {
+    $durations: 0s;
+  }
+  :global(:root[data-soft-navigation]) & {
+    animation-duration: $durations !important;
+    animation-delay: 0s !important;
+  }
+}

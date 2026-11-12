@@ -37,6 +37,7 @@
   transform: translateZ(0);
   .on & {
     animation: lift-0 1.4s $ease both;
+    @include skip-entrance;
   }
 }
 .plate1 {
@@ -46,6 +47,7 @@
   background: tint(12%);
   .on & {
     animation: lift-1 1.4s 0.15s $ease both;
+    @include skip-entrance;
   }
 }
 .plate2 {
@@ -56,6 +58,7 @@
   border-color: var(--foreground);
   .on & {
     animation: lift-2 1.4s 0.3s $ease both;
+    @include skip-entrance;
   }
 }
 @keyframes lift-0 {

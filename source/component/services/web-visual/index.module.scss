@@ -52,6 +52,7 @@
     animation:
       skin 0.7s var(--ease) forwards,
       shimmer 2.4s linear infinite;
+    @include skip-entrance(0s, 2.4s);
   }
 }
 .navigation {
