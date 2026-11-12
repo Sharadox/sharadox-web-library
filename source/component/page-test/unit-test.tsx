@@ -17,7 +17,6 @@ const { Process } = await import("@sharadox/sharadox-web-library/component/proce
 const { Contact } = await import("@sharadox/sharadox-web-library/component/contact");
 const { Footer } = await import("@sharadox/sharadox-web-library/component/footer");
 const { SectionIndicator } = await import("@sharadox/sharadox-web-library/component/section-indicator");
-const { Consent } = await import("@sharadox/sharadox-web-library/component/consent");
 const { StructuredData } = await import("@sharadox/sharadox-web-library/component/structured-data");
 const { STATEMENT } = await import("@sharadox/sharadox-web-library/content/statement");
 
@@ -53,7 +52,6 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
           <Contact locale={locale} action={action} />
         </main>
         <Footer locale={locale} />
-        <Consent locale={locale} />
         <StructuredData locale={locale} />
       </>,
     );
