@@ -9,5 +9,6 @@ export interface ButtonProperties {
   /** Adds an arrow that nudges right on hover. */
   arrow?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
   className?: string;
 }

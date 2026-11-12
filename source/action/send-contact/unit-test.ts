@@ -26,9 +26,9 @@ describe("sendContact", () => {
       website: "Website",
       platform: "Platform",
       "mobile-app": "Mobile App",
-      logo: "Logo",
+      "brand-identity": "Brand Identity",
       "social-media": "Social Media",
-      ads: "Ads",
+      "marketing-campaign": "Marketing Campaign",
       other: "Others",
     });
   });

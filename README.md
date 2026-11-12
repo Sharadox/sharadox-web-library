@@ -36,6 +36,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - Sharadox wrappers around the shared globe and cookie panel, structured data, share image
   - `License`: the license page's body, rendered from the license's Markdown
   - `NotFound`: the 404 screen, a giant 404 whose zero is the live globe, with the failed request and the way back (put `ServiceIndex base="/<locale>"` under it)
+- **Service card buttons:** each card's `actions` (in `content/services`) scroll to the contact form and tick the matching choice (`requestContactNeeds`), which glows for a moment.
 - **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact • Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application").
 - **`utility/`:** `separate()` (the Sharadox separator) and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`, `skip-entrance()`) used by every component's styles. `skip-entrance` marks a time-based entrance animation so it shows its final state at once after a language switch.

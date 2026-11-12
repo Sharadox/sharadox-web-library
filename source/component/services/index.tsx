@@ -14,6 +14,7 @@ import { WebVisual } from "@sharadox/sharadox-web-library/component/services/web
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import type { ServiceKey } from "@sharadox/sharadox-web-library/content/services";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+import { ServiceActions } from "@sharadox/sharadox-web-library/component/service-action";
 import styles from "./index.module.scss";
 import type { ServicesProperties } from "@sharadox/sharadox-web-library/component/services/type";
 
@@ -51,6 +52,7 @@ export function Services({ locale }: ServicesProperties) {
                 title={translate(service.title, locale)}
                 lead={translate(service.lead, locale)}
                 text={translate(service.text, locale)}
+                actions={<ServiceActions locale={locale} actions={service.actions} />}
               />
             </Reveal>
           </div>
