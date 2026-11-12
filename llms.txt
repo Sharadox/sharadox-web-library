@@ -2,10 +2,10 @@
 
 > Sharadox's own website library (verifiable source, not open source): content, branded components, styles and contact configuration for sharadox.com, built on the open-source @sharadox/*-web-library topic libraries.
 
-- content/locale LOCALES (defineLocales en/pt); content/style STYLES (color group: black default, white, system; storageKey "style"); content/separator SEPARATOR "•"
+- content/locale LOCALES (defineLocales en/pt); content/style STYLES (color group: black default, white, system; storageKey "style"); content/separator SEPARATOR "·"
 - utility/separate separate(...parts) with the Sharadox separator
-- action/send-contact sendContact(form, ip) — createContactAction to contact@sharadox.com, subject "Contact • Name (Company)"
-- component/*: navigation, hero (+ lazy globe), service-index, statement, services (+ visuals), touchpoint, capability, marquee, process, contact (+ form), footer, section-indicator, style-switch, consent (shared ConsentPanel), structured-data, share-image (renderShareImage)
+- action/send-contact sendContact(form, ip) — createContactAction to contact@sharadox.com, subject "Contact · Name (Company)"
+- component/*: navigation, hero (+ lazy globe), service-index, statement, services (+ visuals), touchpoint, capability, marquee, process, contact (+ form), footer, section-indicator, style-switch, structured-data, share-image (renderShareImage)
 - style/token Sass helpers: tint, shade, dashed, on-scroll, below, fill-center
 - License: Sharadox Verifiable Source License 0.1.0 (read and verify only)
 - component/license License({ locale, markdown }) renders the license page body (marked); content/license LICENSE { path "/license", title, eyebrow, description }
@@ -15,3 +15,4 @@
 - Language switch (internationalization-web-library 0.2): entrances skip on soft navigation (hero/not-found Motion initial, Sass mixin skip-entrance($durations...) for CSS entrances); site must render <LocaleTransitionStyle /> in <head>
 - Service card actions: SERVICES.items[].actions [{ need, label }] render as ServiceActions (component/service-action) linking to #contact and calling requestContactNeeds (utility/contact-need, window event CONTACT_NEED_EVENT); ContactForm ticks the chips with a glow. Contact choices: website, platform, mobile-app, brand-identity, social-media, marketing-campaign, other
 - content/site FOUNDED 2026; the footer's copyright years come from CopyrightYears (@sharadox/time-web-library): "2026", then "2026–<current year>" as years pass
+- utility/llms-text llmsText() → sharadox.com's llms.txt (shared shape from @sharadox/metadata-web-library). The cookie panel was removed in 0.14.0: the site stores only what it needs (language, style), which needs no consent.

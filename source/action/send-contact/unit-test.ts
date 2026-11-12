@@ -5,7 +5,16 @@ const createContactAction = vi.fn<(options: ContactActionOptions) => unknown>(()
 vi.mock("@sharadox/form-web-library/contact-action", () => ({ createContactAction }));
 await import("@sharadox/sharadox-web-library/action/send-contact");
 const options = createContactAction.mock.calls[0]![0];
-const message = { name: "Ana", email: "ana@example.com", company: "", message: "Hi", locale: "pt", choices: [] };
+const message = {
+  name: "Ana",
+  email: "ana@example.com",
+  phone: "",
+  company: "",
+  message: "Hi",
+  locale: "pt",
+  choices: [],
+  fields: {},
+};
 
 describe("sendContact", () => {
   test("emails contact@sharadox.com as Sharadox Web Application", () => {
@@ -16,9 +25,9 @@ describe("sendContact", () => {
     });
   });
 
-  test("subjects read 'Contact • Name (Company)', without the company when there is none", () => {
-    expect(options.subject({ ...message, company: "Café" })).toBe("Contact • Ana (Café)");
-    expect(options.subject(message)).toBe("Contact • Ana");
+  test("subjects read 'Contact · Name (Company)', without the company when there is none", () => {
+    expect(options.subject({ ...message, company: "Café" })).toBe("Contact · Ana (Café)");
+    expect(options.subject(message)).toBe("Contact · Ana");
   });
 
   test("names every 'What do you need?' choice in English", () => {
