@@ -1,5 +1,7 @@
 "use client";
 import { motion } from "motion/react";
+import { useState } from "react";
+import { isSoftNavigation } from "@sharadox/web-library/navigation/soft-navigation";
 import dynamic from "next/dynamic";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
@@ -19,8 +21,8 @@ const Globe = dynamic(() => import("@sharadox/sharadox-web-library/component/glo
 });
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const rise = (delay: number) => ({
-  initial: { opacity: 0, y: 18 },
+const rise = (delay: number, settled: boolean) => ({
+  initial: settled ? (false as const) : { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.9, delay, ease: EASE },
 });
@@ -33,27 +35,29 @@ const rise = (delay: number) => ({
  * <NotFound locale="en" path="/en/old-page" />
  */
 export function NotFound({ locale, path }: NotFoundProperties) {
+  // After a language switch the page is rebuilt in place: show it as it was, without replaying the entrance.
+  const [settled] = useState(isSoftNavigation);
   return (
     <Section className={styles.notFound} padded={false}>
       <div className={styles.glow} aria-hidden />
-      <motion.div {...rise(0.05)}>
+      <motion.div {...rise(0.05, settled)}>
         <Eyebrow className={styles.eyebrow}>
           <span className={styles.live} aria-hidden /> {separate(translate(NOT_FOUND.error, locale), "404")}
         </Eyebrow>
       </motion.div>
       <div className={styles.code} aria-hidden>
-        <motion.span className={styles.digit} {...rise(0.15)}>
+        <motion.span className={styles.digit} {...rise(0.15, settled)}>
           4
         </motion.span>
         <motion.span
           className={styles.world}
-          initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+          initial={settled ? false : { opacity: 0, scale: 0.6, rotate: -20 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.6, delay: 0.25, ease: EASE }}
         >
           <Globe />
         </motion.span>
-        <motion.span className={styles.digit} {...rise(0.35)}>
+        <motion.span className={styles.digit} {...rise(0.35, settled)}>
           4
         </motion.span>
       </div>
@@ -61,7 +65,7 @@ export function NotFound({ locale, path }: NotFoundProperties) {
         <span className={styles.line}>
           <motion.span
             className={styles.lineInner}
-            initial={{ y: "110%" }}
+            initial={settled ? false : { y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
           >
@@ -69,16 +73,16 @@ export function NotFound({ locale, path }: NotFoundProperties) {
           </motion.span>
         </span>
       </h1>
-      <motion.p className={styles.text} {...rise(0.7)}>
+      <motion.p className={styles.text} {...rise(0.7, settled)}>
         {translate(NOT_FOUND.text, locale)}
       </motion.p>
-      <motion.p className={`${styles.request} monospace`} {...rise(0.8)}>
+      <motion.p className={`${styles.request} monospace`} {...rise(0.8, settled)}>
         <span className={styles.method}>GET</span>
         <span className={styles.path}>{path}</span>
         <span className={styles.status}>→ 404</span>
         <span className={styles.caret} aria-hidden />
       </motion.p>
-      <motion.div className={styles.actions} {...rise(0.9)}>
+      <motion.div className={styles.actions} {...rise(0.9, settled)}>
         <Button href={`/${locale}`} arrow>
           {translate(NOT_FOUND.home, locale)}
         </Button>
@@ -86,7 +90,7 @@ export function NotFound({ locale, path }: NotFoundProperties) {
           {translate(ACTION.startProject, locale)}
         </Button>
       </motion.div>
-      <motion.p className={`${styles.explore} monospace`} {...rise(1)}>
+      <motion.p className={`${styles.explore} monospace`} {...rise(1, settled)}>
         {translate(NOT_FOUND.explore, locale)} ↓
       </motion.p>
     </Section>

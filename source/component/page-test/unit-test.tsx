@@ -2,6 +2,8 @@ import { act, cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { installBrowserEnvironment, reportIntersection } from "@sharadox/test-web-library/browser-environment";
 
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: () => {} }) }));
+
 vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe: () => <div data-testid="globe" /> }));
 const { Navigation } = await import("@sharadox/sharadox-web-library/component/navigation");
 const { Hero } = await import("@sharadox/sharadox-web-library/component/hero");

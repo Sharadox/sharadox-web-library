@@ -5,6 +5,8 @@ import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { License } from "@sharadox/sharadox-web-library/component/license";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: () => {} }) }));
+
 const MARKDOWN = "# Licença Sharadox\n\nVersão 0.1.0\n\n## 1. Definições\n\n1. **«Obra»** — o `programa`.\n";
 
 beforeEach(() => installBrowserEnvironment());
