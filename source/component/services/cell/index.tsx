@@ -9,7 +9,7 @@ import type { CellProperties } from "@sharadox/sharadox-web-library/component/se
  * One discipline in the services grid: its live visual (which tilts in 3D towards the pointer), number, kinds and
  * copy, with a light that follows the pointer.
  */
-export function Cell({ id, visual, number, kinds, title, lead, text, className }: CellProperties) {
+export function Cell({ id, visual, number, kinds, title, lead, text, actions, className }: CellProperties) {
   const spotlight = useSpotlight<HTMLElement>();
   const tilt = useTilt<HTMLDivElement>(5);
   return (
@@ -31,6 +31,7 @@ export function Cell({ id, visual, number, kinds, title, lead, text, className }
         <h3>{title}</h3>
         <p className={styles.lead}>{lead}</p>
         <p>{text}</p>
+        {actions}
       </div>
     </article>
   );

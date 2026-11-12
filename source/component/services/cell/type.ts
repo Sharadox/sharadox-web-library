@@ -10,5 +10,7 @@ export interface CellProperties {
   title: string;
   lead: string;
   text: string;
+  /** Calls to action under the copy. */
+  actions?: ReactNode;
   className?: string;
 }
