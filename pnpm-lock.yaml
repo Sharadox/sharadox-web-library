@@ -29,6 +29,9 @@ importers:
       '@sharadox/legal-web-library':
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
+      '@sharadox/menu-web-library':
+        specifier: ^0.1.0
+        version: 0.1.0(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.2.0
         version: 0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -826,6 +829,15 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=6'
+
+  '@sharadox/menu-web-library@0.1.0':
+    resolution: {integrity: sha512-PM9sZVTAKP6julqNWxTZ3fDj6crXGsH/XbIfl2oZBdJJWdKodag+1/+whSCxb/y4AVAp4X/a2x62VJRx+3Z3tA==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      react: '>=19'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@sharadox/metadata-web-library@0.2.0':
     resolution: {integrity: sha512-iMeQVeF60p18+eEQILeBPh3pW9DzxuTug/9QV0telbNAW5wGihU3emX+T2aV1vqB7eNoonSyA29iGqpFR0CaJQ==}
@@ -2727,6 +2739,12 @@ snapshots:
     dependencies:
       sass: 1.108.2
       typescript: 6.0.3
+
+  '@sharadox/menu-web-library@0.1.0(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.5.0
+    optionalDependencies:
+      react: 19.3.1
 
   '@sharadox/metadata-web-library@0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:

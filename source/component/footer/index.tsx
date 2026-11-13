@@ -26,12 +26,14 @@ import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
 
 /**
- * Columns of links in the grid (the studio's with the legal ones: license, privacy, cookie preferences and Portugal's
- * complaints book), the style and language switches, the big gradient wordmark, then the legal line and the consumer
+ * The footer, in the grid frame: the brand (slogan, email), the services, the studio's sections with Start a Project,
+ * and the language and style; the big gradient wordmark; a bar with the legal links (license, privacy, cookie
+ * preferences, Portugal's complaints book) and the way back up; then the fine print: copyright beside the consumer
  * dispute notice.
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
+  const studio = [SECTION.touchpoints, SECTION.capabilities, SECTION.process, SECTION.contact];
   return (
     <footer className={styles.footer}>
       <Cross corner="top-left" />
@@ -54,21 +56,13 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         </nav>
         <nav aria-label={translate(FOOTER.studio, locale)}>
           <h2 className="monospace">{translate(FOOTER.studio, locale)}</h2>
-          <a href={`${home}#${SECTION.touchpoints.id}`}>{translate(SECTION.touchpoints, locale)}</a>
-          <a href={`${home}#${SECTION.capabilities.id}`}>{translate(SECTION.capabilities, locale)}</a>
-          <a href={`${home}#${SECTION.process.id}`}>{translate(SECTION.process, locale)}</a>
-          <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
-          <a href={`${home}#${SECTION.contact.id}`}>{translate(ACTION.startProject, locale)}</a>
-          <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
-            {translate(LICENSE.title, locale)}
-          </a>
-          <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
-            {translate(PRIVACY_PAGE.title, locale)}
-          </a>
-          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
-          <ComplaintsBookLink locale={locale} />
-          <a href="#top" className={styles.top}>
-            {translate(FOOTER.top, locale)} <Icon name="chevron-up" strokeWidth={1.8} />
+          {studio.map((section) => (
+            <a key={section.id} href={`${home}#${section.id}`}>
+              {translate(section, locale)}
+            </a>
+          ))}
+          <a href={`${home}#${SECTION.contact.id}`} className={styles.start}>
+            {translate(ACTION.startProject, locale)} <Icon name="chevron-right" strokeWidth={1.8} />
           </a>
         </nav>
         <div className={styles.settings}>
@@ -87,7 +81,25 @@ export function Footer({ locale, path = "" }: FooterProperties) {
       <div className={styles.mark} aria-hidden>
         Sharadox
       </div>
-      <div className={styles.legal}>
+      <div className={styles.bar}>
+        <nav aria-label={translate(FOOTER.legal, locale)} className={styles.legal}>
+          <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
+            {translate(LICENSE.title, locale)}
+          </a>
+          <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
+            {translate(PRIVACY_PAGE.title, locale)}
+          </a>
+          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
+          <ComplaintsBookLink locale={locale} />
+        </nav>
+        <a href="#top" className={styles.top}>
+          {translate(FOOTER.top, locale)}
+          <span className={styles.circle} aria-hidden>
+            <Icon name="chevron-up" strokeWidth={1.8} />
+          </span>
+        </a>
+      </div>
+      <div className={styles.fine}>
         <p className="monospace">
           © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
         </p>

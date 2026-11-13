@@ -117,6 +117,11 @@ describe("Navigation menu", () => {
     wide = true;
     act(() => widen());
     expect(screen.getByRole("button", { name: "Open menu" })).toBeTruthy();
+
+    // The logo closes it too.
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    fireEvent.click(container.querySelector("header a")!);
+    expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-expanded")).toBe("false");
   });
 });
 
