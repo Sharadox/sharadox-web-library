@@ -123,3 +123,8 @@
   color: var(--foreground-3);
   text-align: center;
 }
+.top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}

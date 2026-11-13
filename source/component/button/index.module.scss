@@ -56,5 +56,7 @@
   height: 52px;
 }
 .arrow {
+  flex: none;
+  font-size: 1.1em;
   transition: transform 0.4s var(--ease);
 }

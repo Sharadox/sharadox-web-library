@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { Icon } from "@sharadox/icon-web-library/icon";
 import { isSoftNavigation } from "@sharadox/web-library/navigation/soft-navigation";
 import dynamic from "next/dynamic";
 import { translate } from "@sharadox/internationalization-web-library/translate";
@@ -79,7 +80,9 @@ export function NotFound({ locale, path }: NotFoundProperties) {
       <motion.p className={`${styles.request} monospace`} {...rise(0.8, settled)}>
         <span className={styles.method}>GET</span>
         <span className={styles.path}>{path}</span>
-        <span className={styles.status}>→ 404</span>
+        <span className={styles.status}>
+          <Icon name="chevron-right" strokeWidth={1.8} /> 404
+        </span>
         <span className={styles.caret} aria-hidden />
       </motion.p>
       <motion.div className={styles.actions} {...rise(0.9, settled)}>
@@ -91,7 +94,7 @@ export function NotFound({ locale, path }: NotFoundProperties) {
         </Button>
       </motion.div>
       <motion.p className={`${styles.explore} monospace`} {...rise(1, settled)}>
-        {translate(NOT_FOUND.explore, locale)} ↓
+        {translate(NOT_FOUND.explore, locale)} <Icon name="chevron-down" strokeWidth={1.8} />
       </motion.p>
     </Section>
   );

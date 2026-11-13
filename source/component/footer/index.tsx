@@ -1,3 +1,4 @@
+import { Icon } from "@sharadox/icon-web-library/icon";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
@@ -52,7 +53,9 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
             {translate(PRIVACY_PAGE.title, locale)}
           </a>
-          <a href="#top">{translate(FOOTER.top, locale)} ↑</a>
+          <a href="#top" className={styles.top}>
+            {translate(FOOTER.top, locale)} <Icon name="chevron-up" strokeWidth={1.8} />
+          </a>
         </nav>
         <div className={styles.settings}>
           <h2 className="monospace">{translate(LANGUAGE.label, locale)}</h2>
