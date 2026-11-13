@@ -5,6 +5,11 @@ import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
+import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
+import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
+import { ComplaintsBookLink } from "@sharadox/legal-web-library/complaints-book-link";
+import { DisputeNotice } from "@sharadox/legal-web-library/dispute-notice";
+import { DISPUTE_RESOLUTION_CENTERS } from "@sharadox/legal-web-library/dispute-resolution";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
 import { PRIVACY_PAGE } from "@sharadox/sharadox-web-library/content/privacy";
 import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
@@ -19,7 +24,11 @@ import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
 
-/** Columns of links in the grid, the style and language switches, the big gradient wordmark and the legal line. */
+/**
+ * Columns of links in the grid (the studio's with the legal ones: license, privacy, cookie preferences and Portugal's
+ * complaints book), the style and language switches, the big gradient wordmark, then the legal line and the consumer
+ * dispute notice.
+ */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
   return (
@@ -53,6 +62,8 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
             {translate(PRIVACY_PAGE.title, locale)}
           </a>
+          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
+          <ComplaintsBookLink locale={locale} />
           <a href="#top" className={styles.top}>
             {translate(FOOTER.top, locale)} <Icon name="chevron-up" strokeWidth={1.8} />
           </a>
@@ -73,9 +84,14 @@ export function Footer({ locale, path = "" }: FooterProperties) {
       <div className={styles.mark} aria-hidden>
         Sharadox
       </div>
-      <p className={`${styles.legal} monospace`}>
-        © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
-      </p>
+      <div className={styles.legal}>
+        <p className="monospace">
+          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+        </p>
+        <p className={styles.disputes}>
+          <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
+        </p>
+      </div>
     </footer>
   );
 }

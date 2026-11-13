@@ -1,0 +1,45 @@
+@use "style/token" as *;
+
+/* The shared panel, in the Sharadox style: its colors, the grid's sharp corners, bottom-left of the screen. */
+.consent {
+  --consent-background: var(--background);
+  --consent-foreground: var(--foreground);
+  --consent-muted: var(--foreground-2);
+  --consent-line: var(--line-2);
+  --consent-radius: 4px;
+  --consent-font: var(--sans-serif);
+  left: 16px;
+}
+/* A tiny animated cookie: three crumbs orbiting a ring. */
+.cookie {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.4px solid var(--foreground);
+  animation: spin 8s linear infinite;
+  i {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--foreground);
+  }
+  i:nth-child(1) {
+    left: 4px;
+    top: 4px;
+  }
+  i:nth-child(2) {
+    right: 3px;
+    top: 8px;
+  }
+  i:nth-child(3) {
+    left: 7px;
+    bottom: 3px;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

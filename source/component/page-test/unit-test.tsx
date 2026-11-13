@@ -17,6 +17,7 @@ const { Process } = await import("@sharadox/sharadox-web-library/component/proce
 const { Contact } = await import("@sharadox/sharadox-web-library/component/contact");
 const { Footer } = await import("@sharadox/sharadox-web-library/component/footer");
 const { SectionIndicator } = await import("@sharadox/sharadox-web-library/component/section-indicator");
+const { Consent } = await import("@sharadox/sharadox-web-library/component/consent");
 const { StructuredData } = await import("@sharadox/sharadox-web-library/component/structured-data");
 const { STATEMENT } = await import("@sharadox/sharadox-web-library/content/statement");
 
@@ -52,6 +53,7 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
           <Contact locale={locale} action={action} />
         </main>
         <Footer locale={locale} />
+        <Consent locale={locale} />
         <StructuredData locale={locale} />
       </>,
     );
@@ -66,5 +68,30 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     await act(async () => {
       await vi.dynamicImportSettled();
     });
+  });
+
+  test("the footer carries the legal links and the dispute notice, and the cookie panel only tells", async () => {
+    render(
+      <>
+        <Footer locale={locale} />
+        <Consent locale={locale} />
+      </>,
+    );
+    expect(screen.getByRole("link", { name: /^Livro de Reclamações/ }).getAttribute("href")).toBe(
+      "https://www.livroreclamacoes.pt/",
+    );
+    expect(screen.getByRole("link", { name: /CIMAAL/ }).getAttribute("href")).toBe("https://www.consumoalgarve.pt/");
+    await act(async () => vi.advanceTimersByTime(2000));
+    const dialog = screen.getByRole("dialog");
+    expect(screen.queryByRole("button", { name: locale === "en" ? "Deny" : "Recusar" })).toBeNull();
+    await act(async () => screen.getByRole("button", { name: locale === "en" ? "Got It" : "Entendido" }).click());
+    await act(async () => vi.advanceTimersByTime(2000));
+    expect(JSON.parse(localStorage.getItem("consent") ?? "{}").granted).toEqual({ required: true });
+    expect(dialog).toBeTruthy();
+    await act(async () =>
+      screen.getByRole("button", { name: locale === "en" ? "Cookie Preferences" : "Preferências de Cookies" }).click(),
+    );
+    await act(async () => vi.advanceTimersByTime(2000));
+    expect(screen.getByText(/Your language|O seu idioma/)).toBeTruthy();
   });
 });
