@@ -1,3 +1,4 @@
+import { Icon } from "@sharadox/icon-web-library/icon";
 import { classNames } from "@sharadox/web-library/class-name";
 import styles from "./index.module.scss";
 import type { ButtonProperties } from "@sharadox/sharadox-web-library/component/button/type";
@@ -17,11 +18,7 @@ export function Button({
   const content = (
     <>
       {children}
-      {arrow && (
-        <span className={styles.arrow} aria-hidden>
-          →
-        </span>
-      )}
+      {arrow && <Icon name="chevron-right" className={styles.arrow} strokeWidth={1.8} />}
     </>
   );
   return href ? (

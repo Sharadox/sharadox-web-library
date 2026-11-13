@@ -122,6 +122,9 @@
 }
 .status {
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 .caret {
   flex: none;
@@ -143,6 +146,9 @@
   margin-top: 30px;
 }
 .explore {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: auto 0 0;
   padding-top: 48px;
   color: var(--foreground-3);
