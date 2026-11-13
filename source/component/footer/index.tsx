@@ -10,6 +10,7 @@ import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { ComplaintsBookLink } from "@sharadox/legal-web-library/complaints-book-link";
 import { DisputeNotice } from "@sharadox/legal-web-library/dispute-notice";
 import { DISPUTE_RESOLUTION_CENTERS } from "@sharadox/legal-web-library/dispute-resolution";
+import { ACTION } from "@sharadox/sharadox-web-library/content/action";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
 import { PRIVACY_PAGE } from "@sharadox/sharadox-web-library/content/privacy";
 import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
@@ -53,9 +54,11 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         </nav>
         <nav aria-label={translate(FOOTER.studio, locale)}>
           <h2 className="monospace">{translate(FOOTER.studio, locale)}</h2>
+          <a href={`${home}#${SECTION.touchpoints.id}`}>{translate(SECTION.touchpoints, locale)}</a>
           <a href={`${home}#${SECTION.capabilities.id}`}>{translate(SECTION.capabilities, locale)}</a>
           <a href={`${home}#${SECTION.process.id}`}>{translate(SECTION.process, locale)}</a>
           <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
+          <a href={`${home}#${SECTION.contact.id}`}>{translate(ACTION.startProject, locale)}</a>
           <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
             {translate(LICENSE.title, locale)}
           </a>

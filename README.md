@@ -32,7 +32,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - `contact`, `services`, `site`, `globe`, and so on.
 - **One source for shared copy:** text used in more than one place lives in its own content module and is imported, never retyped.
 - **`component/`:** the page's branded parts:
-  - grid frame, `Cross` marks, navigation and footer
+  - grid frame, `Cross` marks, navigation (below 1100px its links open in a menu under the bar, in the bar's frosted background, scrolling when it doesn't fit, as on a phone held sideways) and footer
   - hero and its guides, service index, statement, the five service cells and their live visuals
   - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
   - `Consent`, the Sharadox cookie panel (reopened by the footer's Cookie Preferences), and the footer's legal parts: Portugal's complaints book and the Algarve's consumer dispute notice (CIMAAL)

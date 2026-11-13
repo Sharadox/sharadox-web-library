@@ -58,7 +58,7 @@
       transform-origin: left;
     }
   }
-  @include below(960px) {
+  @include below(1100px) {
     display: none;
   }
 }
@@ -72,5 +72,93 @@
     .callToAction {
       display: none;
     }
+  }
+}
+
+/* Two lines that cross into an X while the menu is open; only where the links don't fit in the bar. */
+.toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 36px;
+  height: 36px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  span {
+    height: 1.4px;
+    background: var(--foreground);
+    transition: transform 0.45s $ease;
+  }
+  &[aria-expanded="true"] span:first-child {
+    transform: translateY(3.7px) rotate(45deg);
+  }
+  &[aria-expanded="true"] span:last-child {
+    transform: translateY(-3.7px) rotate(-45deg);
+  }
+  @include below(1100px) {
+    display: flex;
+  }
+}
+/* The bar's frosted background, under the bar, so the two read as one. */
+.menu {
+  position: fixed;
+  inset: 65px 0 0;
+  z-index: 49;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: shade(65%);
+  backdrop-filter: blur(16px) saturate(1.6);
+  display: flex;
+  flex-direction: column;
+  padding: 16px max(var(--gutter), 20px) calc(28px + env(safe-area-inset-bottom));
+  /* Centered when it fits; when it doesn't (a phone held sideways), it starts at the top and scrolls. */
+  > :first-child {
+    margin-top: auto;
+  }
+  > :last-child {
+    margin-bottom: auto;
+  }
+  > a {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line-2);
+    font-size: clamp(1.5rem, min(7vw, 6.5svh), 2.6rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--foreground);
+    span {
+      font-size: 11.5px;
+      letter-spacing: 0.05em;
+      color: var(--foreground-3);
+    }
+  }
+  @media (min-width: 1101px) {
+    display: none;
+  }
+}
+.menuAction {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+}
+.menuStyle {
+  display: none !important;
+  @include below(400px) {
+    display: flex !important;
+  }
+}
+.style {
+  @include below(400px) {
+    display: none !important;
   }
 }
