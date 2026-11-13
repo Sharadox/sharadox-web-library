@@ -25,6 +25,7 @@ export const PRIVACY: PrivacyOptions = {
     website: SITE.url,
   },
   updated: "2026-11-13",
+  consentRecord: true,
   contactForm: {
     fields: [
       { en: "your name", pt: "o seu nome" },

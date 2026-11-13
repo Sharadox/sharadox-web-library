@@ -18,3 +18,4 @@
 - utility/llms-text llmsText() → sharadox.com's llms.txt (shared shape from @sharadox/metadata-web-library). The cookie panel was removed in 0.14.0: the site stores only what it needs (language, style), which needs no consent.
 - content/privacy PRIVACY (privacy-web-library options) and PRIVACY_PAGE { path "/privacy", title, eyebrow, description }; component/privacy-page PrivacyPage({ locale }); the footer links it
 - 0.16.0: chevron icons from @sharadox/icon-web-library replace every text arrow (button, footer Back to top, 404)
+- 0.17.0: component/consent Consent back (consent-web-library 0.3, required only: Got It and Details); footer: Cookie Preferences, Livro de Reclamações link and the CIMAAL consumer dispute notice (legal-web-library); privacy policy mentions the consent record

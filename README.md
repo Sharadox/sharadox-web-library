@@ -9,6 +9,8 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 | Languages, translations, language links     | `@sharadox/internationalization-web-library` |
 | Metadata, structured data, share images     | `@sharadox/metadata-web-library`             |
 | Styles (Black, White, System)               | `@sharadox/style-web-library`                |
+| Cookie panel                                | `@sharadox/consent-web-library`              |
+| Complaints book, consumer dispute notice    | `@sharadox/legal-web-library`                |
 | Reveal, scroll-lit words, counters, marquee | `@sharadox/animation-web-library`            |
 | Active section                              | `@sharadox/scroll-web-library`               |
 | Spotlight, tilt                             | `@sharadox/pointer-web-library`              |
@@ -26,12 +28,14 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - `section`: `SECTION`, each home-page section's id and name, used by navigation, footer, section indicator and headings.
   - `action`: shared calls to action (`ACTION.startProject`).
   - `language`: `LANGUAGE`, the switches' label and each language's own name.
+  - `consent`: the cookie panel's one category (required: language and style), so it only tells, with Got It and Details.
   - `contact`, `services`, `site`, `globe`, and so on.
 - **One source for shared copy:** text used in more than one place lives in its own content module and is imported, never retyped.
 - **`component/`:** the page's branded parts:
   - grid frame, `Cross` marks, navigation and footer
   - hero and its guides, service index, statement, the five service cells and their live visuals
   - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
+  - `Consent`, the Sharadox cookie panel (reopened by the footer's Cookie Preferences), and the footer's legal parts: Portugal's complaints book and the Algarve's consumer dispute notice (CIMAAL)
   - the Sharadox wrapper around the shared globe, structured data, share image, `llmsText()` for `/llms.txt`
   - `PrivacyPage`: the privacy policy's body (`content/privacy`, written by `@sharadox/privacy-web-library`), at `/<locale>/privacy`, linked from the footer
   - `License`: the license page's body, rendered from the license's Markdown
