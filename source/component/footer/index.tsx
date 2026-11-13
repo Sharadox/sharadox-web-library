@@ -5,6 +5,7 @@ import { LocaleLink } from "@sharadox/internationalization-web-library/locale-li
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { FOOTER } from "@sharadox/sharadox-web-library/content/footer";
+import { PRIVACY_PAGE } from "@sharadox/sharadox-web-library/content/privacy";
 import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
 import { LANGUAGE } from "@sharadox/sharadox-web-library/content/language";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
@@ -47,6 +48,9 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <a href={`${home}#${SECTION.contact.id}`}>{translate(SECTION.contact, locale)}</a>
           <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
             {translate(LICENSE.title, locale)}
+          </a>
+          <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
+            {translate(PRIVACY_PAGE.title, locale)}
           </a>
           <a href="#top">{translate(FOOTER.top, locale)} ↑</a>
         </nav>
