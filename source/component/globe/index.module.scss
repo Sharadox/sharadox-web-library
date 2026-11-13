@@ -1,7 +1,28 @@
-/* The shared globe's halo and fallback follow the Sharadox style. */
+/* The shared globe's halo and fallback follow the Sharadox style. It floats: a slow rise and fall with a slight
+   sway, eased at both ends so it never stops sharply. Held still with reduced motion. */
 .globe {
   --globe-glow: var(--foreground);
   --globe-surface: var(--background);
   position: absolute;
   inset: 0;
+  will-change: transform;
+  animation: float 9s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(0.4%, -1.1%, 0) rotate(0.6deg);
+  }
+  50% {
+    transform: translate3d(0, -2%, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(-0.4%, -1.1%, 0) rotate(-0.6deg);
+  }
 }
