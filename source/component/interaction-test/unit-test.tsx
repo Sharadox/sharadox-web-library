@@ -65,6 +65,61 @@ describe("Navigation", () => {
   });
 });
 
+describe("Navigation menu", () => {
+  test("opens under the bar with every section and Start a Project, and closes on a link, Escape or a wider screen", async () => {
+    let widen = () => {};
+    let wide = false;
+    vi.spyOn(window, "matchMedia").mockImplementation(
+      (query: string) =>
+        ({
+          get matches() {
+            return query.includes("min-width") && wide;
+          },
+          addEventListener: (_: string, listener: () => void) => void (widen = listener),
+          removeEventListener: () => {},
+        }) as unknown as MediaQueryList,
+    );
+    const { container } = render(<Navigation locale="en" path="/license" />);
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute("aria-expanded")).toBe("true");
+    expect(container.querySelector("header")!.className).toContain("scrolled");
+    expect(document.documentElement.style.overflow).toBe("hidden");
+    const menu = document.getElementById("menu")!;
+    expect(menu.hasAttribute("data-lenis-prevent")).toBe(true);
+    const names = [...menu.querySelectorAll("a")].map((link) => link.textContent);
+    expect(names).toEqual([
+      "01Services",
+      "02One System",
+      "03Capabilities",
+      "04Process",
+      "05Contact",
+      "Start a Project",
+    ]);
+    expect(menu.querySelector("a")!.getAttribute("href")).toBe("/en#services");
+    await act(async () => fireEvent.click(menu.querySelector("a")!));
+    expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-expanded")).toBe("false");
+    expect(document.documentElement.style.overflow).toBe("");
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    await act(async () => fireEvent.click(document.getElementById("menu")!.querySelector("div a")!));
+    expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-expanded")).toBe("false");
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    act(() => void dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" })));
+    expect(screen.getByRole("button", { name: "Close menu" })).toBeTruthy();
+    act(() => void dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })));
+    expect(screen.getByRole("button", { name: "Open menu" })).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    act(() => widen());
+    expect(screen.getByRole("button", { name: "Close menu" })).toBeTruthy();
+    wide = true;
+    act(() => widen());
+    expect(screen.getByRole("button", { name: "Open menu" })).toBeTruthy();
+  });
+});
+
 describe("StyleSwitch", () => {
   test("lists White, System and Black and applies the choice", async () => {
     render(<StyleSwitch locale="pt" />);

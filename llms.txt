@@ -19,3 +19,4 @@
 - content/privacy PRIVACY (privacy-web-library options) and PRIVACY_PAGE { path "/privacy", title, eyebrow, description }; component/privacy-page PrivacyPage({ locale }); the footer links it
 - 0.16.0: chevron icons from @sharadox/icon-web-library replace every text arrow (button, footer Back to top, 404)
 - 0.17.0: component/consent Consent back (consent-web-library 0.3, required only: Got It and Details); footer: Cookie Preferences, Livro de Reclamações link and the CIMAAL consumer dispute notice (legal-web-library); privacy policy mentions the consent record
+- 0.18.0: navigation links include One System (touchpoints); below 1100px a menu button opens the links and Start a Project under the bar, in the bar's frosted background, scrolling when it doesn't fit (Escape, a link or a wider screen closes it); footer Studio column adds One System and Start a Project
