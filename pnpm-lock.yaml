@@ -26,6 +26,9 @@ importers:
       '@sharadox/pointer-web-library':
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
+      '@sharadox/privacy-web-library':
+        specifier: ^0.1.1
+        version: 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library':
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.1)
@@ -807,6 +810,15 @@ packages:
   '@sharadox/prettier-configuration-web-library@0.1.0':
     resolution: {integrity: sha512-OOuZzYYcjZSC7wtj3R+dFLdwholBpSPWXG+fhl3UQZdsUvp7M8kyGRFtJTGXc7VB9BGFEE95ZTkuo4R93/SLHg==}
     engines: {node: '>=24'}
+
+  '@sharadox/privacy-web-library@0.1.1':
+    resolution: {integrity: sha512-1e6s5bJJcekIhMiPGr7/A/Oi90bESjBAW+cLIOjxbYvGQmA6TyX6FvWehrGgu5iqiibN0rQXcqYTJ50e/B3iig==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      react: '>=19'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@sharadox/scroll-web-library@0.2.0':
     resolution: {integrity: sha512-XcGpv4YnAwWL5LJZe1cD4loK/YDtw+SLQfKDuxEjXmAaczxJkxkxZIW9FxROgkZrjXcxmHISTT3bnaBJo0p3ug==}
@@ -2677,6 +2689,12 @@ snapshots:
       react: 19.3.1
 
   '@sharadox/prettier-configuration-web-library@0.1.0': {}
+
+  '@sharadox/privacy-web-library@0.1.1(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.7.0
+    optionalDependencies:
+      react: 19.3.1
 
   '@sharadox/scroll-web-library@0.2.0(react@19.3.1)':
     dependencies:
