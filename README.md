@@ -10,6 +10,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 | Metadata, structured data, share images     | `@sharadox/metadata-web-library`             |
 | Styles (Black, White, System)               | `@sharadox/style-web-library`                |
 | Cookie panel                                | `@sharadox/consent-web-library`              |
+| Phone menu behavior                         | `@sharadox/menu-web-library`                 |
 | Complaints book, consumer dispute notice    | `@sharadox/legal-web-library`                |
 | Reveal, scroll-lit words, counters, marquee | `@sharadox/animation-web-library`            |
 | Active section                              | `@sharadox/scroll-web-library`               |
