@@ -1,0 +1,39 @@
+@use "style/token" as *;
+
+.page {
+  padding-top: clamp(140px, 16vw, 200px);
+}
+.title {
+  margin: 28px 0 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.text {
+  max-width: 72ch;
+  margin-top: 12px;
+  color: var(--foreground-2);
+  line-height: 1.7;
+  small {
+    font-family: var(--monospace);
+    font-size: 12px;
+  }
+  h2 {
+    margin: 56px 0 14px;
+    padding-top: 28px;
+    color: var(--foreground);
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: -0.01em;
+    @include dashed(horizontal);
+  }
+  p,
+  ul {
+    margin: 0 0 16px;
+  }
+  ul {
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+}
