@@ -4,14 +4,16 @@ import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { ServiceCard } from "@sharadox/sharadox-web-library/component/service-card";
+import { ServiceUnlisted } from "@sharadox/sharadox-web-library/component/service-unlisted";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { ServicesProperties } from "@sharadox/sharadox-web-library/component/services/type";
 
 /**
- * "Services": the four groups (Web Applications, Mobile Applications, Creative, Marketing), each a numbered heading
- * over a grid of cards with a 3D object and a button that starts that project.
+ * "Services": the four groups (Web Applications, Desktop and Mobile Applications, Creative Services, Marketing
+ * Campaigns), each a numbered heading over a grid of cards with a 3D object and a button that starts that project, then
+ * an invitation for ideas none of them name.
  */
 export function Services({ locale }: ServicesProperties) {
   return (
@@ -33,13 +35,14 @@ export function Services({ locale }: ServicesProperties) {
             {service.cards.map((card, index) => (
               <div key={card.key}>
                 <Reveal delay={(index % 3) * 0.08} className={styles.reveal}>
-                  <ServiceCard locale={locale} card={card} />
+                  <ServiceCard locale={locale} card={card} wide={service.cards.length === 1} />
                 </Reveal>
               </div>
             ))}
           </div>
         </div>
       ))}
+      <ServiceUnlisted locale={locale} />
     </Section>
   );
 }

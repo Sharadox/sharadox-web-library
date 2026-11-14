@@ -28,8 +28,8 @@ import type { FooterProperties } from "@sharadox/sharadox-web-library/component/
 
 /**
  * The footer, in the grid frame: the brand (slogan, email), the services, the studio's sections with Start a Project,
- * and the language and style; then everything legal in one section: the links (license, privacy, cookie preferences,
- * Portugal's complaints book), the consumer dispute notice and the copyright, with the way back up.
+ * and the language and style; then everything legal in one row on the same columns: the copyright, the links (license,
+ * privacy, cookie preferences, Portugal's complaints book) with the consumer dispute notice, and the way back up.
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
@@ -78,16 +78,13 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <StyleSwitch locale={locale} className={styles.style} />
         </div>
       </div>
-      <section className={styles.legal} aria-labelledby="footer-legal">
-        <div className={styles.legalStart}>
-          <h2 id="footer-legal" className="monospace">
-            {translate(FOOTER.legal, locale)}
-          </h2>
-          <p className={`monospace ${styles.copyright}`}>
-            © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
-          </p>
-        </div>
-        <div className={styles.legalEnd}>
+      {/* Everything legal in one row, on the same columns as above: the copyright under the brand, the links and the
+          dispute notice under the services and the studio, the way back up under the settings. */}
+      <div className={styles.legal}>
+        <p className={`monospace ${styles.copyright}`}>
+          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+        </p>
+        <div className={styles.legalLinks}>
           <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
             <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
               {translate(LICENSE.title, locale)}
@@ -102,13 +99,15 @@ export function Footer({ locale, path = "" }: FooterProperties) {
             <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
           </p>
         </div>
-        <a href="#top" className={styles.top}>
-          {translate(FOOTER.top, locale)}
-          <span className={styles.circle} aria-hidden>
-            <Icon name="chevron-up" strokeWidth={1.8} />
-          </span>
-        </a>
-      </section>
+        <div className={styles.back}>
+          <a href="#top" className={styles.top}>
+            {translate(FOOTER.top, locale)}
+            <span className={styles.circle} aria-hidden>
+              <Icon name="chevron-up" strokeWidth={1.8} />
+            </span>
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }

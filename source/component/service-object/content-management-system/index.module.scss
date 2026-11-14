@@ -1,0 +1,181 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+$period: 5s;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(cms-sway 11s ease-in-out infinite);
+  transform: rotateX(-12deg) rotateY(24deg);
+}
+@keyframes cms-sway {
+  0%,
+  100% {
+    transform: rotateX(-12deg) rotateY(26deg);
+  }
+  50% {
+    transform: rotateX(-8deg) rotateY(6deg);
+  }
+}
+.page {
+  @include centered(176px, 128px);
+  @include face(4%, 42%);
+  display: grid;
+  grid-template-rows: auto 8px 1fr auto;
+  gap: 8px;
+  padding: 0 0 10px;
+  border-radius: 8px;
+  transform: translate3d(-26px, 0, -30px);
+}
+.bar {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  border-bottom: 1px solid tint(18%);
+  i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: tint(30%);
+  }
+}
+/* The page's title grows as the field in the panel is typed. */
+.title {
+  justify-self: start;
+  margin: 0 10px;
+  width: 62%;
+  border-radius: 3px;
+  background: tint(55%);
+  transform-origin: left;
+  @include loop(cms-title $period steps(8, end) infinite);
+}
+@keyframes cms-title {
+  0%,
+  12% {
+    transform: scaleX(0.05);
+  }
+  52%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+.picture {
+  margin: 0 10px;
+  border-radius: 4px;
+  border: 1px solid tint(30%);
+  @include loop(cms-picture $period $ease infinite);
+}
+@keyframes cms-picture {
+  0%,
+  60% {
+    background: linear-gradient(135deg, tint(10%), tint(4%));
+  }
+  70%,
+  100% {
+    background: linear-gradient(135deg, tint(40%), tint(12%));
+  }
+}
+.lines {
+  display: grid;
+  gap: 5px;
+  margin: 0 10px;
+  i {
+    height: 4px;
+    border-radius: 2px;
+    background: tint(20%);
+    &:last-child {
+      width: 70%;
+    }
+  }
+}
+/* The editing panel, closer to the visitor. */
+.panel {
+  @include centered(92px, 112px);
+  @include face(10%, 60%);
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  transform: translate3d(74px, 14px, 40px);
+}
+.label {
+  width: 44%;
+  height: 4px;
+  border-radius: 2px;
+  background: tint(35%);
+}
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid tint(45%);
+  background: var(--background);
+}
+.typed {
+  height: 4px;
+  width: 54px;
+  border-radius: 2px;
+  background: tint(55%);
+  transform-origin: left;
+  @include loop(cms-title $period steps(8, end) infinite);
+}
+.caret {
+  width: 1.5px;
+  height: 9px;
+  background: var(--foreground);
+  @include loop(cms-blink 0.9s steps(1, end) infinite);
+}
+@keyframes cms-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.swatches {
+  display: flex;
+  gap: 5px;
+  i {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1px solid tint(40%);
+    background: tint(10%);
+    &:nth-child(2) {
+      @include loop(cms-pick $period $ease infinite);
+    }
+  }
+}
+@keyframes cms-pick {
+  0%,
+  58% {
+    background: tint(10%);
+    box-shadow: none;
+  }
+  64%,
+  100% {
+    background: tint(45%);
+    box-shadow: 0 0 0 2px tint(25%);
+  }
+}
+.save {
+  margin-top: 4px;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--foreground);
+  @include loop(cms-save $period $ease infinite);
+}
+@keyframes cms-save {
+  0%,
+  74%,
+  90%,
+  100% {
+    transform: scale(1);
+  }
+  82% {
+    transform: scale(0.92);
+  }
+}

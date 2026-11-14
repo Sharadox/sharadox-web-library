@@ -1,5 +1,7 @@
 // Sharadox design helpers. Colors are CSS custom properties set by the active style (content/style: Black, White…),
 // so everything here works in every style. Only build-time helpers live in this file.
+@use "sass:list";
+
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 /// Below a viewport width.
@@ -52,7 +54,7 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
 /// was rebuilt in place (a soft navigation, such as switching language). Pass one duration per listed animation to
 /// keep loops running, for example `skip-entrance(0s, 2.4s)` for `entrance …, shimmer 2.4s infinite`.
 @mixin skip-entrance($durations...) {
-  @if length($durations) == 0 {
+  @if list.length($durations) == 0 {
     $durations: 0s;
   }
   :global(:root[data-soft-navigation]) & {

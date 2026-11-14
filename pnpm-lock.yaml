@@ -15,8 +15,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library':
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.3.0
+        version: 0.3.0
       '@sharadox/globe-web-library':
         specifier: ^0.2.1
         version: 0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -779,8 +779,8 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.2.2':
-    resolution: {integrity: sha512-1zm0j7bKTVAaGmmlW5tUJy/oO3vbyK0Kwix1hL6ZeMvWrtEER2Vh4vODGWCWmIGIfKpo7r8BnGj6Zf05dCSJyQ==}
+  '@sharadox/form-web-library@0.3.0':
+    resolution: {integrity: sha512-m01X+RudkPf0oovprngR7Pj9QN2X6l+nxa37QnzhQfsOumaDT1IVwdcgS1ENgWbKsnAMAlMkGFN+Xk2r8oJhLw==}
     engines: {node: '>=26'}
 
   '@sharadox/globe-web-library@0.2.1':
@@ -2689,7 +2689,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.2.2':
+  '@sharadox/form-web-library@0.3.0':
     dependencies:
       '@sharadox/email-web-library': 0.2.1
       '@sharadox/web-library': 0.7.0
