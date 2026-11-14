@@ -9,7 +9,7 @@ import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { CapabilityProperties } from "@sharadox/sharadox-web-library/component/capability/type";
 
-/** "Capabilities": every deliverable of every discipline, as columns of a ruled sheet. */
+/** "Capabilities": everything each service group delivers, as columns of a ruled sheet. */
 export function Capability({ locale }: CapabilityProperties) {
   const rows = 1 + Math.max(...SERVICES.items.map((service) => service.capabilities[locale].length));
   return (

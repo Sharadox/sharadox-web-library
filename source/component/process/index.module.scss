@@ -21,6 +21,7 @@
   @include dashed(horizontal);
   span {
     display: block;
+    width: var(--drawn, 0%);
     height: 100%;
     background: linear-gradient(90deg, tint(20%), var(--foreground));
     box-shadow: 0 0 12px tint(60%);
@@ -33,8 +34,9 @@
     width: 1px;
     height: auto;
     span {
-      width: 100% !important;
-      height: 100%;
+      width: 100%;
+      height: var(--drawn, 0%);
+      background: linear-gradient(180deg, tint(20%), var(--foreground));
     }
   }
 }

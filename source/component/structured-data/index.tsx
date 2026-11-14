@@ -7,7 +7,7 @@ import { translate } from "@sharadox/internationalization-web-library/translate"
 import type { StructuredDataProperties } from "@sharadox/sharadox-web-library/component/structured-data/type";
 import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 
-/** JSON-LD for search engines: the Sharadox organization with its five services, and the website. */
+/** JSON-LD for search engines: the Sharadox organization with its services, one per card, and the website. */
 export function StructuredData({ locale }: StructuredDataProperties) {
   const data = structuredDataGraph(
     {
@@ -22,30 +22,35 @@ export function StructuredData({ locale }: StructuredDataProperties) {
       address: { "@type": "PostalAddress", addressRegion: "Algarve", addressCountry: "PT" },
       areaServed: "Worldwide",
       knowsAbout: [
-        "Brand management",
-        "Graphic design",
+        "Branding",
+        "Brand design",
         "Web development",
         "Web design",
         "Software platforms",
+        "E-commerce",
         "Mobile applications",
-        "Social media management",
+        "Progressive web applications",
+        "Social media strategy",
+        "Lead generation",
         "Digital marketing",
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: translate(SERVICES.eyebrow, locale),
-        itemListElement: SERVICES.items.map((service) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            "@id": `${SITE.url}/${locale}#${service.key}`,
-            name: translate(service.title, locale),
-            description: translate(service.text, locale),
-            serviceType: service.kinds[locale].join(", "),
-            provider: { "@id": `${SITE.url}/#organization` },
-            areaServed: "Worldwide",
-          },
-        })),
+        itemListElement: SERVICES.items.flatMap((service) =>
+          service.cards.map((card) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              "@id": `${SITE.url}/${locale}#${card.key}`,
+              name: translate(card.title, locale),
+              description: translate(card.text, locale),
+              serviceType: translate(service.title, locale),
+              provider: { "@id": `${SITE.url}/#organization` },
+              areaServed: "Worldwide",
+            },
+          })),
+        ),
       },
     },
     {

@@ -1,0 +1,59 @@
+@use "style/token" as *;
+
+.card {
+  --pointer-x: -500px;
+  --pointer-y: -500px;
+  position: relative;
+  height: 100%;
+  background: var(--background);
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(420px circle at var(--pointer-x) var(--pointer-y), tint(7%), transparent 60%);
+  }
+}
+.inner {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.visual {
+  position: relative;
+  height: 270px;
+  border-bottom: 1px dashed var(--line-2);
+  background:
+    radial-gradient(90% 80% at 50% 45%, tint(6%), transparent 70%),
+    radial-gradient(circle, var(--line-2) 1px, transparent 1.4px) 0 0 / 18px 18px;
+  @include below(640px) {
+    height: 250px;
+  }
+}
+.copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px 26px 28px;
+  h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  p {
+    margin-bottom: 14px;
+    color: var(--foreground-2);
+    max-width: 44ch;
+    text-wrap: pretty;
+  }
+}
+/* Sits at the bottom, so the buttons of a row line up whatever the text length. */
+.action {
+  margin-top: auto;
+}

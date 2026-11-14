@@ -1,0 +1,61 @@
+@use "sass:list";
+@use "style/token" as *;
+@use "style/object" as *;
+
+@property --swatch-fan {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 12deg;
+}
+.object {
+  @include centered(0px, 0px);
+  @include loop(swatch-fan 6s cubic-bezier(0.65, 0, 0.35, 1) infinite);
+  transform: translateY(14px) rotateX(-12deg) rotateY(-18deg);
+}
+@keyframes swatch-fan {
+  0%,
+  100% {
+    --swatch-fan: 2deg;
+  }
+  45%,
+  60% {
+    --swatch-fan: 15deg;
+  }
+}
+$amounts: 100%, 72%, 50%, 32%, 18%, 8%;
+.swatch {
+  @include centered(56px, 150px);
+  @include face(2%, 45%);
+  background: var(--background);
+  border-radius: 6px;
+  transform-origin: 50% 86%;
+  overflow: hidden;
+  @for $index from 0 through 5 {
+    &[data-swatch="#{$index}"] {
+      transform: translateZ(#{$index * 5 - 12}px) rotateZ(calc(var(--swatch-fan) * #{$index - 2.5}));
+      .color {
+        background: tint(list.nth($amounts, $index + 1));
+      }
+    }
+  }
+}
+.color {
+  display: block;
+  height: 86px;
+}
+.type {
+  display: block;
+  padding: 8px 8px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+.line {
+  display: block;
+  height: 3px;
+  margin: 0 8px;
+  width: 60%;
+  border-radius: 2px;
+  background: tint(30%);
+}

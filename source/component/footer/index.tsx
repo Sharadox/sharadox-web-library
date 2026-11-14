@@ -5,6 +5,7 @@ import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
 import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-switch";
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
+import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
 import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { ComplaintsBookLink } from "@sharadox/legal-web-library/complaints-book-link";
@@ -27,9 +28,8 @@ import type { FooterProperties } from "@sharadox/sharadox-web-library/component/
 
 /**
  * The footer, in the grid frame: the brand (slogan, email), the services, the studio's sections with Start a Project,
- * and the language and style; the big gradient wordmark; a bar with the legal links (license, privacy, cookie
- * preferences, Portugal's complaints book) and the way back up; then the fine print: copyright beside the consumer
- * dispute notice.
+ * and the language and style; then everything legal in one section: the links (license, privacy, cookie preferences,
+ * Portugal's complaints book), the consumer dispute notice and the copyright, with the way back up.
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
@@ -61,9 +61,9 @@ export function Footer({ locale, path = "" }: FooterProperties) {
               {translate(section, locale)}
             </a>
           ))}
-          <a href={`${home}#${SECTION.contact.id}`} className={styles.start}>
-            {translate(ACTION.startProject, locale)} <Icon name="chevron-right" strokeWidth={1.8} />
-          </a>
+          <Button href={`${home}#${SECTION.contact.id}`} size="small" arrow className={styles.start}>
+            {translate(ACTION.startProject, locale)}
+          </Button>
         </nav>
         <div className={styles.settings}>
           <h2 className="monospace">{translate(LANGUAGE.label, locale)}</h2>
@@ -78,35 +78,37 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <StyleSwitch locale={locale} className={styles.style} />
         </div>
       </div>
-      <div className={styles.mark} aria-hidden>
-        Sharadox
-      </div>
-      <div className={styles.bar}>
-        <nav aria-label={translate(FOOTER.legal, locale)} className={styles.legal}>
-          <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
-            {translate(LICENSE.title, locale)}
-          </a>
-          <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
-            {translate(PRIVACY_PAGE.title, locale)}
-          </a>
-          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
-          <ComplaintsBookLink locale={locale} />
-        </nav>
+      <section className={styles.legal} aria-labelledby="footer-legal">
+        <div className={styles.legalStart}>
+          <h2 id="footer-legal" className="monospace">
+            {translate(FOOTER.legal, locale)}
+          </h2>
+          <p className={`monospace ${styles.copyright}`}>
+            © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+          </p>
+        </div>
+        <div className={styles.legalEnd}>
+          <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
+            <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
+              {translate(LICENSE.title, locale)}
+            </a>
+            <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
+              {translate(PRIVACY_PAGE.title, locale)}
+            </a>
+            <PreferencesLink label={translate(CONSENT.preferences, locale)} />
+            <ComplaintsBookLink locale={locale} />
+          </nav>
+          <p className={styles.disputes}>
+            <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
+          </p>
+        </div>
         <a href="#top" className={styles.top}>
           {translate(FOOTER.top, locale)}
           <span className={styles.circle} aria-hidden>
             <Icon name="chevron-up" strokeWidth={1.8} />
           </span>
         </a>
-      </div>
-      <div className={styles.fine}>
-        <p className="monospace">
-          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
-        </p>
-        <p className={styles.disputes}>
-          <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
-        </p>
-      </div>
+      </section>
     </footer>
   );
 }

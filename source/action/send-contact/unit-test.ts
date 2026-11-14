@@ -34,10 +34,18 @@ describe("sendContact", () => {
     expect(options.choices).toEqual({
       website: "Website",
       platform: "Platform",
-      "mobile-app": "Mobile App",
-      "brand-identity": "Brand Identity",
-      "social-media": "Social Media",
-      "marketing-campaign": "Marketing Campaign",
+      "e-commerce": "E-commerce",
+      "android-application": "Android App",
+      "ios-application": "iOS App",
+      "progressive-web-application": "PWA",
+      branding: "Branding",
+      rebranding: "Rebranding",
+      "branding-design": "Branding Design",
+      "product-launch": "Product Launch",
+      "lead-generation": "Lead Generation",
+      "sales-generation": "Sales Generation",
+      "brand-awareness": "Brand Awareness",
+      "social-media-strategy": "Social Media Strategy",
       other: "Others",
     });
   });

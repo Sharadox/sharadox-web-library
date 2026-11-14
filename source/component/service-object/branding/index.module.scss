@@ -1,0 +1,63 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  transform: rotateX(-10deg);
+}
+.seal {
+  @include centered(0px, 0px);
+  @include loop(branding-spin 9s cubic-bezier(0.65, 0, 0.35, 1) infinite);
+  transform: rotateY(-30deg);
+}
+@keyframes branding-spin {
+  0% {
+    transform: rotateY(-30deg);
+  }
+  50% {
+    transform: rotateY(150deg);
+  }
+  100% {
+    transform: rotateY(330deg);
+  }
+}
+.layer {
+  @include centered(128px, 128px);
+  border-radius: 50%;
+  border: 1px solid tint(30%);
+  &:first-child,
+  &:last-child {
+    @include face(9%, 60%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, tint(22%), tint(4%) 70%);
+  }
+}
+.mark {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid tint(50%);
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    background: var(--foreground);
+    transform: rotate(45deg);
+    border-radius: 4px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    background: var(--background);
+    border-radius: 50%;
+  }
+}

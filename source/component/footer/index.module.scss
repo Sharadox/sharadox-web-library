@@ -39,9 +39,11 @@
   }
   a {
     width: fit-content;
+  }
+  a:not(.start) {
     transition: color 0.2s;
   }
-  a:hover {
+  a:not(.start):hover {
     color: var(--foreground);
   }
   @include below(900px) {
@@ -92,44 +94,15 @@
 .settings h2:not(:first-child) {
   margin-top: 18px;
 }
-.mark {
-  padding: 40px 0 10px;
-  font-size: clamp(4rem, 17vw, 15rem);
-  font-weight: 600;
-  letter-spacing: -0.075em;
-  line-height: 0.8;
-  text-align: center;
-  background: linear-gradient(180deg, var(--foreground) 0%, transparent 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  user-select: none;
-  overflow: hidden;
-}
 .start {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  color: var(--foreground);
-  font-weight: 500;
-  svg {
-    transition: transform 0.4s $ease;
-  }
-  &:hover svg {
-    transform: translateX(3px);
-  }
+  margin-top: 10px;
 }
-/* Legal links on the left, the way back up on the right, between dashed hairlines. */
-.bar {
+/* Everything legal in one section, ruled like the columns above: the title and copyright under the brand, the links
+   and the dispute notice across the rest, the way back up at the end. */
+.legal {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px 24px;
-  padding: 18px var(--padding);
-  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.6fr 2.4fr auto;
   font-size: 13px;
   color: var(--foreground-2);
   &::after {
@@ -141,9 +114,48 @@
     height: 1px;
     @include dashed(horizontal);
   }
+  h2 {
+    font-size: 11.5px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
+  }
+  @include below(900px) {
+    grid-template-columns: 1fr auto;
+    .legalEnd {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-top: 1px dashed var(--line-2);
+    }
+    .legalStart::after {
+      display: none;
+    }
+  }
+}
+.legalStart,
+.legalEnd {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 30px var(--padding) 34px;
+}
+.legalStart::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  @include dashed(vertical);
+}
+.copyright {
+  font-size: 12px;
+  color: var(--foreground-3);
 }
 /* The legal links, a small dot between each; on phones, two to a row without dots. */
-.legal {
+.links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -155,7 +167,7 @@
     border: 0;
     background: none;
     font: inherit;
-    color: inherit;
+    color: var(--foreground-2);
     text-align: left;
     justify-self: start;
     transition: color 0.2s;
@@ -179,17 +191,31 @@
   @include below(640px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 100%;
     gap: 12px 18px;
-    text-align: left;
     > * + *::before {
       display: none;
     }
   }
 }
+.disputes {
+  max-width: 72ch;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--foreground-3);
+  text-wrap: pretty;
+  a {
+    color: var(--foreground-2);
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--foreground);
+  }
+}
 .top {
   display: inline-flex;
   align-items: center;
+  align-self: start;
+  padding: 26px var(--padding) 0 0;
   gap: 10px;
   color: var(--foreground-2);
   transition: color 0.2s;
@@ -211,29 +237,4 @@
   transition:
     border-color 0.3s,
     transform 0.4s $ease;
-}
-/* The fine print: copyright on the left, the consumer dispute notice on the right. */
-.fine {
-  display: grid;
-  grid-template-columns: auto minmax(0, 52ch);
-  justify-content: space-between;
-  align-items: start;
-  gap: 14px 40px;
-  padding: 20px var(--padding) 30px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--foreground-3);
-  @include below(760px) {
-    grid-template-columns: 1fr;
-  }
-}
-.disputes {
-  text-wrap: pretty;
-  a {
-    color: var(--foreground-2);
-    transition: color 0.2s;
-  }
-  a:hover {
-    color: var(--foreground);
-  }
 }

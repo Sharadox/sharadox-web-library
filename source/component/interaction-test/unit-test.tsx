@@ -36,15 +36,20 @@ describe("service card buttons", () => {
         <ContactForm locale="en" action={async () => ({ status: "idle" as const })} />
       </>,
     );
+    // Every card has its own button, and each ticks its own choice.
+    expect(screen.getAllByRole("article")).toHaveLength(14);
     const platform = screen.getByRole("link", { name: "Build a Platform" });
     expect(platform.getAttribute("href")).toBe("#contact");
     fireEvent.click(platform);
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
+    fireEvent.click(screen.getByRole("link", { name: "Plan My Growth" }));
     const checked = [...document.querySelectorAll<HTMLInputElement>('input[name="need"]:checked')].map(
       (input) => input.value,
     );
-    expect(checked).toEqual(["website", "platform"]);
+    expect(checked).toEqual(["website", "platform", "social-media-strategy"]);
+    // The choices are grouped like the services.
+    expect(screen.getByRole("group", { name: "Marketing" }).querySelectorAll("input")).toHaveLength(5);
     expect(
       document.querySelector('input[name="need"][value="website"]')!.closest("label")!.hasAttribute("data-requested"),
     ).toBe(true);

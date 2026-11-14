@@ -1,0 +1,89 @@
+@use "sass:math";
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(awareness-turn 30s linear infinite);
+  transform: translateY(20px) rotateX(-30deg) rotateY(20deg);
+}
+@keyframes awareness-turn {
+  to {
+    transform: translateY(20px) rotateX(-30deg) rotateY(380deg);
+  }
+}
+.floor {
+  @include centered(180px, 180px);
+  border-radius: 50%;
+  transform: translateY(30px) rotateX(90deg);
+  background: radial-gradient(circle, tint(20%) 1px, transparent 1.5px) 0 0 / 12px 12px;
+  mask: radial-gradient(circle, #000 55%, transparent 71%);
+  i {
+    position: absolute;
+    inset: 46%;
+    border-radius: 50%;
+    border: 1.5px solid tint(70%);
+    opacity: 0;
+    @include loop(awareness-wave 3.6s ease-out infinite);
+    &:nth-child(2) {
+      animation-delay: 1.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 2.4s;
+    }
+  }
+  b {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+    border-radius: 50%;
+    background: tint(25%);
+    @include loop(awareness-reach 1.2s ease-out infinite);
+    @for $index from 0 through 7 {
+      &[data-person="#{$index}"] {
+        $angle: $index * 45deg + 20deg;
+        $radius: 30% + ($index % 2) * 10%;
+        left: calc(50% + #{math.cos($angle)} * #{$radius});
+        top: calc(50% + #{math.sin($angle)} * #{$radius});
+        animation-delay: 0.35s + ($index % 2) * 0.25s;
+      }
+    }
+  }
+}
+@keyframes awareness-wave {
+  0% {
+    inset: 46%;
+    opacity: 1;
+  }
+  100% {
+    inset: 0%;
+    opacity: 0;
+  }
+}
+@keyframes awareness-reach {
+  0%,
+  100% {
+    background: tint(25%);
+    box-shadow: none;
+  }
+  12% {
+    background: var(--foreground);
+    box-shadow: 0 0 10px tint(70%);
+  }
+}
+.beacon {
+  --width: 22px;
+  --height: 64px;
+  --depth: 22px;
+  --fill-amount: 10%;
+  --edge-amount: 70%;
+  transform: translateY(-2px);
+}
+.light {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--foreground);
+  box-shadow: 0 0 16px 4px tint(60%);
+}

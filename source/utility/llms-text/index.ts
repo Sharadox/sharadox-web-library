@@ -21,8 +21,8 @@ export function llmsText(): string {
     sections: [
       {
         title: "What Sharadox does",
-        lines: SERVICES.items.map(
-          (service) => `${service.title.en} (${service.kinds.en.join(", ")}): ${service.text.en}`,
+        lines: SERVICES.items.flatMap((service) =>
+          service.cards.map((card) => `${service.title.en}, ${card.title.en}: ${card.text.en}`),
         ),
       },
       {

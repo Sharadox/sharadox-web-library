@@ -8,6 +8,7 @@ import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { CONTACT_NEED_EVENT } from "@sharadox/sharadox-web-library/utility/contact-need";
+import { Chip } from "@sharadox/sharadox-web-library/component/contact/form/chip";
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 
@@ -92,12 +93,18 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           </label>
           <fieldset ref={needs} className={styles.services}>
             <legend>{translate(CONTACT.needs.label, locale)}</legend>
-            {CONTACT.needs.options.map((need) => (
-              <label key={need.key} className={styles.chip}>
-                <input type="checkbox" name="need" value={need.key} />
-                <span>{need[locale]}</span>
-              </label>
+            {/* One row of choices per service group, named like the services above. */}
+            {CONTACT.needs.groups.map((group) => (
+              <div key={group.key} className={styles.group} role="group" aria-label={translate(group.title, locale)}>
+                <span className="monospace">{translate(group.title, locale)}</span>
+                {group.options.map((need) => (
+                  <Chip key={need.key} need={need.key} label={need[locale]} />
+                ))}
+              </div>
             ))}
+            <div className={styles.group}>
+              <Chip need={CONTACT.needs.other.key} label={CONTACT.needs.other[locale]} />
+            </div>
           </fieldset>
           <label className={styles.field}>
             <span>{translate(CONTACT.message, locale)}</span>
