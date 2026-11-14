@@ -41,6 +41,8 @@ describe("sendContact", () => {
       branding: "Branding",
       rebranding: "Rebranding",
       "branding-design": "Branding Design",
+      "print-design": "Print Design",
+      merchandise: "Merchandise",
       "product-launch": "Product Launch",
       "lead-generation": "Lead Generation",
       "sales-generation": "Sales Generation",
