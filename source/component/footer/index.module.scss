@@ -65,10 +65,35 @@
     }
   }
 }
+/* The brand on top, everything legal at the bottom: the two ends of the column line up with the other columns' tops
+   and the way back up. */
 .brand {
-  gap: 14px !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: 36px !important;
+}
+.identity {
+  display: grid;
+  gap: 14px;
   > a:first-child {
     color: var(--foreground);
+  }
+}
+.legal {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 24px;
+  font-size: 13px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    @include dashed(horizontal);
   }
 }
 .slogan {
@@ -91,66 +116,16 @@
 .style {
   width: fit-content;
 }
-.settings h2:not(:first-child) {
-  margin-top: 18px;
+.settings {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  h2:not(:first-child) {
+    margin-top: 18px;
+  }
 }
 .start {
   margin-top: 10px;
-}
-/* Everything legal in one row on the columns above (the same widths, dividers and padding), so every line meets. */
-.legal {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  border-bottom: 1px solid var(--line);
-  font-size: 13px;
-  color: var(--foreground-2);
-  > * {
-    position: relative;
-    display: grid;
-    align-content: start;
-    gap: 12px;
-    padding: 28px var(--padding) 32px;
-  }
-  > *:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 1px;
-    @include dashed(vertical);
-  }
-  @include below(900px) {
-    grid-template-columns: 1fr 1fr;
-    .legalLinks {
-      grid-column: 1 / -1;
-      grid-row: 1;
-      border-bottom: 1px dashed var(--line-2);
-      &::after {
-        display: none;
-      }
-    }
-  }
-  @include below(520px) {
-    grid-template-columns: 1fr;
-    > *::after {
-      display: none;
-    }
-    .copyright {
-      border-bottom: 1px dashed var(--line-2);
-    }
-  }
-}
-.legalLinks {
-  grid-column: span 2;
-}
-/* The circle is taller than a line of text: start it higher, so its words sit on the row's first line. */
-.legal > .back {
-  padding-top: 22px;
-}
-/* One line of text, not a grid of its pieces. */
-.legal > .copyright {
-  display: block;
 }
 .copyright {
   font-size: 12px;
@@ -197,11 +172,14 @@
     color: var(--foreground);
   }
 }
+/* Under the style switch, at the foot of the column, level with the copyright. */
 .top {
   display: inline-flex;
   align-items: center;
   width: fit-content;
   gap: 10px;
+  margin-top: auto;
+  padding-top: 32px;
   color: var(--foreground-2);
   transition: color 0.2s;
   &:hover {
