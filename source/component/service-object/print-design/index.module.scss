@@ -1,0 +1,123 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(print-sway 11s ease-in-out infinite);
+  transform: rotateX(-16deg) rotateY(-22deg);
+}
+@keyframes print-sway {
+  0%,
+  100% {
+    transform: rotateX(-16deg) rotateY(-26deg);
+  }
+  50% {
+    transform: rotateX(-10deg) rotateY(12deg);
+  }
+}
+/* An A5 flyer, upright behind the cards. */
+.flyer {
+  @include centered(104px, 146px);
+  @include face(4%, 44%);
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 3px;
+  transform: translate3d(40px, -18px, -60px) rotateY(-8deg);
+}
+.picture {
+  border-radius: 2px;
+  background: linear-gradient(150deg, tint(32%), tint(6%));
+}
+.heading {
+  width: 70%;
+  height: 7px;
+  border-radius: 2px;
+  background: tint(55%);
+}
+.lines {
+  display: grid;
+  gap: 4px;
+  i {
+    height: 3px;
+    border-radius: 2px;
+    background: tint(22%);
+    &:last-child {
+      width: 60%;
+    }
+  }
+}
+/* Business cards lying in a stack, seen from above at an angle. */
+.stack {
+  @include centered(0px, 0px);
+  transform: translate3d(-34px, 46px, 20px) rotateX(70deg);
+}
+@mixin business-card {
+  @include centered(112px, 64px);
+  border-radius: 4px;
+}
+.card {
+  @include business-card;
+  @include face(6%, 40%);
+}
+/* The top card, lifting, flipping over and settling back. */
+.top {
+  @include business-card;
+  @include loop(print-flip 5s $ease infinite);
+  transform: translateZ(14px);
+}
+@keyframes print-flip {
+  0%,
+  12% {
+    transform: translateZ(14px) rotateX(0deg);
+  }
+  45%,
+  62% {
+    transform: translateZ(70px) rotateX(-110deg) rotateZ(-10deg);
+  }
+  88%,
+  100% {
+    transform: translateZ(14px) rotateX(-180deg);
+  }
+}
+.front,
+.back {
+  @include face(10%, 60%);
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backface-visibility: hidden;
+}
+.front {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 0 12px;
+}
+.name {
+  width: 56%;
+  height: 6px;
+  border-radius: 2px;
+  background: tint(60%);
+}
+.detail {
+  width: 40%;
+  height: 3px;
+  border-radius: 2px;
+  background: tint(28%);
+}
+.back {
+  display: grid;
+  place-items: center;
+  background: tint(26%);
+  transform: rotateX(180deg);
+}
+/* The brand's mark: a diamond with a hole, like the seal's. */
+.mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 5px solid var(--foreground);
+  transform: rotate(45deg);
+}

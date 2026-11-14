@@ -154,7 +154,10 @@ export const SERVICES = {
       key: "creative",
       number: "03",
       title: { en: "Creative Services", pt: "Serviços Criativos" },
-      kinds: { en: ["Branding", "Rebranding", "Design"], pt: ["Branding", "Rebranding", "Design"] },
+      kinds: {
+        en: ["Branding", "Rebranding", "Design", "Print", "Merch"],
+        pt: ["Branding", "Rebranding", "Design", "Impressos", "Merchandising"],
+      },
       lead: { en: "An identity people remember.", pt: "Uma identidade que fica na memória." },
       cards: [
         {
@@ -187,6 +190,26 @@ export const SERVICES = {
           action: { en: "Design My Brand", pt: "Desenhar a Minha Marca" },
           chip: { en: "Branding Design", pt: "Design de Marca" },
         },
+        {
+          key: "print-design",
+          title: { en: "Print Design", pt: "Design para Impressão" },
+          text: {
+            en: "Business cards, flyers, brochures, menus, posters and stickers, designed with your brand and ready for the printer, so everything you hand out looks like you.",
+            pt: "Cartões de visita, flyers, brochuras, menus, cartazes e autocolantes, desenhados com a sua marca e prontos para a gráfica, para que tudo o que entrega seja a sua cara.",
+          },
+          action: { en: "Design My Print", pt: "Desenhar os Meus Impressos" },
+          chip: { en: "Print Design", pt: "Design para Impressão" },
+        },
+        {
+          key: "merchandise",
+          title: { en: "Merchandise", pt: "Merchandising" },
+          text: {
+            en: "T-shirts, hoodies, caps, bottles, mugs and tote bags with your brand, designed to be worn and used, so your customers take it everywhere they go.",
+            pt: "T-shirts, sweatshirts, bonés, garrafas, canecas e sacos com a sua marca, desenhados para serem usados, para que os seus clientes a levem para todo o lado.",
+          },
+          action: { en: "Create My Merch", pt: "Criar o Meu Merchandising" },
+          chip: { en: "Merchandise", pt: "Merchandising" },
+        },
       ],
       capabilities: {
         en: [
@@ -194,16 +217,16 @@ export const SERVICES = {
           "Logo and identity",
           "Brand guidelines",
           "Color and typography",
-          "Print, menus and signage",
-          "Packaging",
+          "Business cards, flyers and signage",
+          "Merchandise and packaging",
         ],
         pt: [
           "Posicionamento e naming",
           "Logótipo e identidade",
           "Manual de marca",
           "Cor e tipografia",
-          "Impressão, menus e sinalética",
-          "Embalagem",
+          "Cartões de visita, flyers e sinalética",
+          "Merchandising e embalagem",
         ],
       },
     },
