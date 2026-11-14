@@ -8,7 +8,7 @@ export const HERO = {
   },
   subtitle: {
     en: "One studio for your whole brand — identity, websites, platforms, apps, social media and campaigns, designed, built and grown as one.",
-    pt: "Um só estúdio para toda a sua marca — identidade, websites, plataformas, aplicações, redes sociais e campanhas, desenhados, construídos e geridos como um todo.",
+    pt: "Um só estúdio para toda a sua marca — identidade, websites, plataformas, aplicações, redes sociais e campanhas, desenhados, construídos e impulsionados como um todo.",
   },
   secondary: { en: "Explore Services", pt: "Ver Serviços" },
   drag: { en: "Drag to explore", pt: "Arraste para explorar" },

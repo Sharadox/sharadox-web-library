@@ -1,0 +1,28 @@
+// Helpers for the services' 3D objects, drawn in CSS 3D in the style's colors (so they work in every style).
+@use "style/token" as *;
+
+/// A box of this size centered on its parent's middle, keeping 3D for its children, so transforms move it from there.
+@mixin centered($width, $height) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: $width;
+  height: $height;
+  margin: (-0.5 * $height) 0 0 (-0.5 * $width);
+  transform-style: preserve-3d;
+}
+
+/// A flat surface of an object: a light fill and a hairline edge.
+@mixin face($fill: 5%, $edge: 38%) {
+  box-sizing: border-box;
+  background: tint($fill);
+  border: 1px solid tint($edge);
+}
+
+/// A looping animation that holds still for visitors who ask for less motion.
+@mixin loop($animation) {
+  animation: $animation;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

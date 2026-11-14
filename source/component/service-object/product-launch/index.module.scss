@@ -1,0 +1,110 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(launch-turn 20s linear infinite);
+  transform: translateY(40px) rotateX(-20deg) rotateY(30deg);
+}
+@keyframes launch-turn {
+  to {
+    transform: translateY(40px) rotateX(-20deg) rotateY(390deg);
+  }
+}
+.pad {
+  @include centered(150px, 150px);
+  @include face(4%, 35%);
+  border-radius: 50%;
+  transform: translateY(26px) rotateX(90deg);
+  background: radial-gradient(circle, tint(22%) 1px, transparent 1.5px) 0 0 / 12px 12px;
+  i {
+    position: absolute;
+    inset: 40%;
+    border-radius: 50%;
+    border: 1.5px solid tint(70%);
+    opacity: 0;
+    @include loop(launch-ring 3.4s ease-out infinite);
+    &:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+@keyframes launch-ring {
+  0%,
+  8% {
+    inset: 40%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    inset: -4%;
+    opacity: 0;
+  }
+}
+.flight {
+  @include centered(0px, 0px);
+  @include loop(launch-flight 3.4s cubic-bezier(0.55, 0, 0.8, 0.4) infinite);
+}
+@keyframes launch-flight {
+  0%,
+  10% {
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    transform: translateY(-190px) scale(1);
+  }
+  71% {
+    transform: translateY(-190px) scale(0);
+  }
+  72% {
+    transform: translateY(60px) scale(0);
+  }
+  80% {
+    transform: translateY(60px) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+.body {
+  --width: 26px;
+  --height: 54px;
+  --depth: 26px;
+  --fill-amount: 10%;
+  --edge-amount: 70%;
+  transform: translateY(-2px);
+}
+.nose {
+  --width: 14px;
+  --height: 14px;
+  --depth: 14px;
+  --fill-amount: 30%;
+  --edge-amount: 80%;
+  transform: translateY(-38px);
+}
+.trail {
+  @include centered(3px, 90px);
+  transform: translateY(70px);
+  background: linear-gradient(180deg, tint(70%), transparent);
+  box-shadow: 0 0 12px tint(40%);
+  opacity: 0;
+  @include loop(launch-trail 3.4s linear infinite);
+}
+/* The trail only shows in flight, not standing on the pad. */
+@keyframes launch-trail {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  20%,
+  66% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+  }
+}

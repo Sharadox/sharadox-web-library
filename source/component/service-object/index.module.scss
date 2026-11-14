@@ -1,0 +1,16 @@
+@use "style/token" as *;
+
+.stage {
+  position: absolute;
+  inset: 0;
+  perspective: 900px;
+  overflow: hidden;
+}
+/* Turns towards the pointer (from the card's tilt), easing there and back. */
+.view {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.7s $ease;
+}

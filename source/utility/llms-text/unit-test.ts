@@ -7,7 +7,8 @@ test("describes Sharadox for AI assistants in llms.txt form", () => {
   expect(text.startsWith("# Sharadox\n\n> Technologies that simplify the world.\n\nSharadox is a brand studio")).toBe(
     true,
   );
-  for (const service of SERVICES.items) expect(text).toContain(`- ${service.title.en} (`);
+  for (const service of SERVICES.items)
+    for (const card of service.cards) expect(text).toContain(`- ${service.title.en}, ${card.title.en}: `);
   expect(text).toContain("1. Understand: We start with your business, not with code.");
   expect(text).toContain("- Email: contact@sharadox.com");
   expect(text).toContain("[License](https://sharadox.com/en/license)");

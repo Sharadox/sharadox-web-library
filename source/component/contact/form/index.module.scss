@@ -57,9 +57,8 @@
   }
 }
 .services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  gap: 12px;
   margin: 4px 0 2px;
   padding: 0;
   border: 0;
@@ -72,63 +71,7 @@
     color: var(--foreground-2);
   }
 }
-.chip {
-  position: relative;
-  input {
-    position: absolute;
-    opacity: 0;
-    inset: 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  span {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 13px;
-    border-radius: 99px;
-    border: 1px solid var(--line-2);
-    font-size: 13.5px;
-    color: var(--foreground-2);
-    transition:
-      color 0.2s,
-      background 0.2s,
-      border-color 0.2s;
-    &::before {
-      content: "+";
-      font-family: var(--monospace);
-      transition: transform 0.3s $ease;
-    }
-  }
-  &:hover span {
-    color: var(--foreground);
-    border-color: tint(30%);
-  }
-  input:checked + span {
-    background: var(--foreground);
-    border-color: var(--foreground);
-    color: var(--background);
-    &::before {
-      transform: rotate(45deg);
-    }
-  }
-  input:focus-visible + span {
-    outline: 2px solid var(--foreground);
-    outline-offset: 2px;
-  }
-  /* Ticked by a button elsewhere on the page: a ring that grows and fades, so the visitor sees what was chosen. */
-  &[data-requested] span {
-    animation: requested 1.4s 0.5s $ease both;
-  }
-}
-@keyframes requested {
-  0% {
-    box-shadow: 0 0 0 0 tint(55%);
-  }
-  100% {
-    box-shadow: 0 0 0 14px tint(0%);
-  }
-}
+
 .honeypot {
   position: absolute;
   left: -9999px;
@@ -171,5 +114,19 @@
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
+  }
+}
+/* A row of choices for one service group, its name in front. */
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  > span {
+    flex-basis: 100%;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
   }
 }

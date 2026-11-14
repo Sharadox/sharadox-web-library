@@ -1,0 +1,78 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(commerce-sway 8s ease-in-out infinite);
+  transform: translateY(18px) rotateX(-16deg) rotateY(-28deg);
+}
+@keyframes commerce-sway {
+  0%,
+  100% {
+    transform: translateY(18px) rotateX(-16deg) rotateY(-34deg);
+  }
+  50% {
+    transform: translateY(18px) rotateX(-12deg) rotateY(26deg);
+  }
+}
+.bag {
+  --width: 104px;
+  --height: 112px;
+  --depth: 52px;
+  --front-amount: 10%;
+  --top-amount: 2%;
+}
+.tag {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  border: 1px solid tint(60%);
+  border-radius: 50%;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: tint(60%);
+  }
+}
+.handle {
+  @include centered(48px, 34px);
+  transform: translate3d(0, -72px, 0);
+  border: 2px solid tint(65%);
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+}
+.drop {
+  @include centered(0px, 0px);
+  transform: translateY(-170px) scale(0);
+  @include loop(commerce-drop 3.3s cubic-bezier(0.5, 0, 0.75, 0) infinite);
+  &:nth-child(2) {
+    left: calc(50% - 18px);
+  }
+  &:nth-child(3) {
+    left: calc(50% + 16px);
+  }
+}
+@keyframes commerce-drop {
+  0% {
+    transform: translateY(-170px) rotateY(0deg) scale(1);
+  }
+  55% {
+    transform: translateY(-40px) rotateY(160deg) scale(1);
+  }
+  65%,
+  100% {
+    transform: translateY(-10px) rotateY(180deg) scale(0);
+  }
+}
+.item {
+  --width: 22px;
+  --height: 22px;
+  --depth: 22px;
+  --fill-amount: 16%;
+  --edge-amount: 70%;
+}

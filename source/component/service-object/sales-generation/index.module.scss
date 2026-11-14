@@ -1,0 +1,65 @@
+@use "sass:list";
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(sales-sway 10s ease-in-out infinite);
+  transform: translateY(46px) rotateX(-24deg) rotateY(-36deg);
+}
+@keyframes sales-sway {
+  0%,
+  100% {
+    transform: translateY(46px) rotateX(-24deg) rotateY(-40deg);
+  }
+  50% {
+    transform: translateY(46px) rotateX(-20deg) rotateY(-12deg);
+  }
+}
+.base {
+  @include centered(170px, 60px);
+  @include face(4%, 35%);
+  border-radius: 4px;
+  transform: rotateX(90deg);
+  background: radial-gradient(circle, tint(22%) 1px, transparent 1.5px) 0 0 / 10px 10px;
+}
+$heights: 0.32, 0.5, 0.42, 0.72, 1;
+.column {
+  @include centered(0px, 0px);
+  transform-origin: 0 0;
+  @include loop(sales-grow 4.5s $ease infinite);
+  @for $index from 0 through 4 {
+    &[data-bar="#{$index}"] {
+      left: calc(50% + #{($index - 2) * 32px});
+      --target: #{list.nth($heights, $index + 1)};
+      animation-delay: #{$index * 0.12}s;
+    }
+  }
+}
+@keyframes sales-grow {
+  0%,
+  8% {
+    transform: scaleY(0.08);
+  }
+  45%,
+  85% {
+    transform: scaleY(var(--target));
+  }
+  100% {
+    transform: scaleY(0.08);
+  }
+}
+.bar {
+  --width: 20px;
+  --height: 130px;
+  --depth: 20px;
+  --fill-amount: 10%;
+  --edge-amount: 60%;
+  --top-amount: 45%;
+  transform: translateY(-65px);
+}
+.column[data-bar="4"] .bar {
+  --fill-amount: 22%;
+  --edge-amount: 85%;
+  --top-amount: 90%;
+}

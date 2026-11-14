@@ -1,0 +1,54 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(platform-turn 26s linear infinite);
+  transform: rotateX(-28deg) rotateY(45deg);
+}
+@keyframes platform-turn {
+  to {
+    transform: rotateX(-28deg) rotateY(405deg);
+  }
+}
+.slab {
+  --width: 112px;
+  --height: 10px;
+  --depth: 112px;
+  &:nth-child(2) {
+    transform: translateY(-54px);
+  }
+  &:nth-child(3) {
+    transform: translateY(-18px);
+  }
+  &:nth-child(4) {
+    transform: translateY(18px);
+  }
+  &:nth-child(5) {
+    transform: translateY(54px);
+  }
+}
+.signal {
+  position: absolute;
+  inset: 10px;
+  border-radius: 4px;
+  background: radial-gradient(circle, tint(60%) 1px, transparent 1.5px) 0 0 / 10px 10px;
+  border: 1px solid tint(70%);
+  opacity: 0.15;
+  @include loop(platform-signal 1.8s ease-in-out infinite);
+}
+@keyframes platform-signal {
+  0%,
+  60%,
+  100% {
+    opacity: 0.15;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+.core {
+  @include centered(2px, 140px);
+  background: linear-gradient(180deg, transparent, tint(70%), transparent);
+  box-shadow: 0 0 10px tint(50%);
+}
