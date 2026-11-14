@@ -1,0 +1,154 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+$period: 3.2s;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(api-sway 10s ease-in-out infinite);
+  transform: rotateX(-18deg) rotateY(-20deg);
+}
+@keyframes api-sway {
+  0%,
+  100% {
+    transform: rotateX(-18deg) rotateY(-24deg);
+  }
+  50% {
+    transform: rotateX(-12deg) rotateY(14deg);
+  }
+}
+/* A database: three stacked cylinders, each a few rings. */
+.database {
+  @include centered(0px, 0px);
+  transform: translateX(-118px);
+}
+.disc {
+  @include centered(0px, 0px);
+  i {
+    @include centered(64px, 64px);
+    border-radius: 50%;
+    border: 1px solid tint(34%);
+    &:first-child,
+    &:last-child {
+      @include face(8%, 55%);
+      border-radius: 50%;
+    }
+  }
+}
+/* The line every message travels along. */
+.line {
+  @include centered(236px, 0px);
+  border-top: 1px dashed tint(40%);
+}
+/* The gateway: the API itself, with braces on its face. */
+.gateway {
+  --width: 50px;
+  --height: 50px;
+  --depth: 50px;
+  --radius: 6px;
+  --front-amount: 14%;
+  --top-amount: 24%;
+  --edge-amount: 72%;
+}
+.braces {
+  position: absolute;
+  inset: 13px 12px;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 7px;
+    border: 2px solid var(--foreground);
+  }
+  &::before {
+    left: 0;
+    border-right: 0;
+    border-radius: 6px 0 0 6px;
+  }
+  &::after {
+    right: 0;
+    border-left: 0;
+    border-radius: 0 6px 6px 0;
+  }
+}
+/* An app window on the other side. */
+.application {
+  @include centered(74px, 96px);
+  @include face(4%, 48%);
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 14px 10px;
+  border-radius: 8px;
+  transform: translateX(118px) rotateY(-14deg);
+}
+.row {
+  height: 12px;
+  border-radius: 3px;
+  background: tint(14%);
+  @include loop(api-row $period $ease infinite);
+  &:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+}
+@keyframes api-row {
+  0%,
+  86%,
+  100% {
+    background: tint(14%);
+  }
+  92% {
+    background: tint(45%);
+  }
+}
+.packet {
+  @include centered(12px, 12px);
+  border-radius: 3px;
+  opacity: 0;
+}
+/* The app asks... */
+.request {
+  background: var(--foreground);
+  @include loop(api-request $period $ease infinite);
+}
+@keyframes api-request {
+  0% {
+    opacity: 0;
+    transform: translateX(84px);
+  }
+  8%,
+  40% {
+    opacity: 1;
+  }
+  48%,
+  100% {
+    opacity: 0;
+    transform: translateX(-84px);
+  }
+}
+/* ...and the database answers. */
+.answer {
+  border: 2px solid var(--foreground);
+  @include loop(api-answer $period $ease infinite);
+}
+@keyframes api-answer {
+  0%,
+  44% {
+    opacity: 0;
+    transform: translateX(-84px);
+  }
+  52%,
+  84% {
+    opacity: 1;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateX(84px);
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
@@ -9,10 +9,16 @@ import { useSpotlight } from "@sharadox/pointer-web-library/spotlight";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { CONTACT_NEED_EVENT } from "@sharadox/sharadox-web-library/utility/contact-need";
 import { Chip } from "@sharadox/sharadox-web-library/component/contact/form/chip";
+import { contactProblems } from "@sharadox/sharadox-web-library/utility/contact-problem";
+import type { ContactProblem } from "@sharadox/sharadox-web-library/utility/contact-problem";
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 
-/** The enquiry form: honeypot and fill-time spam checks, inline errors, and an animated thank-you. */
+/**
+ * The enquiry form: name, company, email and phone (one of them is enough), the choices grouped like the services, and
+ * a message. It checks itself before sending (`contactProblems`, the same rules as the server) and shows what's
+ * missing under each field; honeypot and fill-time spam checks, server errors, and an animated thank-you.
+ */
 export function ContactForm({ locale, action: sendAction }: ContactFormProperties) {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendAction, { status: "idle" });
   // When the visitor started filling the form; bots submit faster than humans can.
@@ -40,6 +46,27 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
     startedAt.current = Date.now();
   }, []);
   const spotlight = useSpotlight<HTMLFormElement>();
+  // What the visitor still has to fill in; shown once they try to send, then updated as they type.
+  const [problems, setProblems] = useState<readonly ContactProblem[] | null>(null);
+  // After a refused send, the first field that needs attention takes the focus once it's marked.
+  const formElement = useRef<HTMLFormElement | null>(null);
+  const [refusals, setRefusals] = useState(0);
+  useEffect(() => {
+    if (refusals) formElement.current?.querySelector<HTMLElement>("[aria-invalid], [data-invalid] input")?.focus();
+  }, [refusals]);
+  const has = (problem: ContactProblem) => problems?.includes(problem) ?? false;
+  const problem = (key: ContactProblem) =>
+    has(key) && (
+      <span id={`contact-${key}-problem`} className={styles.problem}>
+        {translate(CONTACT.problems[key], locale)}
+      </span>
+    );
+  const described = (...keys: ContactProblem[]) => {
+    const shown = keys.filter(has);
+    return shown.length
+      ? { "aria-invalid": true, "aria-describedby": shown.map((key) => `contact-${key}-problem`).join(" ") }
+      : {};
+  };
   return (
     <AnimatePresence mode="wait">
       {state.status === "sent" ? (
@@ -61,10 +88,21 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           key="form"
           ref={spotlight}
           action={action}
+          noValidate
           onSubmit={(event) => {
-            (event.currentTarget.elements.namedItem("started-at") as HTMLInputElement).value = String(
-              startedAt.current,
-            );
+            const form = event.currentTarget;
+            const found = contactProblems(new FormData(form));
+            setProblems(found);
+            if (found.length) {
+              event.preventDefault();
+              formElement.current = form;
+              setRefusals((count) => count + 1);
+              return;
+            }
+            (form.elements.namedItem("started-at") as HTMLInputElement).value = String(startedAt.current);
+          }}
+          onChange={(event) => {
+            if (problems) setProblems(contactProblems(new FormData(event.currentTarget)));
           }}
           className={styles.form}
           exit={{ opacity: 0, scale: 0.98 }}
@@ -80,7 +118,8 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           <div className={styles.row}>
             <label className={styles.field}>
               <span>{translate(CONTACT.name, locale)}</span>
-              <input name="name" required autoComplete="name" maxLength={120} />
+              <input name="name" required autoComplete="name" maxLength={120} {...described("name")} />
+              {problem("name")}
             </label>
             <label className={styles.field}>
               <span>{translate(CONTACT.company, locale)}</span>
@@ -89,9 +128,21 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           </div>
           <label className={styles.field}>
             <span>{translate(CONTACT.email, locale)}</span>
-            <input name="email" type="email" required autoComplete="email" maxLength={200} />
+            <input name="email" type="email" autoComplete="email" maxLength={200} {...described("reach", "email")} />
+            {problem("email")}
           </label>
-          <fieldset ref={needs} className={styles.services}>
+          <label className={styles.field}>
+            <span>{translate(CONTACT.phone, locale)}</span>
+            <input name="phone" type="tel" autoComplete="tel" maxLength={40} {...described("reach", "phone")} />
+            {problem("phone")}
+          </label>
+          {has("reach") ? problem("reach") : <span className={styles.hint}>{translate(CONTACT.reach, locale)}</span>}
+          <fieldset
+            ref={needs}
+            className={styles.services}
+            data-invalid={has("needs") || undefined}
+            aria-describedby={has("needs") ? "contact-needs-problem" : undefined}
+          >
             <legend>{translate(CONTACT.needs.label, locale)}</legend>
             {/* One row of choices per service group, named like the services above. */}
             {CONTACT.needs.groups.map((group) => (
@@ -102,13 +153,25 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
                 ))}
               </div>
             ))}
-            <div className={styles.group}>
-              <Chip need={CONTACT.needs.other.key} label={CONTACT.needs.other[locale]} />
+            <div className={styles.group} role="group" aria-label={translate(CONTACT.needs.unsure.title, locale)}>
+              <span className="monospace">{translate(CONTACT.needs.unsure.title, locale)}</span>
+              {CONTACT.needs.unsure.options.map((need) => (
+                <Chip key={need.key} need={need.key} label={need[locale]} />
+              ))}
             </div>
+            {problem("needs")}
           </fieldset>
           <label className={styles.field}>
             <span>{translate(CONTACT.message, locale)}</span>
-            <textarea name="message" required rows={5} maxLength={5000} />
+            <textarea
+              name="message"
+              required
+              rows={5}
+              minLength={CONTACT.minimumMessageLength}
+              maxLength={5000}
+              {...described("message")}
+            />
+            {problem("message")}
           </label>
           {state.status !== "idle" && (
             <p className={styles.error} role="alert">
