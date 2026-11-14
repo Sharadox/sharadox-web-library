@@ -50,12 +50,16 @@
   &[data-count="5"] > div:nth-child(n + 4) {
     grid-column: span 3;
   }
+  &[data-count="1"] > div {
+    grid-column: 1 / -1;
+  }
   @include below(960px) {
     grid-template-columns: 1fr 1fr;
     > div,
     &[data-count="5"] > div:nth-child(n + 4) {
       grid-column: auto;
     }
+    &[data-count="1"] > div,
     > div:last-child:nth-child(odd) {
       grid-column: 1 / -1;
     }

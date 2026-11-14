@@ -60,7 +60,7 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     await act(async () => reportIntersection());
     await act(async () => vi.advanceTimersByTime(4000));
     // Four service groups, each with its cards, and the footer has no big wordmark any more.
-    for (const id of ["web-application", "mobile-application", "creative", "marketing"])
+    for (const id of ["web-application", "desktop-and-mobile-application", "creative", "marketing"])
       expect(document.getElementById(id)).not.toBeNull();
     expect(document.querySelectorAll("article [aria-hidden] > div > div").length).toBe(14);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(

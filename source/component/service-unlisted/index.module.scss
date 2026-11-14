@@ -1,0 +1,28 @@
+@use "style/token" as *;
+
+.unlisted {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 40px;
+  padding: clamp(40px, 6vw, 72px) var(--padding);
+  border-top: 1px solid var(--line);
+  background: radial-gradient(60% 120% at 50% 100%, tint(5%), transparent 70%);
+}
+.copy {
+  display: grid;
+  gap: 10px;
+  max-width: 60ch;
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+  p {
+    color: var(--foreground-2);
+    text-wrap: pretty;
+  }
+}

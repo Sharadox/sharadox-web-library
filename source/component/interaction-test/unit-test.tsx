@@ -44,12 +44,17 @@ describe("service card buttons", () => {
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
     fireEvent.click(screen.getByRole("link", { name: "Plan My Growth" }));
+    // After every service, the invitation for ideas none of them name.
+    fireEvent.click(screen.getByRole("link", { name: "Let's Talk" }));
     const checked = [...document.querySelectorAll<HTMLInputElement>('input[name="need"]:checked')].map(
       (input) => input.value,
     );
-    expect(checked).toEqual(["website", "platform", "social-media-strategy"]);
-    // The choices are grouped like the services.
-    expect(screen.getByRole("group", { name: "Marketing" }).querySelectorAll("input")).toHaveLength(5);
+    expect(checked).toEqual(["website", "platform", "social-media-strategy", "not-listed"]);
+    // The choices are grouped like the services, then the two for visitors who aren't sure.
+    expect(screen.getByRole("group", { name: "Marketing Campaigns" }).querySelectorAll("input")).toHaveLength(5);
+    expect(screen.getByRole("group", { name: "Something Else" }).textContent).toContain("I don't know what I need");
+    // The PWA card, alone in its group, lists its reasons.
+    expect(screen.getByText("No store in between")).toBeTruthy();
     expect(
       document.querySelector('input[name="need"][value="website"]')!.closest("label")!.hasAttribute("data-requested"),
     ).toBe(true);
@@ -170,12 +175,48 @@ describe("Button", () => {
 });
 
 describe("ContactForm", () => {
+  const fill = (fields: Record<string, string>) => {
+    for (const [name, value] of Object.entries(fields))
+      fireEvent.change(document.querySelector<HTMLInputElement>(`[name="${name}"]`)!, { target: { value } });
+  };
+  const complete = () => {
+    fill({ name: "Ana", phone: "+351 912 345 678", message: "We need a website for our café." });
+    fireEvent.click(document.querySelector('input[name="need"][value="website"]')!);
+  };
   const submit = async (state: ContactState) => {
     const action = vi.fn(async () => state);
     render(<ContactForm locale="en" action={action} />);
+    complete();
     await act(async () => fireEvent.submit(document.querySelector("form")!));
     return action;
   };
+
+  test("says what's missing under each field instead of sending, and updates as the visitor fills it in", async () => {
+    const action = vi.fn(async () => ({ status: "sent" as const }));
+    render(<ContactForm locale="en" action={action} />);
+    await act(async () => fireEvent.submit(document.querySelector("form")!));
+    expect(action).not.toHaveBeenCalled();
+    const name = document.querySelector<HTMLInputElement>('[name="name"]')!;
+    expect(document.activeElement).toBe(name);
+    expect(name.getAttribute("aria-describedby")).toBe("contact-name-problem");
+    for (const text of ["your name", "email or a phone", "at least one option", "at least 20 characters"])
+      expect(document.body.textContent).toContain(text);
+    expect(document.querySelector("fieldset")!.getAttribute("aria-describedby")).toBe("contact-needs-problem");
+    fill({ name: "Ana", email: "ana@", phone: "12" });
+    expect(document.body.textContent).not.toContain("your name");
+    expect(document.body.textContent).toContain("This email doesn't look right.");
+    expect(document.body.textContent).toContain("This phone number doesn't look right.");
+    expect(document.querySelector('[name="email"]')!.getAttribute("aria-describedby")).toBe("contact-email-problem");
+    fill({ email: "", phone: "" });
+    expect(document.querySelector('[name="phone"]')!.getAttribute("aria-describedby")).toBe("contact-reach-problem");
+  });
+
+  test("asks for an email or a phone, either one", () => {
+    render(<ContactForm locale="pt" action={vi.fn()} />);
+    expect(document.body.textContent).toContain("Deixe um email, um telefone, ou ambos.");
+    expect(document.querySelector('[name="email"]')!.hasAttribute("required")).toBe(false);
+    expect(document.querySelector('[name="phone"]')!.getAttribute("type")).toBe("tel");
+  });
 
   test("thanks the visitor once sent, having told the server when the form appeared", async () => {
     const action = await submit({ status: "sent" });
@@ -185,7 +226,7 @@ describe("ContactForm", () => {
   });
 
   test.each([
-    ["invalid", "valid email"],
+    ["invalid", "an email or a phone number"],
     ["rate-limited", "Too many messages"],
     ["failed", "contact@sharadox.com"],
   ] as const)("explains %s", async (status, text) => {
@@ -197,6 +238,7 @@ describe("ContactForm", () => {
     let finish: (state: ContactState) => void = () => {};
     const action = vi.fn(() => new Promise<ContactState>((resolve) => (finish = resolve)));
     render(<ContactForm locale="pt" action={action} />);
+    complete();
     await act(async () => fireEvent.submit(document.querySelector("form")!));
     expect(screen.getByRole("button", { name: /A enviar/ })).toBeTruthy();
     await act(async () => finish({ status: "idle" }));

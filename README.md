@@ -34,16 +34,17 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 - **One source for shared copy:** text used in more than one place lives in its own content module and is imported, never retyped.
 - **`component/`:** the page's branded parts:
   - grid frame, `Cross` marks, navigation (below 1100px its links open in a menu under the bar, in the bar's frosted background, scrolling when it doesn't fit, as on a phone held sideways) and footer
-  - hero and its guides, service index, statement, and Services: four groups of cards, each card with its own animated 3D object (`service-object`, in CSS 3D, turning towards the pointer), a description and a button that starts that project
+  - hero and its guides, service index, statement, and Services: four groups of cards (Web Applications, Desktop and Mobile Applications, Creative Services, Marketing Campaigns), each card with its own animated 3D object (`service-object`, in CSS 3D, turning towards the pointer), a description and a button that starts that project; a card alone in its group lies wide, with its numbered `points`; then `ServiceUnlisted`, the invitation for ideas none of them name
   - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
   - `Consent`, the Sharadox cookie panel (reopened by the footer's Cookie Preferences), and the footer's legal parts: Portugal's complaints book and the Algarve's consumer dispute notice (CIMAAL)
   - the Sharadox wrapper around the shared globe, structured data, share image, `llmsText()` for `/llms.txt`
   - `PrivacyPage`: the privacy policy's body (`content/privacy`, written by `@sharadox/privacy-web-library`), at `/<locale>/privacy`, linked from the footer
   - `License`: the license page's body, rendered from the license's Markdown
   - `NotFound`: the 404 screen, a giant 404 whose zero is the live globe, with the failed request and the way back (put `ServiceIndex base="/<locale>"` under it)
-- **Service card buttons:** each card's button scrolls to the contact form and ticks that card's choice (`requestContactNeeds`, the card's `key` in `content/services`), which glows for a moment. The form's choices come from the same cards, grouped like the services.
-- **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact · Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application").
-- **`utility/`:** `separate()` (the Sharadox separator) and the share card's horizon dots.
+- **Service card buttons:** each card's button scrolls to the contact form and ticks that card's choice (`requestContactNeeds`, the card's `key` in `content/services`), which glows for a moment. The form's choices come from the same cards, grouped like the services, then Something Else ("I don't know what I need", "What I need is not listed", which the invitation after the services ticks).
+- **Contact form checks:** it needs a name, an email or a phone (or both, each valid), at least one choice and a message of at least 20 characters (`utility/contact-problem`, the same rules the server applies). It says what's missing under each field before anything is sent.
+- **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact · Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application"), with the form's rules, 5 messages an hour per address and 50 emails a day from everyone together, so a flood can't run up the email bill.
+- **`utility/`:** `separate()` (the Sharadox separator), `contactProblems()` (what the contact form still lacks), `requestContactNeeds()` and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`, `skip-entrance()`) used by every component's styles. `skip-entrance` marks a time-based entrance animation so it shows its final state at once after a language switch.
 - **Language switch:** the page is rebuilt in place without replaying entrances (hero, 404, guides, service row and visuals), the globe keeps turning from where it was, and changed text animates (the application adds `LocaleTransitionStyle` in `<head>`).
 

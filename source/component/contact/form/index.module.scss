@@ -30,6 +30,7 @@
 }
 .field {
   display: grid;
+  align-content: start;
   gap: 7px;
   span {
     font-size: 13px;
@@ -129,4 +130,21 @@
     text-transform: uppercase;
     color: var(--foreground-3);
   }
+}
+/* What a field still needs, under it. */
+.problem {
+  font-size: 13px;
+  color: var(--error) !important;
+}
+.hint {
+  margin-top: -6px;
+  font-size: 13px;
+  color: var(--foreground-3);
+}
+.field input[aria-invalid],
+.field textarea[aria-invalid] {
+  border-color: var(--error);
+}
+.services[data-invalid] .group label > span {
+  border-color: color-mix(in srgb, var(--error) 55%, transparent);
 }

@@ -1,5 +1,5 @@
 /**
- * The four service groups and their cards. A group's `key` is its anchor; a card's `key` is both its contact form
+ * The four service groups and their cards (a card may add `points`, shown as a list). A group's `key` is its anchor; a card's `key` is both its contact form
  * choice (the card's button ticks it) and which 3D object it shows. `capabilities` fill the Capabilities sheet;
  * `kinds` are the group's short names under the hero.
  */
@@ -11,7 +11,10 @@ export const SERVICES = {
       key: "web-application",
       number: "01",
       title: { en: "Web Applications", pt: "Aplicações Web" },
-      kinds: { en: ["Websites", "Platforms", "E-commerce"], pt: ["Websites", "Plataformas", "E-commerce"] },
+      kinds: {
+        en: ["Websites", "Platforms", "E-commerce", "CMS", "APIs"],
+        pt: ["Websites", "Plataformas", "E-commerce", "CMS", "APIs"],
+      },
       lead: {
         en: "Websites that win. Platforms that run the business.",
         pt: "Websites que conquistam. Plataformas que gerem o negócio.",
@@ -47,79 +50,102 @@ export const SERVICES = {
           action: { en: "Open an Online Store", pt: "Abrir uma Loja Online" },
           chip: { en: "E-commerce", pt: "E-commerce" },
         },
+        {
+          key: "content-management-system",
+          title: { en: "Content Management Systems (CMS)", pt: "Sistemas de Gestão de Conteúdos (CMS)" },
+          text: {
+            en: "Change your texts, photos, prices and posts yourself, from a simple screen. No code and no technical knowledge needed: your website stays yours to update, whenever you want.",
+            pt: "Altere os seus textos, fotografias, preços e publicações sozinho, num ecrã simples. Sem código e sem conhecimentos técnicos: o seu website continua a ser seu para atualizar, sempre que quiser.",
+          },
+          action: { en: "Manage My Content", pt: "Gerir os Meus Conteúdos" },
+          chip: { en: "CMS", pt: "CMS" },
+        },
+        {
+          key: "application-programming-interface",
+          title: { en: "APIs", pt: "APIs" },
+          text: {
+            en: "An API lets programs talk to each other. We build secure, documented APIs that connect your website, apps, partners and tools, so your data goes where it's needed by itself.",
+            pt: "Uma API permite que programas falem entre si. Criamos APIs seguras e documentadas que ligam o seu website, aplicações, parceiros e ferramentas, para que os dados cheguem sozinhos onde são precisos.",
+          },
+          action: { en: "Build an API", pt: "Criar uma API" },
+          chip: { en: "API", pt: "API" },
+        },
       ],
       capabilities: {
         en: [
           "Websites and landing pages",
           "Online stores",
           "Bookings and ordering",
-          "Dashboards and internal tools",
-          "Business automation and integrations",
+          "Content management systems",
+          "APIs and integrations",
           "Search engine optimization",
         ],
         pt: [
           "Websites e landing pages",
           "Lojas online",
           "Reservas e encomendas",
-          "Dashboards e ferramentas internas",
-          "Automação do negócio e integrações",
+          "Sistemas de gestão de conteúdos",
+          "APIs e integrações",
           "Otimização para motores de busca",
         ],
       },
     },
     {
-      key: "mobile-application",
+      key: "desktop-and-mobile-application",
       number: "02",
-      title: { en: "Mobile Applications", pt: "Aplicações Móveis" },
-      kinds: { en: ["Android", "iOS", "PWA"], pt: ["Android", "iOS", "PWA"] },
-      lead: { en: "In every pocket.", pt: "Em todos os bolsos." },
+      title: { en: "Desktop and Mobile Applications", pt: "Aplicações para Computador e Telemóvel" },
+      kinds: { en: ["Desktop", "Mobile", "PWA"], pt: ["Computador", "Telemóvel", "PWA"] },
+      lead: { en: "Built once. On every screen.", pt: "Feita uma vez. Em todos os ecrãs." },
       cards: [
-        {
-          key: "android-application",
-          title: { en: "Android Applications", pt: "Aplicações Android" },
-          text: {
-            en: "Fast Android apps for loyalty, ordering, bookings and notifications, published and looked after on Google Play.",
-            pt: "Aplicações Android rápidas, para fidelização, encomendas, reservas e notificações, publicadas e mantidas no Google Play.",
-          },
-          action: { en: "Build an Android App", pt: "Criar uma App Android" },
-          chip: { en: "Android App", pt: "App Android" },
-        },
-        {
-          key: "ios-application",
-          title: { en: "iOS Applications", pt: "Aplicações iOS" },
-          text: {
-            en: "iPhone and iPad apps that feel at home on Apple devices, from the first sketch to approval and updates on the App Store.",
-            pt: "Aplicações para iPhone e iPad que se sentem em casa nos dispositivos Apple, do primeiro esboço à aprovação e atualizações na App Store.",
-          },
-          action: { en: "Build an iOS App", pt: "Criar uma App iOS" },
-          chip: { en: "iOS App", pt: "App iOS" },
-        },
         {
           key: "progressive-web-application",
           title: { en: "Progressive Web Applications (PWAs)", pt: "Aplicações Web Progressivas (PWAs)" },
           text: {
-            en: "An app installed straight from your website, with no store in between: it works offline, sends notifications and updates itself.",
-            pt: "Uma aplicação instalada diretamente a partir do seu website, sem loja pelo meio: funciona offline, envia notificações e atualiza-se sozinha.",
+            en: "One app for every device: phones, tablets and computers, on iPhone, Android, Windows and Mac. It installs straight from your website, opens full screen from the home screen and sends notifications, like any other app.",
+            pt: "Uma aplicação para todos os dispositivos: telemóveis, tablets e computadores, em iPhone, Android, Windows e Mac. Instala-se diretamente a partir do seu website, abre em ecrã inteiro a partir do ecrã principal e envia notificações, como qualquer outra aplicação.",
           },
-          action: { en: "Build a PWA", pt: "Criar uma PWA" },
+          points: [
+            {
+              title: { en: "No store in between", pt: "Sem loja pelo meio" },
+              text: {
+                en: "No app store reviews, rules or commissions: no store can delay your updates, take a cut or remove your app. It stays yours.",
+                pt: "Sem revisões, regras nem comissões das lojas de aplicações: nenhuma loja pode atrasar as suas atualizações, ficar com uma parte ou remover a sua aplicação. Continua a ser sua.",
+              },
+            },
+            {
+              title: { en: "One codebase, every platform", pt: "Um só código, todas as plataformas" },
+              text: {
+                en: "Your platform, shop or blog is built once, and the same work becomes the app on every device. Nothing is made again from scratch for each platform.",
+                pt: "A sua plataforma, loja ou blog é feita uma vez, e o mesmo trabalho torna-se a aplicação em todos os dispositivos. Nada é refeito de raiz para cada plataforma.",
+              },
+            },
+            {
+              title: { en: "Less to pay, less to wait", pt: "Menos custos, menos espera" },
+              text: {
+                en: "One project instead of three costs less, launches sooner, and every improvement reaches every device on the same day.",
+                pt: "Um projeto em vez de três custa menos, chega mais cedo, e cada melhoria chega a todos os dispositivos no mesmo dia.",
+              },
+            },
+          ],
+          action: { en: "Build My App", pt: "Criar a Minha Aplicação" },
           chip: { en: "PWA", pt: "PWA" },
         },
       ],
       capabilities: {
         en: [
-          "iPhone and Android",
-          "Progressive web applications",
+          "Phones, tablets and computers",
+          "iPhone, Android, Windows and Mac",
+          "Install from the website",
           "Push notifications",
-          "In-app payments",
-          "App Store and Google Play launch",
+          "One codebase for every platform",
           "Updates and maintenance",
         ],
         pt: [
-          "iPhone e Android",
-          "Aplicações web progressivas",
+          "Telemóveis, tablets e computadores",
+          "iPhone, Android, Windows e Mac",
+          "Instalação a partir do website",
           "Notificações push",
-          "Pagamentos na aplicação",
-          "Lançamento na App Store e Google Play",
+          "Um só código para todas as plataformas",
           "Atualizações e manutenção",
         ],
       },
@@ -127,7 +153,7 @@ export const SERVICES = {
     {
       key: "creative",
       number: "03",
-      title: { en: "Creative", pt: "Criativo" },
+      title: { en: "Creative Services", pt: "Serviços Criativos" },
       kinds: { en: ["Branding", "Rebranding", "Design"], pt: ["Branding", "Rebranding", "Design"] },
       lead: { en: "An identity people remember.", pt: "Uma identidade que fica na memória." },
       cards: [
@@ -135,8 +161,8 @@ export const SERVICES = {
           key: "branding",
           title: { en: "Branding", pt: "Branding" },
           text: {
-            en: "Who you are and how you sound: positioning, name, story and voice, so every customer sees at a glance why you.",
-            pt: "Quem é e como comunica: posicionamento, nome, história e tom de voz, para que cada cliente perceba logo porque deve escolhê-lo.",
+            en: "Branding is deciding who your brand is before anything is drawn: what it stands for, who it speaks to, its name, its story and its tone of voice. It becomes the guidelines everything else follows.",
+            pt: "Branding é definir quem a sua marca é antes de se desenhar o que quer que seja: o que defende, a quem fala, o nome, a história e o tom de voz. Torna-se nas diretrizes que tudo o resto segue.",
           },
           action: { en: "Build My Brand", pt: "Criar a Minha Marca" },
           chip: { en: "Branding", pt: "Branding" },
@@ -145,8 +171,8 @@ export const SERVICES = {
           key: "rebranding",
           title: { en: "Rebranding", pt: "Rebranding" },
           text: {
-            en: "A fresh look and a clear message for a brand that has outgrown its image, keeping everything customers already love.",
-            pt: "Um novo visual e uma mensagem clara para uma marca que cresceu mais do que a sua imagem, mantendo tudo o que os clientes já adoram.",
+            en: "Rebranding can be a refresh, a new look, feel and way of presenting your brand that keeps what customers already love, or a complete change, from the name to the logo, when the business has become something new.",
+            pt: "Um rebranding pode ser uma renovação, um novo visual, sensação e forma de apresentar a marca que mantém o que os clientes já adoram, ou uma mudança completa, do nome ao logótipo, quando o negócio se tornou algo novo.",
           },
           action: { en: "Refresh My Brand", pt: "Renovar a Minha Marca" },
           chip: { en: "Rebranding", pt: "Rebranding" },
@@ -155,8 +181,8 @@ export const SERVICES = {
           key: "branding-design",
           title: { en: "Branding Design", pt: "Design de Marca" },
           text: {
-            en: "Logo, color, type and every asset the brand needs, from menus and signage to social templates, drawn as one system.",
-            pt: "Logótipo, cor, tipografia e todos os ativos de que a marca precisa, de menus e sinalética a modelos para redes sociais, desenhados como um só sistema.",
+            en: "Branding design is making what people actually see, following the brand's guidelines: the logo, colors and type, and every asset from menus and signage to social media templates, drawn as one system.",
+            pt: "Design de marca é criar o que as pessoas realmente veem, seguindo as diretrizes da marca: o logótipo, as cores e a tipografia, e todos os materiais, de menus e sinalética a modelos para redes sociais, desenhados como um só sistema.",
           },
           action: { en: "Design My Brand", pt: "Desenhar a Minha Marca" },
           chip: { en: "Branding Design", pt: "Design de Marca" },
@@ -184,7 +210,7 @@ export const SERVICES = {
     {
       key: "marketing",
       number: "04",
-      title: { en: "Marketing", pt: "Marketing" },
+      title: { en: "Marketing Campaigns", pt: "Campanhas de Marketing" },
       kinds: {
         en: ["Launches", "Leads", "Sales", "Awareness", "Social"],
         pt: ["Lançamentos", "Leads", "Vendas", "Notoriedade", "Redes"],
@@ -262,6 +288,15 @@ export const SERVICES = {
       },
     },
   ],
+  /** After every service: for ideas that fit none of them. */
+  unlisted: {
+    title: { en: "Didn't find what you were looking for?", pt: "Não encontrou o que procurava?" },
+    text: {
+      en: "Tell us your idea. Let's talk it through and see how we can help.",
+      pt: "Conte-nos a sua ideia. Vamos falar sobre ela e ver como podemos ajudar.",
+    },
+    action: { en: "Let's Talk", pt: "Vamos Falar" },
+  },
 } as const;
 
 /** One of the four service group keys. */

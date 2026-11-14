@@ -35,8 +35,8 @@ describe("sendContact", () => {
       website: "Website",
       platform: "Platform",
       "e-commerce": "E-commerce",
-      "android-application": "Android App",
-      "ios-application": "iOS App",
+      "content-management-system": "CMS",
+      "application-programming-interface": "API",
       "progressive-web-application": "PWA",
       branding: "Branding",
       rebranding: "Rebranding",
@@ -46,7 +46,12 @@ describe("sendContact", () => {
       "sales-generation": "Sales Generation",
       "brand-awareness": "Brand Awareness",
       "social-media-strategy": "Social Media Strategy",
-      other: "Others",
+      unsure: "I don't know what I need",
+      "not-listed": "What I need is not listed",
     });
+  });
+
+  test("needs an email or a phone, a choice and a message of 20 characters, like the form", () => {
+    expect(options).toMatchObject({ reach: "email-or-phone", requireChoice: true, minimumMessageLength: 20 });
   });
 });

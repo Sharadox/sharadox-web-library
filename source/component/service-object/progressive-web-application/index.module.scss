@@ -1,91 +1,179 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
+$period: 4s;
+
 .object {
   @include centered(0px, 0px);
-  @include loop(pwa-sway 9s ease-in-out infinite);
-  transform: rotateX(-18deg) rotateY(28deg);
+  @include loop(pwa-sway 12s ease-in-out infinite);
+  transform: rotateX(-14deg) rotateY(18deg);
+  // The widest scene: smaller on phones, so every device stays in view.
+  @include below(480px) {
+    scale: 0.8;
+  }
 }
 @keyframes pwa-sway {
   0%,
   100% {
-    transform: rotateX(-18deg) rotateY(32deg);
+    transform: rotateX(-14deg) rotateY(22deg);
   }
   50% {
-    transform: rotateX(-12deg) rotateY(8deg);
+    transform: rotateX(-10deg) rotateY(-22deg);
   }
 }
-.window {
-  @include centered(168px, 116px);
-  @include face(4%, 42%);
-  border-radius: 8px;
-  transform: translateZ(-20px);
+/* The one codebase: a block with code brackets, pulsing as it sends the app out. */
+.codebase {
+  --width: 46px;
+  --height: 46px;
+  --depth: 46px;
+  --radius: 6px;
+  --front-amount: 14%;
+  --top-amount: 22%;
+  --edge-amount: 70%;
+  transform: translateY(34px);
+  @include loop(pwa-pulse $period $ease infinite);
 }
-.bar {
-  display: block;
-  padding: 7px 10px;
-  border-bottom: 1px solid tint(18%);
-  i {
-    display: block;
-    height: 6px;
-    width: 60%;
-    margin: 0 auto;
-    border-radius: 3px;
-    background: tint(25%);
-  }
-}
-.slot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 40px;
-  height: 40px;
-  margin: -14px 0 0 -20px;
-  border-radius: 10px;
-  border: 1px dashed tint(45%);
-}
-.lift {
-  @include centered(0px, 0px);
-  transform: translate3d(0, 6px, -20px);
-  @include loop(pwa-install 4.2s $ease infinite);
-}
-@keyframes pwa-install {
+@keyframes pwa-pulse {
   0%,
-  15% {
-    transform: translate3d(0, 6px, -14px) rotateY(0deg);
-  }
-  55%,
-  75% {
-    transform: translate3d(0, -26px, 56px) rotateY(360deg);
-  }
   100% {
-    transform: translate3d(0, 6px, -14px) rotateY(360deg);
+    transform: translateY(34px) scale3d(1, 1, 1);
+  }
+  8% {
+    transform: translateY(34px) scale3d(1.12, 1.12, 1.12);
+  }
+  20% {
+    transform: translateY(34px) scale3d(1, 1, 1);
   }
 }
-.icon {
-  --width: 40px;
-  --height: 40px;
-  --depth: 10px;
-  --radius: 10px;
-  --front-amount: 28%;
-  --edge-amount: 75%;
-}
-.plus {
+/* "< / >" drawn with lines: two chevrons and a slash. */
+.code {
   position: absolute;
   inset: 0;
-  &::before,
-  &::after {
-    content: "";
+  i {
     position: absolute;
-    left: 50%;
     top: 50%;
-    width: 16px;
-    height: 2px;
-    margin: -1px 0 0 -8px;
-    border-radius: 1px;
-    background: var(--foreground);
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border: solid var(--foreground);
+    border-width: 0 0 2px 2px;
+    &:nth-child(1) {
+      left: 9px;
+      transform: rotate(45deg);
+    }
+    &:nth-child(2) {
+      left: 50%;
+      width: 2px;
+      height: 16px;
+      margin: -8px 0 0 -1px;
+      border: 0;
+      background: var(--foreground);
+      transform: rotate(20deg);
+    }
+    &:nth-child(3) {
+      right: 9px;
+      transform: rotate(-135deg);
+    }
   }
-  &::after {
-    transform: rotate(90deg);
+}
+.place {
+  @include centered(0px, 0px);
+}
+/* Each device faces the codebase a little. */
+.device {
+  @include face(4%, 50%);
+  position: absolute;
+  padding: 7px;
+  border-radius: 6px;
+  &[data-kind="computer"] {
+    width: 156px;
+    height: 98px;
+    left: -78px;
+    top: -49px;
+  }
+  &[data-kind="tablet"] {
+    width: 78px;
+    height: 104px;
+    left: -39px;
+    top: -52px;
+    border-radius: 9px;
+    transform: rotateY(28deg);
+  }
+  &[data-kind="phone"] {
+    width: 46px;
+    height: 90px;
+    left: -23px;
+    top: -45px;
+    padding: 9px 5px;
+    border-radius: 9px;
+    transform: rotateY(-28deg);
+  }
+}
+.stand {
+  position: absolute;
+  left: -22px;
+  top: 49px;
+  width: 44px;
+  height: 14px;
+  border: 1px solid tint(40%);
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  background: tint(6%);
+}
+/* The same app on every screen; all of them light up when the packets land. */
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 6px 1fr 0.7fr;
+  gap: 4px;
+  height: 100%;
+  i {
+    border-radius: 2px;
+    background: tint(14%);
+    @include loop(pwa-light $period $ease infinite);
+  }
+}
+.header {
+  grid-column: 1 / -1;
+}
+.picture {
+  grid-column: 1 / -1;
+}
+@keyframes pwa-light {
+  0%,
+  30%,
+  100% {
+    background: tint(14%);
+  }
+  44%,
+  64% {
+    background: tint(45%);
+  }
+}
+/* The app flying from the codebase to each device, all at the same moment. */
+.packet {
+  @include centered(10px, 10px);
+  border-radius: 3px;
+  background: var(--foreground);
+  opacity: 0;
+  @include loop(pwa-send $period $ease infinite);
+}
+@keyframes pwa-send {
+  0%,
+  6% {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) scale(0.6);
+  }
+  12% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 1;
+    transform: translate3d(var(--to-x), var(--to-y), var(--to-z)) scale(1);
+  }
+  46%,
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--to-x), var(--to-y), var(--to-z)) scale(1.6);
   }
 }

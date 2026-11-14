@@ -36,7 +36,8 @@ test("sends as Sharadox Web Application and replying answers the visitor", async
     name: "Ana Sá",
     email: "ana@example.pt",
     company: "Café Zé",
-    message: "We need a website.",
+    message: "We need a website for our shop.",
+    need: "website",
     "started-at": "1",
     locale: "pt",
   })) {

@@ -1,10 +1,10 @@
 import type { ComponentType } from "react";
-import { AndroidApplication } from "@sharadox/sharadox-web-library/component/service-object/android-application";
+import { ApplicationProgrammingInterface } from "@sharadox/sharadox-web-library/component/service-object/application-programming-interface";
 import { BrandAwareness } from "@sharadox/sharadox-web-library/component/service-object/brand-awareness";
 import { Branding } from "@sharadox/sharadox-web-library/component/service-object/branding";
 import { BrandingDesign } from "@sharadox/sharadox-web-library/component/service-object/branding-design";
+import { ContentManagementSystem } from "@sharadox/sharadox-web-library/component/service-object/content-management-system";
 import { ECommerce } from "@sharadox/sharadox-web-library/component/service-object/e-commerce";
-import { IosApplication } from "@sharadox/sharadox-web-library/component/service-object/ios-application";
 import { LeadGeneration } from "@sharadox/sharadox-web-library/component/service-object/lead-generation";
 import { Platform } from "@sharadox/sharadox-web-library/component/service-object/platform";
 import { ProductLaunch } from "@sharadox/sharadox-web-library/component/service-object/product-launch";
@@ -22,8 +22,8 @@ const OBJECTS: Record<ServiceCardKey, ComponentType> = {
   website: Website,
   platform: Platform,
   "e-commerce": ECommerce,
-  "android-application": AndroidApplication,
-  "ios-application": IosApplication,
+  "content-management-system": ContentManagementSystem,
+  "application-programming-interface": ApplicationProgrammingInterface,
   "progressive-web-application": ProgressiveWebApplication,
   branding: Branding,
   rebranding: Rebranding,
