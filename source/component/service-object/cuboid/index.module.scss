@@ -1,0 +1,61 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.cuboid {
+  --width: 40px;
+  --height: 40px;
+  --depth: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--width);
+  height: var(--height);
+  margin: calc(var(--height) / -2) 0 0 calc(var(--width) / -2);
+  transform-style: preserve-3d;
+}
+.face {
+  @include face(var(--fill-amount, 6%), var(--edge-amount, 40%));
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.front,
+.back {
+  inset: 0;
+  border-radius: var(--radius, 0);
+}
+.front {
+  transform: translateZ(calc(var(--depth) / 2));
+  background: tint(var(--front-amount, 8%));
+}
+.back {
+  transform: rotateY(180deg) translateZ(calc(var(--depth) / 2));
+}
+.right,
+.left {
+  top: 0;
+  left: 50%;
+  width: var(--depth);
+  height: 100%;
+  margin-left: calc(var(--depth) / -2);
+}
+.right {
+  transform: rotateY(90deg) translateZ(calc(var(--width) / 2));
+}
+.left {
+  transform: rotateY(-90deg) translateZ(calc(var(--width) / 2));
+}
+.top,
+.bottom {
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: var(--depth);
+  margin-top: calc(var(--depth) / -2);
+}
+.top {
+  transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+  background: tint(var(--top-amount, 12%));
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--height) / 2));
+}

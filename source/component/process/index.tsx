@@ -1,6 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { PROCESS } from "@sharadox/sharadox-web-library/content/process";
@@ -14,14 +14,15 @@ import type { ProcessProperties } from "@sharadox/sharadox-web-library/component
 export function Process({ locale }: ProcessProperties) {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: container, offset: ["start 75%", "end 55%"] });
-  const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // How much of the line is drawn: across on wide screens, down on phones (see the styles).
+  const drawn = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const steps = PROCESS.steps;
   return (
     <Section id={SECTION.process.id}>
       <SectionHeading eyebrow={translate(PROCESS.eyebrow, locale)} title={translate(PROCESS.title, locale)} />
       <div ref={container} className={styles.process}>
         <div className={styles.line} aria-hidden>
-          <motion.span style={{ width }} />
+          <motion.span style={{ "--drawn": drawn } as CSSProperties} />
         </div>
         {steps.map((step, index) => (
           <Step

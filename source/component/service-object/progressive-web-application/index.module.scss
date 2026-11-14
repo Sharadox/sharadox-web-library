@@ -1,0 +1,91 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(pwa-sway 9s ease-in-out infinite);
+  transform: rotateX(-18deg) rotateY(28deg);
+}
+@keyframes pwa-sway {
+  0%,
+  100% {
+    transform: rotateX(-18deg) rotateY(32deg);
+  }
+  50% {
+    transform: rotateX(-12deg) rotateY(8deg);
+  }
+}
+.window {
+  @include centered(168px, 116px);
+  @include face(4%, 42%);
+  border-radius: 8px;
+  transform: translateZ(-20px);
+}
+.bar {
+  display: block;
+  padding: 7px 10px;
+  border-bottom: 1px solid tint(18%);
+  i {
+    display: block;
+    height: 6px;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 3px;
+    background: tint(25%);
+  }
+}
+.slot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -14px 0 0 -20px;
+  border-radius: 10px;
+  border: 1px dashed tint(45%);
+}
+.lift {
+  @include centered(0px, 0px);
+  transform: translate3d(0, 6px, -20px);
+  @include loop(pwa-install 4.2s $ease infinite);
+}
+@keyframes pwa-install {
+  0%,
+  15% {
+    transform: translate3d(0, 6px, -14px) rotateY(0deg);
+  }
+  55%,
+  75% {
+    transform: translate3d(0, -26px, 56px) rotateY(360deg);
+  }
+  100% {
+    transform: translate3d(0, 6px, -14px) rotateY(360deg);
+  }
+}
+.icon {
+  --width: 40px;
+  --height: 40px;
+  --depth: 10px;
+  --radius: 10px;
+  --front-amount: 28%;
+  --edge-amount: 75%;
+}
+.plus {
+  position: absolute;
+  inset: 0;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 2px;
+    margin: -1px 0 0 -8px;
+    border-radius: 1px;
+    background: var(--foreground);
+  }
+  &::after {
+    transform: rotate(90deg);
+  }
+}

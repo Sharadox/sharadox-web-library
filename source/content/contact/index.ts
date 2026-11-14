@@ -1,3 +1,6 @@
+import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
+import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/services";
+
 /** Contact section and form copy. */
 export const CONTACT = {
   /** Display name of the email the contact form sends (from web@email.sharadox.com). */
@@ -14,16 +17,18 @@ export const CONTACT = {
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
   needs: {
     label: { en: "What do you need?", pt: "Do que precisa?" },
-    /** Everyday words, so anyone knows what to tick. `en` is also how they appear in the email. */
+    /** One choice per service card, grouped like the services, then "Others". `en` is also how they appear in the email. */
+    groups: SERVICES.items.map((service) => ({
+      key: service.key,
+      title: service.title,
+      options: service.cards.map((card) => ({ key: card.key, ...card.chip })),
+    })),
+    other: { key: "other", en: "Others", pt: "Outros" },
+    /** Every choice in one list. */
     options: [
-      { key: "website", en: "Website", pt: "Website" },
-      { key: "platform", en: "Platform", pt: "Plataforma" },
-      { key: "mobile-app", en: "Mobile App", pt: "App Móvel" },
-      { key: "brand-identity", en: "Brand Identity", pt: "Identidade Visual" },
-      { key: "social-media", en: "Social Media", pt: "Redes Sociais" },
-      { key: "marketing-campaign", en: "Marketing Campaign", pt: "Campanha de Marketing" },
+      ...SERVICES.items.flatMap((service) => service.cards.map((card) => ({ key: card.key, ...card.chip }))),
       { key: "other", en: "Others", pt: "Outros" },
-    ],
+    ] as readonly { key: NeedKey; en: string; pt: string }[],
   },
   message: { en: "Tell us about your project", pt: "Fale-nos do seu projeto" },
   send: { en: "Send Message", pt: "Enviar Mensagem" },
@@ -49,5 +54,5 @@ export const CONTACT = {
   direct: { en: "Or write to us directly", pt: "Ou escreva-nos diretamente" },
 } as const;
 
-/** One of the "What do you need?" choices. */
-export type NeedKey = (typeof CONTACT.needs.options)[number]["key"];
+/** One of the "What do you need?" choices: a service card, or "other". */
+export type NeedKey = ServiceCardKey | "other";

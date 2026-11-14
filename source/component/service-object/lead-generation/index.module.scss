@@ -1,0 +1,82 @@
+@use "sass:list";
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(lead-turn 18s linear infinite);
+  transform: translateY(10px) rotateX(-22deg) rotateY(0deg);
+}
+@keyframes lead-turn {
+  to {
+    transform: translateY(10px) rotateX(-22deg) rotateY(360deg);
+  }
+}
+$sizes: 160px, 124px, 88px, 52px, 26px;
+$heights:
+  -62px,
+  -34px,
+  -6px,
+  22px,
+  50px;
+.ring {
+  @include centered(0px, 0px);
+  border-radius: 50%;
+  border: 1px solid tint(55%);
+  background: tint(3%);
+  @for $index from 0 through 4 {
+    &[data-ring="#{$index}"] {
+      width: list.nth($sizes, $index + 1);
+      height: list.nth($sizes, $index + 1);
+      margin: (-0.5 * list.nth($sizes, $index + 1)) 0 0 (-0.5 * list.nth($sizes, $index + 1));
+      transform: translateY(list.nth($heights, $index + 1)) rotateX(90deg);
+    }
+  }
+}
+.path {
+  @include centered(0px, 0px);
+  i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: var(--foreground);
+    box-shadow: 0 0 8px tint(60%);
+    opacity: 0;
+    @include loop(lead-fall 3s cubic-bezier(0.45, 0, 0.7, 1) infinite);
+  }
+}
+@keyframes lead-fall {
+  0% {
+    transform: translate3d(0, -110px, 70px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  40% {
+    transform: translate3d(0, -62px, 74px);
+  }
+  85% {
+    transform: translate3d(0, 50px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 82px, 0);
+    opacity: 0;
+  }
+}
+.lead {
+  @include centered(14px, 14px);
+  border-radius: 50%;
+  background: var(--foreground);
+  transform: translateY(82px);
+  box-shadow: 0 0 16px tint(60%);
+  @include loop(lead-pulse 0.5s ease-in-out infinite alternate);
+}
+@keyframes lead-pulse {
+  to {
+    box-shadow: 0 0 26px 4px tint(70%);
+  }
+}

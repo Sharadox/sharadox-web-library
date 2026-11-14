@@ -5,7 +5,7 @@
 }
 .sheet {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   /* Each column spans the title row plus one row per capability, shared by all columns, so lines line up. */
   grid-auto-rows: auto;
   border-top: 1px solid var(--line);
