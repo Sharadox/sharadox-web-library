@@ -1,89 +1,168 @@
-@use "sass:math";
 @use "style/token" as *;
 @use "style/object" as *;
 
+/* One round: the billboard lights, the word spreads in four steps, everyone holds it in mind together, then it clears. */
+$round: 8s;
+/* When the billboard lights, and when each step of the crowd (data-step 0 to 3) starts thinking of the brand. */
+$billboard: 4%;
+$first-step: 14%;
+$step: 11%;
+/* When everyone glows together, and when the minds clear for the next round. */
+$together: 64%;
+$clear: 88%;
+
 .object {
   @include centered(0px, 0px);
-  @include loop(awareness-turn 30s linear infinite);
-  transform: translateY(20px) rotateX(-30deg) rotateY(20deg);
+  @include loop(awareness-sway 12s ease-in-out infinite);
+  transform: scale(1.08) rotateX(16deg) rotateY(-12deg);
 }
-@keyframes awareness-turn {
-  to {
-    transform: translateY(20px) rotateX(-30deg) rotateY(380deg);
-  }
-}
-.floor {
-  @include centered(180px, 180px);
-  border-radius: 50%;
-  transform: translateY(30px) rotateX(90deg);
-  background: radial-gradient(circle, tint(20%) 1px, transparent 1.5px) 0 0 / 12px 12px;
-  mask: radial-gradient(circle, #000 55%, transparent 71%);
-  i {
-    position: absolute;
-    inset: 46%;
-    border-radius: 50%;
-    border: 1.5px solid tint(70%);
-    opacity: 0;
-    @include loop(awareness-wave 3.6s ease-out infinite);
-    &:nth-child(2) {
-      animation-delay: 1.2s;
-    }
-    &:nth-child(3) {
-      animation-delay: 2.4s;
-    }
-  }
-  b {
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    margin: -4.5px 0 0 -4.5px;
-    border-radius: 50%;
-    background: tint(25%);
-    @include loop(awareness-reach 1.2s ease-out infinite);
-    @for $index from 0 through 7 {
-      &[data-person="#{$index}"] {
-        $angle: $index * 45deg + 20deg;
-        $radius: 30% + ($index % 2) * 10%;
-        left: calc(50% + #{math.cos($angle)} * #{$radius});
-        top: calc(50% + #{math.sin($angle)} * #{$radius});
-        animation-delay: 0.35s + ($index % 2) * 0.25s;
-      }
-    }
-  }
-}
-@keyframes awareness-wave {
-  0% {
-    inset: 46%;
-    opacity: 1;
-  }
-  100% {
-    inset: 0%;
-    opacity: 0;
-  }
-}
-@keyframes awareness-reach {
+@keyframes awareness-sway {
   0%,
   100% {
-    background: tint(25%);
+    transform: scale(1.08) rotateX(16deg) rotateY(-12deg);
+  }
+  50% {
+    transform: scale(1.08) rotateX(10deg) rotateY(10deg);
+  }
+}
+.scene {
+  @include centered(220px, 184px);
+  transform: translateY(-6px);
+}
+/* The billboard, where the brand is first seen. */
+.billboard {
+  position: absolute;
+  width: 70px;
+  height: 34px;
+  margin: -17px 0 0 -35px;
+  @include face(6%, 55%);
+  border-radius: 4px;
+  @include loop(awareness-billboard $round ease-out infinite);
+  // Its two legs.
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 1px;
+    height: 10px;
+    background: tint(40%);
+  }
+  &::before {
+    left: 20%;
+  }
+  &::after {
+    right: 20%;
+  }
+}
+@keyframes awareness-billboard {
+  0% {
     box-shadow: none;
   }
-  12% {
-    background: var(--foreground);
-    box-shadow: 0 0 10px tint(70%);
+  #{$billboard} {
+    box-shadow: 0 0 24px -2px tint(55%);
+  }
+  #{$together - 10%} {
+    box-shadow: none;
   }
 }
-.beacon {
-  --width: 22px;
-  --height: 64px;
-  --depth: 22px;
-  --fill-amount: 10%;
-  --edge-amount: 70%;
-  transform: translateY(-2px);
+.advert {
+  --size: 24px;
 }
-.light {
+/* Someone in the crowd, with a thought over their head that fills with the brand when the word reaches them. */
+.someone {
   position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: var(--foreground);
-  box-shadow: 0 0 16px 4px tint(60%);
+  width: 0;
+  height: 0;
+  transform: scale(var(--scale));
+}
+.person {
+  --size: 24px;
+  --person: var(--foreground);
+}
+.thought {
+  position: absolute;
+  left: 4px;
+  top: -40px;
+  width: 26px;
+  height: 26px;
+  // The two little bubbles between the head and the thought.
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: tint(55%);
+  }
+  &::before {
+    left: -1px;
+    bottom: -7px;
+    width: 4px;
+    height: 4px;
+  }
+  &::after {
+    left: -5px;
+    bottom: -12px;
+    width: 3px;
+    height: 3px;
+  }
+}
+.recall {
+  --size: 24px;
+  left: 50%;
+  top: 50%;
+}
+/* Each step thinks of the brand a little later; everyone glows together, then the minds clear at once. */
+@each $index in 0, 1, 2, 3 {
+  $at: $first-step + $index * $step;
+  .someone[data-step="#{$index}"] {
+    .thought {
+      @include loop(awareness-thought-#{$index} $round $ease infinite);
+    }
+    .person {
+      @include loop(awareness-person-#{$index} $round ease-out infinite);
+    }
+  }
+  @keyframes awareness-thought-#{$index} {
+    0%,
+    #{$at} {
+      opacity: 0;
+      transform: translateY(6px) scale(0.3);
+    }
+    #{$at + 5%},
+    #{$together} {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: none;
+    }
+    #{$together + 4%} {
+      transform: translateY(-3px) scale(1.15);
+      filter: drop-shadow(0 0 8px tint(70%));
+    }
+    #{$together + 10%},
+    #{$clear} {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: none;
+    }
+    #{$clear + 6%},
+    100% {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.6);
+    }
+  }
+  @keyframes awareness-person-#{$index} {
+    0%,
+    #{$at} {
+      --person: #{tint(35%)};
+    }
+    #{$at + 5%},
+    #{$clear} {
+      --person: var(--foreground);
+    }
+    #{$clear + 6%},
+    100% {
+      --person: #{tint(35%)};
+    }
+  }
 }
