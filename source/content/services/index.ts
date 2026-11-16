@@ -164,8 +164,8 @@ export const SERVICES = {
           key: "branding",
           title: { en: "Branding", pt: "Branding" },
           text: {
-            en: "Branding is deciding who your brand is before anything is drawn: what it stands for, who it speaks to, its name, its story and its tone of voice. It becomes the guidelines everything else follows.",
-            pt: "Branding é definir quem a sua marca é antes de se desenhar o que quer que seja: o que defende, a quem fala, o nome, a história e o tom de voz. Torna-se nas diretrizes que tudo o resto segue.",
+            en: "Branding is deciding who your brand is before anything is drawn. We work out what you stand for, who you speak to and why they should choose you, then give it a name, a story and a voice. Everything made afterwards follows those guidelines, so your brand says the same thing everywhere.",
+            pt: "Branding é definir quem a sua marca é antes de se desenhar o que quer que seja. Descobrimos o que defende, a quem fala e porque devem escolhê-la, e damos-lhe um nome, uma história e um tom de voz. Tudo o que se faz depois segue essas diretrizes, para que a sua marca diga o mesmo em todo o lado.",
           },
           action: { en: "Build My Brand", pt: "Criar a Minha Marca" },
           chip: { en: "Branding", pt: "Branding" },
@@ -174,8 +174,8 @@ export const SERVICES = {
           key: "rebranding",
           title: { en: "Rebranding", pt: "Rebranding" },
           text: {
-            en: "Rebranding can be a refresh, a new look, feel and way of presenting your brand that keeps what customers already love, or a complete change, from the name to the logo, when the business has become something new.",
-            pt: "Um rebranding pode ser uma renovação, um novo visual, sensação e forma de apresentar a marca que mantém o que os clientes já adoram, ou uma mudança completa, do nome ao logótipo, quando o negócio se tornou algo novo.",
+            en: "For when your brand no longer fits the business you have become. It can be a refresh, a new look, feel and way of presenting it that keeps what customers already recognize and love, or a complete change, from the name to the logo. Either way, we plan the move so nobody loses track of you.",
+            pt: "Para quando a sua marca já não corresponde ao negócio em que se tornou. Pode ser uma renovação, um novo visual, sensação e forma de apresentar que mantém o que os clientes já reconhecem e adoram, ou uma mudança completa, do nome ao logótipo. Em qualquer caso, planeamos a mudança para que ninguém o perca de vista.",
           },
           action: { en: "Refresh My Brand", pt: "Renovar a Minha Marca" },
           chip: { en: "Rebranding", pt: "Rebranding" },
@@ -184,8 +184,8 @@ export const SERVICES = {
           key: "branding-design",
           title: { en: "Branding Design", pt: "Design de Marca" },
           text: {
-            en: "Branding design is making what people actually see, following the brand's guidelines: the logo, colors and type, and every asset from menus and signage to social media templates, drawn as one system.",
-            pt: "Design de marca é criar o que as pessoas realmente veem, seguindo as diretrizes da marca: o logótipo, as cores e a tipografia, e todos os materiais, de menus e sinalética a modelos para redes sociais, desenhados como um só sistema.",
+            en: "Branding design turns those guidelines into what people actually see: the logo and its versions, the colors, the typefaces, the icons and the style of the photos, gathered in a brand book so anyone can use them right, from your team to your printer.",
+            pt: "O design de marca transforma essas diretrizes no que as pessoas realmente veem: o logótipo e as suas versões, as cores, as tipografias, os ícones e o estilo das fotografias, reunidos num manual de marca para que todos os usem bem, da sua equipa à gráfica.",
           },
           action: { en: "Design My Brand", pt: "Desenhar a Minha Marca" },
           chip: { en: "Branding Design", pt: "Design de Marca" },
@@ -194,8 +194,8 @@ export const SERVICES = {
           key: "print-design",
           title: { en: "Print Design", pt: "Design para Impressão" },
           text: {
-            en: "Business cards, flyers, brochures, menus, posters and stickers, designed with your brand and ready for the printer, so everything you hand out looks like you.",
-            pt: "Cartões de visita, flyers, brochuras, menus, cartazes e autocolantes, desenhados com a sua marca e prontos para a gráfica, para que tudo o que entrega seja a sua cara.",
+            en: "Everything you hand over or hang up: business cards, flyers, brochures, menus, posters, signage, packaging and stickers. Designed with your brand, prepared to the printer's specifications and checked so the colors come out as they should.",
+            pt: "Tudo o que entrega ou afixa: cartões de visita, flyers, brochuras, menus, cartazes, sinalética, embalagens e autocolantes. Desenhado com a sua marca, preparado segundo as especificações da gráfica e verificado para que as cores saiam como devem.",
           },
           action: { en: "Design My Print", pt: "Desenhar os Meus Impressos" },
           chip: { en: "Print Design", pt: "Design para Impressão" },

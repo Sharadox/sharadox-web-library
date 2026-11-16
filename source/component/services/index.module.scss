@@ -36,7 +36,8 @@
   font-size: 12px;
   color: var(--foreground-3);
 }
-/* Cards share hairlines: the grid's background shows through 1px gaps. Three to a row; a row of two shares it in halves. */
+/* Cards share hairlines: the grid's background shows through 1px gaps. Three to a row; a row of two shares it in halves,
+   four make two rows of two, and one alone lies wide. Every row is full. */
 .cards {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -53,9 +54,16 @@
   &[data-count="1"] > div {
     grid-column: 1 / -1;
   }
+  // Two cards share a row in halves, and four make two rows of two, so no row is left with empty space.
+  &[data-count="2"] > div,
+  &[data-count="4"] > div {
+    grid-column: span 3;
+  }
   @include below(960px) {
     grid-template-columns: 1fr 1fr;
     > div,
+    &[data-count="2"] > div,
+    &[data-count="4"] > div,
     &[data-count="5"] > div:nth-child(n + 4) {
       grid-column: auto;
     }
