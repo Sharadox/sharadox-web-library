@@ -1,70 +1,93 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
+/* One round: the home screen, the shade sliding down (from 20%), its toggles switching on, and back up (from 72%). */
+$round: 6s;
+
 .object {
   @include centered(0px, 0px);
-  @include loop(android-turn 9s ease-in-out infinite);
+  @include loop(android-turn 10s ease-in-out infinite);
   transform: rotateX(10deg) rotateY(-28deg);
 }
 @keyframes android-turn {
   0%,
   100% {
-    transform: rotateX(10deg) rotateY(-32deg) rotateZ(-2deg);
+    transform: rotateX(10deg) rotateY(-30deg);
   }
   50% {
-    transform: rotateX(6deg) rotateY(24deg) rotateZ(2deg);
+    transform: rotateX(6deg) rotateY(20deg);
   }
 }
 .phone {
   --width: 88px;
-  --height: 172px;
+  --height: 176px;
   --depth: 9px;
-  --radius: 12px;
+  --radius: 10px;
   --front-amount: 4%;
   --edge-amount: 55%;
 }
+.screen {
+  position: absolute;
+  inset: 3px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+/* The camera in a small hole at the top of the screen. */
 .camera {
   position: absolute;
   left: 50%;
-  top: 8px;
+  top: 6px;
   width: 6px;
   height: 6px;
   margin-left: -3px;
   border-radius: 50%;
-  background: tint(55%);
+  background: var(--foreground);
+  box-shadow: 0 0 0 1.5px var(--background);
 }
-.tiles {
+.status {
   position: absolute;
-  inset: 24px 11px 30px;
+  left: 7px;
+  right: 7px;
+  top: 7px;
+  height: 4px;
+  background:
+    linear-gradient(tint(50%), tint(50%)) left / 12px 100% no-repeat,
+    linear-gradient(tint(50%), tint(50%)) right / 14px 100% no-repeat;
+}
+/* Round app icons, four to a row. */
+.apps {
+  position: absolute;
+  inset: 26px 9px auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  transform-style: preserve-3d;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px 6px;
   i {
     aspect-ratio: 1;
-    border-radius: 6px;
+    border-radius: 50%;
     border: 1px solid tint(45%);
-    background: tint(14%);
-    @include loop(android-rise 2.8s $ease infinite);
+    background: tint(16%);
+    &:nth-child(3n + 1) {
+      background: tint(34%);
+    }
   }
 }
-@keyframes android-rise {
-  0%,
-  45%,
-  100% {
-    transform: translateZ(0);
-    background: tint(14%);
-  }
-  20% {
-    transform: translateZ(16px);
-    background: tint(40%);
-  }
+/* The search bar near the bottom: a long pill with a round mark at its start. */
+.search {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 26px;
+  height: 14px;
+  border-radius: 7px;
+  border: 1px solid tint(45%);
+  background: radial-gradient(circle at 9px 50%, tint(70%) 3px, transparent 3.5px), tint(10%);
 }
+/* The three buttons: back, home and recent apps. */
 .buttons {
   position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 9px;
+  left: 20px;
+  right: 20px;
+  bottom: 7px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,9 +98,9 @@
   }
 }
 .back {
-  border: 0 !important;
   width: 0 !important;
   height: 0 !important;
+  border: 0 !important;
   border-top: 4.5px solid transparent !important;
   border-bottom: 4.5px solid transparent !important;
   border-right: 7px solid tint(55%) !important;
@@ -87,4 +110,63 @@
 }
 .recent {
   border-radius: 2px;
+}
+/* The quick settings shade, pulled down over the top of the screen. */
+.shade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 18px 7px 12px;
+  border-radius: 0 0 12px 12px;
+  background: var(--background);
+  border-bottom: 1px solid tint(45%);
+  box-shadow: 0 8px 18px -8px tint(40%);
+  transform: translateY(-105%);
+  @include loop(android-shade $round $ease infinite);
+  // A toggle: a rounded pill with a round icon, dim when off, lit when on.
+  i {
+    height: 16px;
+    border-radius: 8px;
+    border: 1px solid tint(40%);
+    background: radial-gradient(circle at 8px 50%, tint(60%) 3px, transparent 3.5px), tint(10%);
+    @include loop(android-toggle $round ease-out infinite);
+  }
+  // The handle at the bottom of the shade.
+  b {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 18px;
+    height: 3px;
+    margin-top: 3px;
+    border-radius: 2px;
+    background: tint(45%);
+  }
+}
+@keyframes android-shade {
+  0%,
+  20% {
+    transform: translateY(-105%);
+  }
+  32%,
+  72% {
+    transform: translateY(0);
+  }
+  84%,
+  100% {
+    transform: translateY(-105%);
+  }
+}
+@keyframes android-toggle {
+  0%,
+  38% {
+    background: radial-gradient(circle at 8px 50%, tint(60%) 3px, transparent 3.5px), tint(10%);
+  }
+  44%,
+  100% {
+    background: radial-gradient(circle at 8px 50%, var(--background) 3px, transparent 3.5px), var(--foreground);
+  }
 }
