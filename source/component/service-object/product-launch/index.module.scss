@@ -1,181 +1,256 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
-/*
- * One round: the countdown (three numbers, 0.8s each, so up to 2.4s), the reveal (from 2.4s), a hold, and the reset.
- * Every part runs on the same clock. Without motion, what's left is the end of the reveal: the product on show.
- */
-$round: 6s;
+/* One round: the four steps light one after the other (from 4%, every 17%), launch day holds, then all clears. */
+$round: 8s;
+$first: 4%;
+$step: 17%;
+$clear: 88%;
 
 .object {
   @include centered(0px, 0px);
   @include loop(launch-sway 12s ease-in-out infinite);
-  transform: translateY(30px) scale(1.25) rotateX(-16deg) rotateY(-26deg);
+  transform: rotateX(24deg) rotateY(-14deg);
 }
 @keyframes launch-sway {
   0%,
   100% {
-    transform: translateY(30px) scale(1.25) rotateX(-16deg) rotateY(-26deg);
+    transform: rotateX(24deg) rotateY(-14deg);
   }
   50% {
-    transform: translateY(30px) scale(1.25) rotateX(-12deg) rotateY(18deg);
+    transform: rotateX(18deg) rotateY(10deg);
   }
 }
-.stage {
-  --width: 96px;
-  --height: 14px;
-  --depth: 96px;
-  --radius: 3px;
-  --fill-amount: 8%;
-  --edge-amount: 55%;
-  transform: translateY(30px);
+.timeline {
+  @include centered(264px, 130px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
-/* The product: a slim device, its screen lit, rising out of the stage. */
-.product {
-  --width: 34px;
-  --height: 52px;
-  --depth: 10px;
-  --fill-amount: 14%;
-  --edge-amount: 80%;
-  transform: translateY(-14px);
-  @include loop(launch-product $round $ease infinite);
-}
-/* Boxes are shown and hidden by scale, not opacity, which would flatten them. */
-@keyframes launch-product {
-  0%,
-  40% {
-    transform: translateY(14px) scale(0);
-  }
-  58%,
-  86% {
-    transform: translateY(-14px) scale(1);
-  }
-  100% {
-    transform: translateY(14px) scale(0);
-  }
-}
-.screen {
+/* The timeline under the steps, filling as the campaign moves on. */
+.track {
   position: absolute;
-  inset: 4px 3px 8px;
-  border-radius: 2px;
-  background: linear-gradient(160deg, var(--foreground), tint(40%));
+  left: 30px;
+  right: 30px;
+  bottom: 9px;
+  height: 2px;
+  background: tint(16%);
 }
-/* The cover over the product during the countdown, lifted away at zero. */
-.cover {
-  --width: 48px;
-  --height: 62px;
-  --depth: 48px;
-  --fill-amount: 22%;
-  --front-amount: 26%;
-  --edge-amount: 60%;
-  transform: translateY(-8px) scale(0);
-  @include loop(launch-cover $round $ease infinite);
+.progress {
+  position: absolute;
+  inset: 0;
+  background: var(--foreground);
+  box-shadow: 0 0 8px tint(60%);
+  transform-origin: left;
+  @include loop(launch-progress $round $ease infinite);
 }
-@keyframes launch-cover {
+@keyframes launch-progress {
   0%,
-  40% {
-    transform: translateY(-8px) scale(1);
+  #{$first} {
+    transform: scaleX(0);
   }
-  58% {
-    transform: translateY(-260px) scale(1);
+  #{$first + 3 * $step} {
+    transform: scaleX(1);
   }
-  59%,
-  90% {
-    transform: translateY(-8px) scale(0);
-  }
-  100% {
-    transform: translateY(-8px) scale(1);
-  }
-}
-/* The light the product rises into. */
-.glow {
-  @include centered(170px, 170px);
-  border-radius: 50%;
-  background: radial-gradient(circle, tint(26%), transparent 62%);
-  transform: translateY(-14px) translateZ(-40px);
-  @include loop(launch-glow $round ease-out infinite);
-}
-@keyframes launch-glow {
-  0%,
-  40% {
-    opacity: 0;
-    transform: translateY(-14px) translateZ(-40px) scale(0.3);
-  }
-  56%,
-  88% {
+  #{$clear} {
+    transform: scaleX(1);
     opacity: 1;
-    transform: translateY(-14px) translateZ(-40px) scale(1);
   }
+  #{$clear + 6%},
   100% {
+    transform: scaleX(1);
     opacity: 0;
-    transform: translateY(-14px) translateZ(-40px) scale(1);
   }
 }
-.sparks {
-  @include centered(0px, 0px);
-  transform: translateY(-14px);
+.step {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 20px;
+  justify-items: center;
+  align-items: center;
+}
+/* A step's card: dim until the campaign reaches it, then lit, raised a little. */
+.tile {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 78px;
+  border-radius: 6px;
+  @include face(6%, 55%);
+  background: var(--background);
+  box-shadow: 0 0 22px -6px tint(45%);
+  transform-style: preserve-3d;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--foreground);
+  background: var(--foreground);
+}
+@each $index in 0, 1, 2, 3 {
+  $at: $first + $index * $step;
+  .step[data-step="#{$index}"] {
+    .tile {
+      @include loop(launch-tile-#{$index} $round $ease infinite);
+    }
+    .dot {
+      @include loop(launch-dot-#{$index} $round $ease infinite);
+    }
+  }
+  @keyframes launch-tile-#{$index} {
+    0%,
+    #{$at} {
+      opacity: 0.3;
+      transform: translateY(0) translateZ(0);
+      box-shadow: none;
+    }
+    #{$at + 4%},
+    #{$clear} {
+      opacity: 1;
+      transform: translateY(-4px) translateZ(14px);
+      box-shadow: 0 0 22px -6px tint(45%);
+    }
+    #{$clear + 6%},
+    100% {
+      opacity: 0.3;
+      transform: translateY(0) translateZ(0);
+      box-shadow: none;
+    }
+  }
+  @keyframes launch-dot-#{$index} {
+    0%,
+    #{$at} {
+      background: var(--background);
+      border-color: tint(35%);
+    }
+    #{$at + 3%},
+    #{$clear} {
+      background: var(--foreground);
+      border-color: var(--foreground);
+    }
+    #{$clear + 6%},
+    100% {
+      background: var(--background);
+      border-color: tint(35%);
+    }
+  }
+}
+/* The teaser: the product as a mystery, a dashed outline with a question mark. */
+.teaser {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px dashed tint(70%);
+  border-radius: 5px;
+  &::after {
+    content: "?";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--foreground);
+  }
+}
+/* The landing page: a little browser window with a headline, a picture and a button. */
+.page {
+  position: relative;
+  width: 40px;
+  height: 50px;
+  border: 1.5px solid tint(70%);
+  border-radius: 4px;
+  background:
+    linear-gradient(var(--foreground), var(--foreground)) 6px 10px / 24px 3px,
+    linear-gradient(tint(40%), tint(40%)) 6px 16px / 16px 2px,
+    linear-gradient(tint(25%), tint(25%)) 6px 22px / 25px 12px,
+    linear-gradient(var(--foreground), var(--foreground)) 6px 38px / 14px 5px;
+  background-repeat: no-repeat;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4px;
+    border-top: 1.5px solid tint(40%);
+  }
+}
+/* The campaign: a megaphone and the sound it sends out. */
+.campaign {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    width: 22px;
+    height: 22px;
+    background: var(--foreground);
+    clip-path: polygon(0 35%, 30% 35%, 100% 0, 100% 100%, 30% 65%, 0 65%);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 3px;
+    width: 18px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-right-color: tint(70%);
+  }
+}
+/* Launch day: the product revealed, a solid box with a star of light behind it. */
+.launch {
+  position: relative;
+  width: 26px;
+  height: 34px;
+  border-radius: 4px;
+  background: linear-gradient(160deg, var(--foreground), tint(55%));
+  box-shadow: 0 0 18px tint(55%);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    z-index: -1;
+    background: repeating-conic-gradient(tint(35%) 0 6deg, transparent 6deg 30deg);
+    mask: radial-gradient(circle, #000 30%, transparent 70%);
+    border-radius: 50%;
+  }
+}
+/* Confetti flying out of launch day once it is reached. */
+.confetti {
+  position: absolute;
+  left: calc(100% - 32px);
+  top: 46px;
+  width: 0;
+  height: 0;
+  transform: translateZ(20px);
   i {
     position: absolute;
-    left: -3px;
-    top: -3px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
+    left: -2px;
+    top: -4px;
+    width: 4px;
+    height: 8px;
+    border-radius: 1px;
     background: var(--foreground);
-    box-shadow: 0 0 8px tint(70%);
     opacity: 0;
-    @include loop(launch-spark $round ease-out infinite);
+    @include loop(launch-confetti $round ease-out infinite);
   }
 }
-@keyframes launch-spark {
+@keyframes launch-confetti {
   0%,
-  42% {
+  #{$first + 3 * $step} {
     opacity: 0;
-    transform: rotate(var(--angle)) translateX(10px) scale(1);
+    transform: rotate(var(--angle)) translateY(-8px) rotate(0deg);
   }
-  46% {
+  #{$first + 3 * $step + 2%} {
     opacity: 1;
   }
-  66%,
+  #{$first + 3 * $step + 18%},
   100% {
     opacity: 0;
-    transform: rotate(var(--angle)) translateX(84px) scale(0.3);
-  }
-}
-/* The numbers counting down above the covered product, each growing in and fading. */
-.countdown {
-  @include centered(0px, 0px);
-  transform: translateY(-82px);
-  span {
-    position: absolute;
-    left: -30px;
-    top: -24px;
-    width: 60px;
-    line-height: 48px;
-    text-align: center;
-    font-family: var(--font-display, inherit);
-    font-size: 40px;
-    font-weight: 700;
-    color: var(--foreground);
-    opacity: 0;
-    @include loop(launch-count $round $ease infinite backwards);
-  }
-}
-@keyframes launch-count {
-  0% {
-    opacity: 0;
-    transform: scale(1.6);
-  }
-  3% {
-    opacity: 1;
-  }
-  12% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  13.3%,
-  100% {
-    opacity: 0;
-    transform: scale(0.8);
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--reach))) rotate(220deg);
   }
 }

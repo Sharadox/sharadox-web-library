@@ -1,5 +1,5 @@
 /**
- * The four service groups and their cards (a card may add `points`, shown as a list). A group's `key` is its anchor; a card's `key` is both its contact form
+ * The four service groups and their cards. A group's `key` is its anchor; a card's `key` is both its contact form
  * choice (the card's button ticks it) and which 3D object it shows. `capabilities` fill the Capabilities sheet;
  * `kinds` are the group's short names under the hero.
  */
@@ -12,8 +12,8 @@ export const SERVICES = {
       number: "01",
       title: { en: "Web", pt: "Web" },
       kinds: {
-        en: ["Websites", "Platforms", "E-commerce", "Email"],
-        pt: ["Websites", "Plataformas", "E-commerce", "Email"],
+        en: ["Websites", "Platforms", "E-commerce", "Hosting", "Email"],
+        pt: ["Websites", "Plataformas", "E-commerce", "Alojamento", "Email"],
       },
       lead: {
         en: "Websites that win. Platforms that run the business.",
@@ -51,6 +51,16 @@ export const SERVICES = {
           chip: { en: "E-commerce", pt: "E-commerce" },
         },
         {
+          key: "hosting",
+          title: { en: "Hosting", pt: "Alojamento" },
+          text: {
+            en: "We host what we build and look after it every day: updates, backups and security, and if anything goes wrong, we're on it until it's back up.",
+            pt: "Alojamos o que construímos e cuidamos disso todos os dias: atualizações, cópias de segurança e segurança, e se algo falhar, tratamos de tudo até voltar a funcionar.",
+          },
+          action: { en: "Host With Us", pt: "Alojar Connosco" },
+          chip: { en: "Hosting", pt: "Alojamento" },
+        },
+        {
           key: "professional-email",
           title: { en: "Professional Emails", pt: "Emails Profissionais" },
           text: {
@@ -67,6 +77,7 @@ export const SERVICES = {
           "Online stores",
           "Bookings and ordering",
           "Business automation",
+          "Hosting, monitoring and backups",
           "Professional email",
           "Search engine optimization",
         ],
@@ -75,6 +86,7 @@ export const SERVICES = {
           "Lojas online",
           "Reservas e encomendas",
           "Automatização do negócio",
+          "Alojamento, monitorização e cópias de segurança",
           "Email profissional",
           "Otimização para motores de busca",
         ],
@@ -84,41 +96,38 @@ export const SERVICES = {
       key: "desktop-and-mobile-application",
       number: "02",
       title: { en: "Desktop & Mobile", pt: "Computador e Telemóvel" },
-      kinds: { en: ["Desktop", "Mobile", "PWA"], pt: ["Computador", "Telemóvel", "PWA"] },
-      lead: { en: "Built once. On every screen.", pt: "Feita uma vez. Em todos os ecrãs." },
+      kinds: { en: ["PWA", "Android", "iOS"], pt: ["PWA", "Android", "iOS"] },
+      lead: { en: "Apps for every screen.", pt: "Aplicações para todos os ecrãs." },
       cards: [
         {
           key: "progressive-web-application",
           title: { en: "Progressive Web Applications (PWAs)", pt: "Aplicações Web Progressivas (PWAs)" },
           text: {
-            en: "One app for phones, tablets and computers, on iPhone, Android, Windows and Mac. It installs straight from your website and works like any other app.",
-            pt: "Uma aplicação para telemóveis, tablets e computadores, em iPhone, Android, Windows e Mac. Instala-se diretamente a partir do seu website e funciona como qualquer outra aplicação.",
+            en: "One app for phones, tablets and computers that installs straight from your website: no store in between, one codebase for every device, less to pay and wait.",
+            pt: "Uma aplicação para telemóveis, tablets e computadores que se instala diretamente a partir do seu website: sem loja pelo meio, um só código para todos os dispositivos, menos custos e menos espera.",
           },
-          points: [
-            {
-              title: { en: "No store in between", pt: "Sem loja pelo meio" },
-              text: {
-                en: "No app store reviews, rules or commissions: no store can delay your updates, take a cut or remove your app. It stays yours.",
-                pt: "Sem revisões, regras nem comissões das lojas de aplicações: nenhuma loja pode atrasar as suas atualizações, ficar com uma parte ou remover a sua aplicação. Continua a ser sua.",
-              },
-            },
-            {
-              title: { en: "One codebase, every platform", pt: "Um só código, todas as plataformas" },
-              text: {
-                en: "Your platform, shop or blog is built once, and the same work becomes the app on every device. Nothing is made again from scratch for each platform.",
-                pt: "A sua plataforma, loja ou blog é feita uma vez, e o mesmo trabalho torna-se a aplicação em todos os dispositivos. Nada é refeito de raiz para cada plataforma.",
-              },
-            },
-            {
-              title: { en: "Less to pay, less to wait", pt: "Menos custos, menos espera" },
-              text: {
-                en: "One project instead of three costs less, launches sooner, and every improvement reaches every device on the same day.",
-                pt: "Um projeto em vez de três custa menos, chega mais cedo, e cada melhoria chega a todos os dispositivos no mesmo dia.",
-              },
-            },
-          ],
           action: { en: "Build My App", pt: "Criar a Minha Aplicação" },
           chip: { en: "PWA", pt: "PWA" },
+        },
+        {
+          key: "android-application",
+          title: { en: "Android Applications", pt: "Aplicações Android" },
+          text: {
+            en: "Fast Android apps for loyalty, ordering, bookings and notifications, published and looked after on Google Play.",
+            pt: "Aplicações Android rápidas, para fidelização, encomendas, reservas e notificações, publicadas e mantidas no Google Play.",
+          },
+          action: { en: "Build an Android App", pt: "Criar uma App Android" },
+          chip: { en: "Android App", pt: "App Android" },
+        },
+        {
+          key: "ios-application",
+          title: { en: "iOS Applications", pt: "Aplicações iOS" },
+          text: {
+            en: "iPhone and iPad apps that feel at home on Apple devices, from the first sketch to approval and updates on the App Store.",
+            pt: "Aplicações para iPhone e iPad que se sentem em casa nos dispositivos Apple, do primeiro esboço à aprovação e atualizações na App Store.",
+          },
+          action: { en: "Build an iOS App", pt: "Criar uma App iOS" },
+          chip: { en: "iOS App", pt: "App iOS" },
         },
       ],
       capabilities: {
@@ -127,7 +136,7 @@ export const SERVICES = {
           "iPhone, Android, Windows and Mac",
           "Install from the website",
           "Push notifications",
-          "One codebase for every platform",
+          "Google Play and App Store",
           "Updates and maintenance",
         ],
         pt: [
@@ -135,7 +144,7 @@ export const SERVICES = {
           "iPhone, Android, Windows e Mac",
           "Instalação a partir do website",
           "Notificações push",
-          "Um só código para todas as plataformas",
+          "Google Play e App Store",
           "Atualizações e manutenção",
         ],
       },

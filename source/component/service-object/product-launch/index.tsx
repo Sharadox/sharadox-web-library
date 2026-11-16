@@ -1,35 +1,44 @@
 import type { CSSProperties } from "react";
-import { Cuboid } from "@sharadox/sharadox-web-library/component/service-object/cuboid";
 import styles from "./index.module.scss";
 
-/** The countdown before the reveal. */
-const COUNTDOWN = ["3", "2", "1"];
-/** Sparks flying out as the product appears, evenly around it. */
-const SPARKS = 10;
+/** The steps of a launch campaign, in order: each lights up as the campaign reaches it. */
+const STEPS = ["teaser", "page", "campaign", "launch"] as const;
+/** Confetti thrown on launch day, evenly around the product. */
+const CONFETTI = 12;
 
 /**
- * Product launches: the build-up and the big day. A countdown runs over a covered product on its stage; at zero the
- * cover lifts away, the product rises into the light and sparks fly. With reduced motion, the product stands
- * revealed.
+ * Product launches: a campaign from the first teaser to day one. Along a timeline, each step lights up in turn: a
+ * teaser (the product still a mystery), its landing page, the campaign announcing it, and launch day, when the product
+ * is revealed and confetti flies. With reduced motion, every step is lit and the product is shown.
  */
 export function ProductLaunch() {
   return (
     <div className={styles.object}>
-      <div className={styles.glow} />
-      <Cuboid className={styles.stage} />
-      <Cuboid className={styles.product} front={<span className={styles.screen} />} />
-      <Cuboid className={styles.cover} />
-      <div className={styles.sparks}>
-        {Array.from({ length: SPARKS }, (_, spark) => (
-          <i key={spark} style={{ "--angle": `${(360 / SPARKS) * spark}deg` } as CSSProperties} />
+      <div className={styles.timeline}>
+        <span className={styles.track}>
+          <span className={styles.progress} />
+        </span>
+        {STEPS.map((step, index) => (
+          <div key={step} className={styles.step} data-step={index}>
+            <span className={styles.tile}>
+              <span className={styles[step]} />
+            </span>
+            <i className={styles.dot} />
+          </div>
         ))}
-      </div>
-      <div className={styles.countdown}>
-        {COUNTDOWN.map((number, index) => (
-          <span key={number} style={{ animationDelay: `${index * 0.8}s` }}>
-            {number}
-          </span>
-        ))}
+        <div className={styles.confetti}>
+          {Array.from({ length: CONFETTI }, (_, piece) => (
+            <i
+              key={piece}
+              style={
+                {
+                  "--angle": `${(360 / CONFETTI) * piece + 8}deg`,
+                  "--reach": `${44 + (piece % 3) * 14}px`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

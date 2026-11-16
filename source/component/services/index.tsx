@@ -34,7 +34,7 @@ export function Services({ locale }: ServicesProperties) {
             {service.cards.map((card, index) => (
               <div key={card.key}>
                 <Reveal delay={(index % 3) * 0.08} className={styles.reveal}>
-                  <ServiceCard locale={locale} card={card} wide={service.cards.length === 1} />
+                  <ServiceCard locale={locale} card={card} />
                 </Reveal>
               </div>
             ))}
