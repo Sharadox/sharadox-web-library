@@ -1,16 +1,27 @@
 import styles from "./index.module.scss";
 
-/** Branding: a solid seal with the brand's mark, spinning like a coin. */
+/**
+ * Branding: defining the brand. Its pieces settle onto a board one by one (who it speaks to, its voice, its colors
+ * and its type), and once they are all in place the brand's mark rises from the middle.
+ */
 export function Branding() {
   return (
     <div className={styles.object}>
-      <div className={styles.seal}>
-        {Array.from({ length: 12 }, (_, layer) => (
-          <span key={layer} className={styles.layer} style={{ transform: `translateZ(${layer - 5.5}px)` }}>
-            {(layer === 0 || layer === 11) && <i className={styles.mark} />}
-          </span>
-        ))}
+      <div className={styles.board}>
+        <span className={styles.piece} style={{ animationDelay: "0s" }}>
+          <i className={styles.audience} />
+        </span>
+        <span className={styles.piece} style={{ animationDelay: "0.5s" }}>
+          <i className={styles.voice} />
+        </span>
+        <span className={styles.piece} style={{ animationDelay: "1s" }}>
+          <i className={styles.colors} />
+        </span>
+        <span className={styles.piece} style={{ animationDelay: "1.5s" }}>
+          <i className={styles.type}>Aa</i>
+        </span>
       </div>
+      <span className={styles.mark} />
     </div>
   );
 }
