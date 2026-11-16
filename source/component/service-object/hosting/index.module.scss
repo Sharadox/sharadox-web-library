@@ -7,15 +7,15 @@ $round: 8s;
 .object {
   @include centered(0px, 0px);
   @include loop(hosting-sway 12s ease-in-out infinite);
-  transform: translateY(16px) rotateX(-12deg) rotateY(-24deg);
+  transform: scale(1.15) rotateX(-12deg) rotateY(-24deg);
 }
 @keyframes hosting-sway {
   0%,
   100% {
-    transform: translateY(16px) rotateX(-12deg) rotateY(-24deg);
+    transform: scale(1.15) rotateX(-12deg) rotateY(-24deg);
   }
   50% {
-    transform: translateY(16px) rotateX(-8deg) rotateY(14deg);
+    transform: scale(1.15) rotateX(-8deg) rotateY(14deg);
   }
 }
 .server {
@@ -26,10 +26,10 @@ $round: 8s;
   --fill-amount: 8%;
   --front-amount: 10%;
   --edge-amount: 60%;
-  &:nth-child(2) {
+  &:nth-child(1) {
     transform: translateY(-36px);
   }
-  &:nth-child(4) {
+  &:nth-child(3) {
     transform: translateY(36px);
   }
 }
@@ -124,39 +124,5 @@ $round: 8s;
   100% {
     opacity: 0;
     transform: translateX(92px) translateZ(44px) scale(1);
-  }
-}
-/* The uptime monitor above the rack: a faint track, and the beat drawn along it, dipping at the incident. */
-.monitor {
-  position: absolute;
-  left: -110px;
-  top: -122px;
-  width: 220px;
-  height: 56px;
-  overflow: visible;
-  path {
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-  }
-}
-.track {
-  stroke: tint(18%);
-}
-.beat {
-  stroke: var(--foreground);
-  filter: drop-shadow(0 0 4px tint(60%));
-  stroke-dasharray: 100 100;
-  stroke-dashoffset: 0;
-  @include loop(hosting-beat $round linear infinite);
-}
-@keyframes hosting-beat {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  90%,
-  100% {
-    stroke-dashoffset: 0;
   }
 }

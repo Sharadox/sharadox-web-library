@@ -1,6 +1,9 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
+/* One round: the island opens into a live activity (from 8%), closes, then the icons jiggle (from 52%). */
+$round: 6s;
+
 .object {
   @include centered(0px, 0px);
   @include loop(ios-turn 10s ease-in-out infinite);
@@ -9,85 +12,175 @@
 @keyframes ios-turn {
   0%,
   100% {
-    transform: rotateX(-6deg) rotateY(30deg);
+    transform: rotateX(-6deg) rotateY(28deg);
   }
   50% {
-    transform: rotateX(-2deg) rotateY(-22deg);
+    transform: rotateX(-2deg) rotateY(-20deg);
   }
 }
 .phone {
   --width: 88px;
-  --height: 176px;
+  --height: 178px;
   --depth: 9px;
   --radius: 20px;
   --front-amount: 4%;
   --edge-amount: 55%;
 }
+.screen {
+  position: absolute;
+  inset: 3px;
+  overflow: hidden;
+  border-radius: 17px;
+}
+/* The Dynamic Island: a pill at the top that opens into a live activity with a progress bar, then closes. */
 .island {
   position: absolute;
   left: 50%;
-  top: 9px;
+  top: 6px;
   width: 28px;
   height: 9px;
   border-radius: 9px;
-  background: tint(70%);
+  background: var(--foreground);
   transform: translateX(-50%);
-  @include loop(ios-island 4s $ease infinite);
+  @include loop(ios-island $round $ease infinite);
+  i {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 5px;
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, var(--background) var(--done, 0%), tint(70%) var(--done, 0%));
+    opacity: 0;
+    @include loop(ios-activity $round linear infinite);
+  }
 }
 @keyframes ios-island {
   0%,
-  40%,
+  8%,
+  46%,
   100% {
     width: 28px;
     height: 9px;
   }
-  55%,
-  80% {
-    width: 62px;
-    height: 16px;
+  16%,
+  38% {
+    width: 72px;
+    height: 20px;
   }
 }
-.widgets {
-  position: absolute;
-  inset: 34px 10px 26px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1.2fr;
-  gap: 8px;
-  transform-style: preserve-3d;
-  i {
-    border-radius: 9px;
-    border: 1px solid tint(45%);
-    background: tint(12%);
-    @include loop(ios-float 4.6s ease-in-out infinite);
-    &:nth-child(1) {
-      grid-column: span 2;
-      background: linear-gradient(135deg, tint(38%), tint(8%));
-    }
-    &:nth-child(2) {
-      animation-delay: -1.5s;
-    }
-    &:nth-child(3) {
-      animation-delay: -3s;
-    }
-  }
-}
-@keyframes ios-float {
+@keyframes ios-activity {
   0%,
-  100% {
-    transform: translateZ(4px);
+  14% {
+    opacity: 0;
+    --done: 0%;
   }
-  50% {
-    transform: translateZ(24px);
+  18% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 1;
+    --done: 100%;
+  }
+  40%,
+  100% {
+    opacity: 0;
+    --done: 100%;
+  }
+}
+@property --done {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+/* App icons: rounded squares, four to a row, jiggling for a moment as when they are being arranged. */
+.apps {
+  position: absolute;
+  inset: 26px 9px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px 6px;
+  i {
+    aspect-ratio: 1;
+    border-radius: 30%;
+    border: 1px solid tint(45%);
+    background: linear-gradient(150deg, tint(30%), tint(10%));
+    @include loop(ios-jiggle $round linear infinite);
+    &:nth-child(odd) {
+      animation-name: ios-jiggle-other;
+    }
+  }
+}
+@keyframes ios-jiggle {
+  0%,
+  52%,
+  88%,
+  100% {
+    transform: rotate(0);
+  }
+  @for $step from 0 through 8 {
+    #{54% + $step * 4%} {
+      transform: rotate(if($step % 2 == 0, -4deg, 4deg));
+    }
+  }
+}
+@keyframes ios-jiggle-other {
+  0%,
+  52%,
+  88%,
+  100% {
+    transform: rotate(0);
+  }
+  @for $step from 0 through 8 {
+    #{54% + $step * 4%} {
+      transform: rotate(if($step % 2 == 0, 4deg, -4deg));
+    }
+  }
+}
+.dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  i {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: tint(35%);
+    &:first-child {
+      background: var(--foreground);
+    }
+  }
+}
+/* The dock: a frosted shelf of four apps at the bottom. */
+.dock {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 4px;
+  border-radius: 9px;
+  background: tint(14%);
+  i {
+    aspect-ratio: 1;
+    border-radius: 30%;
+    border: 1px solid tint(45%);
+    background: linear-gradient(150deg, tint(40%), tint(14%));
   }
 }
 .indicator {
   position: absolute;
   left: 50%;
-  bottom: 8px;
-  width: 34px;
+  bottom: 4px;
+  width: 30px;
   height: 3px;
-  margin-left: -17px;
+  margin-left: -15px;
   border-radius: 2px;
-  background: tint(55%);
+  background: tint(60%);
 }
