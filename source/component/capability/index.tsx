@@ -1,3 +1,4 @@
+import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import type { CSSProperties } from "react";
 import { Reveal } from "@sharadox/animation-web-library/reveal";
 import { translate } from "@sharadox/internationalization-web-library/translate";
@@ -20,10 +21,10 @@ export function Capability({ locale }: CapabilityProperties) {
       <div className={styles.sheet} style={{ "--rows": rows } as CSSProperties}>
         {SERVICES.items.map((service, column) => (
           <div key={service.key} className={styles.column}>
-            <a href={`#${service.key}`} className={styles.title}>
+            <SectionLink href={`#${service.key}`} className={styles.title}>
               <span className="monospace">{service.number}</span>
               {translate(service.title, locale)}
-            </a>
+            </SectionLink>
             <ul role="list">
               {service.capabilities[locale].map((capability, row) => (
                 <li key={capability}>

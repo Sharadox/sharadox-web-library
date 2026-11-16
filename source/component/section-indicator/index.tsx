@@ -1,4 +1,5 @@
 "use client";
+import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import type { CSSProperties } from "react";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { useActiveSection } from "@sharadox/scroll-web-library/active-section";
@@ -29,7 +30,7 @@ export function SectionIndicator({ locale }: SectionIndicatorProperties) {
           const current = section.id === active;
           return (
             <li key={section.id}>
-              <a
+              <SectionLink
                 href={`#${section.id}`}
                 className={current ? styles.current : undefined}
                 aria-current={current ? "location" : undefined}
@@ -42,7 +43,7 @@ export function SectionIndicator({ locale }: SectionIndicatorProperties) {
                 <span className={styles.tick} aria-hidden>
                   <span />
                 </span>
-              </a>
+              </SectionLink>
             </li>
           );
         })}

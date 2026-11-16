@@ -7,7 +7,6 @@ import { ContentManagementSystem } from "@sharadox/sharadox-web-library/componen
 import { ECommerce } from "@sharadox/sharadox-web-library/component/service-object/e-commerce";
 import { LeadGeneration } from "@sharadox/sharadox-web-library/component/service-object/lead-generation";
 import { Platform } from "@sharadox/sharadox-web-library/component/service-object/platform";
-import { Merchandise } from "@sharadox/sharadox-web-library/component/service-object/merchandise";
 import { PrintDesign } from "@sharadox/sharadox-web-library/component/service-object/print-design";
 import { ProductLaunch } from "@sharadox/sharadox-web-library/component/service-object/product-launch";
 import { ProgressiveWebApplication } from "@sharadox/sharadox-web-library/component/service-object/progressive-web-application";
@@ -31,7 +30,6 @@ const OBJECTS: Record<ServiceCardKey, ComponentType> = {
   rebranding: Rebranding,
   "branding-design": BrandingDesign,
   "print-design": PrintDesign,
-  merchandise: Merchandise,
   "product-launch": ProductLaunch,
   "lead-generation": LeadGeneration,
   "sales-generation": SalesGeneration,
