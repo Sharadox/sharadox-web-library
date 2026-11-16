@@ -11,8 +11,7 @@ import styles from "./index.module.scss";
 import type { ServicesProperties } from "@sharadox/sharadox-web-library/component/services/type";
 
 /**
- * "Services": the four groups (Web Applications, Desktop and Mobile Applications, Creative Services, Marketing
- * Campaigns), each a numbered heading over a grid of cards with a 3D object and a button that starts that project, then
+ * "Services": the four groups (Web, Desktop & Mobile, Creative, Marketing), each a numbered heading over a grid of cards with a 3D object and a button that starts that project, then
  * an invitation for ideas none of them name.
  */
 export function Services({ locale }: ServicesProperties) {

@@ -52,6 +52,6 @@ describe("the 404 page", () => {
 
   test("its service shortcuts lead to the home page's sections", () => {
     render(<ServiceIndex locale="en" base="/en" />);
-    expect(screen.getByRole("link", { name: /Web Applications/ }).getAttribute("href")).toBe("/en#web-application");
+    expect(screen.getByRole("link", { name: /Web/ }).getAttribute("href")).toBe("/en#web-application");
   });
 });

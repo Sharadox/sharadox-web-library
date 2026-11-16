@@ -1,13 +1,13 @@
 import type { ComponentType } from "react";
-import { ApplicationProgrammingInterface } from "@sharadox/sharadox-web-library/component/service-object/application-programming-interface";
 import { BrandAwareness } from "@sharadox/sharadox-web-library/component/service-object/brand-awareness";
 import { Branding } from "@sharadox/sharadox-web-library/component/service-object/branding";
 import { BrandingDesign } from "@sharadox/sharadox-web-library/component/service-object/branding-design";
-import { ContentManagementSystem } from "@sharadox/sharadox-web-library/component/service-object/content-management-system";
 import { ECommerce } from "@sharadox/sharadox-web-library/component/service-object/e-commerce";
+import { Merchandise } from "@sharadox/sharadox-web-library/component/service-object/merchandise";
 import { LeadGeneration } from "@sharadox/sharadox-web-library/component/service-object/lead-generation";
 import { Platform } from "@sharadox/sharadox-web-library/component/service-object/platform";
 import { PrintDesign } from "@sharadox/sharadox-web-library/component/service-object/print-design";
+import { ProfessionalEmail } from "@sharadox/sharadox-web-library/component/service-object/professional-email";
 import { ProductLaunch } from "@sharadox/sharadox-web-library/component/service-object/product-launch";
 import { ProgressiveWebApplication } from "@sharadox/sharadox-web-library/component/service-object/progressive-web-application";
 import { Rebranding } from "@sharadox/sharadox-web-library/component/service-object/rebranding";
@@ -23,13 +23,13 @@ const OBJECTS: Record<ServiceCardKey, ComponentType> = {
   website: Website,
   platform: Platform,
   "e-commerce": ECommerce,
-  "content-management-system": ContentManagementSystem,
-  "application-programming-interface": ApplicationProgrammingInterface,
+  "professional-email": ProfessionalEmail,
   "progressive-web-application": ProgressiveWebApplication,
   branding: Branding,
   rebranding: Rebranding,
   "branding-design": BrandingDesign,
   "print-design": PrintDesign,
+  merchandise: Merchandise,
   "product-launch": ProductLaunch,
   "lead-generation": LeadGeneration,
   "sales-generation": SalesGeneration,

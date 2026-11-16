@@ -51,8 +51,9 @@ describe("service card buttons", () => {
     );
     expect(checked).toEqual(["website", "platform", "social-media-strategy", "not-listed"]);
     // The choices are grouped like the services, then the two for visitors who aren't sure.
-    expect(screen.getByRole("group", { name: "Marketing Campaigns" }).querySelectorAll("input")).toHaveLength(5);
-    expect(screen.getByRole("group", { name: "Creative Services" }).textContent).toContain("Print Design");
+    expect(screen.getByRole("group", { name: "Marketing" }).querySelectorAll("input")).toHaveLength(5);
+    expect(screen.getByRole("group", { name: "Creative" }).textContent).toContain("Merchandise");
+    expect(screen.getByRole("group", { name: "Web" }).textContent).toContain("Professional Email");
     expect(screen.getByRole("group", { name: "Something Else" }).textContent).toContain("I don't know what I need");
     // The PWA card, alone in its group, lists its reasons.
     expect(screen.getByText("No store in between")).toBeTruthy();
