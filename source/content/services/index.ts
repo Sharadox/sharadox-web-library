@@ -10,10 +10,10 @@ export const SERVICES = {
     {
       key: "web-application",
       number: "01",
-      title: { en: "Web Applications", pt: "Aplicações Web" },
+      title: { en: "Web", pt: "Web" },
       kinds: {
-        en: ["Websites", "Platforms", "E-commerce", "CMS", "APIs"],
-        pt: ["Websites", "Plataformas", "E-commerce", "CMS", "APIs"],
+        en: ["Websites", "Platforms", "E-commerce", "Email"],
+        pt: ["Websites", "Plataformas", "E-commerce", "Email"],
       },
       lead: {
         en: "Websites that win. Platforms that run the business.",
@@ -34,8 +34,8 @@ export const SERVICES = {
           key: "platform",
           title: { en: "Platforms", pt: "Plataformas" },
           text: {
-            en: "Bookings, orders, payments, stock and invoicing in one place, built around how you work, with the repetitive tasks done automatically.",
-            pt: "Reservas, encomendas, pagamentos, stock e faturação num só lugar, à medida da forma como trabalha, com as tarefas repetitivas feitas automaticamente.",
+            en: "Your company's own system, built around how you work: it runs bookings, orders, stock and invoicing, and does the repetitive work for you.",
+            pt: "O sistema da sua empresa, feito à medida da forma como trabalha: gere reservas, encomendas, stock e faturação, e faz o trabalho repetitivo por si.",
           },
           action: { en: "Build a Platform", pt: "Criar uma Plataforma" },
           chip: { en: "Platform", pt: "Plataforma" },
@@ -51,24 +51,14 @@ export const SERVICES = {
           chip: { en: "E-commerce", pt: "E-commerce" },
         },
         {
-          key: "content-management-system",
-          title: { en: "Content Management Systems (CMS)", pt: "Sistemas de Gestão de Conteúdos (CMS)" },
+          key: "professional-email",
+          title: { en: "Professional Emails", pt: "Emails Profissionais" },
           text: {
-            en: "Change your texts, photos, prices and posts yourself, from a simple screen. No code and no technical knowledge needed: your website stays yours to update, whenever you want.",
-            pt: "Altere os seus textos, fotografias, preços e publicações sozinho, num ecrã simples. Sem código e sem conhecimentos técnicos: o seu website continua a ser seu para atualizar, sempre que quiser.",
+            en: "Email at your own domain, like you@yourdomain.com, on every device your team uses, and set up so your messages land in the inbox, not in spam.",
+            pt: "Email com o seu próprio domínio, como voce@oseudominio.pt, em todos os dispositivos da sua equipa, e configurado para que as suas mensagens cheguem à caixa de entrada, e não ao spam.",
           },
-          action: { en: "Manage My Content", pt: "Gerir os Meus Conteúdos" },
-          chip: { en: "CMS", pt: "CMS" },
-        },
-        {
-          key: "application-programming-interface",
-          title: { en: "APIs", pt: "APIs" },
-          text: {
-            en: "An API lets programs talk to each other. We build secure, documented APIs that connect your website, apps, partners and tools, so your data goes where it's needed by itself.",
-            pt: "Uma API permite que programas falem entre si. Criamos APIs seguras e documentadas que ligam o seu website, aplicações, parceiros e ferramentas, para que os dados cheguem sozinhos onde são precisos.",
-          },
-          action: { en: "Build an API", pt: "Criar uma API" },
-          chip: { en: "API", pt: "API" },
+          action: { en: "Get Professional Email", pt: "Ter Email Profissional" },
+          chip: { en: "Professional Email", pt: "Email Profissional" },
         },
       ],
       capabilities: {
@@ -76,16 +66,16 @@ export const SERVICES = {
           "Websites and landing pages",
           "Online stores",
           "Bookings and ordering",
-          "Content management systems",
-          "APIs and integrations",
+          "Business automation",
+          "Professional email",
           "Search engine optimization",
         ],
         pt: [
           "Websites e landing pages",
           "Lojas online",
           "Reservas e encomendas",
-          "Sistemas de gestão de conteúdos",
-          "APIs e integrações",
+          "Automatização do negócio",
+          "Email profissional",
           "Otimização para motores de busca",
         ],
       },
@@ -93,7 +83,7 @@ export const SERVICES = {
     {
       key: "desktop-and-mobile-application",
       number: "02",
-      title: { en: "Desktop and Mobile Applications", pt: "Aplicações para Computador e Telemóvel" },
+      title: { en: "Desktop & Mobile", pt: "Computador e Telemóvel" },
       kinds: { en: ["Desktop", "Mobile", "PWA"], pt: ["Computador", "Telemóvel", "PWA"] },
       lead: { en: "Built once. On every screen.", pt: "Feita uma vez. Em todos os ecrãs." },
       cards: [
@@ -101,8 +91,8 @@ export const SERVICES = {
           key: "progressive-web-application",
           title: { en: "Progressive Web Applications (PWAs)", pt: "Aplicações Web Progressivas (PWAs)" },
           text: {
-            en: "One app for every device: phones, tablets and computers, on iPhone, Android, Windows and Mac. It installs straight from your website, opens full screen from the home screen and sends notifications, like any other app.",
-            pt: "Uma aplicação para todos os dispositivos: telemóveis, tablets e computadores, em iPhone, Android, Windows e Mac. Instala-se diretamente a partir do seu website, abre em ecrã inteiro a partir do ecrã principal e envia notificações, como qualquer outra aplicação.",
+            en: "One app for phones, tablets and computers, on iPhone, Android, Windows and Mac. It installs straight from your website and works like any other app.",
+            pt: "Uma aplicação para telemóveis, tablets e computadores, em iPhone, Android, Windows e Mac. Instala-se diretamente a partir do seu website e funciona como qualquer outra aplicação.",
           },
           points: [
             {
@@ -153,10 +143,10 @@ export const SERVICES = {
     {
       key: "creative",
       number: "03",
-      title: { en: "Creative Services", pt: "Serviços Criativos" },
+      title: { en: "Creative", pt: "Criativo" },
       kinds: {
-        en: ["Branding", "Rebranding", "Design", "Print"],
-        pt: ["Branding", "Rebranding", "Design", "Impressos"],
+        en: ["Branding", "Rebranding", "Design", "Print", "Merch"],
+        pt: ["Branding", "Rebranding", "Design", "Impressos", "Merchandising"],
       },
       lead: { en: "An identity people remember.", pt: "Uma identidade que fica na memória." },
       cards: [
@@ -164,8 +154,8 @@ export const SERVICES = {
           key: "branding",
           title: { en: "Branding", pt: "Branding" },
           text: {
-            en: "Branding is deciding who your brand is before anything is drawn. We work out what you stand for, who you speak to and why they should choose you, then give it a name, a story and a voice. Everything made afterwards follows those guidelines, so your brand says the same thing everywhere.",
-            pt: "Branding é definir quem a sua marca é antes de se desenhar o que quer que seja. Descobrimos o que defende, a quem fala e porque devem escolhê-la, e damos-lhe um nome, uma história e um tom de voz. Tudo o que se faz depois segue essas diretrizes, para que a sua marca diga o mesmo em todo o lado.",
+            en: "Defining who your brand is: what it stands for, who it speaks to, its name, its voice, and the look and feel everything else will follow.",
+            pt: "Definir quem a sua marca é: o que defende, a quem fala, o nome, o tom de voz, e o estilo e a sensação que tudo o resto vai seguir.",
           },
           action: { en: "Build My Brand", pt: "Criar a Minha Marca" },
           chip: { en: "Branding", pt: "Branding" },
@@ -174,8 +164,8 @@ export const SERVICES = {
           key: "rebranding",
           title: { en: "Rebranding", pt: "Rebranding" },
           text: {
-            en: "For when your brand no longer fits the business you have become. It can be a refresh, a new look, feel and way of presenting it that keeps what customers already recognize and love, or a complete change, from the name to the logo. Either way, we plan the move so nobody loses track of you.",
-            pt: "Para quando a sua marca já não corresponde ao negócio em que se tornou. Pode ser uma renovação, um novo visual, sensação e forma de apresentar que mantém o que os clientes já reconhecem e adoram, ou uma mudança completa, do nome ao logótipo. Em qualquer caso, planeamos a mudança para que ninguém o perca de vista.",
+            en: "Giving your brand a fresh look and feel, in step with who you are today and where you're heading, while keeping what customers already love.",
+            pt: "Dar à sua marca um visual e uma sensação renovados, ao ritmo de quem é hoje e para onde vai, mantendo o que os clientes já adoram.",
           },
           action: { en: "Refresh My Brand", pt: "Renovar a Minha Marca" },
           chip: { en: "Rebranding", pt: "Rebranding" },
@@ -184,8 +174,8 @@ export const SERVICES = {
           key: "branding-design",
           title: { en: "Branding Design", pt: "Design de Marca" },
           text: {
-            en: "Branding design turns those guidelines into what people actually see: the logo and its versions, the colors, the typefaces, the icons and the style of the photos, gathered in a brand book so anyone can use them right, from your team to your printer.",
-            pt: "O design de marca transforma essas diretrizes no que as pessoas realmente veem: o logótipo e as suas versões, as cores, as tipografias, os ícones e o estilo das fotografias, reunidos num manual de marca para que todos os usem bem, da sua equipa à gráfica.",
+            en: "Creating what branding or rebranding defined: the logo, colors, typefaces and icons, gathered in a brand book anyone can follow.",
+            pt: "Criar o que o branding ou o rebranding definiu: o logótipo, as cores, as tipografias e os ícones, reunidos num manual de marca que todos podem seguir.",
           },
           action: { en: "Design My Brand", pt: "Desenhar a Minha Marca" },
           chip: { en: "Branding Design", pt: "Design de Marca" },
@@ -194,11 +184,21 @@ export const SERVICES = {
           key: "print-design",
           title: { en: "Print Design", pt: "Design para Impressão" },
           text: {
-            en: "Everything you hand over or hang up: business cards, flyers, brochures, menus, posters, signage, packaging and stickers. Designed with your brand, prepared to the printer's specifications and checked so the colors come out as they should.",
-            pt: "Tudo o que entrega ou afixa: cartões de visita, flyers, brochuras, menus, cartazes, sinalética, embalagens e autocolantes. Desenhado com a sua marca, preparado segundo as especificações da gráfica e verificado para que as cores saiam como devem.",
+            en: "Business cards, flyers, brochures, signage and packaging, designed with your brand and printed by trusted partners, colors as they should be.",
+            pt: "Cartões de visita, flyers, brochuras, sinalética e embalagens, desenhados com a sua marca e impressos por parceiros de confiança, com as cores certas.",
           },
           action: { en: "Design My Print", pt: "Desenhar os Meus Impressos" },
           chip: { en: "Print Design", pt: "Design para Impressão" },
+        },
+        {
+          key: "merchandise",
+          title: { en: "Merchandise", pt: "Merchandising" },
+          text: {
+            en: "Your brand on things people keep: T-shirts, caps, bottles, mugs, pens and bags, designed by us and made by trusted partners.",
+            pt: "A sua marca em coisas que as pessoas guardam: t-shirts, bonés, garrafas, canecas, canetas e sacos, desenhados por nós e produzidos por parceiros de confiança.",
+          },
+          action: { en: "Create My Merch", pt: "Criar o Meu Merchandising" },
+          chip: { en: "Merchandise", pt: "Merchandising" },
         },
       ],
       capabilities: {
@@ -208,7 +208,7 @@ export const SERVICES = {
           "Brand guidelines",
           "Color and typography",
           "Business cards, flyers and signage",
-          "Packaging",
+          "Merchandise and packaging",
         ],
         pt: [
           "Posicionamento e naming",
@@ -216,14 +216,14 @@ export const SERVICES = {
           "Manual de marca",
           "Cor e tipografia",
           "Cartões de visita, flyers e sinalética",
-          "Embalagem",
+          "Merchandising e embalagem",
         ],
       },
     },
     {
       key: "marketing",
       number: "04",
-      title: { en: "Marketing Campaigns", pt: "Campanhas de Marketing" },
+      title: { en: "Marketing", pt: "Marketing" },
       kinds: {
         en: ["Launches", "Leads", "Sales", "Awareness", "Social"],
         pt: ["Lançamentos", "Leads", "Vendas", "Notoriedade", "Redes"],
@@ -232,7 +232,7 @@ export const SERVICES = {
       cards: [
         {
           key: "product-launch",
-          title: { en: "Product Launches", pt: "Lançamentos de Produto" },
+          title: { en: "Product Launch Campaigns", pt: "Campanhas de Lançamento de Produto" },
           text: {
             en: "A launch planned from the first teaser to day one: the message, the landing page, the campaigns and the timing.",
             pt: "Um lançamento planeado do primeiro teaser ao grande dia: a mensagem, a landing page, as campanhas e o momento certo.",
@@ -242,7 +242,7 @@ export const SERVICES = {
         },
         {
           key: "lead-generation",
-          title: { en: "Lead Generation", pt: "Geração de Leads" },
+          title: { en: "Lead Generation Campaigns", pt: "Campanhas de Geração de Leads" },
           text: {
             en: "Campaigns and landing pages that bring people interested in what you offer straight to your inbox, ready for a reply.",
             pt: "Campanhas e landing pages que trazem pessoas interessadas no que oferece diretamente para a sua caixa de entrada, prontas para uma resposta.",
@@ -252,7 +252,7 @@ export const SERVICES = {
         },
         {
           key: "sales-generation",
-          title: { en: "Sales Generation", pt: "Geração de Vendas" },
+          title: { en: "Sales Generation Campaigns", pt: "Campanhas de Geração de Vendas" },
           text: {
             en: "Ads on Meta and Google, email and offers built around one goal, more sales, and measured down to the last click.",
             pt: "Anúncios no Meta e no Google, email e ofertas construídos à volta de um objetivo, mais vendas, e medidos até ao último clique.",
@@ -262,10 +262,10 @@ export const SERVICES = {
         },
         {
           key: "brand-awareness",
-          title: { en: "Brand Awareness", pt: "Notoriedade de Marca" },
+          title: { en: "Brand Awareness Campaigns", pt: "Campanhas de Notoriedade de Marca" },
           text: {
-            en: "Your name in front of the right people, near you and beyond, until they think of you first.",
-            pt: "O seu nome à frente das pessoas certas, perto de si e mais além, até pensarem primeiro em si.",
+            en: "Your name in front of the right people, near you and beyond, again and again, until they think of you first.",
+            pt: "O seu nome à frente das pessoas certas, perto de si e mais além, vezes sem conta, até pensarem primeiro em si.",
           },
           action: { en: "Make My Brand Known", pt: "Dar a Conhecer a Marca" },
           chip: { en: "Brand Awareness", pt: "Notoriedade de Marca" },
@@ -303,7 +303,7 @@ export const SERVICES = {
   ],
   /** After every service: for ideas that fit none of them. */
   unlisted: {
-    title: { en: "Didn't find what you were looking for?", pt: "Não encontrou o que procurava?" },
+    title: { en: "Didn't find the service you were looking for?", pt: "Não encontrou o serviço que procurava?" },
     text: {
       en: "Tell us your idea. Let's talk it through and see how we can help.",
       pt: "Conte-nos a sua ideia. Vamos falar sobre ela e ver como podemos ajudar.",

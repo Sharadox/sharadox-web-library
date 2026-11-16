@@ -1,0 +1,153 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(email-sway 9s ease-in-out infinite);
+  transform: rotateX(10deg) rotateY(18deg);
+}
+@keyframes email-sway {
+  0%,
+  100% {
+    transform: rotateX(10deg) rotateY(22deg);
+  }
+  50% {
+    transform: rotateX(4deg) rotateY(6deg);
+  }
+}
+.envelope {
+  @include centered(136px, 88px);
+  transform: translate3d(0, -26px, -30px);
+}
+/* The letter, behind the pocket, rising out while the flap is open. */
+.letter {
+  @include face(10%, 55%);
+  @include loop(email-letter 6s $ease infinite);
+  position: absolute;
+  inset: 8px 12px 6px;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 3px;
+  background: var(--background);
+  transform: translateZ(1px);
+  i {
+    height: 4px;
+    border-radius: 2px;
+    background: tint(35%);
+    &:first-child {
+      width: 50%;
+      background: tint(65%);
+    }
+    &:last-child {
+      width: 70%;
+    }
+  }
+}
+@keyframes email-letter {
+  0%,
+  22% {
+    transform: translate3d(0, 0, 1px);
+  }
+  42%,
+  70% {
+    transform: translate3d(0, -42px, 1px);
+  }
+  88%,
+  100% {
+    transform: translate3d(0, 0, 1px);
+  }
+}
+/* The envelope's front: a pocket with the folds meeting in the middle. */
+.pocket {
+  @include face(8%, 50%);
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 0.5px), tint(40%) 50%, transparent calc(50% + 0.5px)) left
+      bottom / 50% 100% no-repeat,
+    linear-gradient(to top left, transparent calc(50% - 0.5px), tint(40%) 50%, transparent calc(50% + 0.5px)) right
+      bottom / 50% 100% no-repeat,
+    color-mix(in srgb, var(--background) 88%, var(--foreground));
+  transform: translateZ(4px);
+}
+/* The flap, hinged along the top, folding up and back. */
+.flap {
+  @include loop(email-flap 6s $ease infinite);
+  position: absolute;
+  inset: 0 0 auto;
+  height: 52px;
+  background: color-mix(in srgb, var(--background) 80%, var(--foreground));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transform: translateZ(5px) rotateX(0deg);
+}
+@keyframes email-flap {
+  0%,
+  10% {
+    transform: translateZ(5px) rotateX(0deg);
+  }
+  28%,
+  80% {
+    transform: translateZ(-2px) rotateX(-180deg);
+  }
+  96%,
+  100% {
+    transform: translateZ(5px) rotateX(0deg);
+  }
+}
+/* The address, floating in front: the name changes, the domain stays. */
+.address {
+  @include face(10%, 60%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--background);
+  box-shadow: 0 18px 40px -18px tint(40%);
+  font-size: 13px;
+  white-space: nowrap;
+  transform: translate3d(-50%, 44px, 40px);
+  b {
+    margin-left: 1px;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+}
+.names {
+  display: inline-grid;
+  justify-items: end;
+  color: tint(60%);
+  span {
+    grid-area: 1 / 1;
+    opacity: 0;
+    @include loop(email-name 9s $ease infinite backwards);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    span:last-child {
+      opacity: 1;
+    }
+  }
+}
+@keyframes email-name {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  6%,
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  36%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

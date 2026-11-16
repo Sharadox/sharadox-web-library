@@ -1,14 +1,22 @@
-import { Cuboid } from "@sharadox/sharadox-web-library/component/service-object/cuboid";
 import styles from "./index.module.scss";
 
-/** Rebranding: a tile that turns over from the old mark to the new one and back, over the old outline. */
+/**
+ * Rebranding: a before and after. A divider sweeps across the dated mark, revealing the fresh one underneath, holds,
+ * and sweeps back.
+ */
 export function Rebranding() {
   return (
     <div className={styles.object}>
-      <div className={styles.outline} />
-      <div className={styles.turn}>
-        <Cuboid className={styles.tile} front={<span className={styles.before} />} />
-        <span className={styles.after} />
+      <div className={styles.tile}>
+        <div className={styles.before}>
+          <i className={styles.badge} />
+          <i className={styles.wordmark} />
+        </div>
+        <div className={styles.after}>
+          <i className={styles.mark} />
+          <i className={styles.name} />
+        </div>
+        <span className={styles.divider} />
       </div>
     </div>
   );
