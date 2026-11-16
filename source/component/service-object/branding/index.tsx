@@ -1,3 +1,4 @@
+import { Mark } from "@sharadox/sharadox-web-library/component/service-object/mark";
 import styles from "./index.module.scss";
 
 /**
@@ -21,7 +22,7 @@ export function Branding() {
           <i className={styles.type}>Aa</i>
         </span>
       </div>
-      <span className={styles.mark} />
+      <Mark className={styles.mark} />
     </div>
   );
 }

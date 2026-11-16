@@ -34,8 +34,8 @@ export const SERVICES = {
           key: "platform",
           title: { en: "Platforms", pt: "Plataformas" },
           text: {
-            en: "Your company's own system, built around how you work: it runs bookings, orders, stock and invoicing, and does the repetitive work for you.",
-            pt: "O sistema da sua empresa, feito à medida da forma como trabalha: gere reservas, encomendas, stock e faturação, e faz o trabalho repetitivo por si.",
+            en: "Your company's way of working, made digital: one system where your team and clients work together, while bookings, orders, stock and invoicing run on their own.",
+            pt: "A forma de trabalhar da sua empresa, em digital: um só sistema onde a equipa e os clientes trabalham juntos, enquanto reservas, encomendas, stock e faturação andam sozinhos.",
           },
           action: { en: "Build a Platform", pt: "Criar uma Plataforma" },
           chip: { en: "Platform", pt: "Plataforma" },

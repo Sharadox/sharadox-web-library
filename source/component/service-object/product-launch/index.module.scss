@@ -1,110 +1,181 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
+/*
+ * One round: the countdown (three numbers, 0.8s each, so up to 2.4s), the reveal (from 2.4s), a hold, and the reset.
+ * Every part runs on the same clock. Without motion, what's left is the end of the reveal: the product on show.
+ */
+$round: 6s;
+
 .object {
   @include centered(0px, 0px);
-  @include loop(launch-turn 20s linear infinite);
-  transform: translateY(40px) rotateX(-20deg) rotateY(30deg);
+  @include loop(launch-sway 12s ease-in-out infinite);
+  transform: translateY(30px) scale(1.25) rotateX(-16deg) rotateY(-26deg);
 }
-@keyframes launch-turn {
-  to {
-    transform: translateY(40px) rotateX(-20deg) rotateY(390deg);
+@keyframes launch-sway {
+  0%,
+  100% {
+    transform: translateY(30px) scale(1.25) rotateX(-16deg) rotateY(-26deg);
+  }
+  50% {
+    transform: translateY(30px) scale(1.25) rotateX(-12deg) rotateY(18deg);
   }
 }
-.pad {
-  @include centered(150px, 150px);
-  @include face(4%, 35%);
+.stage {
+  --width: 96px;
+  --height: 14px;
+  --depth: 96px;
+  --radius: 3px;
+  --fill-amount: 8%;
+  --edge-amount: 55%;
+  transform: translateY(30px);
+}
+/* The product: a slim device, its screen lit, rising out of the stage. */
+.product {
+  --width: 34px;
+  --height: 52px;
+  --depth: 10px;
+  --fill-amount: 14%;
+  --edge-amount: 80%;
+  transform: translateY(-14px);
+  @include loop(launch-product $round $ease infinite);
+}
+/* Boxes are shown and hidden by scale, not opacity, which would flatten them. */
+@keyframes launch-product {
+  0%,
+  40% {
+    transform: translateY(14px) scale(0);
+  }
+  58%,
+  86% {
+    transform: translateY(-14px) scale(1);
+  }
+  100% {
+    transform: translateY(14px) scale(0);
+  }
+}
+.screen {
+  position: absolute;
+  inset: 4px 3px 8px;
+  border-radius: 2px;
+  background: linear-gradient(160deg, var(--foreground), tint(40%));
+}
+/* The cover over the product during the countdown, lifted away at zero. */
+.cover {
+  --width: 48px;
+  --height: 62px;
+  --depth: 48px;
+  --fill-amount: 22%;
+  --front-amount: 26%;
+  --edge-amount: 60%;
+  transform: translateY(-8px) scale(0);
+  @include loop(launch-cover $round $ease infinite);
+}
+@keyframes launch-cover {
+  0%,
+  40% {
+    transform: translateY(-8px) scale(1);
+  }
+  58% {
+    transform: translateY(-260px) scale(1);
+  }
+  59%,
+  90% {
+    transform: translateY(-8px) scale(0);
+  }
+  100% {
+    transform: translateY(-8px) scale(1);
+  }
+}
+/* The light the product rises into. */
+.glow {
+  @include centered(170px, 170px);
   border-radius: 50%;
-  transform: translateY(26px) rotateX(90deg);
-  background: radial-gradient(circle, tint(22%) 1px, transparent 1.5px) 0 0 / 12px 12px;
+  background: radial-gradient(circle, tint(26%), transparent 62%);
+  transform: translateY(-14px) translateZ(-40px);
+  @include loop(launch-glow $round ease-out infinite);
+}
+@keyframes launch-glow {
+  0%,
+  40% {
+    opacity: 0;
+    transform: translateY(-14px) translateZ(-40px) scale(0.3);
+  }
+  56%,
+  88% {
+    opacity: 1;
+    transform: translateY(-14px) translateZ(-40px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) translateZ(-40px) scale(1);
+  }
+}
+.sparks {
+  @include centered(0px, 0px);
+  transform: translateY(-14px);
   i {
     position: absolute;
-    inset: 40%;
+    left: -3px;
+    top: -3px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    border: 1.5px solid tint(70%);
+    background: var(--foreground);
+    box-shadow: 0 0 8px tint(70%);
     opacity: 0;
-    @include loop(launch-ring 3.4s ease-out infinite);
-    &:nth-child(2) {
-      animation-delay: 0.3s;
-    }
+    @include loop(launch-spark $round ease-out infinite);
   }
 }
-@keyframes launch-ring {
+@keyframes launch-spark {
   0%,
-  8% {
-    inset: 40%;
+  42% {
     opacity: 0;
+    transform: rotate(var(--angle)) translateX(10px) scale(1);
+  }
+  46% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(84px) scale(0.3);
+  }
+}
+/* The numbers counting down above the covered product, each growing in and fading. */
+.countdown {
+  @include centered(0px, 0px);
+  transform: translateY(-82px);
+  span {
+    position: absolute;
+    left: -30px;
+    top: -24px;
+    width: 60px;
+    line-height: 48px;
+    text-align: center;
+    font-family: var(--font-display, inherit);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--foreground);
+    opacity: 0;
+    @include loop(launch-count $round $ease infinite backwards);
+  }
+}
+@keyframes launch-count {
+  0% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+  3% {
+    opacity: 1;
   }
   12% {
     opacity: 1;
+    transform: scale(1);
   }
-  60%,
-  100% {
-    inset: -4%;
-    opacity: 0;
-  }
-}
-.flight {
-  @include centered(0px, 0px);
-  @include loop(launch-flight 3.4s cubic-bezier(0.55, 0, 0.8, 0.4) infinite);
-}
-@keyframes launch-flight {
-  0%,
-  10% {
-    transform: translateY(0) scale(1);
-  }
-  70% {
-    transform: translateY(-190px) scale(1);
-  }
-  71% {
-    transform: translateY(-190px) scale(0);
-  }
-  72% {
-    transform: translateY(60px) scale(0);
-  }
-  80% {
-    transform: translateY(60px) scale(1);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
-.body {
-  --width: 26px;
-  --height: 54px;
-  --depth: 26px;
-  --fill-amount: 10%;
-  --edge-amount: 70%;
-  transform: translateY(-2px);
-}
-.nose {
-  --width: 14px;
-  --height: 14px;
-  --depth: 14px;
-  --fill-amount: 30%;
-  --edge-amount: 80%;
-  transform: translateY(-38px);
-}
-.trail {
-  @include centered(3px, 90px);
-  transform: translateY(70px);
-  background: linear-gradient(180deg, tint(70%), transparent);
-  box-shadow: 0 0 12px tint(40%);
-  opacity: 0;
-  @include loop(launch-trail 3.4s linear infinite);
-}
-/* The trail only shows in flight, not standing on the pad. */
-@keyframes launch-trail {
-  0%,
-  10% {
-    opacity: 0;
-  }
-  20%,
-  66% {
-    opacity: 1;
-  }
-  70%,
+  13.3%,
   100% {
     opacity: 0;
+    transform: scale(0.8);
   }
 }
