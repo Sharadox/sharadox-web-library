@@ -1,3 +1,5 @@
+import { SectionLink } from "@sharadox/scroll-web-library/section-link";
+import Link from "next/link";
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
@@ -50,12 +52,15 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           {/* Everything legal, under the brand: the links, the consumer dispute notice and the copyright. */}
           <div className={styles.legal}>
             <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
-              <a href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
+              <Link href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
                 {translate(LICENSE.title, locale)}
-              </a>
-              <a href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
+              </Link>
+              <Link
+                href={`/${locale}${PRIVACY_PAGE.path}`}
+                aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}
+              >
                 {translate(PRIVACY_PAGE.title, locale)}
-              </a>
+              </Link>
               <PreferencesLink label={translate(CONSENT.preferences, locale)} />
               <ComplaintsBookLink locale={locale} />
             </nav>
@@ -70,17 +75,17 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         <nav aria-label={translate(SECTION.services, locale)}>
           <h2 className="monospace">{translate(SECTION.services, locale)}</h2>
           {SERVICES.items.map((service) => (
-            <a key={service.key} href={`${home}#${service.key}`}>
+            <SectionLink key={service.key} href={`${home}#${service.key}`}>
               {translate(service.title, locale)}
-            </a>
+            </SectionLink>
           ))}
         </nav>
         <nav aria-label={translate(FOOTER.studio, locale)}>
           <h2 className="monospace">{translate(FOOTER.studio, locale)}</h2>
           {studio.map((section) => (
-            <a key={section.id} href={`${home}#${section.id}`}>
+            <SectionLink key={section.id} href={`${home}#${section.id}`}>
               {translate(section, locale)}
-            </a>
+            </SectionLink>
           ))}
           <Button href={`${home}#${SECTION.contact.id}`} size="small" arrow className={styles.start}>
             {translate(ACTION.startProject, locale)}
@@ -97,12 +102,12 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </span>
           <h2 className="monospace">{translate(STYLE.label, locale)}</h2>
           <StyleSwitch locale={locale} className={styles.style} />
-          <a href="#top" className={styles.top}>
+          <SectionLink href="#top" className={styles.top}>
             {translate(FOOTER.top, locale)}
             <span className={styles.circle} aria-hidden>
               <Icon name="chevron-up" strokeWidth={1.8} />
             </span>
-          </a>
+          </SectionLink>
         </div>
       </div>
     </footer>
