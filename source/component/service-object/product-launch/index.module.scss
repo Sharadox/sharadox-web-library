@@ -1,256 +1,255 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
-/* One round: the four steps light one after the other (from 4%, every 17%), launch day holds, then all clears. */
-$round: 8s;
-$first: 4%;
-$step: 17%;
-$clear: 88%;
+/*
+ * One round of 6s: the countdown (3, 2 and 1, 1.2s each, so 0 to 60%), the engine lighting and the lift-off (60% to
+ * 84%), and the next rocket standing ready (from 90%). Every part runs on the same clock.
+ */
+$round: 6s;
 
 .object {
   @include centered(0px, 0px);
   @include loop(launch-sway 12s ease-in-out infinite);
-  transform: rotateX(24deg) rotateY(-14deg);
+  transform: scale(1.2) rotateX(8deg) rotateY(-12deg);
 }
 @keyframes launch-sway {
   0%,
   100% {
-    transform: rotateX(24deg) rotateY(-14deg);
+    transform: scale(1.2) rotateX(8deg) rotateY(-12deg);
   }
   50% {
-    transform: rotateX(18deg) rotateY(10deg);
+    transform: scale(1.2) rotateX(4deg) rotateY(12deg);
   }
 }
-.timeline {
-  @include centered(264px, 130px);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-/* The timeline under the steps, filling as the campaign moves on. */
-.track {
+/* The countdown, beside the rocket: a ring that runs out over the three seconds, the numbers inside it. */
+.countdown {
   position: absolute;
-  left: 30px;
-  right: 30px;
-  bottom: 9px;
-  height: 2px;
-  background: tint(16%);
+  left: -106px;
+  top: -64px;
+  width: 64px;
+  height: 64px;
+  opacity: 0;
+  @include loop(launch-countdown $round ease-out infinite);
 }
-.progress {
+@keyframes launch-countdown {
+  0%,
+  58% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  66%,
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+.ring {
   position: absolute;
   inset: 0;
-  background: var(--foreground);
-  box-shadow: 0 0 8px tint(60%);
-  transform-origin: left;
-  @include loop(launch-progress $round $ease infinite);
+  overflow: visible;
+  transform: rotate(-90deg);
+  circle {
+    fill: none;
+    stroke: tint(16%);
+    stroke-width: 2;
+  }
+  .time {
+    stroke: var(--foreground);
+    stroke-linecap: round;
+    stroke-dasharray: 100 100;
+    @include loop(launch-time $round linear infinite);
+  }
 }
-@keyframes launch-progress {
-  0%,
-  #{$first} {
-    transform: scaleX(0);
+@keyframes launch-time {
+  0% {
+    stroke-dashoffset: 0;
   }
-  #{$first + 3 * $step} {
-    transform: scaleX(1);
-  }
-  #{$clear} {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  #{$clear + 6%},
+  60%,
   100% {
-    transform: scaleX(1);
-    opacity: 0;
+    stroke-dashoffset: 100;
   }
 }
-.step {
-  position: relative;
-  display: grid;
-  grid-template-rows: 1fr 20px;
-  justify-items: center;
-  align-items: center;
-}
-/* A step's card: dim until the campaign reaches it, then lit, raised a little. */
-.tile {
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 78px;
-  border-radius: 6px;
-  @include face(6%, 55%);
-  background: var(--background);
-  box-shadow: 0 0 22px -6px tint(45%);
-  transform-style: preserve-3d;
-}
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 1.5px solid var(--foreground);
-  background: var(--foreground);
-}
-@each $index in 0, 1, 2, 3 {
-  $at: $first + $index * $step;
-  .step[data-step="#{$index}"] {
-    .tile {
-      @include loop(launch-tile-#{$index} $round $ease infinite);
-    }
-    .dot {
-      @include loop(launch-dot-#{$index} $round $ease infinite);
-    }
-  }
-  @keyframes launch-tile-#{$index} {
-    0%,
-    #{$at} {
-      opacity: 0.3;
-      transform: translateY(0) translateZ(0);
-      box-shadow: none;
-    }
-    #{$at + 4%},
-    #{$clear} {
-      opacity: 1;
-      transform: translateY(-4px) translateZ(14px);
-      box-shadow: 0 0 22px -6px tint(45%);
-    }
-    #{$clear + 6%},
-    100% {
-      opacity: 0.3;
-      transform: translateY(0) translateZ(0);
-      box-shadow: none;
-    }
-  }
-  @keyframes launch-dot-#{$index} {
-    0%,
-    #{$at} {
-      background: var(--background);
-      border-color: tint(35%);
-    }
-    #{$at + 3%},
-    #{$clear} {
-      background: var(--foreground);
-      border-color: var(--foreground);
-    }
-    #{$clear + 6%},
-    100% {
-      background: var(--background);
-      border-color: tint(35%);
-    }
-  }
-}
-/* The teaser: the product as a mystery, a dashed outline with a question mark. */
-.teaser {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1.5px dashed tint(70%);
-  border-radius: 5px;
-  &::after {
-    content: "?";
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--foreground);
-  }
-}
-/* The landing page: a little browser window with a headline, a picture and a button. */
-.page {
-  position: relative;
-  width: 40px;
-  height: 50px;
-  border: 1.5px solid tint(70%);
-  border-radius: 4px;
-  background:
-    linear-gradient(var(--foreground), var(--foreground)) 6px 10px / 24px 3px,
-    linear-gradient(tint(40%), tint(40%)) 6px 16px / 16px 2px,
-    linear-gradient(tint(25%), tint(25%)) 6px 22px / 25px 12px,
-    linear-gradient(var(--foreground), var(--foreground)) 6px 38px / 14px 5px;
-  background-repeat: no-repeat;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 4px;
-    border-top: 1.5px solid tint(40%);
-  }
-}
-/* The campaign: a megaphone and the sound it sends out. */
-.campaign {
-  position: relative;
-  width: 40px;
-  height: 30px;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 4px;
-    width: 22px;
-    height: 22px;
-    background: var(--foreground);
-    clip-path: polygon(0 35%, 30% 35%, 100% 0, 100% 100%, 30% 65%, 0 65%);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: 3px;
-    width: 18px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-right-color: tint(70%);
-  }
-}
-/* Launch day: the product revealed, a solid box with a star of light behind it. */
-.launch {
-  position: relative;
-  width: 26px;
-  height: 34px;
-  border-radius: 4px;
-  background: linear-gradient(160deg, var(--foreground), tint(55%));
-  box-shadow: 0 0 18px tint(55%);
-  &::before {
-    content: "";
-    position: absolute;
-    inset: -14px;
-    z-index: -1;
-    background: repeating-conic-gradient(tint(35%) 0 6deg, transparent 6deg 30deg);
-    mask: radial-gradient(circle, #000 30%, transparent 70%);
-    border-radius: 50%;
-  }
-}
-/* Confetti flying out of launch day once it is reached. */
-.confetti {
+/* Each number rises into place out of a blur and flows away upwards as the next one comes in. */
+.number {
   position: absolute;
-  left: calc(100% - 32px);
-  top: 46px;
-  width: 0;
-  height: 0;
-  transform: translateZ(20px);
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display, inherit);
+  font-size: 30px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+  opacity: 0;
+  @include loop(launch-number $round $ease infinite backwards);
+}
+@keyframes launch-number {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(1.25);
+    filter: blur(6px);
+  }
+  6%,
+  16% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  23%,
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.85);
+    filter: blur(6px);
+  }
+}
+/* The launch pad, and the smoke that spreads over it at lift-off. */
+.pad {
+  position: absolute;
+  left: -50px;
+  top: 74px;
+  width: 100px;
+  height: 4px;
+  border-radius: 2px;
+  background: tint(30%);
   i {
     position: absolute;
-    left: -2px;
-    top: -4px;
-    width: 4px;
-    height: 8px;
-    border-radius: 1px;
-    background: var(--foreground);
+    left: 50%;
+    top: -14px;
+    width: 26px;
+    height: 26px;
+    margin-left: -13px;
+    border-radius: 50%;
+    background: radial-gradient(circle, tint(40%), transparent 70%);
     opacity: 0;
-    @include loop(launch-confetti $round ease-out infinite);
+    @include loop(launch-smoke $round ease-out infinite);
   }
 }
-@keyframes launch-confetti {
+@keyframes launch-smoke {
   0%,
-  #{$first + 3 * $step} {
+  60% {
     opacity: 0;
-    transform: rotate(var(--angle)) translateY(-8px) rotate(0deg);
+    transform: translateX(0) scale(0.4);
   }
-  #{$first + 3 * $step + 2%} {
+  64% {
     opacity: 1;
   }
-  #{$first + 3 * $step + 18%},
+  84%,
   100% {
     opacity: 0;
-    transform: rotate(var(--angle)) translateY(calc(-1 * var(--reach))) rotate(220deg);
+    transform: translateX(calc(var(--side) * 70px)) translateY(-10px) scale(2.2);
+  }
+}
+/* The rocket: standing on the pad, rising faster and faster at zero, then the next one appearing in its place. */
+.rocket {
+  position: absolute;
+  left: -20px;
+  top: -18px;
+  width: 40px;
+  height: 92px;
+  @include loop(launch-rocket $round infinite);
+  svg {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+  }
+}
+@keyframes launch-rocket {
+  0%,
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  63% {
+    transform: translateY(2px);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+  84% {
+    opacity: 1;
+    transform: translateY(-340px);
+  }
+  85% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  92% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+    animation-timing-function: $ease;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.body {
+  fill: var(--background);
+  stroke: var(--foreground);
+  stroke-width: 1.5;
+}
+.window {
+  fill: tint(30%);
+  stroke: var(--foreground);
+  stroke-width: 1.5;
+}
+.fin {
+  fill: tint(40%);
+  stroke: var(--foreground);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+/* The engine's flame: lit at zero, flickering as it burns. */
+.flame {
+  fill: var(--foreground);
+  filter: drop-shadow(0 0 6px tint(80%));
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  @include loop(launch-flame $round linear infinite);
+}
+@keyframes launch-flame {
+  0%,
+  58% {
+    transform: scaleY(0);
+  }
+  61% {
+    transform: scaleY(1.2);
+  }
+  @for $step from 0 through 10 {
+    #{62% + $step * 2%} {
+      transform: scaleY(if($step % 2 == 0, 0.8, 1.25));
+    }
+  }
+  84%,
+  100% {
+    transform: scaleY(0);
+  }
+}
+/* The trail left behind, stretching as the rocket climbs and fading. */
+.trail {
+  position: absolute;
+  left: 50%;
+  top: 86px;
+  width: 3px;
+  height: 120px;
+  margin-left: -1.5px;
+  background: linear-gradient(180deg, tint(70%), transparent);
+  transform-origin: top;
+  transform: scaleY(0);
+  @include loop(launch-trail $round ease-in infinite);
+}
+@keyframes launch-trail {
+  0%,
+  62% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  80% {
+    transform: scaleY(1.6);
+    opacity: 1;
+  }
+  84%,
+  100% {
+    transform: scaleY(1.6);
+    opacity: 0;
   }
 }
