@@ -37,7 +37,7 @@ describe("service card buttons", () => {
       </>,
     );
     // Every card has its own button, and each ticks its own choice.
-    expect(screen.getAllByRole("article")).toHaveLength(15);
+    expect(screen.getAllByRole("article")).toHaveLength(18);
     const platform = screen.getByRole("link", { name: "Build a Platform" });
     expect(platform.getAttribute("href")).toBe("#contact");
     fireEvent.click(platform);
@@ -55,8 +55,9 @@ describe("service card buttons", () => {
     expect(screen.getByRole("group", { name: "Creative" }).textContent).toContain("Merchandise");
     expect(screen.getByRole("group", { name: "Web" }).textContent).toContain("Professional Email");
     expect(screen.getByRole("group", { name: "Something Else" }).textContent).toContain("I don't know what I need");
-    // The PWA card, alone in its group, lists its reasons.
-    expect(screen.getByText("No store in between")).toBeTruthy();
+    // Web has Hosting before Professional Email; Desktop & Mobile has the PWA, then Android and iOS.
+    expect(screen.getByRole("group", { name: "Web" }).textContent).toMatch(/Hosting.*Professional Email/);
+    expect(screen.getByRole("group", { name: "Desktop & Mobile" }).textContent).toMatch(/PWA.*Android App.*iOS App/);
     expect(
       document.querySelector('input[name="need"][value="website"]')!.closest("label")!.hasAttribute("data-requested"),
     ).toBe(true);

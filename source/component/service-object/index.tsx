@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { AndroidApplication } from "@sharadox/sharadox-web-library/component/service-object/android-application";
 import { BrandAwareness } from "@sharadox/sharadox-web-library/component/service-object/brand-awareness";
 import { Branding } from "@sharadox/sharadox-web-library/component/service-object/branding";
 import { BrandingDesign } from "@sharadox/sharadox-web-library/component/service-object/branding-design";
@@ -8,6 +9,8 @@ import { LeadGeneration } from "@sharadox/sharadox-web-library/component/service
 import { Platform } from "@sharadox/sharadox-web-library/component/service-object/platform";
 import { PrintDesign } from "@sharadox/sharadox-web-library/component/service-object/print-design";
 import { ProfessionalEmail } from "@sharadox/sharadox-web-library/component/service-object/professional-email";
+import { Hosting } from "@sharadox/sharadox-web-library/component/service-object/hosting";
+import { IosApplication } from "@sharadox/sharadox-web-library/component/service-object/ios-application";
 import { ProductLaunch } from "@sharadox/sharadox-web-library/component/service-object/product-launch";
 import { ProgressiveWebApplication } from "@sharadox/sharadox-web-library/component/service-object/progressive-web-application";
 import { Rebranding } from "@sharadox/sharadox-web-library/component/service-object/rebranding";
@@ -23,8 +26,11 @@ const OBJECTS: Record<ServiceCardKey, ComponentType> = {
   website: Website,
   platform: Platform,
   "e-commerce": ECommerce,
+  hosting: Hosting,
   "professional-email": ProfessionalEmail,
   "progressive-web-application": ProgressiveWebApplication,
+  "android-application": AndroidApplication,
+  "ios-application": IosApplication,
   branding: Branding,
   rebranding: Rebranding,
   "branding-design": BrandingDesign,
