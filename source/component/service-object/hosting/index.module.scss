@@ -1,0 +1,162 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* One round: steady running, the incident (from 40%), the fix (from 58%), and steady running again. */
+$round: 8s;
+
+.object {
+  @include centered(0px, 0px);
+  @include loop(hosting-sway 12s ease-in-out infinite);
+  transform: translateY(16px) rotateX(-12deg) rotateY(-24deg);
+}
+@keyframes hosting-sway {
+  0%,
+  100% {
+    transform: translateY(16px) rotateX(-12deg) rotateY(-24deg);
+  }
+  50% {
+    transform: translateY(16px) rotateX(-8deg) rotateY(14deg);
+  }
+}
+.server {
+  --width: 120px;
+  --height: 30px;
+  --depth: 84px;
+  --radius: 3px;
+  --fill-amount: 8%;
+  --front-amount: 10%;
+  --edge-amount: 60%;
+  &:nth-child(2) {
+    transform: translateY(-36px);
+  }
+  &:nth-child(4) {
+    transform: translateY(36px);
+  }
+}
+/* A server's front: three status lights and a vent. */
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--foreground);
+    box-shadow: 0 0 6px tint(70%);
+    @include loop(hosting-blink 1.1s steps(2, jump-none) infinite);
+  }
+  b {
+    flex: 1;
+    height: 12px;
+    margin-left: 10px;
+    background: repeating-linear-gradient(90deg, tint(35%) 0 2px, transparent 2px 6px);
+  }
+}
+@keyframes hosting-blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
+/* The server with the incident: its lights go out, then come back once it is fixed. */
+.panel[data-incident] {
+  @include loop(hosting-incident $round linear infinite);
+}
+@keyframes hosting-incident {
+  0%,
+  40% {
+    opacity: 1;
+    filter: none;
+  }
+  42%,
+  56% {
+    opacity: 0.15;
+  }
+  60% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px tint(80%));
+  }
+  72%,
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+}
+/* The ring of light and the tick when the server is back up. */
+.fixed {
+  @include centered(30px, 30px);
+  border-radius: 50%;
+  border: 1.5px solid var(--foreground);
+  background: var(--background);
+  transform: translateX(92px) translateZ(44px);
+  opacity: 0;
+  @include loop(hosting-fixed $round $ease infinite);
+  &::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    width: 7px;
+    height: 12px;
+    border-right: 2px solid var(--foreground);
+    border-bottom: 2px solid var(--foreground);
+    transform: rotate(45deg);
+  }
+}
+@keyframes hosting-fixed {
+  0%,
+  57% {
+    opacity: 0;
+    transform: translateX(92px) translateZ(44px) scale(0.4);
+  }
+  62%,
+  84% {
+    opacity: 1;
+    transform: translateX(92px) translateZ(44px) scale(1);
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateX(92px) translateZ(44px) scale(1);
+  }
+}
+/* The uptime monitor above the rack: a faint track, and the beat drawn along it, dipping at the incident. */
+.monitor {
+  position: absolute;
+  left: -110px;
+  top: -122px;
+  width: 220px;
+  height: 56px;
+  overflow: visible;
+  path {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+.track {
+  stroke: tint(18%);
+}
+.beat {
+  stroke: var(--foreground);
+  filter: drop-shadow(0 0 4px tint(60%));
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 0;
+  @include loop(hosting-beat $round linear infinite);
+}
+@keyframes hosting-beat {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  90%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
