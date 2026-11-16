@@ -37,7 +37,7 @@ describe("service card buttons", () => {
       </>,
     );
     // Every card has its own button, and each ticks its own choice.
-    expect(screen.getAllByRole("article")).toHaveLength(16);
+    expect(screen.getAllByRole("article")).toHaveLength(15);
     const platform = screen.getByRole("link", { name: "Build a Platform" });
     expect(platform.getAttribute("href")).toBe("#contact");
     fireEvent.click(platform);
@@ -52,7 +52,7 @@ describe("service card buttons", () => {
     expect(checked).toEqual(["website", "platform", "social-media-strategy", "not-listed"]);
     // The choices are grouped like the services, then the two for visitors who aren't sure.
     expect(screen.getByRole("group", { name: "Marketing Campaigns" }).querySelectorAll("input")).toHaveLength(5);
-    expect(screen.getByRole("group", { name: "Creative Services" }).textContent).toContain("Merchandise");
+    expect(screen.getByRole("group", { name: "Creative Services" }).textContent).toContain("Print Design");
     expect(screen.getByRole("group", { name: "Something Else" }).textContent).toContain("I don't know what I need");
     // The PWA card, alone in its group, lists its reasons.
     expect(screen.getByText("No store in between")).toBeTruthy();
@@ -168,8 +168,11 @@ describe("Button", () => {
           Go
         </Button>
         <Button disabled>Wait</Button>
+        <Button href="mailto:contact@sharadox.com">Email</Button>
       </>,
     );
+    // Email and other sites stay plain links.
+    expect(screen.getByRole("link", { name: "Email" }).getAttribute("href")).toBe("mailto:contact@sharadox.com");
     expect(screen.getByRole("link", { name: /Go/ }).className).toContain("ghost");
     expect((screen.getByRole("button", { name: "Wait" }) as HTMLButtonElement).disabled).toBe(true);
   });

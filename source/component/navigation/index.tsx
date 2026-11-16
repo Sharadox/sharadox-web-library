@@ -1,4 +1,5 @@
 "use client";
+import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import { classNames } from "@sharadox/web-library/class-name";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
@@ -15,6 +16,9 @@ import styles from "./index.module.scss";
 import type { NavigationProperties } from "@sharadox/sharadox-web-library/component/navigation/type";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** The menu's section links, entering one after another. */
+const MotionSectionLink = motion.create(SectionLink);
 
 /** Where the bar has room for every link; below it they move into the menu (keep in step with the styles). */
 const WIDE = "(min-width: 1101px)";
@@ -46,9 +50,9 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
           <Wordmark href={`/${locale}`} />
           <nav className={styles.links} aria-label={translate(NAVIGATION.main, locale)}>
             {links.map((link) => (
-              <a key={link.href} href={link.href}>
+              <SectionLink key={link.href} href={link.href}>
                 {link.name}
-              </a>
+              </SectionLink>
             ))}
           </nav>
           <div className={styles.end}>
@@ -84,7 +88,7 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
             transition={{ duration: 0.35 }}
           >
             {links.map((link, index) => (
-              <motion.a
+              <MotionSectionLink
                 key={link.href}
                 href={link.href}
                 initial={{ opacity: 0, y: 20 }}
@@ -93,7 +97,7 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
               >
                 <span className="monospace">{String(index + 1).padStart(2, "0")}</span>
                 {link.name}
-              </motion.a>
+              </MotionSectionLink>
             ))}
             <motion.div
               className={styles.menuAction}
