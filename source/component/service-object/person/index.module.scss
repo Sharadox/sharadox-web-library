@@ -1,0 +1,38 @@
+@use "style/token" as *;
+
+.person {
+  --size: 22px;
+  --person: #{tint(55%)};
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  // The head.
+  &::before {
+    content: "";
+    position: absolute;
+    left: 30%;
+    top: 0;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background: var(--person);
+  }
+  // The shoulders.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 6%;
+    bottom: 0;
+    width: 88%;
+    height: 50%;
+    border-radius: 50% 50% 18% 18% / 70% 70% 18% 18%;
+    background: var(--person);
+  }
+}
+/* Registered, so a change of color can be animated smoothly. */
+@property --person {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
