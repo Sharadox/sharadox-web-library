@@ -10,7 +10,7 @@
   @include centered(150px, 150px);
   @include loop(merch-sway 8s ease-in-out infinite);
   transform: translate3d(-58px, 4px, -20px) rotateY(18deg);
-  background: tint(16%);
+  background: tint($faint);
   clip-path: polygon(
     30% 6%,
     41% 6%,
@@ -43,7 +43,7 @@
   width: 18%;
   height: 9%;
   border-radius: 0 0 50% 50%;
-  background: tint(34%);
+  background: tint($detail);
 }
 .mark {
   position: absolute;
@@ -72,20 +72,20 @@
 }
 .side {
   @include centered(11px, 112px);
-  border-top: 1px solid tint(45%);
-  border-bottom: 1px solid tint(45%);
+  border-top: 1px solid tint($edge);
+  border-bottom: 1px solid tint($edge);
   border-radius: 2px;
-  background: tint(10%);
-  box-shadow: inset 1px 0 0 tint(18%);
+  background: tint($hint);
+  box-shadow: inset 1px 0 0 tint($glow);
   backface-visibility: hidden;
   &[data-label] {
-    background: linear-gradient(transparent 30%, tint(55%) 30%, tint(55%) 66%, transparent 66%), tint(10%);
+    background: linear-gradient(transparent 30%, tint($detail) 30%, tint($detail) 66%, transparent 66%), tint($hint);
   }
 }
 .cap {
   @include centered(11px, 20px);
   border-radius: 2px;
-  background: tint(30%);
-  border-top: 1px solid tint(60%);
+  background: tint($faint);
+  border-top: 1px solid tint($edge);
   backface-visibility: hidden;
 }

@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 const SERVERS = 3;
 /**
  * Hosting: what we build, kept running. A rack of servers, their lights blinking. Then one server has an incident and
- * its lights go out. It is looked after at once: the server comes back with a glow and a tick.
+ * its lights go out; it is looked after at once and comes back on with a glow.
  */
 export function Hosting() {
   return (
@@ -24,7 +24,6 @@ export function Hosting() {
           }
         />
       ))}
-      <span className={styles.fixed} />
     </div>
   );
 }

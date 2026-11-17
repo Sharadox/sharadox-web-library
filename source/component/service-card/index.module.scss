@@ -16,6 +16,7 @@
   }
 }
 .inner {
+  align-items: stretch;
   --tilt-x: 0deg;
   --tilt-y: 0deg;
   display: flex;
@@ -34,6 +35,7 @@
   }
 }
 .copy {
+  justify-content: flex-start;
   flex: 1;
   display: flex;
   flex-direction: column;

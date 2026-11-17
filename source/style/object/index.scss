@@ -12,11 +12,37 @@
   transform-style: preserve-3d;
 }
 
-/// A flat surface of an object: a light fill and a hairline edge.
-@mixin face($fill: 5%, $edge: 38%) {
+// The one palette every object is drawn in, so they all read alike, in every style. Surfaces are opaque (nothing
+// behind them shows through) and share one hairline edge; whatever is drawn on them steps up in strength by role.
+// Anything that is the point of the moment (a light, the selected anchor, the mark) is the full foreground color.
+
+/// A face's fill.
+$surface: 9%;
+/// A face that sits on another one, such as a card on a board.
+$raised: 16%;
+/// Every outline.
+$edge: 50%;
+/// Barely there: fills drawn on a surface, fine grids.
+$hint: 10%;
+/// The faintest marks: grids, dividers, placeholder text.
+$faint: 20%;
+/// Drawn details: icons, dots, strokes, placeholder pictures.
+$detail: 45%;
+/// Strong details, just short of the highlight.
+$strong: 70%;
+/// Glows and the shadows under objects.
+$glow: 35%;
+
+/// An opaque color between the background and the foreground, for surfaces.
+@function surface($amount: $surface) {
+  @return color-mix(in srgb, var(--foreground) $amount, var(--background));
+}
+
+/// A flat surface of an object: an opaque fill and the hairline edge.
+@mixin face($fill: $surface, $edge-amount: $edge) {
   box-sizing: border-box;
-  background: tint($fill);
-  border: 1px solid tint($edge);
+  background: surface($fill);
+  border: 1px solid tint($edge-amount);
 }
 
 /// A looping animation that holds still for visitors who ask for less motion.

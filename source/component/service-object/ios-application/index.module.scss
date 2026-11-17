@@ -23,8 +23,6 @@ $round: 6s;
   --height: 178px;
   --depth: 9px;
   --radius: 20px;
-  --front-amount: 4%;
-  --edge-amount: 55%;
 }
 .screen {
   position: absolute;
@@ -50,7 +48,7 @@ $round: 6s;
     bottom: 5px;
     height: 2px;
     border-radius: 1px;
-    background: linear-gradient(90deg, var(--background) var(--done, 0%), tint(70%) var(--done, 0%));
+    background: linear-gradient(90deg, var(--background) var(--done, 0%), tint($strong) var(--done, 0%));
     opacity: 0;
     @include loop(ios-activity $round linear infinite);
   }
@@ -95,6 +93,9 @@ $round: 6s;
 }
 /* App icons: rounded squares, four to a row, jiggling for a moment as when they are being arranged. */
 .apps {
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
   position: absolute;
   inset: 26px 9px auto;
   display: grid;
@@ -103,8 +104,8 @@ $round: 6s;
   i {
     aspect-ratio: 1;
     border-radius: 30%;
-    border: 1px solid tint(45%);
-    background: linear-gradient(150deg, tint(30%), tint(10%));
+    border: 1px solid tint($edge);
+    background: linear-gradient(150deg, tint($faint), tint($hint));
     @include loop(ios-jiggle $round linear infinite);
     &:nth-child(odd) {
       animation-name: ios-jiggle-other;
@@ -149,7 +150,7 @@ $round: 6s;
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background: tint(35%);
+    background: tint($detail);
     &:first-child {
       background: var(--foreground);
     }
@@ -166,12 +167,12 @@ $round: 6s;
   gap: 6px;
   padding: 4px;
   border-radius: 9px;
-  background: tint(14%);
+  background: tint($faint);
   i {
     aspect-ratio: 1;
     border-radius: 30%;
-    border: 1px solid tint(45%);
-    background: linear-gradient(150deg, tint(40%), tint(14%));
+    border: 1px solid tint($edge);
+    background: linear-gradient(150deg, tint($detail), tint($faint));
   }
 }
 .indicator {
@@ -182,5 +183,5 @@ $round: 6s;
   height: 3px;
   margin-left: -15px;
   border-radius: 2px;
-  background: tint(60%);
+  background: tint($detail);
 }

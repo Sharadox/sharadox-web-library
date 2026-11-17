@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .indicator {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   --page: 0;
   --within: 0;
   position: fixed;

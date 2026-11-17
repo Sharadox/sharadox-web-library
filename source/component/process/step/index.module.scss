@@ -1,6 +1,7 @@
 @use "style/token" as *;
 
 .step {
+  align-content: start;
   position: relative;
   h3 {
     margin: 14px 0 10px;

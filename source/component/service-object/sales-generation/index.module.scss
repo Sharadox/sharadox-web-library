@@ -18,10 +18,10 @@
 }
 .base {
   @include centered(170px, 60px);
-  @include face(4%, 35%);
+  @include face;
   border-radius: 4px;
   transform: rotateX(90deg);
-  background: radial-gradient(circle, tint(22%) 1px, transparent 1.5px) 0 0 / 10px 10px;
+  background: radial-gradient(circle, tint($faint) 1px, transparent 1.5px) 0 0 / 10px 10px;
 }
 $heights: 0.32, 0.5, 0.42, 0.72, 1;
 .column {
@@ -53,13 +53,10 @@ $heights: 0.32, 0.5, 0.42, 0.72, 1;
   --width: 20px;
   --height: 130px;
   --depth: 20px;
-  --fill-amount: 10%;
-  --edge-amount: 60%;
-  --top-amount: 45%;
+  --top-amount: #{$detail};
   transform: translateY(-65px);
 }
 .column[data-bar="4"] .bar {
-  --fill-amount: 22%;
-  --edge-amount: 85%;
-  --top-amount: 90%;
+  --fill-amount: #{$raised};
+  --top-amount: 100%;
 }

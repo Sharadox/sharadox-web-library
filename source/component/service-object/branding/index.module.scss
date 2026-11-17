@@ -1,130 +1,186 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
+/* One round: the fields fill in one after another, the finished card lifts and holds, then clears for the next. */
+$round: 8s;
+/* The fields, in order: the mark, the name, who it speaks to, the voice, the colors and the type. */
+$steps: 6;
+
 .object {
   @include centered(0px, 0px);
   @include loop(branding-sway 10s ease-in-out infinite);
-  transform: rotateX(38deg) rotateZ(-14deg);
+  transform: rotateX(18deg) rotateY(-20deg);
 }
 @keyframes branding-sway {
   0%,
   100% {
-    transform: rotateX(38deg) rotateZ(-14deg);
+    transform: rotateX(18deg) rotateY(-22deg);
   }
   50% {
-    transform: rotateX(30deg) rotateZ(-4deg);
+    transform: rotateX(10deg) rotateY(-6deg);
   }
 }
-/* The board the brand is defined on: four places, two by two. */
-.board {
-  @include centered(176px, 136px);
-  @include face(4%, 36%);
+/* The identity card: the portrait on the left, the name and the rows on the right. */
+.card {
+  align-items: stretch;
+  align-content: stretch;
+  @include centered(196px, 124px);
+  @include face;
+  @include loop(branding-card $round $ease infinite);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 8px;
+  grid-template-columns: 52px 1fr 1fr;
+  grid-template-rows: 14px 8px 1fr 1fr;
+  gap: 8px 10px;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 24px 50px -26px tint($glow);
 }
-/* Each piece drops onto its place, stays while the mark shows, then lifts away for the next round. */
-.piece {
-  @include face(9%, 48%);
-  display: grid;
-  place-items: center;
-  border-radius: 5px;
-  transform-style: preserve-3d;
-  @include loop(branding-place 8s $ease infinite backwards);
-}
-@keyframes branding-place {
-  0% {
-    opacity: 0;
-    transform: translateZ(70px);
-  }
-  10%,
-  78% {
-    opacity: 1;
+@keyframes branding-card {
+  0%,
+  70% {
     transform: translateZ(0);
   }
-  90%,
+  76%,
+  92% {
+    transform: translateZ(26px);
+  }
   100% {
-    opacity: 0;
-    transform: translateZ(40px);
+    transform: translateZ(0);
+  }
+}
+/* Each field fills in at its step, and they all clear together at the end of the round. */
+@for $step from 0 through $steps - 1 {
+  $start: 4% + $step * 10%;
+  .card [data-step="#{$step}"] {
+    @include loop(branding-step-#{$step} $round $ease infinite);
+  }
+  @keyframes branding-step-#{$step} {
+    0%,
+    #{$start} {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    #{$start + 6%},
+    92% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    98%,
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+}
+/* The portrait: the brand's mark. */
+.portrait {
+  @include face($raised);
+  position: relative;
+  grid-row: 1 / 5;
+  border-radius: 6px;
+}
+.mark {
+  --size: 34px;
+}
+/* The name, written left to right, and a tagline under it. */
+.name,
+.tagline {
+  grid-column: 2 / 4;
+  border-radius: 3px;
+  transform-origin: left;
+}
+.name {
+  width: 80%;
+  background: var(--foreground);
+}
+.tagline {
+  width: 56%;
+  background: tint($detail);
+}
+.card .name[data-step],
+.card .tagline[data-step] {
+  @include loop(branding-write $round $ease infinite);
+}
+@keyframes branding-write {
+  0%,
+  14% {
+    transform: scaleX(0);
+  }
+  22%,
+  92% {
+    transform: scaleX(1);
+  }
+  98%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+/* A row: an icon and, for some, a short note. */
+.row {
+  @include face($raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 7px;
+  border-radius: 5px;
+  b {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: tint($faint);
   }
 }
 /* Who it speaks to: a target. */
 .audience {
-  width: 30px;
-  height: 30px;
+  flex: none;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    var(--foreground) 0 3px,
-    transparent 4px 7px,
-    tint(60%) 8px 9px,
-    transparent 10px 13px,
-    tint(40%) 14px
+    var(--foreground) 0 2px,
+    transparent 2.5px 4.5px,
+    tint($strong) 5px 6px,
+    transparent 6.5px 8px,
+    tint($detail) 8.5px
   );
 }
 /* Its voice: a speech bubble. */
 .voice {
   position: relative;
-  width: 36px;
-  height: 22px;
-  border-radius: 6px;
-  border: 1.5px solid tint(70%);
-  background: repeating-linear-gradient(180deg, transparent 0 5px, tint(40%) 5px 7px) 6px 2px / 22px 14px no-repeat;
+  flex: none;
+  width: 20px;
+  height: 13px;
+  border-radius: 4px;
+  border: 1.5px solid tint($strong);
   &::after {
     content: "";
     position: absolute;
-    left: 6px;
-    bottom: -6px;
-    width: 8px;
-    height: 8px;
-    border-right: 1.5px solid tint(70%);
-    border-bottom: 1.5px solid tint(70%);
-    background: var(--background);
-    transform: skewX(30deg) rotate(45deg) scale(0.7);
+    left: 3px;
+    bottom: -5px;
+    border: 3px solid transparent;
+    border-top-color: tint($strong);
+    border-left-color: tint($strong);
   }
 }
 /* Its colors: three swatches. */
 .colors {
   display: block;
-  width: 44px;
-  height: 14px;
+  width: 40px;
+  height: 12px;
   background:
-    radial-gradient(circle, var(--foreground) 6px, transparent 7px) 0 0 / 15px 14px,
-    radial-gradient(circle, tint(55%) 6px, transparent 7px) 15px 0 / 15px 14px,
-    radial-gradient(circle, tint(25%) 6px, transparent 7px) 30px 0 / 15px 14px;
+    radial-gradient(circle, var(--foreground) 5px, transparent 5.5px) 0 0 / 13px 12px,
+    radial-gradient(circle, tint($detail) 5px, transparent 5.5px) 13px 0 / 13px 12px,
+    radial-gradient(circle, tint($faint) 5px, transparent 5.5px) 26px 0 / 13px 12px;
   background-repeat: no-repeat;
 }
 /* Its type. */
 .type {
   font-family: var(--font-display, inherit);
-  font-size: 22px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 600;
+  line-height: 1;
   color: var(--foreground);
-}
-/* Once every piece is in place, the brand's mark rises over the middle of the board. */
-.mark {
-  --size: 36px;
-  @include loop(branding-mark 8s $ease infinite);
-  box-shadow: 0 0 28px -4px tint(40%);
-  transform: translateZ(46px);
-}
-@keyframes branding-mark {
-  0%,
-  34% {
-    opacity: 0;
-    transform: translateZ(0) scale(0.4);
-  }
-  44%,
-  78% {
-    opacity: 1;
-    transform: translateZ(46px) scale(1);
-  }
-  90%,
-  100% {
-    opacity: 0;
-    transform: translateZ(70px) scale(0.8);
-  }
 }

@@ -2,6 +2,8 @@
 
 /* The shared panel, in the Sharadox style: its colors, the grid's sharp corners, bottom-left of the screen. */
 .consent {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   --consent-background: var(--background);
   --consent-foreground: var(--foreground);
   --consent-muted: var(--foreground-2);
