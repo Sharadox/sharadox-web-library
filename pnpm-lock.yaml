@@ -33,8 +33,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
       '@sharadox/metadata-web-library':
-        specifier: ^0.2.0
-        version: 0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.6.0
+        version: 0.6.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library':
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
@@ -839,12 +839,17 @@ packages:
       react:
         optional: true
 
-  '@sharadox/metadata-web-library@0.2.0':
-    resolution: {integrity: sha512-iMeQVeF60p18+eEQILeBPh3pW9DzxuTug/9QV0telbNAW5wGihU3emX+T2aV1vqB7eNoonSyA29iGqpFR0CaJQ==}
+  '@sharadox/metadata-web-library@0.6.0':
+    resolution: {integrity: sha512-5KhbetoeprE0e/avmCeQyfz1x92RvHwtN7OXdQpsvQOulDb35/Wie/i1yibys2pCxoKpK3KMDdUhWKi+ruViLA==}
     engines: {node: '>=26'}
+    hasBin: true
     peerDependencies:
+      '@resvg/resvg-js': '>=2'
       next: '>=16'
       react: '>=19'
+    peerDependenciesMeta:
+      '@resvg/resvg-js':
+        optional: true
 
   '@sharadox/pointer-web-library@0.1.0':
     resolution: {integrity: sha512-WIE+yq7wlf+Ig+Pp8PKnjHOKslnCSxtMtvRNa1VnGszUH59VZbWcsxW02g2rUKCWwOJlNeBC9YTb7jo57PgKEw==}
@@ -2747,7 +2752,7 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/metadata-web-library@0.2.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+  '@sharadox/metadata-web-library@0.6.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/internationalization-web-library': 0.1.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/web-library': 0.7.0
