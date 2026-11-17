@@ -1,22 +1,28 @@
 import { createContactAction } from "@sharadox/form-web-library/contact-action";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { readFile } from "node:fs/promises";
+
+/** The logo at the top of every email: the app icon, shipped with the library (distribution/asset/email). */
+const LOGO = new URL("../../asset/email/logo.png", import.meta.url);
 
 /**
  * The contact form's work, called by the application's server action (which adds the visitor's IP address). It
  * emails contact@sharadox.com from contact@web.sharadox.com, on the sending subdomain (`EMAIL_SENDER_ADDRESS`, through
- * Amazon SES over SMTP: `EMAIL_SERVER_*`) as "Sharadox Web Application", with the visitor as reply-to and the subject
- * "Contact · Name (Company)". It needs a name, an email or a phone, at least one choice and a message of at least
- * `CONTACT.minimumMessageLength` characters. Each address may send 5 messages an hour and everyone together 50
- * emails a day, which caps what a flood can cost.
+ * Amazon SES over SMTP: `EMAIL_SERVER_*`) as "Sharadox Web Application", with the subject
+ * "Sharadox Web Application · Contact · Name (Company)" and the visitor as reply-to. The email starts with the logo
+ * on black and holds every detail, the message, the form's page, the language, the time and the IP. A visitor who
+ * left an email gets an automatic reply in their language. It needs a name, an email or a phone, at least one choice
+ * and a message of at least `CONTACT.minimumMessageLength` characters. Each address may send 5 messages an hour and
+ * everyone together 50 emails a day, which caps what a flood can cost.
  */
 export const sendContact = createContactAction({
   to: SITE.email,
-  senderName: CONTACT.senderName,
+  company: CONTACT.sender,
   site: "sharadox.com",
-  subject: (message) =>
-    separate(CONTACT.subject, message.company ? `${message.name} (${message.company})` : message.name),
+  logo: async () => ({ content: await readFile(LOGO), contentType: "image/png", filename: "sharadox.png" }),
+  theme: { background: "#000000", foreground: "#ffffff", accent: "#ffffff" },
+  acknowledgement: CONTACT.acknowledgement,
   choices: Object.fromEntries(CONTACT.needs.options.map((need) => [need.key, need.en])),
   // The same rules the form checks before sending.
   reach: "email-or-phone",
