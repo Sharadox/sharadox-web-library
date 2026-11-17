@@ -101,15 +101,8 @@ describe("Navigation menu", () => {
     const menu = document.getElementById("menu")!;
     expect(menu.hasAttribute("data-lenis-prevent")).toBe(true);
     const names = [...menu.querySelectorAll("a")].map((link) => link.textContent);
-    expect(names).toEqual([
-      "01Services",
-      "02One System",
-      "03Capabilities",
-      "04Process",
-      "05Contact",
-      "Start a Project",
-    ]);
-    expect(menu.querySelector("a")!.getAttribute("href")).toBe("/en#services");
+    expect(names).toEqual(["01About", "02Services", "03Capabilities", "04Process", "05Contact", "Start a Project"]);
+    expect(menu.querySelector("a")!.getAttribute("href")).toBe("/en#about");
     await act(async () => fireEvent.click(menu.querySelector("a")!));
     expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-expanded")).toBe("false");
     expect(document.documentElement.style.overflow).toBe("");
