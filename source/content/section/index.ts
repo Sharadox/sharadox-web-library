@@ -8,5 +8,6 @@ export const SECTION = {
   services: { id: "services", en: "Services", pt: "Serviços" },
   capabilities: { id: "capabilities", en: "Capabilities", pt: "Capacidades" },
   process: { id: "process", en: "Process", pt: "Processo" },
+  faq: { id: "faq", en: "Questions", pt: "Perguntas" },
   contact: { id: "contact", en: "Contact", pt: "Contacto" },
 } as const;

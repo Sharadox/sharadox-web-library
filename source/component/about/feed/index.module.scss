@@ -2,8 +2,8 @@
 @use "style/object" as *;
 
 /* One round: the events tick in one after another, hold, and clear for the next round. */
-$round: 9s;
-$events: 5;
+$round: 10s;
+$events: 6;
 /* The places it's viewed from, one after another. */
 $places: 4;
 $place: 3s;
@@ -114,7 +114,8 @@ $place: 3s;
     @for $index from 1 through $events {
       &:nth-child(#{$index}) {
         @include loop(feed-event-#{$index} $round $ease infinite);
-        .check {
+        .check,
+        .person {
           @include loop(feed-check-#{$index} $round $ease infinite);
         }
       }
@@ -130,7 +131,7 @@ $place: 3s;
 }
 /* Each event slides in at its turn, its tick filling a moment later; they all clear together at the end. */
 @for $index from 1 through $events {
-  $start: 4% + ($index - 1) * 13%;
+  $start: 4% + ($index - 1) * 12%;
   @keyframes feed-event-#{$index} {
     0%,
     #{$start} {
@@ -187,4 +188,19 @@ $place: 3s;
     border-bottom: 1.5px solid currentColor;
     transform: rotate(45deg);
   }
+}
+/* A person's initial in a circle, in place of the tick: this one was done by hand, and ticked off on a phone. */
+.person {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid tint($edge);
+  border-radius: 50%;
+  font-family: var(--monospace);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
 }
