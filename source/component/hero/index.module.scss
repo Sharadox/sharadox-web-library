@@ -12,6 +12,12 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 24px;
+  /* On wide screens the service index (one row of four, about 140px) sits under the hero, so the two together fill
+     the first screen and the four shortcuts show at its bottom. */
+  @media (min-width: 961px) {
+    min-height: calc(min(100svh, 980px) - 140px);
+    padding-bottom: 32px;
+  }
   @include below(900px) {
     grid-template-columns: 1fr;
     padding-top: 72px;

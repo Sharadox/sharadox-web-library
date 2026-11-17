@@ -13,12 +13,14 @@
 }
 .copy {
   display: grid;
-  gap: 10px;
+  gap: 18px;
   max-width: 60ch;
+  /* As big as the other sections' headings, nearly: it is the last word on the services. */
   h3 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: clamp(2.2rem, 4.8vw, 3.8rem);
     font-weight: 600;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.045em;
+    line-height: 1;
     text-wrap: balance;
   }
   p {

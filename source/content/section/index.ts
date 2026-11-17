@@ -4,8 +4,8 @@
  */
 export const SECTION = {
   home: { id: "home", en: "Home", pt: "Início" },
+  about: { id: "about", en: "About", pt: "Sobre" },
   services: { id: "services", en: "Services", pt: "Serviços" },
-  touchpoints: { id: "touchpoints", en: "One System", pt: "Um Só Sistema" },
   capabilities: { id: "capabilities", en: "Capabilities", pt: "Capacidades" },
   process: { id: "process", en: "Process", pt: "Processo" },
   contact: { id: "contact", en: "Contact", pt: "Contacto" },

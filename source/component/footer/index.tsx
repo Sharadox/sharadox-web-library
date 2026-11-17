@@ -30,13 +30,13 @@ import type { FooterProperties } from "@sharadox/sharadox-web-library/component/
 
 /**
  * The footer, in the grid frame. Four columns: the brand (slogan, email and Start a Project), the services, the
- * studio's sections, and the language and style. Under them, everything legal in a row of its own (the links:
- * license, privacy, cookie preferences, Portugal's complaints book; the consumer dispute notice), and at the very
+ * studio's sections, and the language and style. Under them, everything legal in a row of its own (the consumer
+ * dispute notice, with the links under it: license, privacy, cookie preferences, Portugal's complaints book), and at the very
  * bottom the copyright and the way back up.
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
-  const studio = [SECTION.touchpoints, SECTION.capabilities, SECTION.process, SECTION.contact];
+  const studio = [SECTION.about, SECTION.capabilities, SECTION.process, SECTION.contact];
   return (
     <footer className={styles.footer}>
       <Cross corner="top-left" />
@@ -81,8 +81,11 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <StyleSwitch locale={locale} className={styles.style} />
         </div>
       </div>
-      {/* Everything legal, in a row of its own: the links, and the consumer dispute notice. */}
+      {/* Everything legal, in a row of its own: the consumer dispute notice, and the links under it. */}
       <div className={styles.legal}>
+        <p className={styles.disputes}>
+          <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
+        </p>
         <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
           <Link href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
             {translate(LICENSE.title, locale)}
@@ -93,9 +96,6 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <ComplaintsBookLink locale={locale} />
         </nav>
-        <p className={styles.disputes}>
-          <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
-        </p>
       </div>
       <div className={styles.bottom}>
         <p className={`monospace ${styles.copyright}`}>

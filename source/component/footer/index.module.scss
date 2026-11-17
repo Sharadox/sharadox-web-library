@@ -68,37 +68,15 @@
     }
   }
 }
-/* Everything legal: the links on the left, the dispute notice on the right, on the same columns as above. */
+/* Everything legal, across the frame: the dispute notice as one line of text, the links in a row under it. */
 .legal {
-  align-items: stretch;
   display: grid;
-  grid-template-columns: 1.6fr 3fr;
+  justify-content: stretch;
+  justify-items: start;
+  gap: 14px;
+  padding: 28px var(--padding);
   border-bottom: 1px solid var(--line);
   font-size: 13px;
-  > * {
-    padding: 28px var(--padding);
-  }
-  > :first-child {
-    position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: 1px;
-      @include dashed(vertical);
-    }
-  }
-  @include below(900px) {
-    grid-template-columns: 1fr;
-    > :first-child {
-      padding-bottom: 0;
-      &::after {
-        display: none;
-      }
-    }
-  }
 }
 /* The very bottom: the copyright on the left, the way back up on the right. */
 .bottom {
@@ -173,7 +151,7 @@
   }
 }
 .disputes {
-  max-width: 72ch;
+  max-width: 120ch;
   font-size: 12px;
   line-height: 1.6;
   color: var(--foreground-3);

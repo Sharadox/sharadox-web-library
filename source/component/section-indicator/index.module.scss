@@ -7,7 +7,8 @@
   --within: 0;
   position: fixed;
   z-index: 40;
-  right: max(14px, calc((100vw - var(--maximum-width)) / 2 - 92px));
+  /* Outside the grid frame: just past its right line, in the margin beside it. */
+  left: calc(50% + min(100% - 2 * var(--gutter), var(--maximum-width)) / 2 + 14px);
   top: 50%;
   transform: translateY(-50%);
   padding: 14px 0;
@@ -143,4 +144,19 @@
 }
 .indicator:hover .current .name {
   animation: none;
+}
+/* Where the margin beside the frame is too narrow for the numbers (under 1400px wide), ticks only, shorter. */
+@include below(1399px) {
+  .indicator {
+    left: calc(50% + min(100% - 2 * var(--gutter), var(--maximum-width)) / 2 + 8px);
+  }
+  .number {
+    display: none;
+  }
+  .tick {
+    width: 8px;
+  }
+  .current .tick {
+    width: 18px;
+  }
 }

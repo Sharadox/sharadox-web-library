@@ -8,9 +8,8 @@ vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe: () => <div data-tes
 const { Navigation } = await import("@sharadox/sharadox-web-library/component/navigation");
 const { Hero } = await import("@sharadox/sharadox-web-library/component/hero");
 const { ServiceIndex } = await import("@sharadox/sharadox-web-library/component/service-index");
-const { Statement } = await import("@sharadox/sharadox-web-library/component/statement");
+const { About } = await import("@sharadox/sharadox-web-library/component/about");
 const { Services } = await import("@sharadox/sharadox-web-library/component/services");
-const { Touchpoint } = await import("@sharadox/sharadox-web-library/component/touchpoint");
 const { Capability } = await import("@sharadox/sharadox-web-library/component/capability");
 const { Marquee } = await import("@sharadox/sharadox-web-library/component/marquee");
 const { Process } = await import("@sharadox/sharadox-web-library/component/process");
@@ -19,7 +18,6 @@ const { Footer } = await import("@sharadox/sharadox-web-library/component/footer
 const { SectionIndicator } = await import("@sharadox/sharadox-web-library/component/section-indicator");
 const { Consent } = await import("@sharadox/sharadox-web-library/component/consent");
 const { StructuredData } = await import("@sharadox/sharadox-web-library/component/structured-data");
-const { STATEMENT } = await import("@sharadox/sharadox-web-library/content/statement");
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["setInterval", "clearInterval", "setTimeout", "clearTimeout"] });
@@ -44,9 +42,8 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
         <main>
           <Hero locale={locale} />
           <ServiceIndex locale={locale} />
-          <Statement text={STATEMENT[locale]} />
+          <About locale={locale} />
           <Services locale={locale} />
-          <Touchpoint locale={locale} />
           <Capability locale={locale} />
           <Marquee />
           <Process locale={locale} />
@@ -60,7 +57,7 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     await act(async () => reportIntersection());
     await act(async () => vi.advanceTimersByTime(4000));
     // Four service groups, each with its cards, and the footer has no big wordmark any more.
-    for (const id of ["web-application", "desktop-and-mobile-application", "creative", "marketing"])
+    for (const id of ["about", "web", "desktop-and-mobile", "creative", "marketing"])
       expect(document.getElementById(id)).not.toBeNull();
     expect(document.querySelectorAll("article [aria-hidden] > div > div").length).toBe(18);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(

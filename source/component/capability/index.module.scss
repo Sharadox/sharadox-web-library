@@ -88,3 +88,44 @@
     color: var(--foreground-3);
   }
 }
+/* What comes with every project: a ruled row under the sheet, each promise with a tick. */
+.included {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px 32px;
+  padding: 24px var(--padding);
+  border-top: 1px solid var(--line);
+  h3 {
+    font-size: 11.5px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--foreground-2);
+  }
+  @include below(760px) {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+.tick {
+  width: 15px;
+  height: 15px;
+  color: var(--foreground);
+}
