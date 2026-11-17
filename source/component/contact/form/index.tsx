@@ -16,7 +16,8 @@ import type { ContactFormProperties } from "@sharadox/sharadox-web-library/compo
 
 /**
  * The enquiry form: name, company, email and phone (one of them is enough), the choices grouped like the services, and
- * a message. It checks itself before sending (`contactProblems`, the same rules as the server) and shows what's
+ * a message. On wide screens, the visitor's details, the message and the send button on the left, the choices on the
+ * right. It checks itself before sending (`contactProblems`, the same rules as the server) and shows what's
  * missing under each field; honeypot and fill-time spam checks, server errors, and an animated thank-you.
  */
 export function ContactForm({ locale, action: sendAction }: ContactFormProperties) {
@@ -115,28 +116,30 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               <input name="website" tabIndex={-1} autoComplete="off" />
             </label>
           </div>
-          <div className={styles.row}>
+          <div className={styles.about}>
+            <div className={styles.row}>
+              <label className={styles.field}>
+                <span>{translate(CONTACT.name, locale)}</span>
+                <input name="name" required autoComplete="name" maxLength={120} {...described("name")} />
+                {problem("name")}
+              </label>
+              <label className={styles.field}>
+                <span>{translate(CONTACT.company, locale)}</span>
+                <input name="company" autoComplete="organization" maxLength={160} />
+              </label>
+            </div>
             <label className={styles.field}>
-              <span>{translate(CONTACT.name, locale)}</span>
-              <input name="name" required autoComplete="name" maxLength={120} {...described("name")} />
-              {problem("name")}
+              <span>{translate(CONTACT.email, locale)}</span>
+              <input name="email" type="email" autoComplete="email" maxLength={200} {...described("reach", "email")} />
+              {problem("email")}
             </label>
             <label className={styles.field}>
-              <span>{translate(CONTACT.company, locale)}</span>
-              <input name="company" autoComplete="organization" maxLength={160} />
+              <span>{translate(CONTACT.phone, locale)}</span>
+              <input name="phone" type="tel" autoComplete="tel" maxLength={40} {...described("reach", "phone")} />
+              {problem("phone")}
             </label>
+            {has("reach") ? problem("reach") : <span className={styles.hint}>{translate(CONTACT.reach, locale)}</span>}
           </div>
-          <label className={styles.field}>
-            <span>{translate(CONTACT.email, locale)}</span>
-            <input name="email" type="email" autoComplete="email" maxLength={200} {...described("reach", "email")} />
-            {problem("email")}
-          </label>
-          <label className={styles.field}>
-            <span>{translate(CONTACT.phone, locale)}</span>
-            <input name="phone" type="tel" autoComplete="tel" maxLength={40} {...described("reach", "phone")} />
-            {problem("phone")}
-          </label>
-          {has("reach") ? problem("reach") : <span className={styles.hint}>{translate(CONTACT.reach, locale)}</span>}
           <fieldset
             ref={needs}
             className={styles.services}
@@ -161,7 +164,7 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
             </div>
             {problem("needs")}
           </fieldset>
-          <label className={styles.field}>
+          <label className={`${styles.field} ${styles.message}`}>
             <span>{translate(CONTACT.message, locale)}</span>
             <textarea
               name="message"
@@ -173,20 +176,22 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
             />
             {problem("message")}
           </label>
-          {state.status !== "idle" && (
-            <p className={styles.error} role="alert">
-              {state.status === "failed" ? (
-                <>
-                  {translate(CONTACT.errors.failed, locale)} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-                </>
-              ) : (
-                translate(CONTACT.errors[state.status], locale)
-              )}
-            </p>
-          )}
-          <Button size="block" disabled={pending} arrow={!pending}>
-            {pending ? translate(CONTACT.sending, locale) : translate(CONTACT.send, locale)}
-          </Button>
+          <div className={styles.submit}>
+            {state.status !== "idle" && (
+              <p className={styles.error} role="alert">
+                {state.status === "failed" ? (
+                  <>
+                    {translate(CONTACT.errors.failed, locale)} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+                  </>
+                ) : (
+                  translate(CONTACT.errors[state.status], locale)
+                )}
+              </p>
+            )}
+            <Button size="block" disabled={pending} arrow={!pending}>
+              {pending ? translate(CONTACT.sending, locale) : translate(CONTACT.send, locale)}
+            </Button>
+          </div>
         </motion.form>
       )}
     </AnimatePresence>

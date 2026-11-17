@@ -16,8 +16,10 @@
   }
 }
 .post {
+  justify-content: stretch;
+  align-items: stretch;
   @include centered(112px, 148px);
-  @include face(5%, 46%);
+  @include face;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 7px;
@@ -32,6 +34,7 @@
   transform: translate3d(0, 6px, 0);
 }
 .author {
+  justify-content: flex-start;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -39,22 +42,23 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    border: 1px solid tint(55%);
-    background: tint(22%);
+    border: 1px solid tint($edge);
+    background: tint($faint);
   }
   i:last-child {
     width: 44px;
     height: 4px;
     border-radius: 2px;
-    background: tint(30%);
+    background: tint($faint);
   }
 }
 .picture {
   border-radius: 5px;
-  background: linear-gradient(145deg, tint(30%), tint(6%));
-  border: 1px solid tint(25%);
+  background: linear-gradient(145deg, tint($faint), tint($hint));
+  border: 1px solid tint($faint);
 }
 .actions {
+  justify-content: flex-start;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -105,11 +109,11 @@
   }
 }
 .comment {
-  border: 1.5px solid tint(60%);
+  border: 1.5px solid tint($edge);
   border-radius: 50% 50% 50% 0;
 }
 .share {
-  border: solid tint(60%);
+  border: solid tint($edge);
   border-width: 1.5px 1.5px 0 0;
   transform: rotate(45deg) scale(0.8);
 }
@@ -136,8 +140,11 @@
 }
 /* The plan: a posting calendar, its days ticked off one by one. */
 .calendar {
+  align-content: stretch;
+  justify-content: stretch;
+  align-items: stretch;
   @include centered(70px, 54px);
-  @include face(4%, 40%);
+  @include face;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
@@ -146,7 +153,7 @@
   transform: translate3d(-118px, 30px, 14px) rotateY(24deg);
   i {
     border-radius: 2px;
-    border: 1px solid tint(30%);
+    border: 1px solid tint($faint);
     @include loop(social-plan 4.2s steps(1, end) infinite);
   }
 }
@@ -157,13 +164,13 @@
   }
   9%,
   100% {
-    background: tint(45%);
+    background: tint($detail);
   }
 }
 /* The followers chart, climbing. */
 .growth {
   @include centered(58px, 60px);
-  @include face(4%, 40%);
+  @include face;
   display: flex;
   align-items: flex-end;
   gap: 5px;
@@ -173,7 +180,7 @@
   i {
     flex: 1;
     border-radius: 2px;
-    background: tint(50%);
+    background: tint($detail);
     transform-origin: bottom;
     @include loop(social-grow 3.2s $ease infinite);
     &:nth-child(1) {

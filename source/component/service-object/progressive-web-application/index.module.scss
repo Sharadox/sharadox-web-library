@@ -27,9 +27,7 @@ $period: 4s;
   --height: 46px;
   --depth: 46px;
   --radius: 6px;
-  --front-amount: 14%;
-  --top-amount: 22%;
-  --edge-amount: 70%;
+  --top-amount: #{$raised};
   transform: translateY(34px);
   @include loop(pwa-pulse $period $ease infinite);
 }
@@ -81,7 +79,7 @@ $period: 4s;
 }
 /* Each device faces the codebase a little. */
 .device {
-  @include face(4%, 50%);
+  @include face;
   position: absolute;
   padding: 7px;
   border-radius: 6px;
@@ -115,13 +113,16 @@ $period: 4s;
   top: 49px;
   width: 44px;
   height: 14px;
-  border: 1px solid tint(40%);
+  border: 1px solid tint($edge);
   border-top: 0;
   border-radius: 0 0 6px 6px;
-  background: tint(6%);
+  background: tint($hint);
 }
 /* The same app on every screen; all of them light up when the packets land. */
 .app {
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 6px 1fr 0.7fr;
@@ -129,7 +130,7 @@ $period: 4s;
   height: 100%;
   i {
     border-radius: 2px;
-    background: tint(14%);
+    background: tint($faint);
     @include loop(pwa-light $period $ease infinite);
   }
 }
@@ -143,11 +144,11 @@ $period: 4s;
   0%,
   30%,
   100% {
-    background: tint(14%);
+    background: tint($faint);
   }
   44%,
   64% {
-    background: tint(45%);
+    background: tint($detail);
   }
 }
 /* The app flying from the codebase to each device, all at the same moment. */

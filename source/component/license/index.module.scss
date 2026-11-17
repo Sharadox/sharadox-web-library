@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .license {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   padding-top: clamp(140px, 16vw, 200px);
 }
 .text {
@@ -46,4 +48,9 @@
     color: var(--foreground);
     text-underline-offset: 3px;
   }
+}
+/* The license is running text: normal flow throughout, so its headings', paragraphs' and lists' margins fold together. */
+.text,
+.text * {
+  align-content: normal;
 }

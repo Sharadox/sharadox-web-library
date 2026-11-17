@@ -29,7 +29,7 @@ export function StructuredData({ locale }: StructuredDataProperties) {
         "Software platforms",
         "E-commerce",
         "Professional email",
-        "Print design",
+        "Printing",
         "Merchandise",
         "Progressive web applications",
         "Cross-platform applications",

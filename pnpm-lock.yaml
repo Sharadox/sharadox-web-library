@@ -12,8 +12,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
-        specifier: ^0.3.0
-        version: 0.3.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.3.1
+        version: 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library':
         specifier: ^0.3.0
         version: 0.3.0
@@ -758,8 +758,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/consent-web-library@0.3.0':
-    resolution: {integrity: sha512-jIrEWFWtfrxyGEJ0OQ83QJ6vGyLLYrSEUObG84e349GclvEPgMvdMXgPXpWqeosVUWcWxN1VB4iRvvvXSIGptA==}
+  '@sharadox/consent-web-library@0.3.1':
+    resolution: {integrity: sha512-iKOlinty5YgxpDftFNP/CZKTwkOeM8DXusfG/ST6VVNfbxqYXPSG2aOmXaaHTRRYjAFBj1+4uWWMvK/7RtXy8g==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -2666,7 +2666,7 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react-dom
 
-  '@sharadox/consent-web-library@0.3.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/consent-web-library@0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)

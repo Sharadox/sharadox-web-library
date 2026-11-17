@@ -1,13 +1,17 @@
 @use "style/token" as *;
 
+/* The heading and the direct email side by side, bottoms level; the form across the whole width under them. */
 .contact {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(40px, 6vw, 96px);
-  align-items: start;
+  grid-template-columns: 1fr auto;
+  gap: clamp(32px, 4vw, 56px) clamp(32px, 6vw, 96px);
+  align-items: end;
   @include below(860px) {
     grid-template-columns: 1fr;
   }
+}
+.form {
+  grid-column: 1 / -1;
 }
 .glow {
   position: absolute;
@@ -27,12 +31,18 @@
 .text {
   color: var(--foreground-2);
   font-size: 1.1rem;
-  max-width: 30ch;
+  max-width: 34ch;
 }
 .direct {
-  margin-top: 40px;
+  justify-content: stretch;
   display: grid;
+  justify-items: end;
   gap: 6px;
+  text-align: right;
+  @include below(860px) {
+    justify-items: start;
+    text-align: left;
+  }
   :global(.monospace) {
     font-size: 12px;
     color: var(--foreground-3);

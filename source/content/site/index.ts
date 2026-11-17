@@ -9,8 +9,8 @@ export const SITE = {
   url: "https://sharadox.com",
   email: "contact@sharadox.com",
   description: {
-    en: "Sharadox is a brand studio: branding, websites, platforms, online stores, hosting, professional email, Android, iOS and web apps, print and merchandise design, and marketing campaigns, made simple. Based in the Algarve, Portugal, working worldwide.",
-    pt: "A Sharadox é um estúdio de marca: branding, websites, plataformas, lojas online, alojamento, email profissional, aplicações Android, iOS e web, design de impressos e merchandising, e campanhas de marketing, tornados simples. No Algarve, Portugal, para o mundo.",
+    en: "Sharadox is a brand studio: branding, websites, platforms, online stores, hosting, professional email, Android, iOS and web apps, printing, merchandise and marketing campaigns, made simple. Based in the Algarve, Portugal, working worldwide.",
+    pt: "A Sharadox é um estúdio de marca: branding, websites, plataformas, lojas online, alojamento, email profissional, aplicações Android, iOS e web, impressão, merchandising e campanhas de marketing, tornados simples. No Algarve, Portugal, para o mundo.",
   } satisfies Translated,
   keywords: {
     en: [
@@ -25,7 +25,7 @@ export const SITE = {
       "website hosting",
       "professional email",
       "Android and iOS apps",
-      "print design",
+      "printing",
       "merchandise",
       "social media strategy",
       "lead generation",
@@ -45,7 +45,7 @@ export const SITE = {
       "alojamento de websites",
       "email profissional",
       "aplicações Android e iOS",
-      "design de impressos",
+      "impressão",
       "merchandising",
       "estratégia de redes sociais",
       "geração de leads",

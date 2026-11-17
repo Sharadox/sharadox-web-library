@@ -26,8 +26,8 @@ export function Touchpoint({ locale }: TouchpointProperties) {
     <Section id={SECTION.touchpoints.id} className={styles.touchpoint}>
       <div className={styles.copy}>
         <SectionHeading eyebrow={translate(TOUCHPOINT.eyebrow, locale)} title={translate(TOUCHPOINT.title, locale)} />
-        <Reveal delay={0.1}>
-          <p className={styles.text}>{translate(TOUCHPOINT.text, locale)}</p>
+        <Reveal delay={0.1} className={styles.text}>
+          <p>{translate(TOUCHPOINT.text, locale)}</p>
         </Reveal>
         <ol className={styles.layers}>
           {[...TOUCHPOINT.layers].reverse().map((layer, index) => (

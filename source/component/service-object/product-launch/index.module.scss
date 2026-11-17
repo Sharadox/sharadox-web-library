@@ -30,8 +30,6 @@ $pad-top: 52px;
   --height: 10px;
   --depth: 96px;
   --radius: 3px;
-  --fill-amount: 8%;
-  --edge-amount: 50%;
   transform: translateY($pad-top + 5px);
 }
 /* The rocket stands on the pad, turning slowly on its axis; at zero it rises, faster and faster, out of sight. */
@@ -76,8 +74,8 @@ $pad-top: 52px;
   position: absolute;
   top: -$body;
   height: $body;
-  background: color-mix(in srgb, var(--foreground) var(--light), var(--background));
-  border-top: 1px solid tint(60%);
+  background: surface(var(--light));
+  border-top: 1px solid tint($edge);
 }
 .window {
   position: absolute;
@@ -96,7 +94,7 @@ $pad-top: 52px;
   bottom: $body;
   transform-origin: 50% 100%;
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: color-mix(in srgb, var(--foreground) var(--light), var(--background));
+  background: surface(var(--light));
 }
 /* A fin standing out from the base. */
 .fin {
@@ -106,7 +104,7 @@ $pad-top: 52px;
   width: 16px;
   height: 26px;
   clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
-  background: color-mix(in srgb, var(--foreground) 40%, var(--background));
+  background: surface($raised);
 }
 /* The engine's flame: two crossed sheets of light under the rocket, lit at zero, flickering as it burns. */
 .flame {
@@ -116,7 +114,7 @@ $pad-top: 52px;
   width: 16px;
   height: 30px;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background: linear-gradient(180deg, var(--foreground), tint(20%));
+  background: linear-gradient(180deg, var(--foreground), tint($faint));
   transform-origin: 50% 0;
   scale: 1 0;
   @include loop(launch-flame $round linear infinite);
@@ -146,7 +144,7 @@ $pad-top: 52px;
   top: 26px;
   width: 3px;
   height: 80px;
-  background: linear-gradient(180deg, tint(70%), transparent);
+  background: linear-gradient(180deg, tint($strong), transparent);
   transform-origin: top;
   transform: scaleY(0);
   @include loop(launch-trail $round ease-in infinite);
@@ -178,7 +176,7 @@ $pad-top: 52px;
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: radial-gradient(circle, tint(45%), transparent 70%);
+    background: radial-gradient(circle, tint($detail), transparent 70%);
     opacity: 0;
     @include loop(launch-smoke $round ease-out infinite);
   }
@@ -228,7 +226,7 @@ $pad-top: 52px;
   transform: rotate(-90deg);
   circle {
     fill: none;
-    stroke: tint(16%);
+    stroke: tint($faint);
     stroke-width: 2;
   }
   .time {

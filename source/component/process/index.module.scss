@@ -1,6 +1,7 @@
 @use "style/token" as *;
 
 .process {
+  align-items: stretch;
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -21,6 +21,7 @@
   list-style: none;
   border-top: 1px dashed var(--line-2);
   li {
+    justify-content: flex-start;
     display: flex;
     align-items: baseline;
     gap: 16px;

@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .navigation {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   position: fixed;
   z-index: 50;
   inset: 0 0 auto;
@@ -77,6 +79,7 @@
 
 /* Two lines that cross into an X while the menu is open; only where the links don't fit in the bar. */
 .toggle {
+  align-items: stretch;
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -105,6 +108,8 @@
 }
 /* The bar's frosted background, under the bar, so the two read as one. */
 .menu {
+  text-align: left;
+  align-items: stretch;
   position: fixed;
   inset: 65px 0 0;
   z-index: 49;
@@ -123,6 +128,7 @@
     margin-bottom: auto;
   }
   > a {
+    justify-content: flex-start;
     display: flex;
     align-items: baseline;
     gap: 14px;

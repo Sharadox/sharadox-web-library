@@ -18,13 +18,13 @@
 /* The artboard: a sheet with a faint grid, the drawing on it. */
 .artboard {
   @include centered(200px, 150px);
-  @include face(4%, 40%);
+  @include face;
   border-radius: 8px;
   background:
-    linear-gradient(tint(7%) 1px, transparent 1px) 0 0 / 20px 20px,
-    linear-gradient(90deg, tint(7%) 1px, transparent 1px) 0 0 / 20px 20px,
-    tint(3%);
-  box-shadow: 0 24px 50px -26px tint(35%);
+    linear-gradient(tint($hint) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(90deg, tint($hint) 1px, transparent 1px) 0 0 / 20px 20px,
+    tint($hint);
+  box-shadow: 0 24px 50px -26px tint($glow);
   svg {
     position: absolute;
     inset: 0;
@@ -45,24 +45,24 @@
     display: block;
   }
 }
-.curve {
-  fill: none;
+.shape {
+  fill: tint($faint);
   stroke: var(--foreground);
-  stroke-width: 4;
-  stroke-linecap: round;
+  stroke-width: 2;
+  stroke-linejoin: round;
 }
 .handle {
-  stroke: tint(55%);
+  stroke: tint($edge);
   stroke-width: 1;
 }
 .knob {
   fill: var(--background);
-  stroke: tint(70%);
+  stroke: tint($strong);
   stroke-width: 1.2;
 }
 .anchor {
   fill: var(--background);
-  stroke: tint(70%);
+  stroke: tint($strong);
   stroke-width: 1.2;
 }
 .selected {

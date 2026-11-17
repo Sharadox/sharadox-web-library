@@ -23,8 +23,6 @@ $round: 6s;
   --height: 176px;
   --depth: 9px;
   --radius: 10px;
-  --front-amount: 4%;
-  --edge-amount: 55%;
 }
 .screen {
   position: absolute;
@@ -51,11 +49,14 @@ $round: 6s;
   top: 7px;
   height: 4px;
   background:
-    linear-gradient(tint(50%), tint(50%)) left / 12px 100% no-repeat,
-    linear-gradient(tint(50%), tint(50%)) right / 14px 100% no-repeat;
+    linear-gradient(tint($detail), tint($detail)) left / 12px 100% no-repeat,
+    linear-gradient(tint($detail), tint($detail)) right / 14px 100% no-repeat;
 }
 /* Round app icons, four to a row. */
 .apps {
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
   position: absolute;
   inset: 26px 9px auto;
   display: grid;
@@ -64,10 +65,10 @@ $round: 6s;
   i {
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 1px solid tint(45%);
-    background: tint(16%);
+    border: 1px solid tint($edge);
+    background: tint($faint);
     &:nth-child(3n + 1) {
-      background: tint(34%);
+      background: tint($detail);
     }
   }
 }
@@ -79,8 +80,8 @@ $round: 6s;
   bottom: 26px;
   height: 14px;
   border-radius: 7px;
-  border: 1px solid tint(45%);
-  background: radial-gradient(circle at 9px 50%, tint(70%) 3px, transparent 3.5px), tint(10%);
+  border: 1px solid tint($edge);
+  background: radial-gradient(circle at 9px 50%, tint($strong) 3px, transparent 3.5px), tint($hint);
 }
 /* The three buttons: back, home and recent apps. */
 .buttons {
@@ -94,7 +95,7 @@ $round: 6s;
   i {
     width: 8px;
     height: 8px;
-    border: 1.5px solid tint(55%);
+    border: 1.5px solid tint($edge);
   }
 }
 .back {
@@ -103,7 +104,7 @@ $round: 6s;
   border: 0 !important;
   border-top: 4.5px solid transparent !important;
   border-bottom: 4.5px solid transparent !important;
-  border-right: 7px solid tint(55%) !important;
+  border-right: 7px solid tint($edge) !important;
 }
 .home {
   border-radius: 50%;
@@ -123,16 +124,16 @@ $round: 6s;
   padding: 18px 7px 12px;
   border-radius: 0 0 12px 12px;
   background: var(--background);
-  border-bottom: 1px solid tint(45%);
-  box-shadow: 0 8px 18px -8px tint(40%);
+  border-bottom: 1px solid tint($edge);
+  box-shadow: 0 8px 18px -8px tint($glow);
   transform: translateY(-105%);
   @include loop(android-shade $round $ease infinite);
   // A toggle: a rounded pill with a round icon, dim when off, lit when on.
   i {
     height: 16px;
     border-radius: 8px;
-    border: 1px solid tint(40%);
-    background: radial-gradient(circle at 8px 50%, tint(60%) 3px, transparent 3.5px), tint(10%);
+    border: 1px solid tint($edge);
+    background: radial-gradient(circle at 8px 50%, tint($detail) 3px, transparent 3.5px), tint($hint);
     @include loop(android-toggle $round ease-out infinite);
   }
   // The handle at the bottom of the shade.
@@ -143,7 +144,7 @@ $round: 6s;
     height: 3px;
     margin-top: 3px;
     border-radius: 2px;
-    background: tint(45%);
+    background: tint($detail);
   }
 }
 @keyframes android-shade {
@@ -163,7 +164,7 @@ $round: 6s;
 @keyframes android-toggle {
   0%,
   38% {
-    background: radial-gradient(circle at 8px 50%, tint(60%) 3px, transparent 3.5px), tint(10%);
+    background: radial-gradient(circle at 8px 50%, tint($detail) 3px, transparent 3.5px), tint($hint);
   }
   44%,
   100% {

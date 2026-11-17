@@ -39,6 +39,7 @@
 /* Cards share hairlines: the grid's background shows through 1px gaps. Three to a row; a row of two shares it in halves,
    four make two rows of two, and five a row of three over a row of two. Every row is full. */
 .cards {
+  align-items: stretch;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1px;

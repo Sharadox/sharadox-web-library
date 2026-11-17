@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .button {
+  /* Its label is centered, wherever the button sits. */
+  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;

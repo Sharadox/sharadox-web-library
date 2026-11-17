@@ -19,7 +19,7 @@ const FINS = 4;
 const SMOKE = 8;
 
 /** How lit a panel facing this way is (a light from the front left), as a share of the foreground color. */
-const light = (angle: number) => `${Math.round(18 + 30 * (0.5 + 0.5 * Math.cos(((angle + 40) * Math.PI) / 180)))}%`;
+const light = (angle: number) => `${Math.round(5 + 18 * (0.5 + 0.5 * Math.cos(((angle + 40) * Math.PI) / 180)))}%`;
 const sides = Array.from({ length: SIDES }, (_, side) => (360 / SIDES) * side);
 
 /**
