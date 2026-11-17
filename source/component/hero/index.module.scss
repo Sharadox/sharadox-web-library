@@ -1,5 +1,9 @@
 @use "style/token" as *;
 
+/* The bar's height, and the room kept above and below the copy within the space under it. */
+$bar: 64px;
+$room: 40px;
+
 .hero {
   text-align: left;
   position: relative;
@@ -16,7 +20,11 @@
      the first screen and the four shortcuts show at its bottom. */
   @media (min-width: 961px) {
     min-height: calc(min(100svh, 980px) - 140px);
-    padding-bottom: 32px;
+  }
+  /* The copy sits in the middle of the space between the bar (64px) and the hero's bottom line: equal room above
+     and below it. */
+  @media (min-width: 901px) {
+    padding-block: calc(#{$bar} + #{$room}) #{$room};
   }
   @include below(900px) {
     grid-template-columns: 1fr;
@@ -95,13 +103,14 @@
 $globe-canvas: 61.3%;
 
 /* Desktop: the globe body spans the hero's right half, touching the middle guide and the right grid line, centered
-   on the middle row; only arcs and glow pass the lines. Centered with negative margins (percentages of the hero's
-   width), because the entrance animation owns `transform`. */
+   on the copy (the middle of the space under the bar, half the bar below the hero's middle); only arcs and glow pass
+   the lines. Centered with negative margins (percentages of the hero's width), because the entrance animation owns
+   `transform`. */
 .globe {
   position: absolute;
   z-index: 1;
   left: 75%;
-  top: 50%;
+  top: calc(50% + #{$bar} / 2);
   width: $globe-canvas;
   aspect-ratio: 1;
   margin: calc(#{$globe-canvas} / -2) 0 0 calc(#{$globe-canvas} / -2);

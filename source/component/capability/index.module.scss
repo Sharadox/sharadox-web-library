@@ -28,9 +28,11 @@
     grid-row: auto;
     grid-template-rows: none;
   }
+  /* The line between columns, over the headings too (they stay in view with their own background). */
   &:not(:last-child)::after {
     content: "";
     position: absolute;
+    z-index: 3;
     top: 0;
     bottom: 0;
     right: 0;
