@@ -1,5 +1,6 @@
 import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import type { CSSProperties } from "react";
+import { Icon } from "@sharadox/icon-web-library/icon";
 import { Reveal } from "@sharadox/animation-web-library/reveal";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
@@ -10,7 +11,7 @@ import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { CapabilityProperties } from "@sharadox/sharadox-web-library/component/capability/type";
 
-/** "Capabilities": everything each service group delivers, as columns of a ruled sheet. */
+/** "Capabilities": everything each service group delivers, as columns of a ruled sheet, and what always comes with it. */
 export function Capability({ locale }: CapabilityProperties) {
   const rows = 1 + Math.max(...SERVICES.items.map((service) => service.capabilities[locale].length));
   return (
@@ -36,6 +37,17 @@ export function Capability({ locale }: CapabilityProperties) {
             </ul>
           </div>
         ))}
+      </div>
+      <div className={styles.included}>
+        <h3 className="monospace">{translate(CAPABILITY.included.title, locale)}</h3>
+        <ul role="list">
+          {CAPABILITY.included.items.map((item) => (
+            <li key={item.en}>
+              <Icon name="check" strokeWidth={1.8} className={styles.tick} />
+              {translate(item, locale)}
+            </li>
+          ))}
+        </ul>
       </div>
     </Section>
   );

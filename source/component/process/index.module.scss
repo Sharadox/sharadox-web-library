@@ -13,7 +13,9 @@
     padding: 0 0 0 30px;
   }
 }
+/* The drawn part starts at the line's start (the top, on phones), never from its middle. */
 .line {
+  align-content: start;
   position: absolute;
   left: 0;
   right: 0;
