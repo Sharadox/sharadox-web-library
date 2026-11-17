@@ -3,7 +3,7 @@ import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/serv
 
 /** Contact section and form copy. */
 export const CONTACT = {
-  /** Display name of the email the contact form sends (from web@email.sharadox.com). */
+  /** Display name of the email the contact form sends (from contact@web.sharadox.com). */
   senderName: "Sharadox Web Application",
   /** First part of the email subject: "Contact · Name (Company)". */
   subject: "Contact",

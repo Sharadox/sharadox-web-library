@@ -25,7 +25,7 @@ beforeAll(async () => {
   vi.stubEnv("EMAIL_SERVER_SECURITY", "none");
   vi.stubEnv("EMAIL_SERVER_USERNAME", "smtp-user");
   vi.stubEnv("EMAIL_SERVER_PASSWORD", "smtp-password");
-  vi.stubEnv("EMAIL_SENDER_ADDRESS", "web@email.sharadox.com");
+  vi.stubEnv("EMAIL_SENDER_ADDRESS", "contact@web.sharadox.com");
 });
 afterAll(() => new Promise<void>((resolve) => server.close(resolve)));
 
@@ -45,7 +45,7 @@ test("sends as Sharadox Web Application and replying answers the visitor", async
   }
   expect(await sendContact(form, "1.2.3.4")).toEqual({ status: "sent" });
   const message = received.at(-1)!;
-  expect(message).toMatch(/^From: Sharadox Web Application <web@email\.sharadox\.com>$/m);
+  expect(message).toMatch(/^From: Sharadox Web Application <contact@web\.sharadox\.com>$/m);
   expect(message).toMatch(/^Reply-To: =\?UTF-8\?Q\?Ana_S=C3=A1\?= <ana@example\.pt>$/m);
   expect(message).toMatch(/^To: contact@sharadox\.com$/m);
 });

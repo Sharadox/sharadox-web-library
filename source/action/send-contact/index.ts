@@ -5,8 +5,8 @@ import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 
 /**
  * The contact form's work, called by the application's server action (which adds the visitor's IP address). It
- * emails contact@sharadox.com from the sending subdomain (`EMAIL_SENDER_ADDRESS`, through Amazon SES over SMTP:
- * `EMAIL_SERVER_*`) as "Sharadox Web Application", with the visitor as reply-to and the subject
+ * emails contact@sharadox.com from contact@web.sharadox.com, on the sending subdomain (`EMAIL_SENDER_ADDRESS`, through
+ * Amazon SES over SMTP: `EMAIL_SERVER_*`) as "Sharadox Web Application", with the visitor as reply-to and the subject
  * "Contact · Name (Company)". It needs a name, an email or a phone, at least one choice and a message of at least
  * `CONTACT.minimumMessageLength` characters. Each address may send 5 messages an hour and everyone together 50
  * emails a day, which caps what a flood can cost.
