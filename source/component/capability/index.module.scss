@@ -74,7 +74,12 @@
     }
   }
 }
+/* Each column's heading stays in view, under the bar, while its column scrolls by. */
 .title {
+  position: sticky;
+  top: 64px;
+  z-index: 2;
+  background: var(--background);
   justify-content: stretch;
   display: grid;
   gap: 6px;
@@ -128,4 +133,11 @@
   width: 15px;
   height: 15px;
   color: var(--foreground);
+}
+/* An empty cell: nothing to hover, and not needed where the columns stack (phones). */
+.empty {
+  pointer-events: none;
+  @include below(600px) {
+    display: none !important;
+  }
 }

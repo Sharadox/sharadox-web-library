@@ -10,9 +10,10 @@ import type { SectionIndicatorProperties } from "@sharadox/sharadox-web-library/
 const IDS = SECTION_INDICATOR.sections.map((section) => section.id);
 
 /**
- * The side indicator: a rail that fills as the page scrolls, a tick and number per section, the current one
- * lit with its own progress, and its name flashing in whenever it changes. Every entry jumps to its section; all
- * names show while the pointer is over it.
+ * The side indicator, in the margin right of the grid frame: a rail along the frame that fills as the page scrolls,
+ * a tick and number per section reaching out from it (the current one lit with its own progress), and its name
+ * flashing in to the right whenever it changes. Every entry jumps to its section; all names show while the pointer
+ * is over it. Nothing shifts when the section changes: each tick grows inside a slot of its own.
  */
 export function SectionIndicator({ locale }: SectionIndicatorProperties) {
   const { active, within, page } = useActiveSection(IDS);
@@ -33,15 +34,19 @@ export function SectionIndicator({ locale }: SectionIndicatorProperties) {
               <SectionLink
                 href={`#${section.id}`}
                 className={current ? styles.current : undefined}
+                title={section[locale]}
                 aria-current={current ? "location" : undefined}
               >
-                {/* Keyed by the active section, so the name replays its flash whenever the section changes. */}
-                <span key={current ? `${section.id}-on` : section.id} className={styles.name}>
-                  {section[locale]}
-                </span>
-                <span className={`${styles.number} monospace`}>{String(index + 1).padStart(2, "0")}</span>
                 <span className={styles.tick} aria-hidden>
                   <span />
+                </span>
+                <span className={`${styles.number} monospace`}>{String(index + 1).padStart(2, "0")}</span>
+                {/* The name's place: to the right, or ending at the window's edge when there isn't room. Keyed by
+                    the active section, so the name replays its flash whenever the section changes. */}
+                <span className={styles.label}>
+                  <span key={current ? `${section.id}-on` : section.id} className={styles.name}>
+                    {section[locale]}
+                  </span>
                 </span>
               </SectionLink>
             </li>
