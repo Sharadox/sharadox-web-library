@@ -1,0 +1,84 @@
+@use "style/token" as *;
+
+/* The heading on the left (staying in view while the questions scroll by), the questions on the right. */
+.faq {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: start;
+  gap: clamp(32px, 6vw, 96px);
+  @include below(900px) {
+    grid-template-columns: 1fr;
+  }
+}
+.aside {
+  position: sticky;
+  top: 120px;
+  display: grid;
+  justify-content: stretch;
+  justify-items: start;
+  gap: 18px;
+  > :first-child {
+    margin-bottom: 0;
+  }
+  p {
+    color: var(--foreground-2);
+  }
+  @include below(900px) {
+    position: static;
+  }
+}
+.list {
+  display: grid;
+  justify-content: stretch;
+  border-top: 1px dashed var(--line-2);
+}
+/* A question: a row that opens to its answer, its chevron turning; the answer's height eases open and shut. */
+.item {
+  border-bottom: 1px dashed var(--line-2);
+  interpolate-size: allow-keywords;
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    list-style: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &:hover {
+      color: var(--foreground);
+    }
+  }
+  p {
+    max-width: 62ch;
+    padding: 0 0 24px;
+    color: var(--foreground-2);
+    text-wrap: pretty;
+  }
+  &::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.45s $ease,
+      content-visibility 0.45s allow-discrete;
+  }
+  &[open]::details-content {
+    block-size: auto;
+  }
+}
+.chevron {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--foreground-2);
+  transition: transform 0.4s $ease;
+  .item[open] & {
+    transform: rotate(180deg);
+  }
+}

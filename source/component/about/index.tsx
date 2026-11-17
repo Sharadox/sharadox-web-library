@@ -12,7 +12,7 @@ import type { AboutProperties } from "@sharadox/sharadox-web-library/component/a
 /**
  * Between the hero and the services: a sentence that lights up as it scrolls (the brand everywhere online, and the
  * system that runs the business behind it), then the two halves of it. The brand, online, on the left; the platform
- * that runs the business, given the most room, on the right, with its live feed working on its own.
+ * that runs the business, given the most room, on the right, with its live feed: the platform and the team at work.
  */
 export function About({ locale }: AboutProperties) {
   const { brand, business } = ABOUT;
@@ -22,6 +22,7 @@ export function About({ locale }: AboutProperties) {
       <ScrollWords text={translate(ABOUT.statement, locale)} className={styles.statement} />
       <div className={styles.panels}>
         <Reveal className={styles.brand}>
+          <Eyebrow>{translate(brand.eyebrow, locale)}</Eyebrow>
           <h3>{translate(brand.title, locale)}</h3>
           <p>{translate(brand.text, locale)}</p>
           <ul className={styles.parts}>
