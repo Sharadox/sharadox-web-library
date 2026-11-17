@@ -1,12 +1,9 @@
 @use "style/token" as *;
 @use "style/object" as *;
 
-/* How far the fresh brand is revealed, from the left: shared by the reveal and its divider. */
-@property --rebranding-reveal {
-  syntax: "<percentage>";
-  inherits: true;
-  initial-value: 0%;
-}
+/* One round: the dated brand (to 20%), the change (to 34%), the fresh brand (to 86%), and back for the next round. */
+$round: 8s;
+
 .object {
   @include centered(0px, 0px);
   @include loop(rebranding-float 9s ease-in-out infinite);
@@ -21,100 +18,152 @@
     transform: rotateX(4deg) rotateY(-8deg);
   }
 }
-.tile {
-  @include centered(168px, 116px);
-  @include loop(rebranding-sweep 8s cubic-bezier(0.65, 0, 0.35, 1) infinite);
-  --rebranding-reveal: 62%;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid tint(50%);
-  box-shadow: 0 24px 50px -24px tint(35%);
-}
-@keyframes rebranding-sweep {
-  0%,
-  18% {
-    --rebranding-reveal: 0%;
-  }
-  42%,
-  76% {
-    --rebranding-reveal: 100%;
-  }
-  94%,
-  100% {
-    --rebranding-reveal: 0%;
-  }
-}
-.before,
-.after {
-  position: absolute;
-  inset: 0;
+/* The main sign, in front. */
+.sign {
+  @include centered(150px, 112px);
+  @include face;
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 10px;
+  gap: 14px;
+  border-radius: 10px;
+  box-shadow: 0 24px 50px -24px tint($glow);
+  transform: translateZ(20px);
 }
-/* The dated brand: a heavy badge with a band across it, and a chunky name, all faded. */
-.before {
-  background: repeating-linear-gradient(135deg, tint(6%) 0 6px, tint(3%) 6px 12px), var(--background);
-}
-.badge {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px double tint(35%);
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 13px -10px;
-    border-radius: 2px;
-    background: tint(30%);
+/* The other places the brand shows, behind: a business card up on the left, an app icon down on the right. */
+.touchpoint {
+  @include face;
+  position: absolute;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 6px;
+  &[data-touchpoint="card"] {
+    left: -168px;
+    top: -70px;
+    width: 84px;
+    height: 50px;
+    border-radius: 4px;
+    transform: translateZ(-30px);
+  }
+  &[data-touchpoint="icon"] {
+    left: 96px;
+    top: 4px;
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
+    transform: translateZ(-20px);
+    .name {
+      display: none;
+    }
   }
 }
-.wordmark {
-  width: 74px;
-  height: 9px;
-  border-radius: 1px;
-  background: repeating-linear-gradient(90deg, tint(30%) 0 8px, transparent 8px 10px);
-}
-/* The fresh brand, revealed from the left as the divider passes. */
-.after {
-  // Opaque, so the dated brand never shows through the fresh one.
-  background: radial-gradient(circle at 30% 20%, tint(16%), tint(5%) 70%), var(--background);
-  clip-path: inset(0 calc(100% - var(--rebranding-reveal)) 0 0);
-}
+/* The mark: a dated badge (a double ring with a band across it) that turns and reshapes into a clean diamond. */
 .mark {
-  width: 26px;
-  height: 26px;
-  border: 6px solid var(--foreground);
-  border-radius: 4px;
-  transform: rotate(45deg);
-  box-shadow: 0 0 22px tint(35%);
-}
-.name {
-  width: 58px;
-  height: 5px;
-  margin-top: 6px;
-  border-radius: 3px;
-  background: var(--foreground);
-}
-/* The divider, with its handle, at the edge of the reveal. */
-.divider {
-  position: absolute;
-  inset: 0 auto 0 var(--rebranding-reveal);
-  width: 2px;
-  margin-left: -1px;
-  background: var(--foreground);
+  --size: 40px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  box-sizing: border-box;
+  border: calc(var(--size) / 10) double tint($detail);
+  border-radius: 50%;
+  @include loop(rebranding-mark $round $ease infinite);
   &::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    margin: -9px 0 0 -9px;
+    inset: 38% -22%;
+    border-radius: 2px;
+    background: tint($detail);
+    @include loop(rebranding-band $round $ease infinite);
+  }
+  .touchpoint & {
+    --size: 20px;
+  }
+}
+@keyframes rebranding-mark {
+  0%,
+  20% {
+    border-style: double;
+    border-color: tint($detail);
     border-radius: 50%;
-    border: 2px solid var(--foreground);
-    background: var(--background);
+    transform: rotate(0deg) scale(1);
+  }
+  26% {
+    border-style: solid;
+    border-color: var(--foreground);
+    border-radius: 30%;
+    transform: rotate(120deg) scale(0.8);
+  }
+  34%,
+  86% {
+    border-style: solid;
+    border-color: var(--foreground);
+    border-radius: 10%;
+    transform: rotate(225deg) scale(0.78);
+  }
+  94%,
+  100% {
+    border-style: double;
+    border-color: tint($detail);
+    border-radius: 50%;
+    transform: rotate(360deg) scale(1);
+  }
+}
+/* The band across the badge, gone in the fresh mark. */
+@keyframes rebranding-band {
+  0%,
+  20% {
+    transform: scale(1);
+  }
+  30%,
+  90% {
+    transform: scale(0);
+  }
+  96%,
+  100% {
+    transform: scale(1);
+  }
+}
+/* The name: chunky blocks that tighten into one fine line. */
+.name {
+  width: 64px;
+  height: 8px;
+  border-radius: 1px;
+  background: repeating-linear-gradient(90deg, tint($detail) 0 7px, transparent 7px 9px);
+  @include loop(rebranding-name $round $ease infinite);
+  .touchpoint & {
+    width: 40px;
+    height: 5px;
+  }
+}
+@keyframes rebranding-name {
+  0%,
+  22% {
+    background: repeating-linear-gradient(90deg, tint($detail) 0 7px, transparent 7px 9px);
+    transform: scaleY(1);
+  }
+  34%,
+  86% {
+    background: repeating-linear-gradient(90deg, var(--foreground) 0 7px, var(--foreground) 7px 9px);
+    transform: scaleY(0.45);
+  }
+  94%,
+  100% {
+    background: repeating-linear-gradient(90deg, tint($detail) 0 7px, transparent 7px 9px);
+    transform: scaleY(1);
+  }
+}
+/* The change rolls out: the card a beat after the sign, the icon a beat after the card. */
+.touchpoint[data-touchpoint="card"] {
+  .mark,
+  .mark::after,
+  .name {
+    animation-delay: 0.4s;
+  }
+}
+.touchpoint[data-touchpoint="icon"] {
+  .mark,
+  .mark::after {
+    animation-delay: 0.8s;
   }
 }

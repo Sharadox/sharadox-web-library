@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .form {
+  justify-content: stretch;
+  align-items: stretch;
   --pointer-x: -500px;
   --pointer-y: -500px;
   position: relative;
@@ -20,6 +22,32 @@
     background: radial-gradient(500px circle at var(--pointer-x) var(--pointer-y), tint(5%), transparent 60%);
   }
 }
+/* Wide screens: the visitor's details, the message and the send button on the left, the choices on the right. */
+@media (min-width: 1000px) {
+  .form:not(.done) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 18px clamp(32px, 4vw, 56px);
+  }
+  .services {
+    align-content: start;
+    grid-column: 2;
+    grid-row: 1 / -1;
+  }
+  .message {
+    grid-template-rows: auto 1fr;
+    textarea {
+      height: 100%;
+      min-height: 140px;
+    }
+  }
+}
+.about,
+.submit {
+  justify-content: stretch;
+  display: grid;
+  gap: 14px;
+}
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -29,6 +57,7 @@
   }
 }
 .field {
+  justify-content: stretch;
   display: grid;
   align-content: start;
   gap: 7px;
@@ -119,6 +148,7 @@
 }
 /* A row of choices for one service group, its name in front. */
 .group {
+  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

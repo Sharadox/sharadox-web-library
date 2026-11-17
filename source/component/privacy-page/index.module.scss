@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .page {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   padding-top: clamp(140px, 16vw, 200px);
 }
 .title {
@@ -36,4 +38,9 @@
   li {
     margin-bottom: 8px;
   }
+}
+/* The policy is running text: normal flow throughout, so its headings', paragraphs' and lists' margins fold together. */
+.text,
+.text * {
+  align-content: normal;
 }

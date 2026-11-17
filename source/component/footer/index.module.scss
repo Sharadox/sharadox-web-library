@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .footer {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   position: relative;
   width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin: 0 auto;
@@ -8,10 +10,12 @@
   border-bottom: 0;
 }
 .columns {
+  align-items: stretch;
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
   border-bottom: 1px solid var(--line);
   > * {
+    justify-content: stretch;
     position: relative;
     display: grid;
     align-content: start;
@@ -46,18 +50,17 @@
   a:not(.start):hover {
     color: var(--foreground);
   }
+  /* Narrower: the brand and the settings across, the services and the studio side by side between them. */
   @include below(900px) {
     grid-template-columns: 1fr 1fr;
-    > *:nth-child(2n)::after {
-      display: none;
+    > .brand,
+    > .settings {
+      grid-column: 1 / -1;
+      &::after {
+        display: none;
+      }
     }
-    > *:nth-child(-n + 2) {
-      border-bottom: 1px dashed var(--line-2);
-    }
-  }
-  @include below(520px) {
-    grid-template-columns: 1fr;
-    > *::after {
+    > :nth-child(3)::after {
       display: none;
     }
     > *:not(:last-child) {
@@ -65,36 +68,47 @@
     }
   }
 }
-/* The brand on top, everything legal at the bottom: the two ends of the column line up with the other columns' tops
-   and the way back up. */
-.brand {
-  display: flex !important;
-  flex-direction: column;
-  gap: 36px !important;
-}
-.identity {
-  display: grid;
-  gap: 14px;
-  > a:first-child {
-    color: var(--foreground);
-  }
-}
+/* Everything legal: the links on the left, the dispute notice on the right, on the same columns as above. */
 .legal {
-  position: relative;
+  align-items: stretch;
   display: grid;
-  gap: 14px;
-  margin-top: auto;
-  padding-top: 24px;
+  grid-template-columns: 1.6fr 3fr;
+  border-bottom: 1px solid var(--line);
   font-size: 13px;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    @include dashed(horizontal);
+  > * {
+    padding: 28px var(--padding);
   }
+  > :first-child {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      @include dashed(vertical);
+    }
+  }
+  @include below(900px) {
+    grid-template-columns: 1fr;
+    > :first-child {
+      padding-bottom: 0;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+/* The very bottom: the copyright on the left, the way back up on the right. */
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--padding);
+  border-bottom: 1px solid var(--line);
 }
 .slogan {
   color: var(--foreground);
@@ -117,15 +131,13 @@
   width: fit-content;
 }
 .settings {
-  display: flex !important;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-items: start;
   h2:not(:first-child) {
     margin-top: 18px;
   }
 }
 .start {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 .copyright {
   font-size: 12px;
@@ -133,6 +145,8 @@
 }
 /* The legal links, wrapping as they need; on phones, two to a row. */
 .links {
+  align-content: flex-start;
+  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -172,14 +186,12 @@
     color: var(--foreground);
   }
 }
-/* Under the style switch, at the foot of the column, level with the copyright. */
 .top {
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   width: fit-content;
   gap: 10px;
-  margin-top: auto;
-  padding-top: 32px;
   color: var(--foreground-2);
   transition: color 0.2s;
   &:hover {

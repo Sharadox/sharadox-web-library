@@ -35,7 +35,7 @@ $clear: 88%;
   width: 70px;
   height: 34px;
   margin: -17px 0 0 -35px;
-  @include face(6%, 55%);
+  @include face;
   border-radius: 4px;
   @include loop(awareness-billboard $round ease-out infinite);
   // Its two legs.
@@ -46,7 +46,7 @@ $clear: 88%;
     top: 100%;
     width: 1px;
     height: 10px;
-    background: tint(40%);
+    background: tint($detail);
   }
   &::before {
     left: 20%;
@@ -60,7 +60,7 @@ $clear: 88%;
     box-shadow: none;
   }
   #{$billboard} {
-    box-shadow: 0 0 24px -2px tint(55%);
+    box-shadow: 0 0 24px -2px tint($glow);
   }
   #{$together - 10%} {
     box-shadow: none;
@@ -92,7 +92,7 @@ $clear: 88%;
     content: "";
     position: absolute;
     border-radius: 50%;
-    background: tint(55%);
+    background: tint($detail);
   }
   &::before {
     left: -1px;
@@ -137,7 +137,7 @@ $clear: 88%;
     }
     #{$together + 4%} {
       transform: translateY(-3px) scale(1.15);
-      filter: drop-shadow(0 0 8px tint(70%));
+      filter: drop-shadow(0 0 8px tint($glow));
     }
     #{$together + 10%},
     #{$clear} {
@@ -154,7 +154,7 @@ $clear: 88%;
   @keyframes awareness-person-#{$index} {
     0%,
     #{$at} {
-      --person: #{tint(35%)};
+      --person: #{tint($detail)};
     }
     #{$at + 5%},
     #{$clear} {
@@ -162,7 +162,7 @@ $clear: 88%;
     }
     #{$clear + 6%},
     100% {
-      --person: #{tint(35%)};
+      --person: #{tint($detail)};
     }
   }
 }

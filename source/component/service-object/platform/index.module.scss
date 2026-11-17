@@ -21,10 +21,10 @@ $round: 8s;
 /* The company: a board with the system in the middle and its people around it. */
 .board {
   @include centered(200px, 150px);
-  @include face(3%, 30%);
+  @include face;
   border-radius: 10px;
-  background: radial-gradient(circle, tint(12%) 1px, transparent 1.5px) 0 0 / 12px 12px;
-  box-shadow: 0 24px 50px -26px tint(35%);
+  background: radial-gradient(circle, tint($hint) 1px, transparent 1.5px) 0 0 / 12px 12px;
+  box-shadow: 0 24px 50px -26px tint($glow);
 }
 .lines {
   position: absolute;
@@ -34,7 +34,7 @@ $round: 8s;
   overflow: visible;
   path {
     fill: none;
-    stroke: tint(30%);
+    stroke: tint($faint);
     stroke-width: 1.2;
     stroke-dasharray: 3 4;
   }
@@ -48,7 +48,7 @@ $round: 8s;
   height: 9px;
   border-radius: 2px;
   background: var(--foreground);
-  box-shadow: 0 0 10px tint(60%);
+  box-shadow: 0 0 10px tint($glow);
   offset-rotate: 0deg;
   opacity: 0;
   @include loop(platform-message $round linear infinite backwards);
@@ -87,39 +87,40 @@ $round: 8s;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    @include face(6%, 30%);
+    @include face;
     @include loop(platform-received $round ease-out infinite backwards);
     animation-delay: var(--received);
   }
 }
 @keyframes platform-received {
   0% {
-    background: tint(30%);
+    background: tint($faint);
     border-color: var(--foreground);
-    box-shadow: 0 0 18px tint(55%);
+    box-shadow: 0 0 18px tint($glow);
   }
   14%,
   100% {
-    background: tint(6%);
-    border-color: tint(30%);
+    background: tint($hint);
+    border-color: tint($faint);
     box-shadow: none;
   }
 }
 .person {
   --size: 20px;
-  --person: #{tint(80%)};
+  --person: #{tint($strong)};
 }
 /* The system: a screen whose gear keeps turning and whose tasks tick themselves off as messages pass. */
 .system {
+  justify-content: stretch;
   @include centered(64px, 46px);
-  @include face(6%, 55%);
+  @include face;
   display: grid;
   align-content: end;
   gap: 5px;
   padding: 8px;
   border-radius: 6px;
   background: var(--background);
-  box-shadow: 0 0 22px -6px tint(40%);
+  box-shadow: 0 0 22px -6px tint($glow);
 }
 .gear {
   position: absolute;
@@ -139,7 +140,7 @@ $round: 8s;
 .task {
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--foreground) 0 var(--done, 100%), tint(18%) var(--done, 100%));
+  background: linear-gradient(90deg, var(--foreground) 0 var(--done, 100%), tint($faint) var(--done, 100%));
   @include loop(platform-task $round ease-in-out infinite backwards);
 }
 @keyframes platform-task {

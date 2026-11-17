@@ -33,9 +33,9 @@ Everything generic comes from the open-source Sharadox libraries, configured her
   - `contact`, `services`, `site`, `globe`, and so on.
 - **One source for shared copy:** text used in more than one place lives in its own content module and is imported, never retyped.
 - **`component/`:** the page's branded parts:
-  - grid frame, `Cross` marks, navigation (below 1100px its links open in a menu under the bar, in the bar's frosted background, scrolling when it doesn't fit, as on a phone held sideways) and footer
+  - grid frame, `Cross` marks, navigation (below 1100px its links open in a menu under the bar, in the bar's frosted background, scrolling when it doesn't fit, as on a phone held sideways) and footer (the brand with Start a Project, the services, the studio, the language and style; then a row of everything legal; then the copyright and Back to top)
   - hero and its guides, service index, statement, and Services: four groups of cards (Web, Desktop & Mobile, Creative, Marketing), each card with its own animated 3D object (`service-object`, in CSS 3D, turning towards the pointer), a description and a button that starts that project; rows of three, with a row of two (or two rows of two) when the count needs it; then `ServiceUnlisted`, the invitation for ideas none of them name
-  - the 3D touchpoint stack, capabilities sheet, process, contact, section indicator, style switch
+  - the 3D touchpoint stack, capabilities sheet, process, contact (the invitation and the direct email over a wide form: the visitor's details, the message and Send on the left, the choices on the right), section indicator, style switch
   - `Consent`, the Sharadox cookie panel (reopened by the footer's Cookie Preferences), and the footer's legal parts: Portugal's complaints book and the Algarve's consumer dispute notice (CIMAAL)
   - the Sharadox wrapper around the shared globe, structured data, share image, `llmsText()` for `/llms.txt`
   - `PrivacyPage`: the privacy policy's body (`content/privacy`, written by `@sharadox/privacy-web-library`), at `/<locale>/privacy`, linked from the footer
@@ -46,6 +46,8 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 - **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact · Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application"), with the form's rules, 5 messages an hour per address and 50 emails a day from everyone together, so a flood can't run up the email bill.
 - **`utility/`:** `separate()` (the Sharadox separator), `contactProblems()` (what the contact form still lacks), `requestContactNeeds()` and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`, `skip-entrance()`) used by every component's styles. `skip-entrance` marks a time-based entrance animation so it shows its final state at once after a language switch.
+- **`style/object`:** the 3D objects' helpers (`centered()`, `face()`, `loop()`) and their one palette, so every object reads alike in every style: opaque surfaces (`surface()`, `$surface`, `$raised`) with one hairline `$edge`, and details by role (`$hint`, `$faint`, `$detail`, `$strong`, `$glow`); the point of the moment is the full foreground color.
+- **Centered by default:** sharadox-web-application's global styles start every box centered (text, free space on both axes, items across the line). Components state any other alignment (left text, items starting on the left, stretched columns), so they look the same whether or not the default is there.
 - **Language switch:** the page is rebuilt in place without replaying entrances (hero, 404, guides, service row and visuals), the globe keeps turning from where it was, and changed text animates (the application adds `LocaleTransitionStyle` in `<head>`).
 
 ## Use in the application

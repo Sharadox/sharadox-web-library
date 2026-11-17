@@ -1,6 +1,9 @@
 @use "style/token" as *;
 
 .plate {
+  justify-content: stretch;
+  align-content: stretch;
+  align-items: stretch;
   position: absolute;
   inset: 0;
   border-radius: 16px;
@@ -63,6 +66,8 @@
   }
 }
 .website {
+  align-items: stretch;
+  justify-content: stretch;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 8px;
@@ -88,6 +93,7 @@
   }
 }
 .application {
+  align-items: stretch;
   display: flex;
   justify-content: center;
   gap: 16px;

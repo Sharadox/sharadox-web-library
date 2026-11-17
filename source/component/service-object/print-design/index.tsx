@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 
 /**
- * Print design: a flyer standing behind a stack of business cards; the top card lifts off the stack and flips over to
+ * Printing: a flyer standing behind a stack of business cards; the top card lifts off the stack and flips over to
  * show the brand's mark on its back, then settles again.
  */
 export function PrintDesign() {

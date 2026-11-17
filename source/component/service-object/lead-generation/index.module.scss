@@ -22,8 +22,8 @@ $heights:
 .ring {
   @include centered(0px, 0px);
   border-radius: 50%;
-  border: 1px solid tint(55%);
-  background: tint(3%);
+  border: 1px solid tint($edge);
+  background: tint($hint);
   @for $index from 0 through 4 {
     &[data-ring="#{$index}"] {
       width: list.nth($sizes, $index + 1);
@@ -42,7 +42,7 @@ $heights:
     margin: -4px 0 0 -4px;
     border-radius: 50%;
     background: var(--foreground);
-    box-shadow: 0 0 8px tint(60%);
+    box-shadow: 0 0 8px tint($glow);
     opacity: 0;
     @include loop(lead-fall 3s cubic-bezier(0.45, 0, 0.7, 1) infinite);
   }
@@ -72,11 +72,11 @@ $heights:
   border-radius: 50%;
   background: var(--foreground);
   transform: translateY(82px);
-  box-shadow: 0 0 16px tint(60%);
+  box-shadow: 0 0 16px tint($glow);
   @include loop(lead-pulse 0.5s ease-in-out infinite alternate);
 }
 @keyframes lead-pulse {
   to {
-    box-shadow: 0 0 26px 4px tint(70%);
+    box-shadow: 0 0 26px 4px tint($glow);
   }
 }

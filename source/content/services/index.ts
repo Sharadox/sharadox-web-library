@@ -34,8 +34,8 @@ export const SERVICES = {
           key: "platform",
           title: { en: "Platforms", pt: "Plataformas" },
           text: {
-            en: "Your company's way of working, made digital: one system where your team and clients work together, while bookings, orders, stock and invoicing run on their own.",
-            pt: "A forma de trabalhar da sua empresa, em digital: um só sistema onde a equipa e os clientes trabalham juntos, enquanto reservas, encomendas, stock e faturação andam sozinhos.",
+            en: "A system tailored to your company: it automates as much of your operations as possible and makes everything else as simple as it can be.",
+            pt: "Um sistema feito à medida da sua empresa: automatiza o máximo possível das suas operações e torna todo o resto o mais simples possível.",
           },
           action: { en: "Build a Platform", pt: "Criar uma Plataforma" },
           chip: { en: "Platform", pt: "Plataforma" },
@@ -103,8 +103,8 @@ export const SERVICES = {
           key: "progressive-web-application",
           title: { en: "Progressive Web Applications (PWAs)", pt: "Aplicações Web Progressivas (PWAs)" },
           text: {
-            en: "One app for phones, tablets and computers that installs straight from your website: no store in between, one codebase for every device, less to pay and wait.",
-            pt: "Uma aplicação para telemóveis, tablets e computadores que se instala diretamente a partir do seu website: sem loja pelo meio, um só código para todos os dispositivos, menos custos e menos espera.",
+            en: "Your website, platform, online store or anything else built for the web, installable on any device like any other app. No app stores in between and no fees to pay them, one codebase for every platform, updates that reach every device at once, and far less to spend than on a separate app for each.",
+            pt: "O seu website, plataforma, loja online ou qualquer outra coisa feita para a web, instalável em qualquer dispositivo como qualquer outra aplicação. Sem lojas pelo meio nem comissões a pagar-lhes, um só código para todas as plataformas, atualizações que chegam a todos os dispositivos ao mesmo tempo, e muito menos custos do que uma aplicação separada para cada uma.",
           },
           action: { en: "Build My App", pt: "Criar a Minha Aplicação" },
           chip: { en: "PWA", pt: "PWA" },
@@ -191,13 +191,13 @@ export const SERVICES = {
         },
         {
           key: "print-design",
-          title: { en: "Print Design", pt: "Design para Impressão" },
+          title: { en: "Printing", pt: "Impressão" },
           text: {
             en: "Business cards, flyers, brochures, signage and packaging, designed with your brand and printed by trusted partners, colors as they should be.",
             pt: "Cartões de visita, flyers, brochuras, sinalética e embalagens, desenhados com a sua marca e impressos por parceiros de confiança, com as cores certas.",
           },
-          action: { en: "Design My Print", pt: "Desenhar os Meus Impressos" },
-          chip: { en: "Print Design", pt: "Design para Impressão" },
+          action: { en: "Print With Us", pt: "Imprimir Connosco" },
+          chip: { en: "Printing", pt: "Impressão" },
         },
         {
           key: "merchandise",
@@ -241,13 +241,13 @@ export const SERVICES = {
       cards: [
         {
           key: "product-launch",
-          title: { en: "Product Launch Campaigns", pt: "Campanhas de Lançamento de Produto" },
+          title: { en: "Launch Campaigns", pt: "Campanhas de Lançamento" },
           text: {
             en: "A launch planned from the first teaser to day one: the message, the landing page, the campaigns and the timing.",
             pt: "Um lançamento planeado do primeiro teaser ao grande dia: a mensagem, a landing page, as campanhas e o momento certo.",
           },
           action: { en: "Plan a Launch", pt: "Planear um Lançamento" },
-          chip: { en: "Product Launch", pt: "Lançamento de Produto" },
+          chip: { en: "Launch Campaign", pt: "Campanha de Lançamento" },
         },
         {
           key: "lead-generation",

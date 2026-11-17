@@ -1,6 +1,8 @@
 @use "style/token" as *;
 
 .section {
+  /* Its text reads from the left (the page default is centered). */
+  text-align: left;
   position: relative;
   width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin-inline: auto;

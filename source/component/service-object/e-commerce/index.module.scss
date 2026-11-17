@@ -19,8 +19,6 @@
   --width: 104px;
   --height: 112px;
   --depth: 52px;
-  --front-amount: 10%;
-  --top-amount: 2%;
 }
 .tag {
   position: absolute;
@@ -29,20 +27,20 @@
   width: 30px;
   height: 30px;
   margin-left: -15px;
-  border: 1px solid tint(60%);
+  border: 1px solid tint($edge);
   border-radius: 50%;
   &::after {
     content: "";
     position: absolute;
     inset: 8px;
     border-radius: 50%;
-    background: tint(60%);
+    background: tint($detail);
   }
 }
 .handle {
   @include centered(48px, 34px);
   transform: translate3d(0, -72px, 0);
-  border: 2px solid tint(65%);
+  border: 2px solid tint($strong);
   border-bottom: 0;
   border-radius: 24px 24px 0 0;
 }
@@ -73,6 +71,4 @@
   --width: 22px;
   --height: 22px;
   --depth: 22px;
-  --fill-amount: 16%;
-  --edge-amount: 70%;
 }

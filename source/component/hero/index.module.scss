@@ -1,6 +1,7 @@
 @use "style/token" as *;
 
 .hero {
+  text-align: left;
   position: relative;
   min-height: min(100svh, 980px);
   width: min(100% - 2 * var(--gutter), var(--maximum-width));
@@ -77,6 +78,7 @@
   line-height: 1.55;
 }
 .actions {
+  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;

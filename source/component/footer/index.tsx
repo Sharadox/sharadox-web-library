@@ -29,9 +29,10 @@ import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
 
 /**
- * The footer, in the grid frame, in four columns: the brand (slogan, email) with everything legal under it (the links:
- * license, privacy, cookie preferences, Portugal's complaints book; the consumer dispute notice; the copyright), the
- * services, the studio's sections with Start a Project, and the language and style with the way back up.
+ * The footer, in the grid frame. Four columns: the brand (slogan, email and Start a Project), the services, the
+ * studio's sections, and the language and style. Under them, everything legal in a row of its own (the links:
+ * license, privacy, cookie preferences, Portugal's complaints book; the consumer dispute notice), and at the very
+ * bottom the copyright and the way back up.
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
@@ -42,35 +43,14 @@ export function Footer({ locale, path = "" }: FooterProperties) {
       <Cross corner="top-right" />
       <div className={styles.columns}>
         <div className={styles.brand}>
-          <div className={styles.identity}>
-            <Wordmark href={`/${locale}`} />
-            <p className={styles.slogan}>{translate(SLOGAN, locale)}</p>
-            <a href={`mailto:${SITE.email}`} className={styles.email}>
-              {SITE.email}
-            </a>
-          </div>
-          {/* Everything legal, under the brand: the links, the consumer dispute notice and the copyright. */}
-          <div className={styles.legal}>
-            <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
-              <Link href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
-                {translate(LICENSE.title, locale)}
-              </Link>
-              <Link
-                href={`/${locale}${PRIVACY_PAGE.path}`}
-                aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}
-              >
-                {translate(PRIVACY_PAGE.title, locale)}
-              </Link>
-              <PreferencesLink label={translate(CONSENT.preferences, locale)} />
-              <ComplaintsBookLink locale={locale} />
-            </nav>
-            <p className={styles.disputes}>
-              <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
-            </p>
-            <p className={`monospace ${styles.copyright}`}>
-              © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
-            </p>
-          </div>
+          <Wordmark href={`/${locale}`} />
+          <p className={styles.slogan}>{translate(SLOGAN, locale)}</p>
+          <a href={`mailto:${SITE.email}`} className={styles.email}>
+            {SITE.email}
+          </a>
+          <Button href={`${home}#${SECTION.contact.id}`} size="small" arrow className={styles.start}>
+            {translate(ACTION.startProject, locale)}
+          </Button>
         </div>
         <nav aria-label={translate(SECTION.services, locale)}>
           <h2 className="monospace">{translate(SECTION.services, locale)}</h2>
@@ -87,9 +67,6 @@ export function Footer({ locale, path = "" }: FooterProperties) {
               {translate(section, locale)}
             </SectionLink>
           ))}
-          <Button href={`${home}#${SECTION.contact.id}`} size="small" arrow className={styles.start}>
-            {translate(ACTION.startProject, locale)}
-          </Button>
         </nav>
         <div className={styles.settings}>
           <h2 className="monospace">{translate(LANGUAGE.label, locale)}</h2>
@@ -102,13 +79,34 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </span>
           <h2 className="monospace">{translate(STYLE.label, locale)}</h2>
           <StyleSwitch locale={locale} className={styles.style} />
-          <SectionLink href="#top" className={styles.top}>
-            {translate(FOOTER.top, locale)}
-            <span className={styles.circle} aria-hidden>
-              <Icon name="chevron-up" strokeWidth={1.8} />
-            </span>
-          </SectionLink>
         </div>
+      </div>
+      {/* Everything legal, in a row of its own: the links, and the consumer dispute notice. */}
+      <div className={styles.legal}>
+        <nav aria-label={translate(FOOTER.legal, locale)} className={styles.links}>
+          <Link href={`/${locale}${LICENSE.path}`} aria-current={path === LICENSE.path ? "page" : undefined}>
+            {translate(LICENSE.title, locale)}
+          </Link>
+          <Link href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
+            {translate(PRIVACY_PAGE.title, locale)}
+          </Link>
+          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
+          <ComplaintsBookLink locale={locale} />
+        </nav>
+        <p className={styles.disputes}>
+          <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
+        </p>
+      </div>
+      <div className={styles.bottom}>
+        <p className={`monospace ${styles.copyright}`}>
+          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+        </p>
+        <SectionLink href="#top" className={styles.top}>
+          {translate(FOOTER.top, locale)}
+          <span className={styles.circle} aria-hidden>
+            <Icon name="chevron-up" strokeWidth={1.8} />
+          </span>
+        </SectionLink>
       </div>
     </footer>
   );

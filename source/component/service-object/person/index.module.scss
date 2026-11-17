@@ -1,8 +1,9 @@
 @use "style/token" as *;
+@use "style/object" as *;
 
 .person {
   --size: 22px;
-  --person: #{tint(55%)};
+  --person: #{tint($detail)};
   position: absolute;
   width: var(--size);
   height: var(--size);
