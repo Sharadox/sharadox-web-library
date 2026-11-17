@@ -28,11 +28,13 @@ afterEach(() => {
 
 describe("service card buttons", () => {
   test("lead to the contact form and tick their choice, with a glow", async () => {
+    const { ServiceUnlisted } = await import("@sharadox/sharadox-web-library/component/service-unlisted");
     const { Services } = await import("@sharadox/sharadox-web-library/component/services");
     const { ContactForm } = await import("@sharadox/sharadox-web-library/component/contact/form");
     render(
       <>
         <Services locale="en" />
+        <ServiceUnlisted locale="en" />
         <ContactForm locale="en" action={async () => ({ status: "idle" as const })} />
       </>,
     );
@@ -44,7 +46,7 @@ describe("service card buttons", () => {
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
     fireEvent.click(screen.getByRole("link", { name: /Get a Website/ }));
     fireEvent.click(screen.getByRole("link", { name: "Plan My Growth" }));
-    // After every service, the invitation for ideas none of them name.
+    // After the services and their capabilities, the invitation for ideas none of them name.
     fireEvent.click(screen.getByRole("link", { name: "Let's Talk" }));
     const checked = [...document.querySelectorAll<HTMLInputElement>('input[name="need"]:checked')].map(
       (input) => input.value,
@@ -101,7 +103,15 @@ describe("Navigation menu", () => {
     const menu = document.getElementById("menu")!;
     expect(menu.hasAttribute("data-lenis-prevent")).toBe(true);
     const names = [...menu.querySelectorAll("a")].map((link) => link.textContent);
-    expect(names).toEqual(["01About", "02Services", "03Capabilities", "04Process", "05Contact", "Start a Project"]);
+    expect(names).toEqual([
+      "01About",
+      "02Services",
+      "03Capabilities",
+      "04Process",
+      "05Questions",
+      "06Contact",
+      "Start a Project",
+    ]);
     expect(menu.querySelector("a")!.getAttribute("href")).toBe("/en#about");
     await act(async () => fireEvent.click(menu.querySelector("a")!));
     expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-expanded")).toBe("false");

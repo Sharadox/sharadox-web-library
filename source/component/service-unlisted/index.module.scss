@@ -7,8 +7,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px 40px;
-  padding: clamp(40px, 6vw, 72px) var(--padding);
-  border-top: 1px solid var(--line);
+  padding: clamp(56px, 8vw, 96px) var(--padding);
   background: radial-gradient(60% 120% at 50% 100%, tint(5%), transparent 70%);
 }
 .copy {
@@ -16,7 +15,7 @@
   gap: 18px;
   max-width: 60ch;
   /* As big as the other sections' headings, nearly: it is the last word on the services. */
-  h3 {
+  h2 {
     font-size: clamp(2.2rem, 4.8vw, 3.8rem);
     font-weight: 600;
     letter-spacing: -0.045em;

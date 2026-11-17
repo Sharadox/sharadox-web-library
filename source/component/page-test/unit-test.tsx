@@ -10,6 +10,8 @@ const { Hero } = await import("@sharadox/sharadox-web-library/component/hero");
 const { ServiceIndex } = await import("@sharadox/sharadox-web-library/component/service-index");
 const { About } = await import("@sharadox/sharadox-web-library/component/about");
 const { Services } = await import("@sharadox/sharadox-web-library/component/services");
+const { Faq } = await import("@sharadox/sharadox-web-library/component/faq");
+const { ServiceUnlisted } = await import("@sharadox/sharadox-web-library/component/service-unlisted");
 const { Capability } = await import("@sharadox/sharadox-web-library/component/capability");
 const { Marquee } = await import("@sharadox/sharadox-web-library/component/marquee");
 const { Process } = await import("@sharadox/sharadox-web-library/component/process");
@@ -45,8 +47,10 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
           <About locale={locale} />
           <Services locale={locale} />
           <Capability locale={locale} />
+          <ServiceUnlisted locale={locale} />
           <Marquee />
           <Process locale={locale} />
+          <Faq locale={locale} />
           <Contact locale={locale} action={action} />
         </main>
         <Footer locale={locale} />
@@ -57,7 +61,7 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     await act(async () => reportIntersection());
     await act(async () => vi.advanceTimersByTime(4000));
     // Four service groups, each with its cards, and the footer has no big wordmark any more.
-    for (const id of ["about", "web", "desktop-and-mobile", "creative", "marketing"])
+    for (const id of ["about", "web", "desktop-and-mobile", "creative", "marketing", "faq"])
       expect(document.getElementById(id)).not.toBeNull();
     expect(document.querySelectorAll("article [aria-hidden] > div > div").length).toBe(18);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(

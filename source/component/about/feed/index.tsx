@@ -7,9 +7,10 @@ import type { FeedProperties } from "@sharadox/sharadox-web-library/component/ab
 const minute = (index: number) => `09:${String(41 + index).padStart(2, "0")}`;
 
 /**
- * The platform at work, as a live feed: what it has just done on its own (an order in, the invoice sent, the stock
- * updated, the customer told, tomorrow's bookings confirmed) ticking in one by one, while the place it's being
- * looked at from changes (Lisbon, London, New York, Tokyo). A picture, so it's hidden from assistive technology.
+ * The platform at work, as a live feed: what has just happened ticking in one by one. Some of it done on its own (an
+ * order in, the invoice sent, the customer told, the stock updated), some by people through it (John packed the
+ * order, Mary loaded the van; their initials stand in for the tick). Meanwhile the place it's being looked at from
+ * changes (Lisbon, London, New York, Tokyo). A picture, so it's hidden from assistive technology.
  */
 export function Feed({ locale }: FeedProperties) {
   const { feed } = ABOUT.business;
@@ -32,8 +33,8 @@ export function Feed({ locale }: FeedProperties) {
       <ol className={styles.events}>
         {feed.events.map((event, index) => (
           <li key={event.en}>
-            <i className={styles.check} />
-            <span>{translate(event, locale)}</span>
+            {"by" in event ? <i className={styles.person}>{event.by}</i> : <i className={styles.check} />}
+            <span>{event[locale]}</span>
             <time className="monospace">{minute(index)}</time>
           </li>
         ))}
