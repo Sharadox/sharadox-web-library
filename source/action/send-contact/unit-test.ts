@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, test, vi } from "vitest";
 import type { ContactActionOptions } from "@sharadox/form-web-library/contact-action/type";
 
@@ -17,17 +18,20 @@ const message = {
 };
 
 describe("sendContact", () => {
-  test("emails contact@sharadox.com as Sharadox Web Application", () => {
-    expect(options).toMatchObject({
-      to: "contact@sharadox.com",
-      senderName: "Sharadox Web Application",
-      site: "sharadox.com",
-    });
+  test("emails contact@sharadox.com as Sharadox (Web Application), on black, with the logo", async () => {
+    expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox", site: "sharadox.com" });
+    expect(options.theme).toEqual({ background: "#000000", foreground: "#ffffff", accent: "#ffffff" });
+    const logo = await options.logo!();
+    expect(logo.contentType).toBe("image/png");
+    expect([...logo.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
   });
 
-  test("subjects read 'Contact · Name (Company)', without the company when there is none", () => {
-    expect(options.subject({ ...message, company: "Café" })).toBe("Contact · Ana (Café)");
-    expect(options.subject(message)).toBe("Contact · Ana");
+  test("replies to the visitor automatically, in English or Portuguese", () => {
+    const { en, pt } = options.acknowledgement!;
+    expect(en!.subject).toBe("Sharadox · We received your message");
+    expect(en!.heading(message.name)).toBe("Thank you, Ana.");
+    expect(pt!.heading(message.name)).toBe("Obrigado, Ana.");
+    expect(pt!.paragraphs).toHaveLength(2);
   });
 
   test("names every 'What do you need?' choice in English", () => {

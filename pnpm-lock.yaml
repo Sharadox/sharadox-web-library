@@ -15,8 +15,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.1
+        version: 0.4.1
       '@sharadox/globe-web-library':
         specifier: ^0.2.1
         version: 0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -768,6 +768,10 @@ packages:
     resolution: {integrity: sha512-AkvsjVsRsZP4LkngmmEfnhRJSTkh8lo0g35D7hPSPwZCccBYVE0/COO55jZ5LE0YjfJbdiYBC4VOdfaVOVeofg==}
     engines: {node: '>=20'}
 
+  '@sharadox/email-web-library@0.3.0':
+    resolution: {integrity: sha512-OHA8zrEB9oZGN9UFhHhHhPOdlHLt6lavvjrFNBg0d+Svbk9/ZsG3e6Uxc/7O4e9Kfi+gSW9soLPQD/LlqYOpQg==}
+    engines: {node: '>=26'}
+
   '@sharadox/es-lint-configuration-web-library@0.1.1':
     resolution: {integrity: sha512-O3RquVviRoWMybX+uRchNo9nHgDL5xfekVxz9NRcTByCjt4zi5WwjotuocRwWuO6TugL5YnEzmdX97FwIVY8Fw==}
     engines: {node: '>=24'}
@@ -779,8 +783,8 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.3.0':
-    resolution: {integrity: sha512-m01X+RudkPf0oovprngR7Pj9QN2X6l+nxa37QnzhQfsOumaDT1IVwdcgS1ENgWbKsnAMAlMkGFN+Xk2r8oJhLw==}
+  '@sharadox/form-web-library@0.4.1':
+    resolution: {integrity: sha512-EThDIIqu58YyGHgbTyl4KW9vTla6/q+rXYlB8kkx3FNMNL1HM5DXubfWiF8AC/CKZ+6DxOBDkC+Hi9jfJce7xg==}
     engines: {node: '>=26'}
 
   '@sharadox/globe-web-library@0.2.1':
@@ -2684,6 +2688,10 @@ snapshots:
     dependencies:
       nodemailer: 10.5.0
 
+  '@sharadox/email-web-library@0.3.0':
+    dependencies:
+      nodemailer: 10.5.0
+
   '@sharadox/es-lint-configuration-web-library@0.1.1(eslint@9.39.5)(typescript@6.0.3)':
     dependencies:
       '@eslint/js': 9.39.5
@@ -2695,9 +2703,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.3.0':
+  '@sharadox/form-web-library@0.4.1':
     dependencies:
-      '@sharadox/email-web-library': 0.2.1
+      '@sharadox/email-web-library': 0.3.0
       '@sharadox/web-library': 0.7.0
 
   '@sharadox/globe-web-library@0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
