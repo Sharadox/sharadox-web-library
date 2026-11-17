@@ -101,6 +101,8 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               return;
             }
             (form.elements.namedItem("started-at") as HTMLInputElement).value = String(startedAt.current);
+            // The page it was sent from, for the email (shown only when it's on the site's own domain).
+            (form.elements.namedItem("page") as HTMLInputElement).value = location.href;
           }}
           onChange={(event) => {
             if (problems) setProblems(contactProblems(new FormData(event.currentTarget)));
@@ -109,6 +111,7 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           exit={{ opacity: 0, scale: 0.98 }}
         >
           <input type="hidden" name="started-at" defaultValue="0" />
+          <input type="hidden" name="page" defaultValue="" />
           <input type="hidden" name="locale" value={locale} />
           <div className={styles.honeypot} aria-hidden>
             <label>

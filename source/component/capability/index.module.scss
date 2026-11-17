@@ -28,7 +28,7 @@
     grid-row: auto;
     grid-template-rows: none;
   }
-  /* The line between columns, over the headings too (they stay in view with their own background). */
+  /* The line between columns, solid, over the headings too (they stay in view with their own background). */
   &:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -37,7 +37,7 @@
     bottom: 0;
     right: 0;
     width: 1px;
-    @include dashed(vertical);
+    background: var(--line);
   }
   ul {
     display: contents;
@@ -59,6 +59,10 @@
       bottom: 0;
       height: 1px;
       @include dashed(horizontal, var(--line));
+    }
+    /* The last row sits on the sheet's own solid bottom line: no dashed line over it. */
+    &:last-child::after {
+      display: none;
     }
     &:hover {
       color: var(--foreground);
