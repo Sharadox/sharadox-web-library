@@ -11,7 +11,10 @@ import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { CapabilityProperties } from "@sharadox/sharadox-web-library/component/capability/type";
 
-/** "Capabilities": everything each service group delivers, as columns of a ruled sheet, and what always comes with it. */
+/**
+ * "Capabilities": everything each service group delivers, as columns of a ruled sheet whose headings stay in view
+ * while it scrolls by (shorter columns run on in empty ruled cells), and what always comes with every project.
+ */
 export function Capability({ locale }: CapabilityProperties) {
   const rows = 1 + Math.max(...SERVICES.items.map((service) => service.capabilities[locale].length));
   return (
@@ -33,6 +36,10 @@ export function Capability({ locale }: CapabilityProperties) {
                     {capability}
                   </Reveal>
                 </li>
+              ))}
+              {/* The sheet's empty cells, ruled like the rest, so every column runs to the bottom. */}
+              {Array.from({ length: rows - 1 - service.capabilities[locale].length }, (_, row) => (
+                <li key={`empty-${row}`} className={styles.empty} aria-hidden />
               ))}
             </ul>
           </div>

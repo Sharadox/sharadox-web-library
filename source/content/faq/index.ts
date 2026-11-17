@@ -60,8 +60,8 @@ export const FAQ = {
         pt: "Fica tudo de acordo com a lei?",
       },
       answer: {
-        en: "Yes. Everything legal is done as the law requires: privacy policy, cookie consent, GDPR, consumer information and, in Portugal, the complaints book.",
-        pt: "Sim. Toda a parte legal é feita como a lei exige: política de privacidade, consentimento de cookies, RGPD, informação ao consumidor e, em Portugal, o livro de reclamações.",
+        en: "Yes. Every country has its own rules, so we take the time to understand what's mandatory wherever you do business, and do it as the law requires: privacy policies, cookie consent, data protection, consumer information, and local requirements like Portugal's complaints book.",
+        pt: "Sim. Cada país tem as suas regras, por isso dedicamos o tempo necessário a perceber o que é obrigatório onde quer que faça negócio, e fazemo-lo como a lei exige: políticas de privacidade, consentimento de cookies, proteção de dados, informação ao consumidor e requisitos locais, como o livro de reclamações em Portugal.",
       },
     },
     {

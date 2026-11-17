@@ -30,9 +30,9 @@ import type { FooterProperties } from "@sharadox/sharadox-web-library/component/
 
 /**
  * The footer, in the grid frame. Four columns: the brand (slogan, email and Start a Project), the services, the
- * studio's sections, and the language and style. Under them, everything legal in a row of its own (the consumer
- * dispute notice, with the links under it: license, privacy, cookie preferences, Portugal's complaints book), and at the very
- * bottom the copyright and the way back up.
+ * studio's sections, and the language and style with the way back up under them. Then everything legal in a centered
+ * row of its own: the copyright, the consumer dispute notice, and the links (license, privacy, cookie preferences,
+ * Portugal's complaints book).
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
@@ -79,10 +79,19 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </span>
           <h2 className="monospace">{translate(STYLE.label, locale)}</h2>
           <StyleSwitch locale={locale} className={styles.style} />
+          <SectionLink href="#top" className={styles.top}>
+            {translate(FOOTER.top, locale)}
+            <span className={styles.circle} aria-hidden>
+              <Icon name="chevron-up" strokeWidth={1.8} />
+            </span>
+          </SectionLink>
         </div>
       </div>
       {/* Everything legal, in a row of its own: the consumer dispute notice, and the links under it. */}
       <div className={styles.legal}>
+        <p className={`monospace ${styles.copyright}`}>
+          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+        </p>
         <p className={styles.disputes}>
           <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
         </p>
@@ -96,17 +105,6 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <ComplaintsBookLink locale={locale} />
         </nav>
-      </div>
-      <div className={styles.bottom}>
-        <p className={`monospace ${styles.copyright}`}>
-          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
-        </p>
-        <SectionLink href="#top" className={styles.top}>
-          {translate(FOOTER.top, locale)}
-          <span className={styles.circle} aria-hidden>
-            <Icon name="chevron-up" strokeWidth={1.8} />
-          </span>
-        </SectionLink>
       </div>
     </footer>
   );

@@ -80,16 +80,6 @@
   border-bottom: 1px solid var(--line);
   font-size: 13px;
 }
-/* The very bottom: the copyright on the left, the way back up on the right. */
-.bottom {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px var(--padding);
-  border-bottom: 1px solid var(--line);
-}
 .slogan {
   color: var(--foreground);
   font-size: 1.05rem;
@@ -166,7 +156,9 @@
     color: var(--foreground);
   }
 }
+/* Under the style switch, at the foot of its column. */
 .top {
+  margin-top: 22px;
   font-size: 14px;
   display: inline-flex;
   align-items: center;
