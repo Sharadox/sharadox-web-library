@@ -1,10 +1,7 @@
 import { createContactAction } from "@sharadox/form-web-library/contact-action";
+import { EMAIL_LOGO } from "@sharadox/sharadox-web-library/content/email-logo";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { readFile } from "node:fs/promises";
-
-/** The logo at the top of every email: the app icon, shipped with the library (distribution/asset/email). */
-const LOGO = new URL("../../asset/email/logo.png", import.meta.url);
 
 /**
  * The contact form's work, called by the application's server action (which adds the visitor's IP address). It
@@ -20,7 +17,7 @@ export const sendContact = createContactAction({
   to: SITE.email,
   company: CONTACT.sender,
   site: "sharadox.com",
-  logo: async () => ({ content: await readFile(LOGO), contentType: "image/png", filename: "sharadox.png" }),
+  logo: async () => ({ ...EMAIL_LOGO, content: Buffer.from(EMAIL_LOGO.content, "base64") }),
   theme: { background: "#000000", foreground: "#ffffff", accent: "#ffffff" },
   acknowledgement: CONTACT.acknowledgement,
   choices: Object.fromEntries(CONTACT.needs.options.map((need) => [need.key, need.en])),
