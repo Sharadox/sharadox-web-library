@@ -1,0 +1,118 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* The browser fills the stage; the phone stands in front of its lower right corner. */
+.stage {
+  position: relative;
+  display: grid;
+  justify-content: stretch;
+  padding: clamp(28px, 5vw, 64px) clamp(28px, 7vw, 96px) clamp(48px, 7vw, 88px) clamp(20px, 4vw, 48px);
+  perspective: 1600px;
+}
+.glow {
+  position: absolute;
+  inset: 10% 6% 0;
+  background: radial-gradient(closest-side, tint($glow), transparent);
+  filter: blur(40px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+/* A window or a phone: a raised face, its page scrolling inside. */
+.browser,
+.phone {
+  position: relative;
+  @include face;
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px -40px tint($glow),
+    0 1px 0 tint($faint) inset;
+  transition: transform 0.9s $ease;
+}
+.browser {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-content: stretch;
+  border-radius: 14px;
+  transform: rotateY(8deg) rotateX(2deg);
+  transform-origin: left center;
+  .viewport {
+    aspect-ratio: 16 / 10;
+  }
+}
+.stage:hover .browser,
+.stage:hover .phone {
+  transform: none;
+}
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-2);
+  &::after {
+    content: "";
+    width: 42px;
+  }
+}
+.dots {
+  display: flex;
+  gap: 6px;
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: tint($faint);
+  }
+}
+.address {
+  justify-self: center;
+  padding: 4px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  background: surface($hint);
+  font-size: 11px;
+  color: var(--foreground-2);
+}
+.phone {
+  position: absolute;
+  right: clamp(8px, 3vw, 40px);
+  bottom: clamp(12px, 3vw, 36px);
+  width: clamp(104px, 22%, 200px);
+  padding: 5px;
+  border-radius: 26px;
+  transform: rotateY(-10deg) translateZ(40px);
+  .viewport {
+    aspect-ratio: 9 / 19.5;
+    border-radius: 21px;
+  }
+}
+/* The page inside a screen glides from its top to its bottom and back: the viewport is its container, so the image
+   stops exactly as its end comes into view. */
+.viewport {
+  position: relative;
+  overflow: hidden;
+  container-type: size;
+  background: var(--background);
+}
+.page {
+  display: block;
+  width: 100%;
+  height: auto;
+  @include loop(screen-scroll 48s ease-in-out infinite alternate);
+  .phone & {
+    animation-duration: 60s;
+  }
+  .stage:hover & {
+    animation-play-state: paused;
+  }
+}
+@keyframes screen-scroll {
+  0%,
+  4% {
+    transform: translateY(0);
+  }
+  96%,
+  100% {
+    transform: translateY(calc(-100% + 100cqh));
+  }
+}

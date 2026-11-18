@@ -1,0 +1,147 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* Chips on the left, the selects and the count on the right; stacked on phones. */
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: end;
+  justify-content: stretch;
+  gap: 16px 24px;
+  padding: 20px var(--padding);
+  border-top: 1px solid var(--line);
+  @include below(1100px) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    .chips {
+      grid-column: 1 / -1;
+    }
+  }
+  /* On phones client and year share a row, the order has one of its own, and the count goes under them. */
+  @include below(700px) {
+    grid-template-columns: minmax(0, 1fr);
+    .selects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-content: stretch;
+      label {
+        justify-items: stretch;
+      }
+      label:last-child {
+        grid-column: 1 / -1;
+      }
+      select {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+    .count {
+      padding-bottom: 0;
+    }
+  }
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  button {
+    padding: 8px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    background: none;
+    color: var(--foreground-2);
+    font: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      border-color 0.2s;
+    &:hover {
+      color: var(--foreground);
+      border-color: tint($edge);
+    }
+    &[aria-pressed="true"] {
+      border-color: var(--foreground);
+      background: var(--foreground);
+      color: var(--background);
+    }
+  }
+}
+.selects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  label {
+    display: grid;
+    justify-content: stretch;
+    justify-items: start;
+    gap: 4px;
+    span {
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--foreground-3);
+    }
+  }
+  /* A select with the library's chevron over its right end. */
+  .field {
+    position: relative;
+    display: grid;
+    justify-content: stretch;
+    svg {
+      position: absolute;
+      right: 11px;
+      top: 50%;
+      margin-top: -7px;
+      font-size: 14px;
+      color: var(--foreground-3);
+      pointer-events: none;
+    }
+  }
+  select {
+    min-width: 132px;
+    padding: 8px 32px 8px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    background: surface($hint);
+    color: var(--foreground);
+    font: inherit;
+    font-size: 13.5px;
+    appearance: none;
+    cursor: pointer;
+    option {
+      background: var(--background);
+      color: var(--foreground);
+    }
+  }
+}
+.count {
+  justify-self: end;
+  padding-bottom: 10px;
+  font-size: 12px;
+  color: var(--foreground-3);
+  white-space: nowrap;
+}
+.list {
+  display: grid;
+  justify-content: stretch;
+}
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 64px var(--padding);
+  border-top: 1px solid var(--line);
+  color: var(--foreground-2);
+  button {
+    padding: 8px 16px;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    background: none;
+    color: var(--foreground);
+    font: inherit;
+    cursor: pointer;
+  }
+}

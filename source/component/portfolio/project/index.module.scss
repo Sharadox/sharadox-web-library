@@ -1,0 +1,116 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* The screens on the left, the story on the right; stacked on narrower screens. */
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: stretch;
+  justify-content: stretch;
+  border-top: 1px solid var(--line);
+  @include below(960px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.story {
+  display: grid;
+  justify-content: stretch;
+  align-content: center;
+  gap: 22px;
+  padding: clamp(28px, 4vw, 56px) var(--padding);
+  border-left: 1px solid var(--line);
+  text-align: left;
+  @include below(960px) {
+    border-left: 0;
+    border-top: 1px dashed var(--line-2);
+  }
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--foreground-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.project h3 {
+  display: grid;
+  justify-content: stretch;
+  gap: 8px;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.client {
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--foreground-2);
+}
+.text {
+  color: var(--foreground-2);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+/* Client, place and launch: three small columns over dashed rules. */
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: stretch;
+  margin: 0;
+  border-block: 1px dashed var(--line-2);
+  > div {
+    display: grid;
+    justify-content: stretch;
+    align-content: start;
+    gap: 4px;
+    padding: 14px 12px 14px 0;
+  }
+  > div + div {
+    padding-left: 12px;
+    border-left: 1px dashed var(--line-2);
+  }
+  dt {
+    font-family: var(--monospace);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
+  }
+  dd {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+.services {
+  display: grid;
+  justify-content: stretch;
+  gap: 10px;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    padding: 6px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    background: surface($hint);
+    font-size: 13px;
+  }
+}
+.label {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground-3);
+}
+.visit {
+  justify-self: start;
+}

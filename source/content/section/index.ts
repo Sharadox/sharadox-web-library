@@ -7,6 +7,7 @@ export const SECTION = {
   about: { id: "about", en: "About", pt: "Sobre" },
   services: { id: "services", en: "Services", pt: "Serviços" },
   capabilities: { id: "capabilities", en: "Capabilities", pt: "Capacidades" },
+  portfolio: { id: "portfolio", en: "Portfolio", pt: "Portefólio" },
   process: { id: "process", en: "Process", pt: "Processo" },
   faq: { id: "faq", en: "Questions", pt: "Perguntas" },
   contact: { id: "contact", en: "Contact", pt: "Contacto" },
