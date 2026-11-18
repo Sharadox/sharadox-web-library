@@ -16,7 +16,7 @@ export function StructuredData({ locale }: StructuredDataProperties) {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
-      sameAs: SOCIAL.filter((profile) => !("review" in profile)).map((profile) => profile.url),
+      sameAs: SOCIAL.filter((profile) => !("shareLink" in profile)).map((profile) => profile.url),
       slogan: translate(SLOGAN, locale),
       description: translate(SITE.description, locale),
       logo: `${SITE.url}/profile-picture.png`,

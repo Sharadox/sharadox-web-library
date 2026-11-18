@@ -24,7 +24,7 @@ import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { STYLE } from "@sharadox/sharadox-web-library/content/style";
 import { CopyrightYears } from "@sharadox/time-web-library/copyright-years";
-import { FOUNDED, SITE, SOCIAL } from "@sharadox/sharadox-web-library/content/site";
+import { FOUNDED, GOOGLE_REVIEW, SITE, SOCIAL } from "@sharadox/sharadox-web-library/content/site";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
@@ -112,15 +112,13 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </Link>
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <ComplaintsBookLink locale={locale} />
+          <a href={GOOGLE_REVIEW}>{translate(FOOTER.review, locale)}</a>
         </nav>
-        {/* The last line: Sharadox's profiles, and the Google review form, as their marks. */}
+        {/* The last line: Sharadox's profiles, as their marks. */}
         <nav aria-label={translate(FOOTER.social, locale)} className={styles.social}>
           {SOCIAL.map((profile) => (
             <a key={profile.icon} href={profile.url} target="_blank" rel="noopener noreferrer me">
-              <BrandIcon
-                name={profile.icon}
-                label={"review" in profile ? translate(FOOTER.review, locale) : profile.name}
-              />
+              <BrandIcon name={profile.icon} label={profile.name} />
             </a>
           ))}
         </nav>

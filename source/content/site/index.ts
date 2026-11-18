@@ -57,8 +57,9 @@ export const SITE = {
 };
 
 /**
- * Sharadox's profiles, in the footer's order: each network's mark (`BrandIcon` name), its name, and the address. Also
- * the organization's `sameAs` in the structured data (except the Google review link, which isn't a profile).
+ * Sharadox's profiles, in the footer's order: each network's mark (`BrandIcon` name), its name, and the address. They
+ * are also the organization's `sameAs` in the structured data, except Google's, a share link that redirects to the
+ * business profile.
  */
 export const SOCIAL = [
   { icon: "facebook", name: "Facebook", url: "https://facebook.com/sharadoxcom" },
@@ -66,8 +67,11 @@ export const SOCIAL = [
   { icon: "tiktok", name: "TikTok", url: "https://tiktok.com/@sharadox.com" },
   { icon: "youtube", name: "YouTube", url: "https://youtube.com/@sharadox" },
   { icon: "x", name: "X", url: "https://x.com/sharadoxcom" },
-  { icon: "threads", name: "Threads", url: "https://threads.com/sharadoxcom" },
-  { icon: "pinterest", name: "Pinterest", url: "https://www.pinterest.com/sharadoxcom" },
-  { icon: "linkedin", name: "LinkedIn", url: "https://linkedin.com/company/SharadoxCom" },
-  { icon: "google", name: "Google", url: "https://g.page/r/Ce_Dy76heUvHEAE/review", review: true },
+  { icon: "threads", name: "Threads", url: "https://threads.com/@sharadoxcom" },
+  { icon: "pinterest", name: "Pinterest", url: "https://pinterest.com/sharadoxcom" },
+  { icon: "linkedin", name: "LinkedIn", url: "https://linkedin.com/company/sharadoxcom" },
+  { icon: "google", name: "Google", url: "https://share.google/lv28MI0ABPwEvM1ad", shareLink: true },
 ] as const;
+
+/** Google's form for reviewing Sharadox, linked from the footer's legal row. */
+export const GOOGLE_REVIEW = "https://g.page/r/Ce_Dy76heUvHEAE/review";
