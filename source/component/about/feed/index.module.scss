@@ -1,0 +1,472 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* One round: the events tick in one after another, hold, and clear for the next round. */
+$round: 10s;
+$events: 6;
+/* The places it's viewed from, one after another. */
+$places: 4;
+$place: 3s;
+
+.feed {
+  @include face;
+  display: grid;
+  justify-content: stretch;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -30px tint($glow);
+}
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line-2);
+  font-family: var(--monospace);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground-2);
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--foreground);
+    box-shadow: 0 0 0 0 tint(60%);
+    @include loop(feed-live 2.4s infinite);
+  }
+}
+@keyframes feed-live {
+  70% {
+    box-shadow: 0 0 0 8px tint(0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 tint(0%);
+  }
+}
+.viewing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+/* The places share one spot, each showing in turn. */
+.places {
+  display: inline-grid;
+  justify-items: start;
+  b {
+    grid-area: 1 / 1;
+    font-weight: 400;
+    color: var(--foreground);
+    opacity: 0;
+    @for $index from 1 through $places {
+      &:nth-child(#{$index}) {
+        @include loop(feed-place ($place * $places) $ease infinite ($place * ($index - 1)) backwards);
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    b:first-child {
+      opacity: 1;
+    }
+  }
+}
+@keyframes feed-place {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  6%,
+  22% {
+    opacity: 1;
+    transform: none;
+  }
+  28%,
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.events {
+  display: grid;
+  justify-content: stretch;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    background: surface($hint);
+    font-size: 14px;
+    @for $index from 1 through $events {
+      &:nth-child(#{$index}) {
+        @include loop(feed-event-#{$index} $round $ease infinite);
+        .check,
+        .person {
+          @include loop(feed-check-#{$index} $round $ease infinite);
+        }
+      }
+    }
+  }
+  span {
+    flex: 1;
+  }
+  time {
+    font-size: 11px;
+    color: var(--foreground-3);
+  }
+}
+/* Each event slides in at its turn, its tick filling a moment later; they all clear together at the end. */
+@for $index from 1 through $events {
+  $start: 4% + ($index - 1) * 12%;
+  @keyframes feed-event-#{$index} {
+    0%,
+    #{$start} {
+      opacity: 0.25;
+      transform: translateX(-8px);
+    }
+    #{$start + 5%},
+    90% {
+      opacity: 1;
+      transform: none;
+    }
+    97%,
+    100% {
+      opacity: 0.25;
+      transform: none;
+    }
+  }
+  @keyframes feed-check-#{$index} {
+    0%,
+    #{$start + 4%} {
+      background: transparent;
+      color: transparent;
+    }
+    #{$start + 8%},
+    90% {
+      background: var(--foreground);
+      color: var(--background);
+    }
+    97%,
+    100% {
+      background: transparent;
+      color: transparent;
+    }
+  }
+}
+/* A tick in a circle: the circle fills and the tick shows once the event is done. */
+.check {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid tint($edge);
+  border-radius: 50%;
+  color: var(--background);
+  background: var(--foreground);
+  &::after {
+    content: "";
+    position: absolute;
+    left: 5.5px;
+    top: 3px;
+    width: 4px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+  }
+}
+/* A person's initial in a circle, in place of the tick: this one was done by hand, and ticked off on a phone. */
+.person {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid tint($edge);
+  border-radius: 50%;
+  font-family: var(--monospace);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+}
+/* The three tabs take turns, ten seconds each (one round of the activity), the underline sliding under the one shown. */
+$tab: 10s;
+$cycle: $tab * 3;
+
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--foreground-3);
+  span {
+    @include loop(feed-tab $cycle linear infinite backwards);
+    &:nth-child(1) {
+      color: var(--foreground);
+    }
+    &:nth-child(2) {
+      animation-delay: $tab;
+    }
+    &:nth-child(3) {
+      animation-delay: $tab * 2;
+    }
+  }
+}
+@keyframes feed-tab {
+  0%,
+  32% {
+    color: var(--foreground);
+  }
+  34%,
+  100% {
+    color: var(--foreground-3);
+  }
+}
+.underline {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: calc(100% / 3);
+  height: 2px;
+  background: var(--foreground);
+  @include loop(feed-underline $cycle $ease infinite);
+}
+@keyframes feed-underline {
+  0%,
+  31% {
+    transform: translateX(0);
+  }
+  34%,
+  64% {
+    transform: translateX(100%);
+  }
+  67%,
+  97% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* The panes share one place; each shows during its tab's turn. */
+.panes {
+  display: grid;
+  justify-content: stretch;
+  > * {
+    grid-area: 1 / 1;
+    opacity: 0;
+    @include loop(feed-pane $cycle $ease infinite backwards);
+    &:nth-child(1) {
+      opacity: 1;
+    }
+    &:nth-child(2) {
+      animation-delay: $tab;
+    }
+    &:nth-child(3) {
+      animation-delay: $tab * 2;
+    }
+  }
+}
+@keyframes feed-pane {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  2%,
+  31% {
+    opacity: 1;
+    transform: none;
+  }
+  33.3%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+/* A pane's heading: the project, or the client, with its badge. */
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+  b {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  small {
+    display: block;
+    font-size: 12px;
+    color: var(--foreground-3);
+  }
+}
+.client .title {
+  justify-content: flex-start;
+}
+.chip {
+  flex: none;
+  padding: 3px 9px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  font-size: 11.5px;
+  color: var(--foreground-2);
+}
+.project,
+.client {
+  display: grid;
+  justify-content: stretch;
+  align-content: start;
+  gap: 14px;
+}
+/* The project's progress: a bar filling when the tab comes round. */
+.meter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--foreground-2);
+  text-align: left;
+  b {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  i {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 99px;
+    background:
+      linear-gradient(var(--foreground), var(--foreground)) 0 0 / var(--to) 100% no-repeat,
+      tint($faint);
+    @include loop(feed-fill $cycle $ease infinite $tab backwards);
+  }
+}
+@keyframes feed-fill {
+  0%,
+  2% {
+    background-size:
+      0 100%,
+      auto;
+  }
+  14%,
+  100% {
+    background-size:
+      var(--to) 100%,
+      auto;
+  }
+}
+/* Milestones and past projects: a dot that's filled when done, ringed and lit when under way, faint when to come. */
+.milestones,
+.history {
+  display: grid;
+  justify-content: stretch;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    text-align: left;
+    i {
+      flex: none;
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid tint($edge);
+      border-radius: 50%;
+    }
+    &[data-state="done"] i {
+      border-color: var(--foreground);
+      background: var(--foreground);
+    }
+    &[data-state="now"] i {
+      border-color: var(--foreground);
+      box-shadow: 0 0 0 3px tint($faint);
+    }
+    &[data-state="next"] {
+      color: var(--foreground-3);
+    }
+  }
+}
+.history li {
+  padding: 8px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: surface($hint);
+  span {
+    flex: 1;
+  }
+  small {
+    margin-left: 6px;
+    font-size: 11.5px;
+    color: var(--foreground-3);
+  }
+  b {
+    font-weight: 600;
+  }
+}
+/* Figures side by side: a label over a big number. */
+.figures {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+  > span {
+    display: grid;
+    justify-items: start;
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    background: surface($hint);
+    font-size: 11.5px;
+    color: var(--foreground-3);
+  }
+  b {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+}
+.label {
+  font-size: 11.5px;
+  font-family: var(--monospace);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground-3);
+  text-align: left;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 13px;
+  font-weight: 600;
+}
