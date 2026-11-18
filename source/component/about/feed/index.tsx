@@ -1,37 +1,115 @@
-import type { CSSProperties } from "react";
+"use client";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { Icon } from "@sharadox/icon-web-library/icon";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { Activity } from "@sharadox/sharadox-web-library/component/about/feed/activity";
+import { Client } from "@sharadox/sharadox-web-library/component/about/feed/client";
+import { euros } from "@sharadox/sharadox-web-library/component/about/feed/euros";
+import { Project } from "@sharadox/sharadox-web-library/component/about/feed/project";
+import { playFeed } from "@sharadox/sharadox-web-library/component/about/feed/script";
 import { ABOUT } from "@sharadox/sharadox-web-library/content/about";
 import styles from "./index.module.scss";
 import type { FeedProperties } from "@sharadox/sharadox-web-library/component/about/feed/type";
+import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 
-/** The minute each event happened at, after the first one. */
-const minute = (index: number) => `09:${String(41 + index).padStart(2, "0")}`;
+const { feed } = ABOUT.business;
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** An amount in euros, the way the language writes it ("€18,400", "18 400 €"). */
-const euros = (amount: number, locale: string) =>
-  new Intl.NumberFormat(locale === "pt" ? "pt-PT" : "en-GB", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(amount);
+/** The label a target shows while the pointer reads it. */
+function tipFor(target: string, locale: Locale) {
+  const { project, client } = feed;
+  const [kind, index] = target.split("-");
+  if (kind === "event") return translate(feed.events[Number(index)]!.detail, locale);
+  if (kind === "project") {
+    const past = client.projects[Number(index)]!;
+    return `${past[locale]} ${past.year} · ${euros(past.amount, locale)}`;
+  }
+  if (kind === "budget") {
+    const left = euros(project.quoted - project.paid, locale);
+    return `${Math.round((project.paid / project.quoted) * 100)}% ${translate(project.paidLabel, locale).toLowerCase()} · ${left}`;
+  }
+  if (kind === "donut") return `${translate(client.paidLabel, locale)} ${euros(client.paid, locale)}`;
+  return `${client.tasks.done}/${client.tasks.total} ${translate(client.doneLabel, locale)}`;
+}
+
+/** Where a target is inside the panel: the pointer's spot on it, and the top middle for its label. */
+function placeOf(root: HTMLElement, target: string) {
+  const element = root.querySelector(`[data-target="${target}"]`)!;
+  const box = element.getBoundingClientRect();
+  const frame = root.getBoundingClientRect();
+  const left = box.left - frame.left;
+  const top = box.top - frame.top;
+  return {
+    pointer: { x: left + Math.min(box.width * 0.6, 120), y: top + box.height * 0.55 },
+    tip: { x: left + box.width / 2, y: top - 10 },
+  };
+}
 
 /**
- * The platform at work, as a panel with three tabs that take turns (activity, a project, a client), under its live
- * header (the place it's being looked at from changes: Lisbon, London, New York, Tokyo).
- *
- * - **Activity:** what has just happened, ticking in one by one. Some of it done on its own (an order in, the invoice
- *   sent, the customer told, the stock updated), some by people through it (John packed the order, Mary loaded the
- *   van; their initials stand in for the tick).
- * - **Project:** one of the business's projects: its progress, tasks, milestones, and what was quoted and paid.
- * - **Client:** that project's client: what they've spent, what's quoted, and their projects so far.
- *
- * A picture, so it's hidden from assistive technology.
+ * The platform at work, as a business sees it in its own: a live header (the place it's viewed from changes) over
+ * three tabs, Activity, Project and Client, all about one job. Once the panel is in view a pointer plays through
+ * them: the log fills, the pointer reads an entry, clicks Project, reads the budget and ticks the next task, clicks
+ * Client and reads its charts, then goes back to Activity, over and over. Out of view it stops and starts over; with
+ * less motion asked for, it rests on the full log. A picture, so it's hidden from assistive technology.
  */
 export function Feed({ locale }: FeedProperties) {
-  const { feed } = ABOUT.business;
-  const { project, client } = feed;
+  const root = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setInView(entry!.isIntersecting), { threshold: 0.4 });
+    observer.observe(root.current!);
+    return () => observer.disconnect();
+  }, []);
+  // Visitors who ask for less motion get the full log, still (read when the panel comes into view).
+  const playing = inView && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [tab, setTab] = useState(0);
+  const [shown, setShown] = useState<number>(feed.events.length);
+  const [ticked, setTicked] = useState(false);
+  const [pointed, setPointed] = useState<string | null>(null);
+  const [pressed, setPressed] = useState(0);
+  const [tip, setTip] = useState<string | null>(null);
+  const [places, setPlaces] = useState<{ pointer: { x: number; y: number }; tip: { x: number; y: number } }>({
+    pointer: { x: 0, y: 0 },
+    tip: { x: 0, y: 0 },
+  });
+
+  useEffect(() => {
+    if (!playing) return;
+    const stop = new AbortController();
+    playFeed(
+      {
+        tab: setTab,
+        show: setShown,
+        tick: setTicked,
+        point: setPointed,
+        press: (down) => down && setPressed((count) => count + 1),
+        tip: setTip,
+      },
+      feed.events.length,
+      stop.signal,
+    ).catch(() => {});
+    return () => {
+      stop.abort();
+      setTab(0);
+      setShown(feed.events.length);
+      setTicked(false);
+      setPointed(null);
+      setTip(null);
+    };
+  }, [playing]);
+
+  // The pointer and its label follow their target, which is outlined while the pointer is on it.
+  useLayoutEffect(() => {
+    const panel = root.current!;
+    for (const element of panel.querySelectorAll("[data-pointed]")) element.removeAttribute("data-pointed");
+    if (!pointed) return;
+    setPlaces(placeOf(panel, pointed));
+    if (!pointed.startsWith("tab")) panel.querySelector(`[data-target="${pointed}"]`)!.setAttribute("data-pointed", "");
+  }, [pointed, tab, shown]);
+
   return (
-    <div className={styles.feed} aria-hidden>
+    <div ref={root} className={styles.feed} data-playing={playing || undefined} aria-hidden>
       <div className={styles.header}>
         <span className={styles.live}>
           <i />
@@ -47,90 +125,58 @@ export function Feed({ locale }: FeedProperties) {
         </span>
       </div>
       <div className={styles.tabs}>
-        {feed.tabs.map((tab) => (
-          <span key={tab.en}>{translate(tab, locale)}</span>
+        {feed.tabs.map((name, index) => (
+          <span key={name.en} data-target={`tab-${index}`} data-active={tab === index || undefined}>
+            {translate(name, locale)}
+          </span>
         ))}
-        <i className={styles.underline} />
+        <i className={styles.underline} style={{ transform: `translateX(${tab * 100}%)` }} />
       </div>
       <div className={styles.panes}>
-        <ol className={styles.events}>
-          {feed.events.map((event, index) => (
-            <li key={event.en}>
-              {"by" in event ? <i className={styles.person}>{event.by}</i> : <i className={styles.check} />}
-              <span>{event[locale]}</span>
-              <time className="monospace">{minute(index)}</time>
-            </li>
-          ))}
-        </ol>
-        <div className={styles.project}>
-          <div className={styles.title}>
-            <b>
-              {translate(project.name, locale)} · {project.client}
-            </b>
-            <span className={styles.chip}>{translate(project.status, locale)}</span>
-          </div>
-          <div className={styles.meter}>
-            <span>{translate(project.progressLabel, locale)}</span>
-            <b>{project.progress}%</b>
-            <i style={{ "--to": `${project.progress}%` } as CSSProperties} />
-          </div>
-          <ul className={styles.milestones}>
-            {project.milestones.map((milestone) => (
-              <li key={milestone.en} data-state={milestone.state}>
-                <i />
-                {milestone[locale]}
-              </li>
-            ))}
-          </ul>
-          <div className={styles.figures}>
-            <span>
-              {translate(project.tasksLabel, locale)}
-              <b>
-                {project.tasks.done}/{project.tasks.total}
-              </b>
-            </span>
-            <span>
-              {translate(project.quotedLabel, locale)}
-              <b>{euros(project.quoted, locale)}</b>
-            </span>
-            <span>
-              {translate(project.paidLabel, locale)}
-              <b>{euros(project.paid, locale)}</b>
-            </span>
-          </div>
+        <div data-active={tab === 0 || undefined}>
+          <Activity locale={locale} shown={shown} />
         </div>
-        <div className={styles.client}>
-          <div className={styles.title}>
-            <span className={styles.avatar}>{client.initials}</span>
-            <span>
-              <b>{client.name}</b>
-              <small>{translate(client.since, locale)}</small>
-            </span>
-          </div>
-          <div className={styles.figures}>
-            <span>
-              {translate(client.spentLabel, locale)}
-              <b>{euros(client.spent, locale)}</b>
-            </span>
-            <span>
-              {translate(client.openLabel, locale)}
-              <b>{euros(client.open, locale)}</b>
-            </span>
-          </div>
-          <span className={styles.label}>{translate(client.projectsLabel, locale)}</span>
-          <ul className={styles.history}>
-            {client.projects.map((past) => (
-              <li key={past.en} data-state={past.state}>
-                <i />
-                <span>
-                  {past[locale]} <small>{past.year}</small>
-                </span>
-                <b>{euros(past.amount, locale)}</b>
-              </li>
-            ))}
-          </ul>
+        <div data-active={tab === 1 || undefined}>
+          <Project locale={locale} ticked={ticked} />
+        </div>
+        <div data-active={tab === 2 || undefined}>
+          <Client locale={locale} />
         </div>
       </div>
+      <AnimatePresence>
+        {tip && (
+          <motion.div
+            key={tip}
+            className={styles.tip}
+            style={{ left: places.tip.x, top: places.tip.y, x: "-50%", y: "-100%" } as CSSProperties}
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: EASE }}
+          >
+            {tipFor(tip, locale)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div
+        className={styles.pointer}
+        initial={false}
+        animate={{ x: places.pointer.x, y: places.pointer.y, opacity: pointed ? 1 : 0 }}
+        transition={{ duration: 0.8, ease: EASE }}
+      >
+        <AnimatePresence>
+          {pressed > 0 && (
+            <motion.span
+              key={pressed}
+              className={styles.ripple}
+              initial={{ opacity: 0.9, scale: 0.3 }}
+              animate={{ opacity: 0, scale: 1.4 }}
+              transition={{ duration: 0.6 }}
+            />
+          )}
+        </AnimatePresence>
+        <Icon name="pointer" strokeWidth={1.4} />
+      </motion.div>
     </div>
   );
 }

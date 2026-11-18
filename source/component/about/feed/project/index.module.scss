@@ -1,0 +1,129 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.project {
+  display: grid;
+  justify-content: stretch;
+  align-content: start;
+  gap: 16px;
+  text-align: left;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  b {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+.chip {
+  flex: none;
+  padding: 3px 9px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  font-size: 11.5px;
+  color: var(--foreground-2);
+}
+/* The progress: label and a big number on one line, the bar under them, the task count beneath. */
+.progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--foreground-2);
+  i {
+    grid-column: 1 / -1;
+    height: 8px;
+    border-radius: 99px;
+    background:
+      linear-gradient(var(--foreground), var(--foreground)) 0 0 / var(--to) 100% no-repeat,
+      tint($faint);
+    transition: background-size 0.9s $ease;
+  }
+  small {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    color: var(--foreground-3);
+  }
+}
+.percent {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--foreground);
+}
+/* The checklist: a box that fills with a tick when done. */
+.checklist {
+  display: grid;
+  justify-content: stretch;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 7px 8px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--foreground-2);
+    transition: color 0.3s;
+    i {
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid tint($edge);
+      border-radius: 5px;
+      font-size: 12px;
+      color: transparent;
+      transition:
+        background-color 0.3s,
+        border-color 0.3s,
+        color 0.3s;
+    }
+    &[data-done] {
+      color: var(--foreground-3);
+      text-decoration: line-through;
+      text-decoration-color: tint($detail);
+      i {
+        border-color: var(--foreground);
+        background: var(--foreground);
+        color: var(--background);
+      }
+    }
+  }
+}
+/* The budget: one bar, paid filling it, the two amounts under it. */
+.budget {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: surface($hint);
+  font-size: 12px;
+  color: var(--foreground-3);
+  i {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 99px;
+    background:
+      linear-gradient(var(--foreground), var(--foreground)) 0 0 / var(--to) 100% no-repeat,
+      tint($faint);
+  }
+  b {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  span:last-child {
+    text-align: right;
+  }
+}
