@@ -92,18 +92,13 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     ).getAllByRole("link");
     expect(
       social.map((link) => link.getAttribute("aria-label") ?? link.querySelector("svg")!.getAttribute("aria-label")),
-    ).toEqual([
-      "Facebook",
-      "Instagram",
-      "TikTok",
-      "YouTube",
-      "X",
-      "Threads",
-      "Pinterest",
-      "LinkedIn",
-      locale === "en" ? "Review us on Google" : "Avalie-nos no Google",
-    ]);
-    expect(social.at(-1)!.getAttribute("href")).toBe("https://g.page/r/Ce_Dy76heUvHEAE/review");
+    ).toEqual(["Facebook", "Instagram", "TikTok", "YouTube", "X", "Threads", "Pinterest", "LinkedIn", "Google"]);
+    expect(social.at(-1)!.getAttribute("href")).toBe("https://share.google/lv28MI0ABPwEvM1ad");
+    expect(
+      screen
+        .getByRole("link", { name: locale === "en" ? "Review us on Google" : "Avalie-nos no Google" })
+        .getAttribute("href"),
+    ).toBe("https://g.page/r/Ce_Dy76heUvHEAE/review");
     await act(async () => vi.advanceTimersByTime(2000));
     const dialog = screen.getByRole("dialog");
     expect(screen.queryByRole("button", { name: locale === "en" ? "Deny" : "Recusar" })).toBeNull();
