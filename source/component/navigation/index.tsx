@@ -21,10 +21,10 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const MotionSectionLink = motion.create(SectionLink);
 
 /** Where the bar has room for every link; below it they move into the menu (keep in step with the styles). */
-const WIDE = "(min-width: 1101px)";
+const WIDE = "(min-width: 1201px)";
 
 /**
- * Fixed top bar that frosts once the page scrolls, with the style and language switches. Below 1100px the links
+ * Fixed top bar that frosts once the page scrolls, with the style and language switches. Below 1200px the links
  * open in a menu under the bar, in the bar's frosted background; it scrolls when it doesn't fit (a phone held
  * sideways), and any tap on a link or button in the bar or menu closes it (`useMenu`). The menu sits beside the bar, not in it: the bar's blur would otherwise make the menu the bar's size.
  */
