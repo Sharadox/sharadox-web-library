@@ -27,8 +27,8 @@ export function Capability({ locale }: CapabilityProperties) {
           <div key={service.key} className={styles.column}>
             <ServiceShortcut locale={locale} service={service} className={styles.title} />
             <ul role="list">
-              {service.capabilities[locale].map((capability, row) => (
-                <li key={capability}>
+              {service.capabilities[locale].map((capability, row, all) => (
+                <li key={capability} data-last={row === all.length - 1 || undefined}>
                   <Reveal delay={column * 0.05 + row * 0.04} y={8} blur={0} margin="-5% 0px">
                     {capability}
                   </Reveal>
