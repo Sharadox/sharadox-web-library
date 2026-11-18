@@ -12,145 +12,57 @@
   line-height: 1.08;
   max-width: 24ch;
 }
-/* The two halves, one row each, as cells with hairlines between them. */
-.panels {
+/* A chapter: its number and label, then its title and a few lines side by side, then its picture across the whole
+   width (all one under another on smaller screens). */
+.chapter {
   display: grid;
-  justify-content: stretch;
-  align-items: stretch;
-  gap: 1px;
-  margin-top: clamp(56px, 8vw, 96px);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--line);
-  > * {
-    background: var(--background);
-    padding: clamp(24px, 3.4vw, 48px);
-  }
-  h3 {
-    font-size: clamp(1.6rem, 2.8vw, 2.5rem);
-    letter-spacing: -0.04em;
-    text-wrap: balance;
-  }
-  p {
-    color: var(--foreground-2);
-    text-wrap: pretty;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 3.4vw, 48px);
+  margin-top: clamp(64px, 9vw, 120px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+  @media (min-width: 901px) {
+    .heading {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: clamp(24px, 4vw, 64px);
+    }
+    .number,
+    .eyebrow {
+      grid-column: 1 / -1;
+    }
+    .title {
+      grid-column: 1;
+    }
+    .text {
+      grid-column: 2;
+      justify-self: end;
+    }
   }
 }
-/* What a half is: its label, its title and a few lines. */
-.copy {
+.heading {
   display: grid;
   justify-content: stretch;
   justify-items: start;
   align-content: start;
-  gap: 16px;
+  gap: 14px;
 }
-/* The brand: what it is on the left, the five things it's made of in a numbered row on the right, level with its
-   bottom. */
-.brand {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  align-items: end;
-  gap: clamp(24px, 4vw, 64px);
-  @include below(1000px) {
-    grid-template-columns: 1fr;
-  }
+.title {
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
-/* Their numbers in a line at the top, whatever wraps under them. */
-.parts {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: stretch;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: part;
-  li {
-    display: grid;
-    align-content: start;
-    justify-items: start;
-    gap: 10px;
-    padding: 16px 14px 4px;
-    border-left: 1px dashed var(--line-2);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    counter-increment: part;
-    &::before {
-      content: counter(part, decimal-leading-zero);
-      font-family: var(--monospace);
-      font-size: 11.5px;
-      font-weight: 400;
-      color: var(--foreground-3);
-    }
-  }
-  @include below(640px) {
-    grid-template-columns: 1fr;
-    li {
-      display: flex;
-      align-items: baseline;
-      justify-content: flex-start;
-      gap: 14px;
-      padding: 12px 0;
-      border-left: 0;
-      border-bottom: 1px dashed var(--line-2);
-      &:last-child {
-        border-bottom: 0;
-      }
-    }
-  }
+.text {
+  max-width: 46ch;
+  color: var(--foreground-2);
+  font-size: 1.05rem;
+  text-wrap: pretty;
 }
-/* The business, lit from behind as the half that matters most: what it is beside its live feed, its three promises
-   in a row under both. */
-.business {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas:
-    "copy feed"
-    "points points";
-  align-items: center;
-  gap: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 64px);
-  background: radial-gradient(70% 80% at 80% 40%, tint(7%), transparent 70%), var(--background) !important;
-  > .copy {
-    grid-area: copy;
-  }
-  > :nth-child(2) {
-    grid-area: feed;
-  }
-  @include below(1000px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "copy"
-      "feed"
-      "points";
-  }
+.number {
+  font-size: 12px;
+  color: var(--foreground-3);
 }
-/* Automated, your team, anywhere: three promises side by side, each a word and a line. */
-.points {
-  grid-area: points;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: start;
-  gap: 16px clamp(16px, 3vw, 40px);
-  margin: 0;
-  padding: 24px 0 0;
-  border-top: 1px dashed var(--line-2);
-  list-style: none;
-  li {
-    display: grid;
-    justify-content: stretch;
-    align-content: start;
-    gap: 6px;
-  }
-  b {
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-  span {
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--foreground-2);
-  }
-  @include below(700px) {
-    grid-template-columns: 1fr;
-  }
+.picture {
+  min-width: 0;
 }
