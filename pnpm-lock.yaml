@@ -21,8 +21,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/icon-web-library':
-        specifier: ^0.4.0
-        version: 0.4.0(react@19.3.1)
+        specifier: ^0.5.0
+        version: 0.5.0(react@19.3.1)
       '@sharadox/internationalization-web-library':
         specifier: ^0.2.3
         version: 0.2.3(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -795,8 +795,8 @@ packages:
       react: '>=19'
       react-dom: '>=19'
 
-  '@sharadox/icon-web-library@0.4.0':
-    resolution: {integrity: sha512-qEros78dmmXv3gN5slcmErJOn54mc2XbXYYOE6od763x8Qqrg/xh8/EkBoq5sh9i2p4kdU+dpz/q0niaZztDRQ==}
+  '@sharadox/icon-web-library@0.5.0':
+    resolution: {integrity: sha512-rX5gbt0aAKjronzijkPK6Cytd2hvSGHjyhtztlw8kVPWVeRp5g6zhNn+PMfnN93mM672+9TzTCPEKNDLuALX/Q==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -2727,7 +2727,7 @@ snapshots:
       - immer
       - react-native
 
-  '@sharadox/icon-web-library@0.4.0(react@19.3.1)':
+  '@sharadox/icon-web-library@0.5.0(react@19.3.1)':
     optionalDependencies:
       react: 19.3.1
 

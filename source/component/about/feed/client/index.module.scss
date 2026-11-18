@@ -1,0 +1,183 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+.client {
+  display: grid;
+  justify-content: stretch;
+  align-content: start;
+  gap: 16px;
+  text-align: left;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  b {
+    display: block;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  small {
+    display: block;
+    font-size: 12px;
+    color: var(--foreground-3);
+  }
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 13px;
+  font-weight: 600;
+}
+/* The ring of paid against quoted, its legend beside it. */
+.money {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: surface($hint);
+  dl {
+    display: grid;
+    justify-content: stretch;
+    gap: 8px;
+    margin: 0;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--foreground-2);
+    i {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      background: tint($faint);
+      &[data-paid] {
+        background: var(--foreground);
+      }
+    }
+  }
+  dd {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  svg {
+    position: absolute;
+    inset: 0;
+    transform: rotate(-90deg);
+  }
+  circle {
+    fill: none;
+    stroke: tint($faint);
+    stroke-width: 9;
+    &:last-child {
+      stroke: var(--foreground);
+      stroke-linecap: round;
+    }
+  }
+  b {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+}
+.label {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground-3);
+}
+/* A bar per project: name and year, the bar sized by its amount, the amount. */
+.projects {
+  display: grid;
+  justify-content: stretch;
+  gap: 8px;
+}
+.bar {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  small {
+    margin-left: 4px;
+    font-size: 11px;
+    color: var(--foreground-3);
+  }
+  i {
+    height: 8px;
+    border-radius: 99px;
+    background:
+      linear-gradient(var(--foreground), var(--foreground)) 0 0 / var(--to) 100% no-repeat,
+      tint($hint);
+  }
+  b {
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+}
+/* Tasks across her projects: one bar, done against to do. */
+.tasks {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 12px;
+  i {
+    height: 8px;
+    border-radius: 99px;
+    background:
+      linear-gradient(var(--foreground), var(--foreground)) 0 0 / var(--to) 100% no-repeat,
+      tint($faint);
+  }
+  > span:last-child {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: var(--foreground-3);
+    b {
+      color: var(--foreground);
+    }
+  }
+}
+/* In a narrow panel: the ring over its legend, and each project's bar under its name and amount. */
+@container (max-width: 340px) {
+  .money {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    dl {
+      width: 100%;
+    }
+  }
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 10px;
+    i {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+}
