@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen } from "@testing-library/react";
+import { act, cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { installBrowserEnvironment, reportIntersection } from "@sharadox/test-web-library/browser-environment";
 
@@ -85,6 +85,23 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
       "https://www.livroreclamacoes.pt/",
     );
     expect(screen.getByRole("link", { name: /CIMAAL/ }).getAttribute("href")).toBe("https://www.consumoalgarve.pt/");
+    const social = within(
+      screen.getByRole("navigation", { name: locale === "en" ? "Sharadox elsewhere" : "A Sharadox noutros lugares" }),
+    ).getAllByRole("link");
+    expect(
+      social.map((link) => link.getAttribute("aria-label") ?? link.querySelector("svg")!.getAttribute("aria-label")),
+    ).toEqual([
+      "Facebook",
+      "Instagram",
+      "TikTok",
+      "YouTube",
+      "X",
+      "Threads",
+      "Pinterest",
+      "LinkedIn",
+      locale === "en" ? "Review us on Google" : "Avalie-nos no Google",
+    ]);
+    expect(social.at(-1)!.getAttribute("href")).toBe("https://g.page/r/Ce_Dy76heUvHEAE/review");
     await act(async () => vi.advanceTimersByTime(2000));
     const dialog = screen.getByRole("dialog");
     expect(screen.queryByRole("button", { name: locale === "en" ? "Deny" : "Recusar" })).toBeNull();

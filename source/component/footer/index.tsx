@@ -1,6 +1,7 @@
 import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import Link from "next/link";
 import { Icon } from "@sharadox/icon-web-library/icon";
+import { BrandIcon } from "@sharadox/icon-web-library/brand-icon";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
@@ -23,7 +24,7 @@ import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
 import { STYLE } from "@sharadox/sharadox-web-library/content/style";
 import { CopyrightYears } from "@sharadox/time-web-library/copyright-years";
-import { FOUNDED, SITE } from "@sharadox/sharadox-web-library/content/site";
+import { FOUNDED, SITE, SOCIAL } from "@sharadox/sharadox-web-library/content/site";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
@@ -104,6 +105,17 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </Link>
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <ComplaintsBookLink locale={locale} />
+        </nav>
+        {/* The last line: Sharadox's profiles, and the Google review form, as their marks. */}
+        <nav aria-label={translate(FOOTER.social, locale)} className={styles.social}>
+          {SOCIAL.map((profile) => (
+            <a key={profile.icon} href={profile.url} target="_blank" rel="noopener noreferrer me">
+              <BrandIcon
+                name={profile.icon}
+                label={"review" in profile ? translate(FOOTER.review, locale) : profile.name}
+              />
+            </a>
+          ))}
         </nav>
       </div>
     </footer>
