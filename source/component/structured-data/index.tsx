@@ -1,5 +1,5 @@
 import { SERVICES } from "@sharadox/sharadox-web-library/content/services";
-import { SITE } from "@sharadox/sharadox-web-library/content/site";
+import { SITE, SOCIAL } from "@sharadox/sharadox-web-library/content/site";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { StructuredData as JsonLinkedData } from "@sharadox/metadata-web-library/structured-data";
 import { structuredDataGraph } from "@sharadox/metadata-web-library/structured-data-graph";
@@ -16,6 +16,7 @@ export function StructuredData({ locale }: StructuredDataProperties) {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
+      sameAs: SOCIAL.filter((profile) => !("review" in profile)).map((profile) => profile.url),
       slogan: translate(SLOGAN, locale),
       description: translate(SITE.description, locale),
       logo: `${SITE.url}/profile-picture.png`,
