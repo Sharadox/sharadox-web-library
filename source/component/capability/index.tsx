@@ -1,8 +1,8 @@
-import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import type { CSSProperties } from "react";
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { Reveal } from "@sharadox/animation-web-library/reveal";
 import { translate } from "@sharadox/internationalization-web-library/translate";
+import { ServiceShortcut } from "@sharadox/sharadox-web-library/component/service-shortcut";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { SectionHeading } from "@sharadox/sharadox-web-library/component/section-heading";
 import { CAPABILITY } from "@sharadox/sharadox-web-library/content/capability";
@@ -12,8 +12,8 @@ import styles from "./index.module.scss";
 import type { CapabilityProperties } from "@sharadox/sharadox-web-library/component/capability/type";
 
 /**
- * "Capabilities": everything each service group delivers, as columns of a ruled sheet whose headings stay in view
- * while it scrolls by (shorter columns run on in empty ruled cells), and what always comes with every project.
+ * "Capabilities": everything each service group delivers, as columns of a ruled sheet headed by the same shortcuts
+ * as under the hero, which stay in view while it scrolls by (shorter columns run on in empty ruled cells), and what always comes with every project.
  */
 export function Capability({ locale }: CapabilityProperties) {
   const rows = 1 + Math.max(...SERVICES.items.map((service) => service.capabilities[locale].length));
@@ -25,10 +25,7 @@ export function Capability({ locale }: CapabilityProperties) {
       <div className={styles.sheet} style={{ "--rows": rows } as CSSProperties}>
         {SERVICES.items.map((service, column) => (
           <div key={service.key} className={styles.column}>
-            <SectionLink href={`#${service.key}`} className={styles.title}>
-              <span className="monospace">{service.number}</span>
-              {translate(service.title, locale)}
-            </SectionLink>
+            <ServiceShortcut locale={locale} service={service} className={styles.title} />
             <ul role="list">
               {service.capabilities[locale].map((capability, row) => (
                 <li key={capability}>
