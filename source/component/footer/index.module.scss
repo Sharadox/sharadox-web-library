@@ -11,19 +11,9 @@
 }
 .columns {
   align-items: stretch;
-  position: relative;
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  /* The line between the columns and the legal row: dashed, like the lines between the columns. */
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    @include dashed(horizontal);
-  }
+  border-bottom: 1px solid var(--line);
   > * {
     justify-content: stretch;
     position: relative;
