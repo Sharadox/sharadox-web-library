@@ -124,11 +124,12 @@ $globe-canvas: 61.3%;
     justify-self: center;
   }
 }
-/* Just below the globe body, which ends about 9% above the canvas's bottom edge. */
+/* Just below the globe body, which ends 40.75% of the canvas below its middle (90.75% down): close under it, and
+   clear of the service shortcuts under the hero. */
 .hint {
   position: absolute;
   left: 50%;
-  bottom: 2%;
+  top: 92%;
   transform: translateX(-50%);
   font-size: 11.5px;
   letter-spacing: 0.06em;
