@@ -1,5 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
+import { glideIntoView } from "@sharadox/scroll-web-library/glide-into-view";
 import { useActionState, useEffect, useRef, useState } from "react";
 import type { ContactState } from "@sharadox/sharadox-web-library/action/send-contact/type";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
@@ -73,6 +74,10 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
       {state.status === "sent" ? (
         <motion.div
           key="sent"
+          // On a phone the thank-you appears where the taller form was: bring it into view.
+          ref={(element) => {
+            if (element) glideIntoView(element);
+          }}
           className={`${styles.form} ${styles.done}`}
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}

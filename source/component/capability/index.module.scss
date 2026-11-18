@@ -60,9 +60,15 @@
       height: 1px;
       @include dashed(horizontal, var(--line));
     }
-    /* The last row sits on the sheet's own solid bottom line: no dashed line over it. */
+    /* The last row sits on the sheet's own solid bottom line: no dashed line over it. On phones, where the empty
+       cells are hidden, that's the column's last capability. */
     &:last-child::after {
       display: none;
+    }
+    @include below(600px) {
+      &[data-last]::after {
+        display: none;
+      }
     }
     &:hover {
       color: var(--foreground);
