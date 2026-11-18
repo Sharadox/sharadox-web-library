@@ -8,6 +8,7 @@ export const SECTION_INDICATOR = {
     SECTION.about,
     SECTION.services,
     SECTION.capabilities,
+    SECTION.portfolio,
     SECTION.process,
     SECTION.faq,
     SECTION.contact,

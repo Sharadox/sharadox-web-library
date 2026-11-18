@@ -37,7 +37,14 @@ import type { FooterProperties } from "@sharadox/sharadox-web-library/component/
  */
 export function Footer({ locale, path = "" }: FooterProperties) {
   const home = path ? `/${locale}` : "";
-  const studio = [SECTION.about, SECTION.capabilities, SECTION.process, SECTION.faq, SECTION.contact];
+  const studio = [
+    SECTION.about,
+    SECTION.capabilities,
+    SECTION.portfolio,
+    SECTION.process,
+    SECTION.faq,
+    SECTION.contact,
+  ];
   return (
     <footer className={styles.footer}>
       <Cross corner="top-left" />

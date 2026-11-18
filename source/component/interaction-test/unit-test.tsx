@@ -107,9 +107,10 @@ describe("Navigation menu", () => {
       "01About",
       "02Services",
       "03Capabilities",
-      "04Process",
-      "05Questions",
-      "06Contact",
+      "04Portfolio",
+      "05Process",
+      "06Questions",
+      "07Contact",
       "Start a Project",
     ]);
     expect(menu.querySelector("a")!.getAttribute("href")).toBe("/en#about");
