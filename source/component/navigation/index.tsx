@@ -45,7 +45,10 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
   const contact = `${home}#${SECTION.contact.id}`;
   return (
     <>
-      <header className={classNames(styles.navigation, (scrolled || menu.open) && styles.scrolled)} {...menu.closer}>
+      <header
+        className={classNames(styles.navigation, scrolled && styles.scrolled, menu.open && styles.open)}
+        {...menu.closer}
+      >
         <div className={styles.inner}>
           <Wordmark href={`/${locale}`} />
           <nav className={styles.links} aria-label={translate(NAVIGATION.main, locale)}>
