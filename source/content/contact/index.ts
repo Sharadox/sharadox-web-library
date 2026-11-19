@@ -16,6 +16,7 @@ export const CONTACT = {
         "Anything to add? Just reply to this email.",
       ],
       messageLabel: "Your message",
+      button: { label: "Visit sharadox.com", href: "https://sharadox.com" },
     },
     pt: {
       subject: "Sharadox · Recebemos a sua mensagem",
@@ -26,6 +27,7 @@ export const CONTACT = {
         "Quer acrescentar alguma coisa? Basta responder a este email.",
       ],
       messageLabel: "A sua mensagem",
+      button: { label: "Visitar sharadox.com", href: "https://sharadox.com/pt" },
     },
   },
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },

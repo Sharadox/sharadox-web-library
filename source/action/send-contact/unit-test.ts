@@ -18,9 +18,9 @@ const message = {
 };
 
 describe("sendContact", () => {
-  test("emails contact@sharadox.com as Sharadox (Web Application), on black, with the logo", async () => {
+  test("emails contact@sharadox.com as Sharadox (Web Application), in Sharadox's design, with the mark", async () => {
     expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox", site: "sharadox.com" });
-    expect(options.theme).toEqual({ background: "#000000", foreground: "#ffffff", accent: "#ffffff" });
+    expect(options.design).toMatchObject({ name: "Sharadox", crosses: true, rule: "dashed" });
     const logo = await options.logo!();
     expect(logo.contentType).toBe("image/png");
     expect([...logo.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
@@ -32,6 +32,7 @@ describe("sendContact", () => {
     expect(en!.heading(message.name)).toBe("Thank you, Ana.");
     expect(pt!.heading(message.name)).toBe("Obrigado, Ana.");
     expect(pt!.paragraphs).toHaveLength(2);
+    expect(pt!.button).toEqual({ label: "Visitar sharadox.com", href: "https://sharadox.com/pt" });
   });
 
   test("names every 'What do you need?' choice in English", () => {
