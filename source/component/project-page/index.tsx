@@ -9,6 +9,7 @@ import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { Chapter } from "@sharadox/sharadox-web-library/component/project-page/chapter";
 import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
+import { projectAnchor } from "@sharadox/sharadox-web-library/utility/project-anchor";
 import styles from "./index.module.scss";
 import type { ProjectPageProperties } from "@sharadox/sharadox-web-library/component/project-page/type";
 
@@ -17,7 +18,7 @@ import type { ProjectPageProperties } from "@sharadox/sharadox-web-library/compo
  * made, and the first screen on a computer and a phone. Then a word on what follows: a few of the parts we're proudest
  * of, chapter by chapter, each explained (what it is, how it works) and then running live in a window, the website's
  * own components, across the whole width of the page as on the site itself. At the end, "See it live": the site
- * itself, in a new tab, and the way back.
+ * itself, in a new tab, and the way back to the project's button in the portfolio.
  *
  * @example
  * <ProjectPage project={PORTFOLIO.projects[0]} locale="en" chapters={{ hero: <Hero locale="en" /> }} />
@@ -86,7 +87,7 @@ export function ProjectPage({ project, locale, chapters }: ProjectPageProperties
           <Button href={project.url} arrow>
             {translate(page.visit, locale)} {domain}
           </Button>
-          <Button href={`/${locale}#${SECTION.portfolio.id}`} variant="ghost">
+          <Button href={`/${locale}#${projectAnchor(project.key)}`} variant="ghost">
             {translate(page.back, locale)}
           </Button>
         </div>
