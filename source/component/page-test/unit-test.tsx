@@ -65,7 +65,9 @@ describe.each(["en", "pt"] as const)("the whole page in %s", (locale) => {
     // Four service groups, each with its cards, and the footer has no big wordmark any more.
     for (const id of ["about", "portfolio", "web", "desktop-and-mobile", "creative", "marketing", "faq"])
       expect(document.getElementById(id)).not.toBeNull();
-    expect(document.querySelectorAll("article [aria-hidden] > div > div").length).toBe(18);
+    expect(document.querySelectorAll("article:not([aria-labelledby^=project-]) [aria-hidden] > div > div").length).toBe(
+      18,
+    );
     expect(screen.getByRole("heading", { level: 1 }).textContent).toMatch(
       locale === "en" ? /Technologies/ : /Tecnologias/,
     );

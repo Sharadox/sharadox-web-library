@@ -143,10 +143,11 @@
     gap: 12px 18px;
   }
 }
-/* The profiles' marks, on one line. */
+/* The profiles' marks, on one line, centered like everything around them. */
 .social {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 4px 6px;
   padding-top: 6px;
   a {

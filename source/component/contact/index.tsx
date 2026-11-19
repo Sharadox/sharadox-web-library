@@ -8,6 +8,7 @@ import { ContactForm } from "@sharadox/sharadox-web-library/component/contact/fo
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { ContactProperties } from "@sharadox/sharadox-web-library/component/contact/type";
+import { newTab } from "@sharadox/web-library/navigation/new-tab";
 
 /** Contact section: the invitation on the left and the direct email on the right, the form across both under them. */
 export function Contact({ locale, action }: ContactProperties) {
@@ -21,7 +22,9 @@ export function Contact({ locale, action }: ContactProperties) {
       </Reveal>
       <Reveal delay={0.05} className={styles.direct}>
         <span className="monospace">{translate(CONTACT.direct, locale)}</span>
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <a href={`mailto:${SITE.email}`} {...newTab(`mailto:${SITE.email}`)}>
+          {SITE.email}
+        </a>
       </Reveal>
       <Reveal delay={0.1} className={styles.form}>
         <ContactForm locale={locale} action={action} />

@@ -10,7 +10,8 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-const panel = () => document.querySelector<HTMLElement>("[data-target='tab-0']")!.closest("[aria-hidden]")!;
+const panel = () =>
+  document.querySelector<HTMLElement>("[data-target='tab-0']")!.closest<HTMLElement>("[class*=feed]")!;
 const activeTab = () => document.querySelector("[data-target^='tab-'][data-active]")!.textContent;
 const tip = () => [...panel().children].find((element) => element.className.includes("tip"))?.textContent;
 const later = (milliseconds: number) => act(() => vi.advanceTimersByTimeAsync(milliseconds));

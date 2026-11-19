@@ -14,6 +14,7 @@ import { contactProblems } from "@sharadox/sharadox-web-library/utility/contact-
 import type { ContactProblem } from "@sharadox/sharadox-web-library/utility/contact-problem";
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
+import { newTab } from "@sharadox/web-library/navigation/new-tab";
 
 /**
  * The enquiry form: name, company, email and phone (one of them is enough), the choices grouped like the services, and
@@ -189,7 +190,11 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               <p className={styles.error} role="alert">
                 {state.status === "failed" ? (
                   <>
-                    {translate(CONTACT.errors.failed, locale)} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+                    {translate(CONTACT.errors.failed, locale)}{" "}
+                    <a href={`mailto:${SITE.email}`} {...newTab(`mailto:${SITE.email}`)}>
+                      {SITE.email}
+                    </a>
+                    .
                   </>
                 ) : (
                   translate(CONTACT.errors[state.status], locale)
