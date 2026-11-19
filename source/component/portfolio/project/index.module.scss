@@ -111,6 +111,8 @@
   text-transform: uppercase;
   color: var(--foreground-3);
 }
+/* Coming back from the project's page, the button lands in the middle of the screen. */
 .open {
   justify-self: start;
+  scroll-margin-block: calc(50svh - 28px);
 }

@@ -41,7 +41,9 @@ test("opens with the story, then numbers the chapters it is given, live, and end
   const visit = screen.getByRole("link", { name: "Visit luispiresdecor.com" });
   expect(visit.getAttribute("href")).toBe("https://luispiresdecor.com");
   expect(visit.getAttribute("target")).toBe("_blank");
-  expect(screen.getByRole("link", { name: "Back to the Portfolio" }).getAttribute("href")).toBe("/en#portfolio");
+  expect(screen.getByRole("link", { name: "Back to the Portfolio" }).getAttribute("href")).toBe(
+    "/en#see-luis-pires-decor-website-and-rebranding",
+  );
 });
 
 test("speaks Portuguese", () => {

@@ -10,5 +10,7 @@ export interface ButtonProperties {
   arrow?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  /** The element's id, for links that lead back to it. */
+  id?: string;
   className?: string;
 }
