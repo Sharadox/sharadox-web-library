@@ -34,3 +34,18 @@ test("draws the mark at half the shorter side, alone or with the headline", asyn
   expect(texts(calls[2]![0]).join(" ")).toBe("Technologies that simplify the world.");
   expect(calls.map(([element]) => markWidth(element))).toEqual([540, 540, 540]);
 });
+
+test("draws the background alone, and the email card small, in proportion, with rounded corners", async () => {
+  shareImage.mockClear();
+  await renderSocialImage({ locale: "en", name: "background.png" });
+  await renderSocialImage({ locale: "en", name: "email-card.png" });
+  const calls = shareImage.mock.calls as [Drawn & { props: { style: Record<string, number> } }, { width: number }][];
+  const [background, card] = calls.map(([element]) => element);
+  expect((background!.props.children as unknown[]).filter(Boolean)).toEqual([]);
+  expect(background!.props.style.borderRadius).toBe(0);
+  expect(calls[1]![1].width).toBe(256);
+  expect(markWidth(card)).toBe(72);
+  expect(card!.props.style.borderRadius).toBe(12);
+  expect(card!.props.style.gap).toBeCloseTo(12.8);
+  expect(texts(card).join(" ")).toBe("Technologies that simplify the world.");
+});
