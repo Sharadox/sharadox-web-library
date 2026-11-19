@@ -2,6 +2,7 @@ import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import Link from "next/link";
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { BrandIcon } from "@sharadox/icon-web-library/brand-icon";
+import { newTab } from "@sharadox/web-library/navigation/new-tab";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
@@ -53,7 +54,7 @@ export function Footer({ locale, path = "" }: FooterProperties) {
         <div className={styles.brand}>
           <Wordmark href={`/${locale}`} />
           <p className={styles.slogan}>{translate(SLOGAN, locale)}</p>
-          <a href={`mailto:${SITE.email}`} className={styles.email}>
+          <a href={`mailto:${SITE.email}`} {...newTab(`mailto:${SITE.email}`)} className={styles.email}>
             {SITE.email}
           </a>
           <Button href={`${home}#${SECTION.contact.id}`} size="small" arrow className={styles.start}>
@@ -112,7 +113,9 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           </Link>
           <PreferencesLink label={translate(CONSENT.preferences, locale)} />
           <ComplaintsBookLink locale={locale} />
-          <a href={GOOGLE_REVIEW}>{translate(FOOTER.review, locale)}</a>
+          <a href={GOOGLE_REVIEW} {...newTab(GOOGLE_REVIEW)}>
+            {translate(FOOTER.review, locale)}
+          </a>
         </nav>
         {/* The last line: Sharadox's profiles, as their marks. */}
         <nav aria-label={translate(FOOTER.social, locale)} className={styles.social}>

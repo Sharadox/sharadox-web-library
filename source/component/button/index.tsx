@@ -1,12 +1,13 @@
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import { classNames } from "@sharadox/web-library/class-name";
+import { leavesSite, newTab } from "@sharadox/web-library/navigation/new-tab";
 import styles from "./index.module.scss";
 import type { ButtonProperties } from "@sharadox/sharadox-web-library/component/button/type";
 
 /**
  * Pill button or link: solid (the foreground color) or ghost (outlined). Links to the site's own pages and sections are
- * Next.js links; email and other sites are plain links.
+ * Next.js links; email, phones and other sites are plain links that open in a new tab.
  */
 export function Button({
   children,
@@ -25,10 +26,10 @@ export function Button({
       {arrow && <Icon name="chevron-right" className={styles.arrow} strokeWidth={1.8} />}
     </>
   );
-  // The site's own pages and sections go through Next.js; anything else (email, other sites) is a plain link.
-  if (href && !href.startsWith("/") && !href.startsWith("#"))
+  // The site's own pages and sections go through Next.js; anything else (email, other sites) opens in a new tab.
+  if (href && leavesSite(href))
     return (
-      <a href={href} className={names} onClick={onClick}>
+      <a href={href} className={names} onClick={onClick} {...newTab(href)}>
         {content}
       </a>
     );

@@ -21,19 +21,26 @@ test("opens with the story, then numbers the chapters it is given, live, and end
       chapters={{ hero: <p>The hero, live</p>, booking: <p>The form, live</p> }}
     />,
   );
-  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Luis Pires DecorMade by hand, now online.");
-  expect(screen.getByText(/nothing is a picture/)).toBeDefined();
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+    "Luis Pires DecorA lifelong craft, now easy to find.",
+  );
+  expect(screen.getByText(/AI assistants/)).toBeDefined();
+  // It says what follows: a few parts, each explained, then live.
+  expect(screen.getByText(/A few of the parts we're proudest of/)).toBeDefined();
   expect(screen.getByText("Portfolio · 17 November 2026")).toBeDefined();
-  expect(screen.getAllByRole("listitem")).toHaveLength(6);
+  // The six services, and how each chapter works (three points for the hero, four for the form).
+  expect(screen.getAllByRole("listitem")).toHaveLength(6 + 3 + 4);
+  expect(screen.getAllByText("How it works")).toHaveLength(2);
+  expect(screen.getByText(/sending only tells you it's a demo/)).toBeDefined();
   // Only the chapters given are shown, numbered in turn.
   const chapters = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
-  expect(chapters).toEqual(["A first screen in 3D", "Booking a visit", "See it all on its own site."]);
+  expect(chapters).toEqual(["The monogram, in real 3D", "Booking a visit", "See it live on luispiresdecor.com"]);
   expect(screen.getByText("02")).toBeDefined();
   expect(screen.getByText("The hero, live")).toBeDefined();
   expect(screen.getAllByText("Live · luispiresdecor.com")).toHaveLength(2);
-  expect(screen.getByRole("link", { name: "Visit luispiresdecor.com" }).getAttribute("href")).toBe(
-    "https://luispiresdecor.com",
-  );
+  const visit = screen.getByRole("link", { name: "Visit luispiresdecor.com" });
+  expect(visit.getAttribute("href")).toBe("https://luispiresdecor.com");
+  expect(visit.getAttribute("target")).toBe("_blank");
   expect(screen.getByRole("link", { name: "Back to the Portfolio" }).getAttribute("href")).toBe("/en#portfolio");
 });
 
@@ -41,5 +48,7 @@ test("speaks Portuguese", () => {
   render(<ProjectPage project={project} locale="pt" chapters={{ work: <p>O trabalho</p> }} />);
   expect(screen.getByRole("heading", { name: "O trabalho, numa parede editorial" })).toBeDefined();
   expect(screen.getByText("Ao vivo · luispiresdecor.com")).toBeDefined();
+  expect(screen.getByText("Como funciona")).toBeDefined();
+  expect(screen.getByRole("heading", { level: 2, name: "Veja-o ao vivo em luispiresdecor.com" })).toBeDefined();
   expect(screen.getByRole("link", { name: "Visitar luispiresdecor.com" })).toBeDefined();
 });
