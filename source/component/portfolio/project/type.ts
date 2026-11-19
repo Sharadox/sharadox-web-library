@@ -1,4 +1,4 @@
-import type { Project } from "@sharadox/sharadox-web-library/component/portfolio/select-projects/type";
+import type { Project } from "@sharadox/sharadox-web-library/component/portfolio/type";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 
 export interface ProjectProperties {

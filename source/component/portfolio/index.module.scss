@@ -1,14 +1,5 @@
 @use "style/token" as *;
 
 .heading {
-  display: grid;
-  justify-content: stretch;
-  gap: 18px;
-  padding: clamp(72px, 10vw, 128px) var(--padding) clamp(32px, 4vw, 48px);
-}
-.text {
-  max-width: 56ch;
-  text-align: left;
-  color: var(--foreground-2);
-  line-height: 1.6;
+  padding: clamp(72px, 10vw, 128px) var(--padding) 0;
 }

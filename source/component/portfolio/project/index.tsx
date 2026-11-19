@@ -1,26 +1,19 @@
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { Screens } from "@sharadox/sharadox-web-library/component/portfolio/screens";
-import { serviceName } from "@sharadox/sharadox-web-library/component/portfolio/select-projects";
+import { launchDate } from "@sharadox/sharadox-web-library/component/portfolio/launch-date";
+import { serviceName } from "@sharadox/sharadox-web-library/component/portfolio/service-name";
 import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
 import styles from "./index.module.scss";
 import type { ProjectProperties } from "@sharadox/sharadox-web-library/component/portfolio/project/type";
 
-/** The month a project went live, the way the language says it ("November 2026", "novembro de 2026"). */
-const month = (date: string, locale: string) =>
-  new Intl.DateTimeFormat(locale === "pt" ? "pt-PT" : "en-GB", {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(date));
-
 /**
- * One project: the live site on a computer and a phone beside its story: number, launch month, client, headline,
- * what it is, its details, chips of the services we made for it, and a link to visit it.
+ * One project: its first screen on a computer and a phone beside its story: number, launch day, client, headline,
+ * what it is, its details, chips of the services we made for it, and the way to its own page.
  */
 export function Project({ project, index, locale }: ProjectProperties) {
   const { details } = PORTFOLIO;
-  const launched = month(project.date, locale);
+  const launched = launchDate(project.date, locale);
   return (
     <article className={styles.project} aria-labelledby={`project-${project.key}`}>
       <Screens project={project} label={`${project.client} ${translate(PORTFOLIO.screens, locale)}`} />
@@ -56,8 +49,8 @@ export function Project({ project, index, locale }: ProjectProperties) {
             ))}
           </ul>
         </div>
-        <Button href={project.url} variant="ghost" arrow className={styles.visit}>
-          {translate(PORTFOLIO.visit, locale)}
+        <Button href={`/${locale}${PORTFOLIO.path}/${project.key}`} arrow className={styles.open}>
+          {translate(PORTFOLIO.open, locale)}
         </Button>
       </div>
     </article>

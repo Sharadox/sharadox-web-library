@@ -86,33 +86,16 @@
     border-radius: 21px;
   }
 }
-/* The page inside a screen glides from its top to its bottom and back: the viewport is its container, so the image
-   stops exactly as its end comes into view. */
+/* The screen: the site's first screen, filling it. */
 .viewport {
   position: relative;
   overflow: hidden;
-  container-type: size;
   background: var(--background);
 }
 .page {
   display: block;
   width: 100%;
-  height: auto;
-  @include loop(screen-scroll 48s ease-in-out infinite alternate);
-  .phone & {
-    animation-duration: 60s;
-  }
-  .stage:hover & {
-    animation-play-state: paused;
-  }
-}
-@keyframes screen-scroll {
-  0%,
-  4% {
-    transform: translateY(0);
-  }
-  96%,
-  100% {
-    transform: translateY(calc(-100% + 100cqh));
-  }
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
