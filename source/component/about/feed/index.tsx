@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { Icon } from "@sharadox/icon-web-library/icon";
+import { useParallax } from "@sharadox/pointer-web-library/parallax";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Activity } from "@sharadox/sharadox-web-library/component/about/feed/activity";
 import { Client } from "@sharadox/sharadox-web-library/component/about/feed/client";
@@ -51,10 +52,13 @@ function placeOf(root: HTMLElement, target: string) {
  * three tabs, Activity, Project and Client, all about one job. Once the panel is in view a pointer plays through
  * them: the log fills, the pointer reads an entry, clicks Project, reads the budget and ticks the next task, clicks
  * Client and reads its charts, then goes back to Activity, over and over. Out of view it stops and starts over; with
- * less motion asked for, it rests on the full log. A picture, so it's hidden from assistive technology.
+ * less motion asked for, it rests on the full log. It is a little aware of the visitor's own pointer too: the panel
+ * leans a few degrees towards it and a soft light follows it across. A picture, so it's hidden from assistive
+ * technology.
  */
 export function Feed({ locale }: FeedProperties) {
   const root = useRef<HTMLDivElement>(null);
+  const stage = useParallax<HTMLDivElement>(0.07);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setInView(entry!.isIntersecting), { threshold: 0.4 });
@@ -109,74 +113,76 @@ export function Feed({ locale }: FeedProperties) {
   }, [pointed, tab, shown]);
 
   return (
-    <div ref={root} className={styles.feed} data-playing={playing || undefined} aria-hidden>
-      <div className={styles.header}>
-        <span className={styles.live}>
-          <i />
-          {translate(feed.live, locale)}
-        </span>
-        <span className={styles.viewing}>
-          {translate(feed.viewing, locale)}
-          <span className={styles.places}>
-            {feed.places[locale].map((place) => (
-              <b key={place}>{place}</b>
-            ))}
+    <div ref={stage} className={styles.stage} aria-hidden>
+      <div ref={root} className={styles.feed} data-playing={playing || undefined}>
+        <div className={styles.header}>
+          <span className={styles.live}>
+            <i />
+            {translate(feed.live, locale)}
           </span>
-        </span>
-      </div>
-      <div className={styles.tabs}>
-        {feed.tabs.map((name, index) => (
-          <span key={name.en} data-target={`tab-${index}`} data-active={tab === index || undefined}>
-            {translate(name, locale)}
+          <span className={styles.viewing}>
+            {translate(feed.viewing, locale)}
+            <span className={styles.places}>
+              {feed.places[locale].map((place) => (
+                <b key={place}>{place}</b>
+              ))}
+            </span>
           </span>
-        ))}
-        <i className={styles.underline} style={{ transform: `translateX(${tab * 100}%)` }} />
-      </div>
-      <div className={styles.panes}>
-        <div data-active={tab === 0 || undefined}>
-          <Activity locale={locale} shown={shown} />
         </div>
-        <div data-active={tab === 1 || undefined}>
-          <Project locale={locale} ticked={ticked} />
+        <div className={styles.tabs}>
+          {feed.tabs.map((name, index) => (
+            <span key={name.en} data-target={`tab-${index}`} data-active={tab === index || undefined}>
+              {translate(name, locale)}
+            </span>
+          ))}
+          <i className={styles.underline} style={{ transform: `translateX(${tab * 100}%)` }} />
         </div>
-        <div data-active={tab === 2 || undefined}>
-          <Client locale={locale} />
+        <div className={styles.panes}>
+          <div data-active={tab === 0 || undefined}>
+            <Activity locale={locale} shown={shown} />
+          </div>
+          <div data-active={tab === 1 || undefined}>
+            <Project locale={locale} ticked={ticked} />
+          </div>
+          <div data-active={tab === 2 || undefined}>
+            <Client locale={locale} />
+          </div>
         </div>
-      </div>
-      <AnimatePresence>
-        {tip && (
-          <motion.div
-            key={tip}
-            className={styles.tip}
-            style={{ left: places.tip.x, top: places.tip.y, x: "-50%", y: "-100%" } as CSSProperties}
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.25, ease: EASE }}
-          >
-            {tipFor(tip, locale)}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <motion.div
-        className={styles.pointer}
-        initial={false}
-        animate={{ x: places.pointer.x, y: places.pointer.y, opacity: pointed ? 1 : 0 }}
-        transition={{ duration: 0.8, ease: EASE }}
-      >
         <AnimatePresence>
-          {pressed > 0 && (
-            <motion.span
-              key={pressed}
-              className={styles.ripple}
-              initial={{ opacity: 0.9, scale: 0.3 }}
-              animate={{ opacity: 0, scale: 1.4 }}
-              transition={{ duration: 0.6 }}
-            />
+          {tip && (
+            <motion.div
+              key={tip}
+              className={styles.tip}
+              style={{ left: places.tip.x, top: places.tip.y, x: "-50%", y: "-100%" } as CSSProperties}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: EASE }}
+            >
+              {tipFor(tip, locale)}
+            </motion.div>
           )}
         </AnimatePresence>
-        <Icon name="pointer" strokeWidth={1.4} />
-      </motion.div>
+        <motion.div
+          className={styles.pointer}
+          initial={false}
+          animate={{ x: places.pointer.x, y: places.pointer.y, opacity: pointed ? 1 : 0 }}
+          transition={{ duration: 0.8, ease: EASE }}
+        >
+          <AnimatePresence>
+            {pressed > 0 && (
+              <motion.span
+                key={pressed}
+                className={styles.ripple}
+                initial={{ opacity: 0.9, scale: 0.3 }}
+                animate={{ opacity: 0, scale: 1.4 }}
+                transition={{ duration: 0.6 }}
+              />
+            )}
+          </AnimatePresence>
+          <Icon name="pointer" strokeWidth={1.4} />
+        </motion.div>
+      </div>
     </div>
   );
 }

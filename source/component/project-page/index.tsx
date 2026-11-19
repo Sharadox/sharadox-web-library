@@ -14,8 +14,9 @@ import type { ProjectPageProperties } from "@sharadox/sharadox-web-library/compo
 
 /**
  * A project's own page. It opens with the client and the headline, the whole story, the details, the services we
- * made, and the first screen on a computer and a phone. Then, chapter by chapter, the website's own components run
- * live in windows, each under what to try. Only at the end, the way to the site itself, and back to the portfolio.
+ * made, and the first screen on a computer and a phone. Then a word on what follows: a few of the parts we're proudest
+ * of, chapter by chapter, each explained (what it is, how it works) and then running live in a window, the website's
+ * own components. At the end, "See it live on <domain>": the site itself, in a new tab, and the way back.
  *
  * @example
  * <ProjectPage project={PORTFOLIO.projects[0]} locale="en" chapters={{ hero: <Hero locale="en" /> }} />
@@ -61,19 +62,27 @@ export function ProjectPage({ project, locale, chapters }: ProjectPageProperties
         </Reveal>
         <Screens project={project} label={`${project.client} ${translate(PORTFOLIO.screens, locale)}`} priority />
       </Section>
+      <Section className={styles.lead}>
+        <Eyebrow>{translate(page.intro.eyebrow, locale)}</Eyebrow>
+        <p className={styles.leadText}>{translate(page.intro.text, locale)}</p>
+      </Section>
       {shown.map((chapter, index) => (
         <Chapter
           key={chapter.key}
           number={index + 1}
           title={translate(chapter.title, locale)}
           text={translate(chapter.text, locale)}
+          points={chapter.points.map((point) => translate(point, locale))}
+          detailsLabel={translate(page.details, locale)}
           live={`${translate(page.live, locale)} · ${domain}`}
         >
           {chapters[chapter.key]}
         </Chapter>
       ))}
       <Section className={styles.end}>
-        <h2>{translate(page.visitTitle, locale)}</h2>
+        <h2>
+          {translate(page.visitTitle, locale)} <span className={styles.domain}>{domain}</span>
+        </h2>
         <div className={styles.actions}>
           <Button href={project.url} arrow>
             {translate(page.visit, locale)} {domain}

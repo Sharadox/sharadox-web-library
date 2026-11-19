@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sharadox/animation-web-library':
-        specifier: ^0.2.3
-        version: 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.2.4
+        version: 0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
         specifier: ^0.3.1
         version: 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(react@19.3.1)
       '@sharadox/privacy-web-library':
         specifier: ^0.1.1
         version: 0.1.1(react@19.3.1)
@@ -51,8 +51,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.7.0
-        version: 0.7.0
+        specifier: ^0.8.0
+        version: 0.8.0
       marked:
         specifier: ^17.0.6
         version: 17.0.6
@@ -752,8 +752,8 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@sharadox/animation-web-library@0.2.3':
-    resolution: {integrity: sha512-aXV8LOUwx4nX7jxl+4EIvtFo1TFFbKLxPSgn/0tE+DcyTrrASK7pvJGgwB0IhvCzPQ83tPvGOlBNTOL5KthmIQ==}
+  '@sharadox/animation-web-library@0.2.4':
+    resolution: {integrity: sha512-vIg4AE/KyVczX9qUzuhqP0LKbWY5nb4WM7j7RDzmDGHAORnbecf77KP2fXWQEjGygcnhQZbKcksTzZKS+KH/sQ==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -851,9 +851,9 @@ packages:
       '@resvg/resvg-js':
         optional: true
 
-  '@sharadox/pointer-web-library@0.1.0':
-    resolution: {integrity: sha512-WIE+yq7wlf+Ig+Pp8PKnjHOKslnCSxtMtvRNa1VnGszUH59VZbWcsxW02g2rUKCWwOJlNeBC9YTb7jo57PgKEw==}
-    engines: {node: '>=24'}
+  '@sharadox/pointer-web-library@0.2.0':
+    resolution: {integrity: sha512-Rr+XrCj1GtM6N1g9NlqLPXE8SMdSLrfMNyYl/f1zL8Jy7Nl4LsRZWvG+CsV3lCHTZpX8taDLpuppEldJpaM8Fw==}
+    engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
 
@@ -934,6 +934,10 @@ packages:
 
   '@sharadox/web-library@0.7.0':
     resolution: {integrity: sha512-7UWzK5z2iKtw1l4wFJiB2Z77qCNFWpYd24+7MWFLvHkrDqIvv6y6+VDjqvbWlrMzRD8D46RdhRPMT5b50Of0lA==}
+    engines: {node: '>=26'}
+
+  '@sharadox/web-library@0.8.0':
+    resolution: {integrity: sha512-5lqIUC05HtOmaUlnmZtxHCWyWcbziZqNfI761eCHYv1vZmcZifgATBSBaqgkk77zSHvoapLenQJrFocKWdTOtA==}
     engines: {node: '>=26'}
 
   '@shikijs/engine-oniguruma@3.23.0':
@@ -2662,7 +2666,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.6.1
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -2760,7 +2764,7 @@ snapshots:
       next: 16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
 
-  '@sharadox/pointer-web-library@0.1.0(react@19.3.1)':
+  '@sharadox/pointer-web-library@0.2.0(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.0
       react: 19.3.1
@@ -2824,6 +2828,8 @@ snapshots:
   '@sharadox/web-library@0.6.1': {}
 
   '@sharadox/web-library@0.7.0': {}
+
+  '@sharadox/web-library@0.8.0': {}
 
   '@shikijs/engine-oniguruma@3.23.0':
     dependencies:
