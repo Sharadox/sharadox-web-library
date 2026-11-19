@@ -1,0 +1,80 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* The number and name on the left, what to try on the right; stacked on phones. */
+.copy {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: baseline;
+  gap: 12px 24px;
+  padding: clamp(40px, 6vw, 80px) var(--padding) clamp(28px, 4vw, 44px);
+  text-align: left;
+  h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  p {
+    color: var(--foreground-2);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+  @include below(900px) {
+    grid-template-columns: auto minmax(0, 1fr);
+    p {
+      grid-column: 1 / -1;
+    }
+  }
+}
+.number {
+  font-size: 12px;
+  color: var(--foreground-3);
+}
+/* The live part, in a window across the frame. */
+.window {
+  border-top: 1px dashed var(--line-2);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--padding);
+  border-bottom: 1px solid var(--line-2);
+  background: surface($surface);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground-3);
+}
+.dots {
+  display: flex;
+  gap: 6px;
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: tint($faint);
+  }
+}
+.live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--foreground);
+    box-shadow: 0 0 0 3px tint($faint);
+    @include loop(chapter-live 2s ease-in-out infinite);
+  }
+}
+@keyframes chapter-live {
+  50% {
+    opacity: 0.45;
+  }
+}
+.stage {
+  position: relative;
+  min-width: 0;
+}

@@ -1,0 +1,115 @@
+@use "style/token" as *;
+@use "style/object" as *;
+
+/* One column the width of the frame: the live parts' sliding strips can't widen it. */
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+/* The story on the left, the screens on the right; stacked on narrower screens. */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  margin-top: 64px;
+  @include below(1000px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.copy {
+  display: grid;
+  justify-content: stretch;
+  gap: 24px;
+  padding: clamp(40px, 6vw, 88px) var(--padding);
+  text-align: left;
+  h1 {
+    display: grid;
+    gap: 14px;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    text-wrap: balance;
+  }
+}
+.client {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--foreground-2);
+}
+.story {
+  color: var(--foreground-2);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+/* Client, place and launch day: three small columns over dashed rules. */
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-block: 1px dashed var(--line-2);
+  > div {
+    display: grid;
+    justify-content: stretch;
+    align-content: start;
+    gap: 4px;
+    padding: 14px 12px 14px 0;
+  }
+  > div + div {
+    padding-left: 12px;
+    border-left: 1px dashed var(--line-2);
+  }
+  dt {
+    font-family: var(--monospace);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
+  }
+  dd {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+.services {
+  display: grid;
+  justify-content: stretch;
+  gap: 10px;
+  > span {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--foreground-3);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    padding: 6px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    background: surface($hint);
+    font-size: 13px;
+  }
+}
+/* The end: the way to the site itself, and back. */
+.end {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  text-align: center;
+  h2 {
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
