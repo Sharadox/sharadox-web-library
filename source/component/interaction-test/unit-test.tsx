@@ -185,10 +185,14 @@ describe("Button", () => {
 });
 
 describe("ContactForm", () => {
+  // The phone is typed into its number box; the form's own field (hidden) follows it.
+  const field = (name: string) =>
+    document.querySelector<HTMLInputElement>(name === "phone" ? "#contact-phone" : `[name="${name}"]`)!;
   const fill = (fields: Record<string, string>) => {
-    for (const [name, value] of Object.entries(fields))
-      fireEvent.change(document.querySelector<HTMLInputElement>(`[name="${name}"]`)!, { target: { value } });
+    for (const [name, value] of Object.entries(fields)) fireEvent.change(field(name), { target: { value } });
   };
+  // The form checks itself again once a change is on screen.
+  const settle = () => act(async () => new Promise((resolve) => setTimeout(resolve)));
   const complete = () => {
     fill({ name: "Ana", phone: "+351 912 345 678", message: "We need a website for our café." });
     fireEvent.click(document.querySelector('input[name="need"][value="website"]')!);
@@ -213,19 +217,26 @@ describe("ContactForm", () => {
       expect(document.body.textContent).toContain(text);
     expect(document.querySelector("fieldset")!.getAttribute("aria-describedby")).toBe("contact-needs-problem");
     fill({ name: "Ana", email: "ana@", phone: "12" });
+    await settle();
     expect(document.body.textContent).not.toContain("your name");
     expect(document.body.textContent).toContain("This email doesn't look right.");
     expect(document.body.textContent).toContain("This phone number doesn't look right.");
     expect(document.querySelector('[name="email"]')!.getAttribute("aria-describedby")).toBe("contact-email-problem");
     fill({ email: "", phone: "" });
-    expect(document.querySelector('[name="phone"]')!.getAttribute("aria-describedby")).toBe("contact-reach-problem");
+    await settle();
+    expect(field("phone").getAttribute("aria-describedby")).toBe("contact-reach-problem");
   });
 
   test("asks for an email or a phone, either one", () => {
     render(<ContactForm locale="pt" action={vi.fn()} />);
     expect(document.body.textContent).toContain("Deixe um email, um telefone, ou ambos.");
     expect(document.querySelector('[name="email"]')!.hasAttribute("required")).toBe(false);
-    expect(document.querySelector('[name="phone"]')!.getAttribute("type")).toBe("tel");
+    expect(field("phone").getAttribute("type")).toBe("tel");
+    // A country picker (Portugal first) beside the digits, which the form receives with the calling code.
+    expect(screen.getByRole("button", { name: "País: Portugal +351" })).toBeDefined();
+    fill({ phone: "91a2 345-678" });
+    expect(field("phone").value).toBe("912345678");
+    expect(document.querySelector<HTMLInputElement>('[name="phone"]')!.value).toBe("+351 912345678");
   });
 
   test("thanks the visitor once sent, having told the server when the form appeared", async () => {

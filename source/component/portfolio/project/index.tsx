@@ -23,7 +23,7 @@ export function Project({ project, index, locale }: ProjectProperties) {
           <time dateTime={project.date}>{launched}</time>
         </p>
         <h3 id={`project-${project.key}`}>
-          <span className={styles.client}>{project.client}</span>
+          <span className={styles.client}>{project.title}</span>
           {translate(project.name, locale)}
         </h3>
         <p className={styles.text}>{translate(project.text, locale)}</p>

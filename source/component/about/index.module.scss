@@ -12,6 +12,8 @@
   line-height: 1.08;
   max-width: 24ch;
 }
+/* The room inside each half. */
+$room: clamp(24px, 3.4vw, 48px);
 /* The two halves, one row each, as cells with hairlines between them. */
 .panels {
   display: grid;
@@ -25,7 +27,7 @@
   background: var(--line);
   > * {
     background: var(--background);
-    padding: clamp(24px, 3.4vw, 48px);
+    padding: $room;
   }
   h3 {
     font-size: clamp(1.6rem, 2.8vw, 2.5rem);
@@ -122,6 +124,16 @@
       "copy"
       "feed"
       "points";
+  }
+}
+/* On phones the live feed spans the whole half, edge to edge, the half's own border framing it. */
+.business .feed {
+  @include below(640px) {
+    margin-inline: calc(-1 * #{$room});
+    > * {
+      border-inline: 0;
+      border-radius: 0;
+    }
   }
 }
 /* Automated, your team, anywhere: three promises side by side, each a word and a line. */

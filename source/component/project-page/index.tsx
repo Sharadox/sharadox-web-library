@@ -13,10 +13,11 @@ import styles from "./index.module.scss";
 import type { ProjectPageProperties } from "@sharadox/sharadox-web-library/component/project-page/type";
 
 /**
- * A project's own page. It opens with the client and the headline, the whole story, the details, the services we
+ * A project's own page. It opens with the project's name and the headline, the whole story, the details, the services we
  * made, and the first screen on a computer and a phone. Then a word on what follows: a few of the parts we're proudest
  * of, chapter by chapter, each explained (what it is, how it works) and then running live in a window, the website's
- * own components. At the end, "See it live on <domain>": the site itself, in a new tab, and the way back.
+ * own components, across the whole width of the page as on the site itself. At the end, "See it live": the site
+ * itself, in a new tab, and the way back.
  *
  * @example
  * <ProjectPage project={PORTFOLIO.projects[0]} locale="en" chapters={{ hero: <Hero locale="en" /> }} />
@@ -33,7 +34,7 @@ export function ProjectPage({ project, locale, chapters }: ProjectPageProperties
             {translate(SECTION.portfolio, locale)} · {launchDate(project.date, locale)}
           </Eyebrow>
           <h1>
-            <span className={styles.client}>{project.client}</span>
+            <span className={styles.client}>{project.title}</span>
             {translate(project.name, locale)}
           </h1>
           <p className={styles.story}>{translate(project.story, locale)}</p>
@@ -80,9 +81,7 @@ export function ProjectPage({ project, locale, chapters }: ProjectPageProperties
         </Chapter>
       ))}
       <Section className={styles.end}>
-        <h2>
-          {translate(page.visitTitle, locale)} <span className={styles.domain}>{domain}</span>
-        </h2>
+        <h2>{translate(page.visitTitle, locale)}</h2>
         <div className={styles.actions}>
           <Button href={project.url} arrow>
             {translate(page.visit, locale)} {domain}

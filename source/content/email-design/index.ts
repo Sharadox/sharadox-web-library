@@ -36,5 +36,5 @@ export const SHARADOX_EMAIL: EmailDesign = {
   radius: 0,
   crosses: true,
   button: { radius: 999, uppercase: false, letterSpacing: "0" },
-  signature: [{ text: "Algarve, Portugal" }, { text: new URL(SITE.url).host, href: SITE.url }],
+  signature: [{ text: new URL(SITE.url).host, href: SITE.url }],
 };

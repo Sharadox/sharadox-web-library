@@ -15,6 +15,7 @@ import type { ContactProblem } from "@sharadox/sharadox-web-library/utility/cont
 import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 import { newTab } from "@sharadox/web-library/navigation/new-tab";
+import { PhoneField } from "@sharadox/form-web-library/phone-field";
 
 /**
  * The enquiry form: name, company, email and phone (one of them is enough), the choices grouped like the services, and
@@ -111,7 +112,10 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
             (form.elements.namedItem("page") as HTMLInputElement).value = location.href;
           }}
           onChange={(event) => {
-            if (problems) setProblems(contactProblems(new FormData(event.currentTarget)));
+            if (!problems) return;
+            // Read once this change is on screen: the phone's own field fills its hidden input as it renders.
+            const form = event.currentTarget;
+            setTimeout(() => setProblems(contactProblems(new FormData(form))));
           }}
           className={styles.form}
           exit={{ opacity: 0, scale: 0.98 }}
@@ -142,11 +146,20 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               <input name="email" type="email" autoComplete="email" maxLength={200} {...described("reach", "email")} />
               {problem("email")}
             </label>
-            <label className={styles.field}>
-              <span>{translate(CONTACT.phone, locale)}</span>
-              <input name="phone" type="tel" autoComplete="tel" maxLength={40} {...described("reach", "phone")} />
+            <div className={styles.field}>
+              <label htmlFor="contact-phone">
+                <span>{translate(CONTACT.phone, locale)}</span>
+              </label>
+              <PhoneField
+                name="phone"
+                locale={locale}
+                defaultCountry="PT"
+                labels={{ country: translate(CONTACT.country, locale), search: translate(CONTACT.search, locale) }}
+                className={styles.phone}
+                inputProps={{ id: "contact-phone", ...described("reach", "phone") }}
+              />
               {problem("phone")}
-            </label>
+            </div>
             {has("reach") ? problem("reach") : <span className={styles.hint}>{translate(CONTACT.reach, locale)}</span>}
           </div>
           <fieldset

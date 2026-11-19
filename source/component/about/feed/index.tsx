@@ -53,10 +53,11 @@ function placeOf(root: HTMLElement, target: string) {
  * them: the log fills, the pointer reads an entry, clicks Project, reads the budget and ticks the next task, clicks
  * Client and reads its charts, then goes back to Activity, over and over. Out of view it stops and starts over; with
  * less motion asked for, it rests on the full log. It is a little aware of the visitor's own pointer too: the panel
- * leans a few degrees towards it and a soft light follows it across. A picture, so it's hidden from assistive
- * technology.
+ * leans a few degrees towards it and a soft light follows it across, and it floats like the globe. It keeps one
+ * height throughout, its tallest tab's: the log never grows it, the oldest entries slipping out under its bottom edge
+ * as new ones arrive. A picture, so it's hidden from assistive technology.
  */
-export function Feed({ locale }: FeedProperties) {
+export function Feed({ locale, className }: FeedProperties) {
   const root = useRef<HTMLDivElement>(null);
   const stage = useParallax<HTMLDivElement>(0.07);
   const [inView, setInView] = useState(false);
@@ -113,7 +114,7 @@ export function Feed({ locale }: FeedProperties) {
   }, [pointed, tab, shown]);
 
   return (
-    <div ref={stage} className={styles.stage} aria-hidden>
+    <div ref={stage} className={[styles.stage, className].filter(Boolean).join(" ")} aria-hidden>
       <div ref={root} className={styles.feed} data-playing={playing || undefined}>
         <div className={styles.header}>
           <span className={styles.live}>
@@ -138,7 +139,7 @@ export function Feed({ locale }: FeedProperties) {
           <i className={styles.underline} style={{ transform: `translateX(${tab * 100}%)` }} />
         </div>
         <div className={styles.panes}>
-          <div data-active={tab === 0 || undefined}>
+          <div className={styles.log} data-active={tab === 0 || undefined}>
             <Activity locale={locale} shown={shown} />
           </div>
           <div data-active={tab === 1 || undefined}>
