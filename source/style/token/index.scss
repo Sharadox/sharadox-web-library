@@ -29,12 +29,13 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   @return color-mix(in srgb, var(--background) $amount, transparent);
 }
 
-/// A dashed hairline drawn with a gradient, so the dash length is exact: `horizontal` or `vertical`.
-@mixin dashed($direction: horizontal, $color: var(--line-2), $dash: 4px, $gap: 4px) {
+/// A dashed hairline drawn with a gradient, so the dash length is exact: `horizontal` or `vertical`, at the top or left
+/// edge, or where `$at` places it (`0 100%`: along the bottom).
+@mixin dashed($direction: horizontal, $color: var(--line-2), $dash: 4px, $gap: 4px, $at: 0 0) {
   @if $direction == horizontal {
-    background: linear-gradient(90deg, $color 50%, transparent 0) 0 0 / #{$dash + $gap} 1px repeat-x;
+    background: linear-gradient(90deg, $color 50%, transparent 0) $at / #{$dash + $gap} 1px repeat-x;
   } @else {
-    background: linear-gradient(180deg, $color 50%, transparent 0) 0 0 / 1px #{$dash + $gap} repeat-y;
+    background: linear-gradient(180deg, $color 50%, transparent 0) $at / 1px #{$dash + $gap} repeat-y;
   }
 }
 

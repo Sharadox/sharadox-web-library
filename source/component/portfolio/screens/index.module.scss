@@ -28,10 +28,12 @@ $hover: var(--parallax-hover, 0);
   transform: translate(calc(#{$x} * -36px), calc(#{$y} * -24px));
   pointer-events: none;
 }
+/* The whole scene floats, like the globe, under its tilt towards the pointer. */
 .scene {
   position: relative;
   display: grid;
   justify-content: stretch;
+  @include float;
   transform-style: preserve-3d;
   transform: rotateX(calc(#{$y} * -6deg)) rotateY(calc(#{$x} * 9deg));
 }

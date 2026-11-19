@@ -1,3 +1,5 @@
+import { SITE } from "@sharadox/sharadox-web-library/content/site";
+
 /**
  * The portfolio: the work Sharadox has made, newest first, and the words around it. A project's `services` are
  * service card keys (content/services), so its chips use the cards' own names. Its screens are its first screen on a
@@ -7,6 +9,8 @@
 export const PORTFOLIO = {
   /** Where the projects' pages live: `/portfolio/<key>`. */
   path: "/portfolio",
+  /** A project page's title ends with the portfolio's name: "<project> · Sharadox Portfolio". */
+  pageTitle: { en: `${SITE.name} Portfolio`, pt: `Portefólio ${SITE.name}` },
   title: { en: "Work that\nspeaks for itself.", pt: "Trabalho que\nfala por si." },
   text: {
     en: "Every project, with what we made for it, and the work itself to explore.",
@@ -40,16 +44,18 @@ export const PORTFOLIO = {
       en: "This is a demo, so nothing was sent. On the live site, this request goes straight to the workshop's inbox.",
       pt: "Isto é uma demonstração, por isso nada foi enviado. No site, este pedido segue diretamente para a caixa de correio da oficina.",
     },
-    /** The end: "See it live on <domain>". */
-    visitTitle: { en: "See it live on", pt: "Veja-o ao vivo em" },
+    /** The end's title, over the way to the site and the way back. */
+    visitTitle: { en: "See it live", pt: "Veja-o ao vivo" },
     visit: { en: "Visit", pt: "Visitar" },
     back: { en: "Back to the Portfolio", pt: "Voltar ao Portefólio" },
   },
   projects: [
     {
-      key: "luis-pires-decor",
+      key: "luis-pires-decor-website-and-rebranding",
+      /** The project's name, over its headline and in its page's title. */
+      title: "Luis Pires Decor Website & Rebranding",
       client: "Luis Pires Decor",
-      name: { en: "A lifelong craft, now easy to find.", pt: "Um ofício de sempre, agora fácil de encontrar." },
+      name: { en: "A craft of decades, now easy to find.", pt: "Um ofício de décadas, agora fácil de encontrar." },
       text: {
         en: "An upholstery and interiors workshop in the Algarve since 1996. A renewed brand, and a bilingual website built to be found: described for search engines and written so AI assistants understand it, so whoever asks for an upholsterer in the Algarve is pointed its way. Inside, a 3D monogram, a scroll-driven timelapse, a fabric studio, a filterable portfolio and booking requests straight to the workshop's inbox, on its own domain, with professional email and an app customers can install.",
         pt: "Uma oficina de estofos e decoração no Algarve desde 1996. Uma marca renovada, e um website bilingue feito para ser encontrado: descrito para os motores de busca e escrito para que os assistentes de IA o compreendam, para que quem procura um estofador no Algarve chegue até ela. Lá dentro, um monograma em 3D, um timelapse guiado pelo scroll, um estúdio de tecidos, um portefólio com filtros e pedidos de visita diretos para a caixa de correio da oficina, no seu próprio domínio, com email profissional e uma aplicação que os clientes podem instalar.",
@@ -73,8 +79,8 @@ export const PORTFOLIO = {
       ],
       /** Its first screen, captured from the live site: on a computer (1440 by 900) and on a phone (390 by 844). */
       screens: {
-        computer: { src: "/portfolio/luis-pires-decor/computer.webp", width: 1440, height: 900 },
-        phone: { src: "/portfolio/luis-pires-decor/phone.webp", width: 520, height: 1125 },
+        computer: { src: "/portfolio/luis-pires-decor-website-and-rebranding/computer.webp", width: 1440, height: 900 },
+        phone: { src: "/portfolio/luis-pires-decor-website-and-rebranding/phone.webp", width: 520, height: 1125 },
       },
       /**
        * Its page's chapters, in order: each is one part of the website we're proud of, what it is, a few details of how

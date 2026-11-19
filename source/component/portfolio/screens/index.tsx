@@ -8,7 +8,8 @@ import type { ScreensProperties } from "@sharadox/sharadox-web-library/component
  * The project's first screen, on a computer and on a phone: a browser window, slightly turned, with a phone standing
  * in front of it. Under the pointer the whole scene turns to face it and follows it in depth: the phone, nearer,
  * moves more than the window, the glow behind moves the other way, and a soft glare slides across both screens. The
- * window keeps the screenshot's own proportions, so it is never taller than the page it shows.
+ * window keeps the screenshot's own proportions, so it is never taller than the page it shows. At rest it floats, like
+ * the globe.
  */
 export function Screens({ project, label, priority }: ScreensProperties) {
   const { computer, phone } = project.screens;

@@ -61,7 +61,8 @@
   display: grid;
   align-content: start;
   gap: 7px;
-  span {
+  > span,
+  > label > span {
     font-size: 13px;
     color: var(--foreground-2);
   }
@@ -84,6 +85,29 @@
       border-color: tint(50%);
       box-shadow: 0 0 0 4px tint(6%);
     }
+  }
+}
+/* The phone: a country picker (flag and calling code) beside a box for the digits, in the form's own colors. */
+.phone {
+  --phone-field-line: var(--line-2);
+  --phone-field-accent: var(--foreground);
+  --phone-field-surface: var(--background);
+  --phone-field-popover: var(--background);
+  --phone-field-radius: 12px;
+  font-size: 15px;
+  > button {
+    min-height: 48px;
+    color: var(--foreground);
+  }
+  [role="listbox"] {
+    font-size: 14px;
+    color: var(--foreground-2);
+  }
+  /* The search box inside the list keeps its own, smaller look. */
+  .field & input[type="search"] {
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 14px;
   }
 }
 .services {

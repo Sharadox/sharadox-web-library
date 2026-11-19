@@ -12,6 +12,7 @@ $y: var(--parallax-y, 0);
   display: grid;
   justify-content: stretch;
   perspective: 1400px;
+  @include float;
 }
 .feed {
   @include face;
@@ -154,7 +155,8 @@ $y: var(--parallax-y, 0);
   background: var(--foreground);
   transition: transform 0.5s $ease;
 }
-/* The panes share one place, so the panel keeps its height; the one shown fades in. */
+/* The panes share one place, as tall as the tallest of Project and Client, so the panel keeps its height whatever
+   tab shows; the one shown fades in. */
 .panes {
   display: grid;
   justify-content: stretch;
@@ -177,6 +179,16 @@ $y: var(--parallax-y, 0);
         transform 0.45s $ease 0.1s;
     }
   }
+}
+/* The log takes no room of its own: it fills the panes' height, and entries pushed past the bottom fade out under
+   it. A few pixels of room around it keep the outline of the entry being read clear of the edge. */
+.panes > .log {
+  height: 0;
+  min-height: calc(100% + 8px);
+  margin: -4px;
+  padding: 4px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 56px), transparent calc(100% - 4px));
 }
 /* The pointer, solid with a dark edge, and the ring it leaves where it clicks. */
 .pointer {

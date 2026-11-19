@@ -41,7 +41,7 @@ export function About({ locale }: AboutProperties) {
             <h3>{translate(business.title, locale)}</h3>
             <p>{translate(business.text, locale)}</p>
           </div>
-          <Feed locale={locale} />
+          <Feed locale={locale} className={styles.feed} />
           <ul className={styles.points}>
             {business.points.map((point) => (
               <li key={point.title.en}>

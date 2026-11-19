@@ -38,6 +38,9 @@ export const CONTACT = {
   name: { en: "Name", pt: "Nome" },
   email: { en: "Email", pt: "Email" },
   phone: { en: "Phone", pt: "Telefone" },
+  /** The phone's country picker: its name, and the box that searches it. */
+  country: { en: "Country", pt: "País" },
+  search: { en: "Search", pt: "Procurar" },
   /** Under the email and phone: one of them is enough. */
   reach: { en: "Leave an email, a phone number, or both.", pt: "Deixe um email, um telefone, ou ambos." },
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
