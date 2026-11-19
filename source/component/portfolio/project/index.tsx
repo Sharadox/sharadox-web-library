@@ -4,6 +4,7 @@ import { Screens } from "@sharadox/sharadox-web-library/component/portfolio/scre
 import { launchDate } from "@sharadox/sharadox-web-library/component/portfolio/launch-date";
 import { serviceName } from "@sharadox/sharadox-web-library/component/portfolio/service-name";
 import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
+import { projectAnchor } from "@sharadox/sharadox-web-library/utility/project-anchor";
 import styles from "./index.module.scss";
 import type { ProjectProperties } from "@sharadox/sharadox-web-library/component/portfolio/project/type";
 
@@ -49,7 +50,12 @@ export function Project({ project, index, locale }: ProjectProperties) {
             ))}
           </ul>
         </div>
-        <Button href={`/${locale}${PORTFOLIO.path}/${project.key}`} arrow className={styles.open}>
+        <Button
+          id={projectAnchor(project.key)}
+          href={`/${locale}${PORTFOLIO.path}/${project.key}`}
+          arrow
+          className={styles.open}
+        >
           {translate(PORTFOLIO.open, locale)}
         </Button>
       </div>

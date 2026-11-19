@@ -18,11 +18,11 @@
   border-color: var(--line);
 }
 /* With the menu open, the bar sits on the menu's own frosted surface, which runs from the top of the screen: one
-   surface, no seam or line between them. */
+   surface, no seam, only the bar's hairline between them. */
 .open {
   background: transparent;
   backdrop-filter: none;
-  border-color: transparent;
+  border-color: var(--line);
 }
 .inner {
   width: min(100% - 2 * var(--gutter), var(--maximum-width));

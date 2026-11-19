@@ -16,6 +16,7 @@ export function Button({
   size = "medium",
   arrow,
   disabled,
+  id,
   className,
   onClick,
 }: ButtonProperties) {
@@ -29,12 +30,12 @@ export function Button({
   // The site's own pages and sections go through Next.js; anything else (email, other sites) opens in a new tab.
   if (href && leavesSite(href))
     return (
-      <a href={href} className={names} onClick={onClick} {...newTab(href)}>
+      <a id={id} href={href} className={names} onClick={onClick} {...newTab(href)}>
         {content}
       </a>
     );
   return href ? (
-    <SectionLink href={href} className={names} onClick={onClick}>
+    <SectionLink id={id} href={href} className={names} onClick={onClick}>
       {content}
     </SectionLink>
   ) : (
