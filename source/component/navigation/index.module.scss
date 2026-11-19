@@ -17,6 +17,13 @@
   backdrop-filter: blur(16px) saturate(1.6);
   border-color: var(--line);
 }
+/* With the menu open, the bar sits on the menu's own frosted surface, which runs from the top of the screen: one
+   surface, no seam or line between them. */
+.open {
+  background: transparent;
+  backdrop-filter: none;
+  border-color: transparent;
+}
 .inner {
   width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin: 0 auto;
@@ -106,12 +113,12 @@
     display: flex;
   }
 }
-/* The bar's frosted background, under the bar, so the two read as one. */
+/* The bar's frosted background, from the top of the screen under the bar, so the two are one surface. */
 .menu {
   text-align: left;
   align-items: stretch;
   position: fixed;
-  inset: 65px 0 0;
+  inset: 0;
   z-index: 49;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -119,7 +126,7 @@
   backdrop-filter: blur(16px) saturate(1.6);
   display: flex;
   flex-direction: column;
-  padding: 16px max(var(--gutter), 20px) calc(28px + env(safe-area-inset-bottom));
+  padding: calc(65px + 16px) max(var(--gutter), 20px) calc(28px + env(safe-area-inset-bottom));
   /* Centered when it fits; when it doesn't (a phone held sideways), it starts at the top and scrolls. */
   > :first-child {
     margin-top: auto;
