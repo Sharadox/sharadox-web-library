@@ -13,7 +13,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-/* Each shortcut rises in, one after another; dashed lines stand between them, solid ones between rows. */
+/* Each shortcut rises in, one after another; dashed lines stand between them, across and down alike. */
 .cell {
   animation: rise 0.9s $ease both;
   @include skip-entrance;
@@ -30,8 +30,9 @@
     &:nth-of-type(even)::after {
       display: none;
     }
+    /* The line under the first row, drawn along each cell's bottom edge. */
     &:nth-of-type(-n + 2) {
-      border-bottom: 1px solid var(--line);
+      @include dashed(horizontal, $at: 0 100%);
     }
   }
 }

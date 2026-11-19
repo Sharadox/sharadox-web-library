@@ -52,3 +52,35 @@ $glow: 35%;
     animation: none;
   }
 }
+
+/// Floats, like the globe: a slow rise and fall with a slight sway, eased at both ends so it never stops sharply.
+/// It moves the `translate` and `rotate` properties, so it adds to any `transform` the element already has (a tilt
+/// towards the pointer, an entrance). Held still with reduced motion. `$name` keeps the keyframes apart when one file
+/// floats two things.
+@mixin float($name: float, $duration: 9s, $delay: 0s) {
+  animation: $name $duration ease-in-out $delay infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+  @at-root {
+    @keyframes #{$name} {
+      0%,
+      100% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+      25% {
+        translate: 0.4% -1.1%;
+        rotate: 0.6deg;
+      }
+      50% {
+        translate: 0 -2%;
+        rotate: 0deg;
+      }
+      75% {
+        translate: -0.4% -1.1%;
+        rotate: -0.6deg;
+      }
+    }
+  }
+}

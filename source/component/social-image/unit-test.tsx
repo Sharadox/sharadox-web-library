@@ -37,7 +37,7 @@ test("draws the mark at half the shorter side, alone or with the headline", asyn
 
 test("draws the background alone, and the email card small, in proportion, with rounded corners", async () => {
   shareImage.mockClear();
-  await renderSocialImage({ locale: "en", name: "background.png" });
+  await renderSocialImage({ locale: "en", name: "background-square.png" });
   await renderSocialImage({ locale: "en", name: "email-card.png" });
   const calls = shareImage.mock.calls as [Drawn & { props: { style: Record<string, number> } }, { width: number }][];
   const [background, card] = calls.map(([element]) => element);

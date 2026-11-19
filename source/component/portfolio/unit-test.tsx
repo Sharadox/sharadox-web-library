@@ -27,7 +27,7 @@ test("shows each project's first screen, its details with the launch day, its se
       .map((item) => item.textContent),
   ).toEqual(["Rebranding", "Branding Design", "Website", "Hosting", "Professional Email", "PWA"]);
   expect(within(project).getByRole("link", { name: "See the Project" }).getAttribute("href")).toBe(
-    "/en/portfolio/luis-pires-decor",
+    "/en/portfolio/luis-pires-decor-website-and-rebranding",
   );
   expect(screen.queryByRole("link", { name: /Visit/ })).toBeNull();
 });
