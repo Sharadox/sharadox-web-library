@@ -98,7 +98,7 @@ describe("Navigation menu", () => {
     const toggle = screen.getByRole("button", { name: "Open menu" });
     fireEvent.click(toggle);
     expect(toggle.getAttribute("aria-expanded")).toBe("true");
-    expect(container.querySelector("header")!.className).toContain("scrolled");
+    expect(container.querySelector("header")!.className).toContain("open");
     expect(document.documentElement.style.overflow).toBe("hidden");
     const menu = document.getElementById("menu")!;
     expect(menu.hasAttribute("data-lenis-prevent")).toBe(true);

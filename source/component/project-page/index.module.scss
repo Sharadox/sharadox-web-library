@@ -108,9 +108,11 @@
     text-wrap: balance;
   }
 }
+/* Centered under the title, also when they wrap onto two lines on phones. */
 .actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
