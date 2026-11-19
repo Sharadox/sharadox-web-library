@@ -3,5 +3,19 @@
   h2 {
     margin-top: 16px;
     max-width: 14ch;
+    /* A title with its own line breaks keeps them, and sets its own width. */
+    &[data-lines] {
+      max-width: none;
+      white-space: pre-line;
+    }
   }
+}
+/* The sentence under the title: close to it, as part of the heading. */
+.text {
+  max-width: 56ch;
+  margin-top: 20px;
+  color: var(--foreground-2);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
