@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "style/token" as *;
 @use "style/object" as *;
 
@@ -129,7 +130,7 @@ $pad-top: 52px;
   }
   @for $step from 0 through 10 {
     #{62% + $step * 2%} {
-      scale: 1 if($step % 2 == 0, 0.8, 1.25);
+      scale: 1 list.nth((0.8, 1.25), $step % 2 + 1);
     }
   }
   84%,

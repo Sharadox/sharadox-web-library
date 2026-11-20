@@ -121,7 +121,7 @@ $round: 6s;
   }
   @for $step from 0 through 8 {
     #{54% + $step * 4%} {
-      transform: rotate(if($step % 2 == 0, -4deg, 4deg));
+      transform: rotate(-4deg * (1 - 2 * ($step % 2)));
     }
   }
 }
@@ -134,7 +134,7 @@ $round: 6s;
   }
   @for $step from 0 through 8 {
     #{54% + $step * 4%} {
-      transform: rotate(if($step % 2 == 0, 4deg, -4deg));
+      transform: rotate(4deg * (1 - 2 * ($step % 2)));
     }
   }
 }

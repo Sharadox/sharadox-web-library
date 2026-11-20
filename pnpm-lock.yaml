@@ -14,6 +14,9 @@ importers:
       '@sharadox/consent-web-library':
         specifier: ^0.3.1
         version: 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/email-web-library':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@sharadox/form-web-library':
         specifier: ^0.6.1
         version: 0.6.1(react@19.3.1)
@@ -60,9 +63,6 @@ importers:
         specifier: ^12.43.0
         version: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
     devDependencies:
-      '@sharadox/email-web-library':
-        specifier: ^0.4.0
-        version: 0.4.0
       '@sharadox/es-lint-configuration-web-library':
         specifier: ^0.1.1
         version: 0.1.1(eslint@9.39.5)(typescript@6.0.3)
