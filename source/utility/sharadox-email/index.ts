@@ -1,4 +1,7 @@
-import { emailLayout, type EmailContent, type InlineImage } from "@sharadox/email-web-library";
+import { emailLayout } from "@sharadox/email-web-library/email-layout";
+import type { EmailContent } from "@sharadox/email-web-library/email-layout/type";
+import type { InlineImage } from "@sharadox/email-web-library/email-message/type";
+import { inlineImage } from "@sharadox/email-web-library/inline-image";
 import { EMAIL_LOGO } from "@sharadox/sharadox-web-library/content/email-logo";
 import { SHARADOX_EMAIL } from "@sharadox/sharadox-web-library/content/email-design";
 
@@ -14,6 +17,4 @@ import { SHARADOX_EMAIL } from "@sharadox/sharadox-web-library/content/email-des
 export const sharadoxEmail = (content: EmailContent) => emailLayout(content, SHARADOX_EMAIL, true);
 
 /** The images a Sharadox email carries: its mark, as the inline image "logo". */
-export const sharadoxEmailImages = (): InlineImage[] => [
-  { id: "logo", ...EMAIL_LOGO, content: Buffer.from(EMAIL_LOGO.content, "base64") },
-];
+export const sharadoxEmailImages = (): InlineImage[] => [inlineImage("logo", EMAIL_LOGO)];

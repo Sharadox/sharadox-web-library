@@ -15,12 +15,12 @@ import { SLOGAN_LINES } from "@sharadox/sharadox-web-library/content/slogan";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { HeroProperties } from "@sharadox/sharadox-web-library/component/hero/type";
+import { EASE } from "@sharadox/animation-web-library/ease";
 
 const Globe = dynamic(() => import("@sharadox/sharadox-web-library/component/globe"), {
   ssr: false,
   loading: () => <GlobePlaceholder />,
 });
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** First screen, inside the grid frame: the slogan rising line by line beside the interactive globe. */
 export function Hero({ locale }: HeroProperties) {

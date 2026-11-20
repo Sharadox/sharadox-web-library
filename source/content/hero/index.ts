@@ -1,10 +1,10 @@
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 
 /** Hero copy. The title is split into lines so the last one can be styled on its own. */
 export const HERO = {
   eyebrow: {
-    en: separate("Algarve, Portugal", "working worldwide"),
-    pt: separate("Algarve, Portugal", "para o mundo inteiro"),
+    en: separated("Algarve, Portugal", "working worldwide"),
+    pt: separated("Algarve, Portugal", "para o mundo inteiro"),
   },
   subtitle: {
     en: "One studio for your whole brand — identity, websites, platforms, apps, social media and campaigns, designed, built and grown as one.",

@@ -16,6 +16,7 @@ import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 import { newTab } from "@sharadox/web-library/navigation/new-tab";
 import { PhoneField } from "@sharadox/form-web-library/phone-field";
+import { useChoiceRequests } from "@sharadox/form-web-library/choice-request";
 
 /**
  * The enquiry form: name, company, email and phone (one of them is enough), the choices grouped like the services, and
@@ -31,21 +32,17 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
   const startedAt = useRef(0);
   const needs = useRef<HTMLFieldSetElement>(null);
   // Buttons elsewhere (the service cards) ask for choices: tick them and make them glow for a moment.
-  useEffect(() => {
-    const tick = (event: Event) => {
-      for (const need of (event as CustomEvent<readonly string[]>).detail) {
-        const input = needs.current?.querySelector<HTMLInputElement>(`input[value="${need}"]`);
-        if (!input) continue;
-        input.checked = true;
-        const chip = input.closest("label")!;
-        chip.removeAttribute("data-requested");
-        void chip.offsetWidth; // restart the glow when the same choice is asked for again
-        chip.setAttribute("data-requested", "");
-      }
-    };
-    addEventListener(CONTACT_NEED_EVENT, tick);
-    return () => removeEventListener(CONTACT_NEED_EVENT, tick);
-  }, []);
+  useChoiceRequests<string>(CONTACT_NEED_EVENT, (requested) => {
+    for (const need of requested) {
+      const input = needs.current?.querySelector<HTMLInputElement>(`input[value="${need}"]`);
+      if (!input) continue;
+      input.checked = true;
+      const chip = input.closest("label")!;
+      chip.removeAttribute("data-requested");
+      void chip.offsetWidth; // restart the glow when the same choice is asked for again
+      chip.setAttribute("data-requested", "");
+    }
+  });
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);

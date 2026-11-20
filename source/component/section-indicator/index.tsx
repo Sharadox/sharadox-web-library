@@ -6,6 +6,7 @@ import { useActiveSection } from "@sharadox/scroll-web-library/active-section";
 import { SECTION_INDICATOR } from "@sharadox/sharadox-web-library/content/section-indicator";
 import styles from "./index.module.scss";
 import type { SectionIndicatorProperties } from "@sharadox/sharadox-web-library/component/section-indicator/type";
+import { twoDigits } from "@sharadox/web-library/text/two-digit";
 
 const IDS = SECTION_INDICATOR.sections.map((section) => section.id);
 
@@ -40,7 +41,7 @@ export function SectionIndicator({ locale }: SectionIndicatorProperties) {
                 <span className={styles.tick} aria-hidden>
                   <span />
                 </span>
-                <span className={`${styles.number} monospace`}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={`${styles.number} monospace`}>{twoDigits(index + 1)}</span>
                 {/* The name's place: to the right, or ending at the window's edge when there isn't room. Keyed by
                     the active section, so the name replays its flash whenever the section changes. */}
                 <span className={styles.label}>

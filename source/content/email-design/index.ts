@@ -1,4 +1,4 @@
-import type { EmailDesign } from "@sharadox/email-web-library";
+import type { EmailDesign } from "@sharadox/email-web-library/email-layout/type";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 
 /**

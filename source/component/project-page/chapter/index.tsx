@@ -3,6 +3,7 @@ import { Icon } from "@sharadox/icon-web-library/icon";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import styles from "./index.module.scss";
 import type { ChapterProperties } from "@sharadox/sharadox-web-library/component/project-page/chapter/type";
+import { twoDigits } from "@sharadox/web-library/text/two-digit";
 
 /**
  * One part of a project we're proud of: its number and name, what it is, and a few details of how it works, in the
@@ -14,7 +15,7 @@ export function Chapter({ number, title, text, points, detailsLabel, live, child
     <>
       <Section padded={false}>
         <Reveal className={styles.copy}>
-          <span className={`monospace ${styles.number}`}>{String(number).padStart(2, "0")}</span>
+          <span className={`monospace ${styles.number}`}>{twoDigits(number)}</span>
           <h2>{title}</h2>
           <div className={styles.about}>
             <p>{text}</p>

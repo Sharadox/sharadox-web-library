@@ -7,6 +7,7 @@ import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
 import { projectAnchor } from "@sharadox/sharadox-web-library/utility/project-anchor";
 import styles from "./index.module.scss";
 import type { ProjectProperties } from "@sharadox/sharadox-web-library/component/portfolio/project/type";
+import { twoDigits } from "@sharadox/web-library/text/two-digit";
 
 /**
  * One project: its first screen on a computer and a phone beside its story: number, launch day, client, headline,
@@ -20,7 +21,7 @@ export function Project({ project, index, locale }: ProjectProperties) {
       <Screens project={project} label={`${project.client} ${translate(PORTFOLIO.screens, locale)}`} />
       <div className={styles.story}>
         <p className={`monospace ${styles.top}`}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
+          <span>{twoDigits(index + 1)}</span>
           <time dateTime={project.date}>{launched}</time>
         </p>
         <h3 id={`project-${project.key}`}>

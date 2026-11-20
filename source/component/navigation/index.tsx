@@ -2,7 +2,6 @@
 import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import { classNames } from "@sharadox/web-library/class-name";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
 import { useMenu } from "@sharadox/menu-web-library/use-menu";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { LanguageSwitch } from "@sharadox/sharadox-web-library/component/language-switch";
@@ -14,8 +13,9 @@ import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import { ACTION } from "@sharadox/sharadox-web-library/content/action";
 import styles from "./index.module.scss";
 import type { NavigationProperties } from "@sharadox/sharadox-web-library/component/navigation/type";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { twoDigits } from "@sharadox/web-library/text/two-digit";
+import { EASE } from "@sharadox/animation-web-library/ease";
+import { useScrolledPast } from "@sharadox/scroll-web-library/scrolled-past";
 
 /** The menu's section links, entering one after another. */
 const MotionSectionLink = motion.create(SectionLink);
@@ -30,14 +30,8 @@ const WIDE = "(min-width: 1201px)";
  */
 export function Navigation({ locale, path = "" }: NavigationProperties) {
   const home = path ? `/${locale}` : "";
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useScrolledPast(24);
   const menu = useMenu({ wide: WIDE });
-  useEffect(() => {
-    const update = () => setScrolled(scrollY > 24);
-    update();
-    addEventListener("scroll", update, { passive: true });
-    return () => removeEventListener("scroll", update);
-  }, []);
   const links = NAVIGATION.links.map((section) => ({
     href: `${home}#${section.id}`,
     name: translate(section, locale),
@@ -98,7 +92,7 @@ export function Navigation({ locale, path = "" }: NavigationProperties) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.06 + index * 0.05, ease: EASE }}
               >
-                <span className="monospace">{String(index + 1).padStart(2, "0")}</span>
+                <span className="monospace">{twoDigits(index + 1)}</span>
                 {link.name}
               </MotionSectionLink>
             ))}
