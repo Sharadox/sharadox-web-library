@@ -1,4 +1,4 @@
-import { isEmail, isPhone } from "@sharadox/form-web-library/contact-check";
+import { contactProblems as contactDetailProblems } from "@sharadox/form-web-library/contact-problem";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 
 /** Something the contact form needs before it can be sent; each names its message in `CONTACT.problems`. */
@@ -14,13 +14,10 @@ export type ContactProblem = keyof typeof CONTACT.problems;
  */
 export function contactProblems(form: FormData): ContactProblem[] {
   const text = (name: string) => String(form.get(name) ?? "").trim();
-  const [email, phone] = [text("email"), text("phone")];
+  // The contact details by the shared rules, then this form's own: a choice and a long enough message.
   return [
-    !text("name") && "name",
-    !email && !phone && "reach",
-    email && !isEmail(email) && "email",
-    phone && !isPhone(phone) && "phone",
-    form.getAll("need").length === 0 && "needs",
-    text("message").length < CONTACT.minimumMessageLength && "message",
-  ].filter((problem): problem is ContactProblem => Boolean(problem));
+    ...contactDetailProblems({ name: text("name"), email: text("email"), phone: text("phone") }),
+    ...(form.getAll("need").length === 0 ? (["needs"] as const) : []),
+    ...(text("message").length < CONTACT.minimumMessageLength ? (["message"] as const) : []),
+  ];
 }

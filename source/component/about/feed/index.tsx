@@ -13,9 +13,9 @@ import { ABOUT } from "@sharadox/sharadox-web-library/content/about";
 import styles from "./index.module.scss";
 import type { FeedProperties } from "@sharadox/sharadox-web-library/component/about/feed/type";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
+import { EASE } from "@sharadox/animation-web-library/ease";
 
 const { feed } = ABOUT.business;
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** The label a target shows while the pointer reads it. */
 function tipFor(target: string, locale: Locale) {

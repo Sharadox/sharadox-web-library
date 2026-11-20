@@ -1,3 +1,4 @@
+import { inlineImage } from "@sharadox/email-web-library/inline-image";
 import { createContactAction } from "@sharadox/form-web-library/contact-action";
 import { EMAIL_LOGO } from "@sharadox/sharadox-web-library/content/email-logo";
 import { SHARADOX_EMAIL } from "@sharadox/sharadox-web-library/content/email-design";
@@ -19,7 +20,7 @@ export const sendContact = createContactAction({
   to: SITE.email,
   company: CONTACT.sender,
   site: "sharadox.com",
-  logo: async () => ({ ...EMAIL_LOGO, content: Buffer.from(EMAIL_LOGO.content, "base64") }),
+  logo: async () => inlineImage("logo", EMAIL_LOGO),
   design: SHARADOX_EMAIL,
   acknowledgement: CONTACT.acknowledgement,
   choices: Object.fromEntries(CONTACT.needs.options.map((need) => [need.key, need.en])),

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { BrandIcon } from "@sharadox/icon-web-library/brand-icon";
 import { newTab } from "@sharadox/web-library/navigation/new-tab";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { Cross } from "@sharadox/sharadox-web-library/component/cross";
 import { LocaleLink } from "@sharadox/internationalization-web-library/locale-link";
@@ -11,7 +11,6 @@ import { StyleSwitch } from "@sharadox/sharadox-web-library/component/style-swit
 import { Wordmark } from "@sharadox/sharadox-web-library/component/wordmark";
 import { Button } from "@sharadox/sharadox-web-library/component/button";
 import { PreferencesLink } from "@sharadox/sharadox-web-library/component/consent/preferences-link";
-import { CONSENT } from "@sharadox/sharadox-web-library/content/consent";
 import { ComplaintsBookLink } from "@sharadox/legal-web-library/complaints-book-link";
 import { DisputeNotice } from "@sharadox/legal-web-library/dispute-notice";
 import { DISPUTE_RESOLUTION_CENTERS } from "@sharadox/legal-web-library/dispute-resolution";
@@ -29,6 +28,7 @@ import { FOUNDED, GOOGLE_REVIEW, SITE, SOCIAL } from "@sharadox/sharadox-web-lib
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import styles from "./index.module.scss";
 import type { FooterProperties } from "@sharadox/sharadox-web-library/component/footer/type";
+import { consentLabel } from "@sharadox/consent-web-library/consent-copy";
 
 /**
  * The footer, in the grid frame. Four columns: the brand (slogan, email and Start a Project), the services, the
@@ -99,7 +99,7 @@ export function Footer({ locale, path = "" }: FooterProperties) {
       {/* Everything legal, in a row of its own: the consumer dispute notice, and the links under it. */}
       <div className={styles.legal}>
         <p className={`monospace ${styles.copyright}`}>
-          © <CopyrightYears since={FOUNDED} /> {separate("Sharadox", translate(FOOTER.rights, locale))}
+          © <CopyrightYears since={FOUNDED} /> {separated("Sharadox", translate(FOOTER.rights, locale))}
         </p>
         <p className={styles.disputes}>
           <DisputeNotice center={DISPUTE_RESOLUTION_CENTERS.algarve} locale={locale} />
@@ -111,7 +111,7 @@ export function Footer({ locale, path = "" }: FooterProperties) {
           <Link href={`/${locale}${PRIVACY_PAGE.path}`} aria-current={path === PRIVACY_PAGE.path ? "page" : undefined}>
             {translate(PRIVACY_PAGE.title, locale)}
           </Link>
-          <PreferencesLink label={translate(CONSENT.preferences, locale)} />
+          <PreferencesLink label={consentLabel("preferences", locale)} />
           <ComplaintsBookLink locale={locale} />
           <a href={GOOGLE_REVIEW} {...newTab(GOOGLE_REVIEW)}>
             {translate(FOOTER.review, locale)}
