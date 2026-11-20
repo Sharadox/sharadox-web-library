@@ -4,9 +4,9 @@ import { translate } from "@sharadox/internationalization-web-library/translate"
 import { ABOUT } from "@sharadox/sharadox-web-library/content/about";
 import styles from "./index.module.scss";
 import type { ActivityProperties } from "@sharadox/sharadox-web-library/component/about/feed/activity/type";
+import { EASE } from "@sharadox/animation-web-library/ease";
 
 const { feed } = ABOUT.business;
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** A person's initials: "Ana Sousa" is "AS", "Rui" is "R". */
 const initials = (name: string) =>

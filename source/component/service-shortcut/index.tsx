@@ -2,7 +2,7 @@ import { SectionLink } from "@sharadox/scroll-web-library/section-link";
 import { Icon } from "@sharadox/icon-web-library/icon";
 import { classNames } from "@sharadox/web-library/class-name";
 import { translate } from "@sharadox/internationalization-web-library/translate";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 import styles from "./index.module.scss";
 import type { ServiceShortcutProperties } from "@sharadox/sharadox-web-library/component/service-shortcut/type";
 
@@ -15,7 +15,7 @@ export function ServiceShortcut({ locale, service, base = "", className, style }
     <SectionLink href={`${base}#${service.key}`} className={classNames(styles.shortcut, className)} style={style}>
       <span className={`${styles.number} monospace`}>{service.number}</span>
       <span className={styles.title}>{translate(service.title, locale)}</span>
-      <span className={`${styles.kinds} monospace`}>{separate(...service.kinds[locale])}</span>
+      <span className={`${styles.kinds} monospace`}>{separated(...service.kinds[locale])}</span>
       <Icon name="chevron-down" className={styles.arrow} strokeWidth={1.8} />
     </SectionLink>
   );

@@ -10,18 +10,18 @@ import { Eyebrow } from "@sharadox/sharadox-web-library/component/eyebrow";
 import { GlobePlaceholder } from "@sharadox/sharadox-web-library/component/globe/placeholder";
 import { Section } from "@sharadox/sharadox-web-library/component/section";
 import { NOT_FOUND } from "@sharadox/sharadox-web-library/content/not-found";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 import { ACTION } from "@sharadox/sharadox-web-library/content/action";
 import { SECTION } from "@sharadox/sharadox-web-library/content/section";
 import styles from "./index.module.scss";
 import type { NotFoundProperties } from "@sharadox/sharadox-web-library/component/not-found/type";
+import { EASE } from "@sharadox/animation-web-library/ease";
 
 const Globe = dynamic(() => import("@sharadox/sharadox-web-library/component/globe"), {
   ssr: false,
   loading: () => <GlobePlaceholder />,
 });
 
-const EASE = [0.22, 1, 0.36, 1] as const;
 const rise = (delay: number, settled: boolean) => ({
   initial: settled ? (false as const) : { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0 },
@@ -43,7 +43,7 @@ export function NotFound({ locale, path }: NotFoundProperties) {
       <div className={styles.glow} aria-hidden />
       <motion.div {...rise(0.05, settled)}>
         <Eyebrow className={styles.eyebrow}>
-          <span className={styles.live} aria-hidden /> {separate(translate(NOT_FOUND.error, locale), "404")}
+          <span className={styles.live} aria-hidden /> {separated(translate(NOT_FOUND.error, locale), "404")}
         </Eyebrow>
       </motion.div>
       <div className={styles.code} aria-hidden>

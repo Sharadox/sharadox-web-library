@@ -1,3 +1,4 @@
+import { requestChoices } from "@sharadox/form-web-library/choice-request";
 import type { NeedKey } from "@sharadox/sharadox-web-library/content/contact";
 
 /** The window event that asks the contact form to tick some choices. */
@@ -11,5 +12,5 @@ export const CONTACT_NEED_EVENT = "sharadox:contact-need";
  * requestContactNeeds(["website"]);
  */
 export function requestContactNeeds(needs: readonly NeedKey[]): void {
-  dispatchEvent(new CustomEvent<readonly NeedKey[]>(CONTACT_NEED_EVENT, { detail: needs }));
+  requestChoices(CONTACT_NEED_EVENT, needs);
 }
