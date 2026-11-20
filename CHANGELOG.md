@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.53.2
+
+The contact form's spam fields are form-web-library's `BotFields` instead of its own honeypot and fill-time field (same names, same hidden placement).
+
 ## 0.53.1
 
 The tokens forward style-web-library's `style-helper` instead of defining $ease, below, tint, on-scroll and skip-entrance themselves; the compiled CSS is byte-identical. A site using these tokens needs `@sharadox/next-js-configuration-web-library` 0.3.0+ and `@sharadox/style-web-library` 0.3.0+ installed.
