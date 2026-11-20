@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.53.1
+
+The tokens forward style-web-library's `style-helper` instead of defining $ease, below, tint, on-scroll and skip-entrance themselves; the compiled CSS is byte-identical. A site using these tokens needs `@sharadox/next-js-configuration-web-library` 0.3.0+ and `@sharadox/style-web-library` 0.3.0+ installed.
+
 ## 0.53.0
 
 - `utility/sharadox-email` is `utility/branded-email` (`brandedEmail`, `brandedEmailImages`): the library's name no longer repeats inside it.
