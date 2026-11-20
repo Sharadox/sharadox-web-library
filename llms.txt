@@ -18,3 +18,5 @@
 - utility/llms-text llmsText() → sharadox.com's llms.txt (shared shape from @sharadox/metadata-web-library). The cookie panel was removed in 0.14.0: the site stores only what it needs (language, style), which needs no consent.
 - content/privacy PRIVACY (privacy-web-library options) and PRIVACY_PAGE { path "/privacy", title, eyebrow, description }; component/privacy-page PrivacyPage({ locale }); the footer links it
 - Changes by version: CHANGELOG.md (in the package)
+- component/page-frame <PageFrame locale path? before? aside? after?>{page}</PageFrame>: navigation, <main>, footer and the site-wide behavior around every page
+- utility/site-metadata siteMetadata({ locale, path?, title, description }) → Next.js Metadata with the site's name after the title, its addresses in every language and its share image

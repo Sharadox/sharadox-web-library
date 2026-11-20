@@ -2,6 +2,11 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.0
+
+- `component/page-frame`: `PageFrame`, everything around a page (navigation, `<main>`, footer and the site-wide behavior), with `before`, `aside` and `after` for page-specific pieces.
+- `utility/site-metadata`: `siteMetadata({ locale, path, title, description })`, a page's metadata with the site's own name, address, languages and share image.
+
 ## 0.53.3
 
 American spelling in a comment (gray).
