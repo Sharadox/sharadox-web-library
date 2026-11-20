@@ -1,8 +1,11 @@
 @use "style/token" as *;
 
-.section {
-  /* Its text reads from the left (the page default is centered). */
+/* Its text reads from the left (the page default is centered). Without specificity, so a section's own class (the
+   404's centered text) wins whatever order the stylesheets load in. */
+:where(.section) {
   text-align: left;
+}
+.section {
   position: relative;
   width: min(100% - 2 * var(--gutter), var(--maximum-width));
   margin-inline: auto;

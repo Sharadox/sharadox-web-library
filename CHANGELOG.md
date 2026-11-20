@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.1
+
+`Section`'s left text alignment no longer depends on stylesheet order: a section's own class (the 404 page's centered text) always wins. A change in which modules a page imported had moved the 404 paragraph to the left.
+
 ## 0.54.0
 
 - `component/page-frame`: `PageFrame`, everything around a page (navigation, `<main>`, footer and the site-wide behavior), with `before`, `aside` and `after` for page-specific pieces.
