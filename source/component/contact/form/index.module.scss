@@ -126,13 +126,6 @@
   }
 }
 
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
 .error {
   font-size: 14px;
   color: var(--error);
