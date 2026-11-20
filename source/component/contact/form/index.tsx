@@ -16,6 +16,7 @@ import styles from "./index.module.scss";
 import type { ContactFormProperties } from "@sharadox/sharadox-web-library/component/contact/form/type";
 import { newTab } from "@sharadox/web-library/navigation/new-tab";
 import { PhoneField } from "@sharadox/form-web-library/phone-field";
+import { BotFields } from "@sharadox/form-web-library/bot-field";
 import { useChoiceRequests } from "@sharadox/form-web-library/choice-request";
 
 /**
@@ -26,10 +27,6 @@ import { useChoiceRequests } from "@sharadox/form-web-library/choice-request";
  */
 export function ContactForm({ locale, action: sendAction }: ContactFormProperties) {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendAction, { status: "idle" });
-  // When the visitor started filling the form; bots submit faster than humans can.
-  // When the form appeared. It goes into the hidden field as the form is sent: React puts a hidden field back to its
-  // default whenever the form renders again, which silently turned the fill-time check off.
-  const startedAt = useRef(0);
   const needs = useRef<HTMLFieldSetElement>(null);
   // Buttons elsewhere (the service cards) ask for choices: tick them and make them glow for a moment.
   useChoiceRequests<string>(CONTACT_NEED_EVENT, (requested) => {
@@ -43,9 +40,6 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
       chip.setAttribute("data-requested", "");
     }
   });
-  useEffect(() => {
-    startedAt.current = Date.now();
-  }, []);
   const spotlight = useSpotlight<HTMLFormElement>();
   // What the visitor still has to fill in; shown once they try to send, then updated as they type.
   const [problems, setProblems] = useState<readonly ContactProblem[] | null>(null);
@@ -104,7 +98,6 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
               setRefusals((count) => count + 1);
               return;
             }
-            (form.elements.namedItem("started-at") as HTMLInputElement).value = String(startedAt.current);
             // The page it was sent from, for the email (shown only when it's on the site's own domain).
             (form.elements.namedItem("page") as HTMLInputElement).value = location.href;
           }}
@@ -117,15 +110,9 @@ export function ContactForm({ locale, action: sendAction }: ContactFormPropertie
           className={styles.form}
           exit={{ opacity: 0, scale: 0.98 }}
         >
-          <input type="hidden" name="started-at" defaultValue="0" />
           <input type="hidden" name="page" defaultValue="" />
           <input type="hidden" name="locale" value={locale} />
-          <div className={styles.honeypot} aria-hidden>
-            <label>
-              Website
-              <input name="website" tabIndex={-1} autoComplete="off" />
-            </label>
-          </div>
+          <BotFields />
           <div className={styles.about}>
             <div className={styles.row}>
               <label className={styles.field}>
