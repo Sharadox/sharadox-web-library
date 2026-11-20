@@ -30,6 +30,8 @@ export function llmsText(): string {
         lines: PROCESS.steps.map((step) => `${step.title.en}: ${step.text.en}`),
         style: "numbered",
       },
+      // Branch-flow proof: this line exists only on proof-alpha.development.
+      { title: "Proof", lines: ["feature alpha"] },
       { title: "Contact", lines: [`Email: ${SITE.email}`, `Start a project: ${SITE.url}/en#${SECTION.contact.id}`] },
       {
         title: "Pages",
