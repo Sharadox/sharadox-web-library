@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.53.3
+
+American spelling in a comment (gray).
+
 ## 0.53.2
 
 The contact form's spam fields are form-web-library's `BotFields` instead of its own honeypot and fill-time field (same names, same hidden placement).

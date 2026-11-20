@@ -7,7 +7,7 @@ import type { SocialImageOptions } from "@sharadox/sharadox-web-library/componen
 
 /** The headline's font, shipped with the library (distribution/asset/font), found relative to this compiled file. */
 const SEMI_BOLD = new URL("../../asset/font/Geist-SemiBold.ttf", import.meta.url);
-/** The hero's last line, fading from white to grey. */
+/** The hero's last line, fading from white to gray. */
 const DIM = "linear-gradient(180deg, #ffffff 10%, #6b6b6b 120%)";
 
 /**

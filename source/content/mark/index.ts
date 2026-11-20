@@ -1,5 +1,5 @@
 /**
- * The Sharadox mark alone (a globe: its outline, one meridian and the equator), white and grey on transparent,
+ * The Sharadox mark alone (a globe: its outline, one meridian and the equator), white and gray on transparent,
  * filling its square edge to edge (the outline's stroke included). The site's app icon master (src/app/icon.svg) draws
  * the same mark, half its side, on black; social images draw it from here.
  */
