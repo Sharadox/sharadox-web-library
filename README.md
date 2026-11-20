@@ -17,14 +17,13 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 | Spotlight, tilt                             | `@sharadox/pointer-web-library`              |
 | Contact form action                         | `@sharadox/form-web-library`                 |
 | The 3D globe                                | `@sharadox/globe-web-library`                |
-| Utilities (`separate`, `classNames`…)       | `@sharadox/web-library`                      |
+| Utilities (`separated`, `classNames`…)      | `@sharadox/web-library`                      |
 
 ## What is here
 
 - **`content/`:** all copy and settings, one topic per folder.
   - `locale`: `LOCALES`, built with `defineLocales`.
   - `style`: `STYLES`, with Black and White in the color group; colors live only here.
-  - `separator`: the Sharadox separator ·.
   - `slogan`: `SLOGAN` (one sentence, always with its full stop) and `SLOGAN_LINES` (the hero's lines, the single source of its words).
   - `section`: `SECTION`, each home-page section's id and name, used by navigation, footer, section indicator and headings.
   - `action`: shared calls to action (`ACTION.startProject`).
@@ -44,7 +43,7 @@ Everything generic comes from the open-source Sharadox libraries, configured her
 - **Service card buttons:** each card's button scrolls to the contact form and ticks that card's choice (`requestContactNeeds`, the card's `key` in `content/services`), which glows for a moment. The form's choices come from the same cards, grouped like the services, then Something Else ("I don't know what I need", "What I need is not listed", which the invitation after the services ticks).
 - **Contact form checks:** it needs a name, an email or a phone (or both, each valid), at least one choice and a message of at least 20 characters (`utility/contact-problem`, the same rules the server applies). It says what's missing under each field before anything is sent.
 - **`action/send-contact`:** `sendContact(form, ip)`, the shared contact action set up for Sharadox ("Contact · Name (Company)" subjects, sent to contact@sharadox.com as "Sharadox Web Application"), with the form's rules, 5 messages an hour per address and 50 emails a day from everyone together, so a flood can't run up the email bill.
-- **`utility/`:** `separate()` (the Sharadox separator), `contactProblems()` (what the contact form still lacks), `requestContactNeeds()` and the share card's horizon dots.
+- **`utility/`:** `brandedEmail()` and `brandedEmailImages()` (any email in Sharadox's design), `contactProblems()` (what the contact form still lacks), `requestContactNeeds()` and the share card's horizon dots.
 - **`style/token`:** Sass helpers (`tint()`, `shade()`, `dashed()`, `on-scroll()`, `below()`, `skip-entrance()`) used by every component's styles. `skip-entrance` marks a time-based entrance animation so it shows its final state at once after a language switch.
 - **`style/object`:** the 3D objects' helpers (`centered()`, `face()`, `loop()`) and their one palette, so every object reads alike in every style: opaque surfaces (`surface()`, `$surface`, `$raised`) with one hairline `$edge`, and details by role (`$hint`, `$faint`, `$detail`, `$strong`, `$glow`); the point of the moment is the full foreground color.
 - **Centered by default:** sharadox-web-application's global styles start every box centered (text, free space on both axes, items across the line). Components state any other alignment (left text, items starting on the left, stretched columns), so they look the same whether or not the default is there.
