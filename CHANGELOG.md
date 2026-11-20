@@ -2,6 +2,11 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.53.0
+
+- `utility/sharadox-email` is `utility/branded-email` (`brandedEmail`, `brandedEmailImages`): the library's name no longer repeats inside it.
+- Removed the deprecated `utility/separate` and `content/separator`: use `separated` and `SEPARATOR` from `@sharadox/web-library`.
+
 ## 0.52.0
 
 Shared helpers instead of local copies: web-library separated (utility/separate is now a re-export, removed in 0.53) and twoDigits, animation-web-library EASE, scroll-web-library useScrolledPast (navigation), consent-web-library consentCopy and consentLabel (CONSENT holds only title, text and categories), form-web-library contactProblems and choice requests (contact-need wraps requestChoices), email-web-library subpaths and inlineImage

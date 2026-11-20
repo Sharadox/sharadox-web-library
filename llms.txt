@@ -2,8 +2,8 @@
 
 > Sharadox's own website library (verifiable source, not open source): content, branded components, styles and contact configuration for sharadox.com, built on the open-source @sharadox/*-web-library topic libraries.
 
-- content/locale LOCALES (defineLocales en/pt); content/style STYLES (color group: black default, white, system; storageKey "style"); content/separator SEPARATOR "·"
-- utility/separate separate(...parts) with the Sharadox separator
+- content/locale LOCALES (defineLocales en/pt); content/style STYLES (color group: black default, white, system; storageKey "style")
+- utility/branded-email brandedEmail(content) (any email Sharadox sends, in SHARADOX_EMAIL's design) and brandedEmailImages() (the mark as inline image "logo")
 - action/send-contact sendContact(form, ip) — createContactAction to contact@sharadox.com, subject "Contact · Name (Company)", email or phone, at least one choice, 20+ character message, 5/hour per address, 50/day overall
 - component/*: navigation, hero (+ lazy globe), service-index, about (+ feed: activity, project, client, script), services (four groups of service-card, each with a service-object), capability, service-unlisted, marquee, portfolio (+ project, screens, service-name, launch-date), project-page (+ chapter), process, faq, contact (+ form), footer, section-indicator, style-switch, structured-data, share-image (renderShareImage)
 - style/token Sass helpers: tint, shade, dashed, on-scroll, below, fill-center
