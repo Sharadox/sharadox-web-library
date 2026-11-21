@@ -24,6 +24,7 @@ export const SHARADOX_EMAIL: EmailDesign = {
     box: "#0a0a0a",
     onAccent: "#000000",
     headerRule: "linear-gradient(90deg, #000000, #3a3a3a 20%, #3a3a3a 80%, #000000)",
+    headerRuleColor: "#3a3a3a",
   },
   fonts: {
     heading: "Geist, -apple-system, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif",

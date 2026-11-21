@@ -18,7 +18,7 @@ const message = {
 };
 
 describe("sendContact", () => {
-  test("emails contact@sharadox.com as Sharadox (Web Application), in Sharadox's design, with the mark", async () => {
+  test("emails contact@sharadox.com as Sharadox, in Sharadox's design, with the mark", async () => {
     expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox", site: "sharadox.com" });
     expect(options.design).toMatchObject({ name: "Sharadox", crosses: true, rule: "dashed" });
     const logo = await options.logo!();
@@ -35,8 +35,9 @@ describe("sendContact", () => {
     expect(pt!.button).toEqual({ label: "Visitar sharadox.com", href: "https://sharadox.com/pt" });
   });
 
-  test("names every 'What do you need?' choice in English", () => {
-    expect(options.choices).toEqual({
+  test("names every 'What do you need?' choice in English and Portuguese, as the form shows it", () => {
+    const choices = options.choices as Record<string, { en: string; pt: string }>;
+    expect(Object.fromEntries(Object.entries(choices).map(([key, name]) => [key, name.en]))).toEqual({
       website: "Website",
       platform: "Platform",
       "e-commerce": "E-commerce",
@@ -58,6 +59,7 @@ describe("sendContact", () => {
       unsure: "I don't know what I need",
       "not-listed": "What I need is not listed",
     });
+    for (const name of Object.values(choices)) expect(name.pt).toBeTruthy();
   });
 
   test("needs an email or a phone, a choice and a message of 20 characters, like the form", () => {

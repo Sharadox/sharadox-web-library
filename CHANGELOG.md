@@ -2,6 +2,12 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.2
+
+- On phones the About section's live feed stays still (it spans the screen edge to edge there); it still floats on wider screens.
+- The contact email comes from "Sharadox" with the subject "Contact · Name (Company)", in the visitor's language (form-web-library 0.8.0); its header rule has a plain color under its gradient.
+- On the polish builds of the email, form, metadata, animation and pointer libraries.
+
 ## 0.54.1
 
 `Section`'s left text alignment no longer depends on stylesheet order: a section's own class (the 404 page's centered text) always wins. A change in which modules a page imported had moved the 404 paragraph to the left.

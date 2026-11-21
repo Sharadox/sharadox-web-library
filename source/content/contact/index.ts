@@ -3,7 +3,7 @@ import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/serv
 
 /** Contact section and form copy. */
 export const CONTACT = {
-  /** The company the form's emails come from: "Sharadox Web Application" (contact@web.sharadox.com). */
+  /** The company the form's emails come from: "Sharadox" (contact@web.sharadox.com). */
   sender: "Sharadox",
   /** The automatic reply a visitor who left an email gets, in their language, with their message. */
   acknowledgement: {
@@ -46,7 +46,7 @@ export const CONTACT = {
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
   needs: {
     label: { en: "What do you need?", pt: "Do que precisa?" },
-    /** One choice per service card, grouped like the services, then "Something Else". `en` is also how they appear in the email. */
+    /** One choice per service card, grouped like the services, then "Something Else". Each appears in the email in the visitor's language. */
     groups: SERVICES.items.map((service) => ({
       key: service.key,
       title: service.title,
