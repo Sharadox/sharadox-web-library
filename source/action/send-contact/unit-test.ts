@@ -20,7 +20,7 @@ const message = {
 describe("sendContact", () => {
   test("emails contact@sharadox.com as Sharadox, in Sharadox's design, with the mark", async () => {
     expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox", site: "sharadox.com" });
-    expect(options.design).toMatchObject({ name: "Sharadox", crosses: true, rule: "dashed" });
+    expect(options.design).toMatchObject({ name: "Sharadox", color: "#000000", wordmark: true });
     const logo = await options.logo!();
     expect(logo.contentType).toBe("image/png");
     expect([...logo.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);

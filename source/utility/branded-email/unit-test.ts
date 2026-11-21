@@ -7,7 +7,7 @@ test("writes any email in Sharadox's design, carrying its mark", () => {
   expect(html).toContain('<html lang="pt">');
   expect(html).toContain('src="cid:logo"');
   expect(html).toContain(">Sharadox</td>");
-  expect(html.match(/>\+<\/td>/g)).toHaveLength(4);
+  expect(html).toContain("background-color:#ffffff");
   expect(html).toContain('href="https://sharadox.com"');
   const [logo] = brandedEmailImages();
   expect(logo!.id).toBe("logo");
