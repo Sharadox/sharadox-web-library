@@ -12,6 +12,7 @@ What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 - The automatic reply's subject no longer starts with the company's name ("We received your message"): the sender already says who it is from.
 - Emails use email-web-library's one simple layout, black on white, the same in every mail app: the black globe and the name at the top left, black as the brand's color, Geist where the reader has it. The globe carries a thin white outline so it stays visible when a mail app darkens the email.
 - The automatic reply uses every site's words, form-web-library's `contactAcknowledgement` (the same as before, now shared).
+- Emails follow email-web-library's one layout: no background, text, logo and button in the theme's foreground (black, white in dark themes), Geist. The globe comes in black with a white outline (`content/email-logo`) and in white for dark themes (`content/email-logo-dark`).
 
 ## 0.54.1
 

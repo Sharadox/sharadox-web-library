@@ -1,9 +1,9 @@
 /**
  * The logo at the top left of every email Sharadox sends: the app icon's globe (src/app/icon.svg of the application)
- * in black on nothing, as on a white page, its inner lines a dark gray; each line sits over a slightly wider white
- * one, invisible on white, that keeps it visible when a mail app darkens the email. Rendered to a 90 pixel PNG and kept
- * here as base64 so it travels with the code into any server bundle (a file next to the code isn't always readable
- * there). Shown 30 pixels wide, sharp on the densest screens.
+ * in black on nothing, its inner lines a dark gray, each line over a slightly wider white one: invisible on a light
+ * theme, an outline that keeps it visible where a mail app darkens the email itself. Rendered to a 90 pixel PNG and
+ * kept here as base64 so it travels with the code into any server bundle. Shown 30 pixels wide; EMAIL_LOGO_DARK is
+ * the white one, for dark themes.
  */
 export const EMAIL_LOGO = {
   content:

@@ -2,6 +2,7 @@ import { contactAcknowledgement } from "@sharadox/form-web-library/contact-ackno
 import { inlineImage } from "@sharadox/email-web-library/inline-image";
 import { createContactAction } from "@sharadox/form-web-library/contact-action";
 import { EMAIL_LOGO } from "@sharadox/sharadox-web-library/content/email-logo";
+import { EMAIL_LOGO_DARK } from "@sharadox/sharadox-web-library/content/email-logo-dark";
 import { SHARADOX_EMAIL } from "@sharadox/sharadox-web-library/content/email-design";
 import { CONTACT } from "@sharadox/sharadox-web-library/content/contact";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
@@ -22,6 +23,7 @@ export const sendContact = createContactAction({
   company: CONTACT.sender,
   site: "sharadox.com",
   logo: async () => inlineImage("logo", EMAIL_LOGO),
+  darkLogo: async () => inlineImage("logo-dark", EMAIL_LOGO_DARK),
   design: SHARADOX_EMAIL,
   acknowledgement: contactAcknowledgement(SITE.url),
   choices: Object.fromEntries(CONTACT.needs.options.map((need) => [need.key, { en: need.en, pt: need.pt }])),
