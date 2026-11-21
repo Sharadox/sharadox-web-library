@@ -45,8 +45,8 @@ importers:
         specifier: ^0.1.3
         version: 0.1.3(react@19.3.1)
       '@sharadox/scroll-web-library':
-        specifier: 0.7.2-polish.33
-        version: 0.7.2-polish.33(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: 0.7.2-polish.34
+        version: 0.7.2-polish.34(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.3.0
         version: 0.3.0(react@19.3.1)
@@ -875,8 +875,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/scroll-web-library@0.7.2-polish.33':
-    resolution: {integrity: sha512-Og2F2dR4XBI6tI5dSJDAqiKY0Cz8b3puTQArPx0EufzoiF1SR67e5WwR9RwcPjwhhDDzDXC5q6FUga0XpiAueg==}
+  '@sharadox/scroll-web-library@0.7.2-polish.34':
+    resolution: {integrity: sha512-/YBpPLQh/tXlnJZIz3omrTlfAxRCNb+9st780XrB82WQ2G1RVAtfGGZWgzvFToaUhHRhFAvE2j+buRDoWc5ILQ==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -2784,7 +2784,7 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/scroll-web-library@0.7.2-polish.33(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+  '@sharadox/scroll-web-library@0.7.2-polish.34(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.9.0
       lenis: 1.3.27(react@19.3.1)
