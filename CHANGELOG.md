@@ -8,6 +8,7 @@ What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 - The contact email comes from "Sharadox" with the subject "Contact · Name (Company)", in the visitor's language (form-web-library 0.8.0); its header rule has a plain color under its gradient.
 - On the polish builds of the email, form, metadata, animation and pointer libraries.
 - Every page lets its endless animations rest while their section is off screen (animation-web-library's `OffscreenLoops`, in `PageFrame`); nothing looks different.
+- Smooth scrolling rests between scrolls (scroll-web-library 0.7.2).
 
 ## 0.54.1
 

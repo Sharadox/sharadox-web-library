@@ -80,7 +80,7 @@
     "@sharadox/metadata-web-library": "0.11.0-polish.35",
     "@sharadox/pointer-web-library": "0.3.2-polish.12",
     "@sharadox/privacy-web-library": "^0.1.3",
-    "@sharadox/scroll-web-library": "^0.7.1",
+    "@sharadox/scroll-web-library": "0.7.2-polish.33",
     "@sharadox/style-web-library": "^0.3.0",
     "@sharadox/time-web-library": "^0.2.2",
     "@sharadox/web-library": "^0.9.0",
