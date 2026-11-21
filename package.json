@@ -68,7 +68,7 @@
   },
   "homepage": "https://github.com/Sharadox/sharadox-web-library#readme",
   "dependencies": {
-    "@sharadox/animation-web-library": "0.4.0-polish.28",
+    "@sharadox/animation-web-library": "0.4.0-polish.30",
     "@sharadox/consent-web-library": "^0.4.0",
     "@sharadox/email-web-library": "0.6.0-polish.21",
     "@sharadox/form-web-library": "0.8.0-polish.30",
