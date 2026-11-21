@@ -9,6 +9,7 @@ What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 - On the polish builds of the email, form, metadata, animation and pointer libraries.
 - Every page lets its endless animations rest while their section is off screen (animation-web-library's `OffscreenLoops`, in `PageFrame`); nothing looks different.
 - Smooth scrolling rests between scrolls (scroll-web-library 0.7.2).
+- The automatic reply's subject no longer starts with the company's name ("We received your message"): the sender already says who it is from.
 
 ## 0.54.1
 

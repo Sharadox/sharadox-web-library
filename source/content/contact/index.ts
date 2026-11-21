@@ -8,7 +8,7 @@ export const CONTACT = {
   /** The automatic reply a visitor who left an email gets, in their language, with their message. */
   acknowledgement: {
     en: {
-      subject: "Sharadox · We received your message",
+      subject: "We received your message",
       eyebrow: "Message received",
       heading: (name: string) => `Thank you, ${name}.`,
       paragraphs: [
@@ -19,7 +19,7 @@ export const CONTACT = {
       button: { label: "Visit sharadox.com", href: "https://sharadox.com" },
     },
     pt: {
-      subject: "Sharadox · Recebemos a sua mensagem",
+      subject: "Recebemos a sua mensagem",
       eyebrow: "Mensagem recebida",
       heading: (name: string) => `Obrigado, ${name}.`,
       paragraphs: [

@@ -28,7 +28,7 @@ describe("sendContact", () => {
 
   test("replies to the visitor automatically, in English or Portuguese", () => {
     const { en, pt } = options.acknowledgement!;
-    expect(en!.subject).toBe("Sharadox · We received your message");
+    expect(en!.subject).toBe("We received your message");
     expect(en!.heading(message.name)).toBe("Thank you, Ana.");
     expect(pt!.heading(message.name)).toBe("Obrigado, Ana.");
     expect(pt!.paragraphs).toHaveLength(2);
