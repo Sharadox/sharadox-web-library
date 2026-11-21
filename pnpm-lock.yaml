@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sharadox/animation-web-library':
-        specifier: 0.3.2-polish.26
-        version: 0.3.2-polish.26(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 0.4.0-polish.28
+        version: 0.4.0-polish.28(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
         specifier: ^0.4.0
         version: 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -752,8 +752,8 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@sharadox/animation-web-library@0.3.2-polish.26':
-    resolution: {integrity: sha512-HNxyIvbKyOXrukphnNhAACONhJd8yClz81XcZmNNjE5DTEmyzj0w2XURIMpqS8CriBCkb6IivcpFg7auqo42lQ==}
+  '@sharadox/animation-web-library@0.4.0-polish.28':
+    resolution: {integrity: sha512-oIYHD68CXuVPj6UsdSFZXQ7KVuwJrmeCVTcu8Xd6iw5xmVvNruC1Xl8NEXbTeYuqpf/HvoBYFGW48sS0HwdViw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -2670,7 +2670,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.3.2-polish.26(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.4.0-polish.28(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.8.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)

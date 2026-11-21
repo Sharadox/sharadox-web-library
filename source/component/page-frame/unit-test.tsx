@@ -12,6 +12,9 @@ vi.mock("@sharadox/sharadox-web-library/component/footer", () => ({
 vi.mock("@sharadox/sharadox-web-library/component/consent", () => ({
   Consent: ({ locale }: { locale: string }) => <i data-testid="consent">{locale}</i>,
 }));
+vi.mock("@sharadox/animation-web-library/offscreen-loops", () => ({
+  OffscreenLoops: () => <i data-testid="offscreen-loops" />,
+}));
 const { PageFrame } = await import("@sharadox/sharadox-web-library/component/page-frame");
 
 afterEach(cleanup);
@@ -31,7 +34,17 @@ test("puts the page between the navigation and the footer, with every slot in it
   const order = [...container.children].map(
     (element) => element.getAttribute("data-testid") ?? element.tagName.toLowerCase(),
   );
-  expect(order).toEqual(["cursor", "before", "navigation", "aside", "main", "footer", "after", "consent"]);
+  expect(order).toEqual([
+    "cursor",
+    "before",
+    "navigation",
+    "aside",
+    "main",
+    "offscreen-loops",
+    "footer",
+    "after",
+    "consent",
+  ]);
   expect(container.querySelector("main")!.textContent).toBe("Page");
   expect(getByTestId("navigation").textContent).toBe("/privacy");
   expect(getByTestId("footer").textContent).toBe("/privacy");
@@ -43,6 +56,6 @@ test("leads the home page's navigation and footer home, and leaves out empty slo
       <p>Início</p>
     </PageFrame>,
   );
-  expect(container.children).toHaveLength(5);
+  expect(container.children).toHaveLength(1 + 5);
   expect(getByTestId("navigation").textContent).toBe("home");
 });
