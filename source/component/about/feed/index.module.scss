@@ -13,6 +13,10 @@ $y: var(--parallax-y, 0);
   justify-content: stretch;
   perspective: 1400px;
   @include float;
+  /* On phones the panel spans the screen, edge to edge: it stays still. */
+  @include below(640px) {
+    animation: none;
+  }
 }
 .feed {
   @include face;

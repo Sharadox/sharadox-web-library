@@ -1,3 +1,4 @@
+import { OffscreenLoops } from "@sharadox/animation-web-library/offscreen-loops";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
 import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
@@ -6,7 +7,8 @@ import type { PageFrameProperties } from "@sharadox/sharadox-web-library/compone
 
 /**
  * Everything around a page of the Sharadox site, the same on every page: the navigation, the page's content in
- * `<main>` and the footer, with the site-wide behavior around them. Page-specific pieces go in `before`, `aside` and
+ * `<main>` and the footer, with the site-wide behavior around them (endless animations rest while their section is off
+ * screen). Page-specific pieces go in `before`, `aside` and
  * `after`.
  *
  * @example
@@ -20,6 +22,7 @@ export function PageFrame({ locale, path, before, aside, after, children }: Page
       <Navigation locale={locale} path={path} />
       {aside}
       <main>{children}</main>
+      <OffscreenLoops />
       <Footer locale={locale} path={path} />
       {after}
       <Consent locale={locale} />
