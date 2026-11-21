@@ -1,3 +1,4 @@
+import { contactAcknowledgement } from "@sharadox/form-web-library/contact-acknowledgement";
 import { inlineImage } from "@sharadox/email-web-library/inline-image";
 import { createContactAction } from "@sharadox/form-web-library/contact-action";
 import { EMAIL_LOGO } from "@sharadox/sharadox-web-library/content/email-logo";
@@ -22,7 +23,7 @@ export const sendContact = createContactAction({
   site: "sharadox.com",
   logo: async () => inlineImage("logo", EMAIL_LOGO),
   design: SHARADOX_EMAIL,
-  acknowledgement: CONTACT.acknowledgement,
+  acknowledgement: contactAcknowledgement(SITE.url),
   choices: Object.fromEntries(CONTACT.needs.options.map((need) => [need.key, { en: need.en, pt: need.pt }])),
   // The same rules the form checks before sending.
   reach: "email-or-phone",

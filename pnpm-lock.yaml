@@ -15,11 +15,11 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library':
-        specifier: 0.6.0-polish.23
-        version: 0.6.0-polish.23
+        specifier: 0.6.0-polish.24
+        version: 0.6.0-polish.24
       '@sharadox/form-web-library':
-        specifier: 0.8.0-polish.33
-        version: 0.8.0-polish.33(react@19.3.1)
+        specifier: 0.8.0-polish.34
+        version: 0.8.0-polish.34(react@19.3.1)
       '@sharadox/globe-web-library':
         specifier: ^0.2.3
         version: 0.2.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -764,8 +764,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/email-web-library@0.6.0-polish.23':
-    resolution: {integrity: sha512-n3l4g149E9cvblfmmwfJT3MgE5/5xK22GL+r0/gbxxb+464KI4izxhE33OJCvcu2UqDG+9GYXTE5HjlKNFDIYQ==}
+  '@sharadox/email-web-library@0.6.0-polish.24':
+    resolution: {integrity: sha512-OqGici3wRoGgNOq/XAcStHdWpARfdOytwN8BDrBfhqCh4Ml4P3gogQ7YkkPUCJXI95g0LRgZPEBanrAMLxq6+Q==}
     engines: {node: '>=26'}
 
   '@sharadox/es-lint-configuration-web-library@0.1.2':
@@ -779,8 +779,8 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.8.0-polish.33':
-    resolution: {integrity: sha512-sOgQQn4BPRqh1/dLh6O4qTp9F1G8EmfkqLH+WLRwnI9W+tB7mewu1n6GrOQR/DLCIEvtJKPqvvuzSMD6g10PFw==}
+  '@sharadox/form-web-library@0.8.0-polish.34':
+    resolution: {integrity: sha512-IMU8WbS37HeDlxgPA7PVQPioqv5Ws9cK/AS9h5hov0wM82M4paQ27WUH23R+rGeQuZUuL95rfhotlSPvzhQ1Fw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -2688,7 +2688,7 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react-dom
 
-  '@sharadox/email-web-library@0.6.0-polish.23':
+  '@sharadox/email-web-library@0.6.0-polish.24':
     dependencies:
       '@sharadox/web-library': 0.8.0
       nodemailer: 10.5.0
@@ -2704,9 +2704,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.8.0-polish.33(react@19.3.1)':
+  '@sharadox/form-web-library@0.8.0-polish.34(react@19.3.1)':
     dependencies:
-      '@sharadox/email-web-library': 0.6.0-polish.23
+      '@sharadox/email-web-library': 0.6.0-polish.24
       '@sharadox/icon-web-library': 0.6.1(react@19.3.1)
       '@sharadox/web-library': 0.9.0
     optionalDependencies:

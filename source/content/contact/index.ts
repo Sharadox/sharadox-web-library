@@ -5,31 +5,6 @@ import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/serv
 export const CONTACT = {
   /** The company the form's emails come from: "Sharadox" (contact@web.sharadox.com). */
   sender: "Sharadox",
-  /** The automatic reply a visitor who left an email gets, in their language, with their message. */
-  acknowledgement: {
-    en: {
-      subject: "We received your message",
-      eyebrow: "Message received",
-      heading: (name: string) => `Thank you, ${name}.`,
-      paragraphs: [
-        "Your message reached us, and we'll get back to you shortly, usually within one working day.",
-        "Anything to add? Just reply to this email.",
-      ],
-      messageLabel: "Your message",
-      button: { label: "Visit sharadox.com", href: "https://sharadox.com" },
-    },
-    pt: {
-      subject: "Recebemos a sua mensagem",
-      eyebrow: "Mensagem recebida",
-      heading: (name: string) => `Obrigado, ${name}.`,
-      paragraphs: [
-        "A sua mensagem chegou até nós, e respondemos em breve, normalmente num dia útil.",
-        "Quer acrescentar alguma coisa? Basta responder a este email.",
-      ],
-      messageLabel: "A sua mensagem",
-      button: { label: "Visitar sharadox.com", href: "https://sharadox.com/pt" },
-    },
-  },
   title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {
     en: "Tell us about your brand and what you need. We'll get back to you shortly.",
