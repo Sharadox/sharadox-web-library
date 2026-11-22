@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.3
+
+Sharadox libraries are required with caret ranges, so their patches reach every site (email-web-library 0.6.1 among them).
+
 ## 0.54.2
 
 - On phones the About section's live feed stays still (it spans the screen edge to edge there); it still floats on wider screens.
