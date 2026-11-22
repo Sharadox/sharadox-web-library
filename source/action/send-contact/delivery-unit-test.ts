@@ -30,7 +30,7 @@ beforeAll(async () => {
 });
 afterAll(() => new Promise<void>((resolve) => server.close(resolve)));
 
-test("sends as Sharadox in the visitor's language, replying answers the visitor, and the visitor gets a reply", async () => {
+test("sends one email as Sharadox to the visitor and the company, replies going to the company, in the visitor's language", async () => {
   const { sendContact } = await import("@sharadox/sharadox-web-library/action/send-contact");
   const form = new FormData();
   for (const [name, value] of Object.entries({
@@ -41,15 +41,15 @@ test("sends as Sharadox in the visitor's language, replying answers the visitor,
     need: "website",
     "started-at": "1",
     locale: "pt",
-    page: "https://sharadox.com/pt#contact",
   })) {
     form.set(name, value);
   }
   expect(await sendContact(form, "1.2.3.4")).toEqual({ status: "sent" });
-  const [message, reply] = received.slice(-2) as [string, string];
+  expect(received).toHaveLength(1);
+  const message = received[0]!;
   expect(message).toMatch(/^From: Sharadox <contact@web\.sharadox\.com>$/m);
-  expect(message).toMatch(/^Reply-To: =\?UTF-8\?Q\?Ana_S=C3=A1\?= <ana@example\.pt>$/m);
-  expect(message).toMatch(/^To: contact@sharadox\.com$/m);
+  expect(message).toMatch(/^To: =\?UTF-8\?Q\?Ana_S=C3=A1\?= <ana@example\.pt>, contact@sharadox\.com$/m);
+  expect(message).toMatch(/^Reply-To: contact@sharadox\.com$/m);
   const subject = /^Subject: (.+(?:\r?\n .+)*)/m.exec(message)![1]!;
   const decoded = subject
     .replace(/\r?\n /g, " ")
@@ -57,8 +57,9 @@ test("sends as Sharadox in the visitor's language, replying answers the visitor,
       Buffer.from(text.replace(/_/g, " ").replace(/=([0-9A-F]{2})/g, "%$1"), "binary").toString(),
     );
   // The visitor used the form in Portuguese.
-  expect(decodeURIComponent(decoded)).toBe("Contacto · Ana Sá (Café Zé)");
+  expect(decodeURIComponent(decoded)).toMatch(
+    /^Contacto · Ana Sá \(Café Zé\) · [0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+  );
   expect(message).toMatch(/^Content-ID: <logo>$/m);
-  expect(reply).toMatch(/^To: =\?UTF-8\?Q\?Ana_S=C3=A1\?= <ana@example\.pt>$/m);
-  expect(reply).toMatch(/^Reply-To: contact@sharadox\.com$/m);
+  expect(message).toMatch(/^Content-ID: <logo-dark>$/m);
 });

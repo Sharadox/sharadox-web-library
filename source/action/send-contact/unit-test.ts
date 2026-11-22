@@ -6,20 +6,11 @@ const createContactAction = vi.fn<(options: ContactActionOptions) => unknown>(()
 vi.mock("@sharadox/form-web-library/contact-action", () => ({ createContactAction }));
 await import("@sharadox/sharadox-web-library/action/send-contact");
 const options = createContactAction.mock.calls[0]![0];
-const message = {
-  name: "Ana",
-  email: "ana@example.com",
-  phone: "",
-  company: "",
-  message: "Hi",
-  locale: "pt",
-  choices: [],
-  fields: {},
-};
 
 describe("sendContact", () => {
   test("emails contact@sharadox.com as Sharadox, in Sharadox's design, with the mark", async () => {
-    expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox", site: "sharadox.com" });
+    expect(options).toMatchObject({ to: "contact@sharadox.com", company: "Sharadox" });
+    expect(options).not.toHaveProperty("acknowledgement");
     expect(options.design).toMatchObject({ name: "Sharadox", wordmark: true, logo: { width: 30, height: 30 } });
     const logo = await options.logo!();
     const dark = await options.darkLogo!();
@@ -27,15 +18,6 @@ describe("sendContact", () => {
     expect([...dark.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
     expect(logo.contentType).toBe("image/png");
     expect([...logo.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
-  });
-
-  test("replies to the visitor automatically, in English or Portuguese", () => {
-    const { en, pt } = options.acknowledgement!;
-    expect(en!.subject).toBe("We received your message");
-    expect(en!.heading(message.name)).toBe("Thank you, Ana.");
-    expect(pt!.heading(message.name)).toBe("Obrigado, Ana.");
-    expect(pt!.paragraphs).toHaveLength(2);
-    expect(pt!.button).toEqual({ label: "Visitar sharadox.com", href: "https://sharadox.com/pt" });
   });
 
   test("names every 'What do you need?' choice in English and Portuguese, as the form shows it", () => {

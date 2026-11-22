@@ -15,11 +15,11 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library':
-        specifier: 0.6.0-polish.25
-        version: 0.6.0-polish.25
+        specifier: 0.6.0-polish.26
+        version: 0.6.0-polish.26
       '@sharadox/form-web-library':
-        specifier: 0.8.0-polish.35
-        version: 0.8.0-polish.35(react@19.3.1)
+        specifier: 0.8.0-polish.36
+        version: 0.8.0-polish.36(react@19.3.1)
       '@sharadox/globe-web-library':
         specifier: ^0.2.3
         version: 0.2.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -54,8 +54,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.9.0
-        version: 0.9.0
+        specifier: 0.10.0-polish.23
+        version: 0.10.0-polish.23
       marked:
         specifier: ^17.0.6
         version: 17.0.6
@@ -76,8 +76,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
-        specifier: ^0.1.2
-        version: 0.1.2(turbo@2.11.10)
+        specifier: 0.1.3-polish.13
+        version: 0.1.3-polish.13(turbo@2.11.10)
       '@sharadox/type-script-configuration-web-library':
         specifier: ^0.2.2
         version: 0.2.2(typescript@6.0.3)
@@ -764,8 +764,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/email-web-library@0.6.0-polish.25':
-    resolution: {integrity: sha512-g6jBMsZU+oFc4QgnlC7sEHxWAGIX0aAJu+MGF/0YxKR8Lm1NFjOICUYTWdENfZC0c3A/MigvFgOmTfW2De1gpA==}
+  '@sharadox/email-web-library@0.6.0-polish.26':
+    resolution: {integrity: sha512-Qmu8EfSVgz/ypsLkbVP3ldmmF7WpBmkXyDemeoPpg0jm428wTYFcF/3N597vMX20vkewoFQ5OO241yV9rlPgjg==}
     engines: {node: '>=26'}
 
   '@sharadox/es-lint-configuration-web-library@0.1.2':
@@ -779,8 +779,8 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.8.0-polish.35':
-    resolution: {integrity: sha512-PaTwfRgCECRR//Ob/ELed5w3dbHAWIjGoydFn8BP0cgqmOX5Pep/Dcrr0RHRR54WzKeBwoBMwpyHTreK9SEpmQ==}
+  '@sharadox/form-web-library@0.8.0-polish.36':
+    resolution: {integrity: sha512-mLm+juRm5mC6o9KDkzBk1duEpsiD30A7iGFnal+9InCwz9mQhq/RqDi8FXlRbmT1a41aEQCAKan6T7ZPKBgoiQ==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -912,8 +912,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/turborepo-configuration-web-library@0.1.2':
-    resolution: {integrity: sha512-XIHXaoIIKeJVbrG/YKb+W/iVafvjXUVDmtsAESvN+mwDFN6taG3PycFYB30P42NMwPfv2+p8RR5QgBCyIvrdiw==}
+  '@sharadox/turborepo-configuration-web-library@0.1.3-polish.13':
+    resolution: {integrity: sha512-FM+4esw5j+uOGlJRTrDb4V9v6vx1XhHMi1zoLUpNL/rSJzjlx9ihFvFFVlLt8+JuIGIN4gbhsYfuVO64FzwzBw==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -931,6 +931,10 @@ packages:
     peerDependencies:
       '@vitest/coverage-v8': '>=5'
       vitest: '>=5'
+
+  '@sharadox/web-library@0.10.0-polish.23':
+    resolution: {integrity: sha512-JDZ0hf6WZrM06jZslB50yjzwKu6fdxuTXkWHY/ILe7AqFwhZ12T6GvgSPdoNYlOMd+80coAf98PhQpvFGPPN+Q==}
+    engines: {node: '>=26'}
 
   '@sharadox/web-library@0.6.1':
     resolution: {integrity: sha512-Kdst79Jngq340Qv0FpyCwaF4wvxduCJMqBKJ2qums09NPKJGWSnSTrM+yV/jNQmxx/lcOErZOuRGfzAqDn+SoQ==}
@@ -2688,7 +2692,7 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react-dom
 
-  '@sharadox/email-web-library@0.6.0-polish.25':
+  '@sharadox/email-web-library@0.6.0-polish.26':
     dependencies:
       '@sharadox/web-library': 0.8.0
       nodemailer: 10.5.0
@@ -2704,11 +2708,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.8.0-polish.35(react@19.3.1)':
+  '@sharadox/form-web-library@0.8.0-polish.36(react@19.3.1)':
     dependencies:
-      '@sharadox/email-web-library': 0.6.0-polish.25
+      '@sharadox/email-web-library': 0.6.0-polish.26
       '@sharadox/icon-web-library': 0.6.1(react@19.3.1)
-      '@sharadox/web-library': 0.9.0
+      '@sharadox/web-library': 0.10.0-polish.23
     optionalDependencies:
       react: 19.3.1
 
@@ -2812,7 +2816,7 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/turborepo-configuration-web-library@0.1.2(turbo@2.11.10)':
+  '@sharadox/turborepo-configuration-web-library@0.1.3-polish.13(turbo@2.11.10)':
     dependencies:
       turbo: 2.11.10
 
@@ -2830,6 +2834,8 @@ snapshots:
       - babel-plugin-react-compiler
       - oxc-transform-react
       - vite
+
+  '@sharadox/web-library@0.10.0-polish.23': {}
 
   '@sharadox/web-library@0.6.1': {}
 
