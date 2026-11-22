@@ -2,6 +2,19 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.2
+
+- On phones the About section's live feed stays still (it spans the screen edge to edge there); it still floats on wider screens.
+- The contact email comes from "Sharadox" with the subject "Contact · Name (Company)", in the visitor's language (form-web-library 0.8.0); its header rule has a plain color under its gradient.
+- On the polish builds of the email, form, metadata, animation and pointer libraries.
+- Every page lets its endless animations rest while their section is off screen (animation-web-library's `OffscreenLoops`, in `PageFrame`); nothing looks different.
+- Smooth scrolling rests between scrolls (scroll-web-library 0.7.2).
+- The automatic reply's subject no longer starts with the company's name ("We received your message"): the sender already says who it is from.
+- Emails use email-web-library's one simple layout, black on white, the same in every mail app: the black globe and the name at the top left, black as the brand's color, Geist where the reader has it. The globe carries a thin white outline so it stays visible when a mail app darkens the email.
+- The automatic reply uses every site's words, form-web-library's `contactAcknowledgement` (the same as before, now shared).
+- Emails follow email-web-library's one layout: no background, text, logo and button in the theme's foreground (black, white in dark themes), Geist. The globe comes in black with a white outline (`content/email-logo`) and in white for dark themes (`content/email-logo-dark`).
+- The contact form sends one email to both the visitor and contact@sharadox.com, replies going to contact@sharadox.com: one conversation (form-web-library 0.8). The automatic reply is gone.
+
 ## 0.54.1
 
 `Section`'s left text alignment no longer depends on stylesheet order: a section's own class (the 404 page's centered text) always wins. A change in which modules a page imported had moved the 404 paragraph to the left.

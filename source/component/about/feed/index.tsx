@@ -53,7 +53,7 @@ function placeOf(root: HTMLElement, target: string) {
  * them: the log fills, the pointer reads an entry, clicks Project, reads the budget and ticks the next task, clicks
  * Client and reads its charts, then goes back to Activity, over and over. Out of view it stops and starts over; with
  * less motion asked for, it rests on the full log. It is a little aware of the visitor's own pointer too: the panel
- * leans a few degrees towards it and a soft light follows it across, and it floats like the globe. It keeps one
+ * leans a few degrees towards it and a soft light follows it across, and it floats like the globe (on phones, where it spans the screen, it stays still). It keeps one
  * height throughout, its tallest tab's: the log never grows it, the oldest entries slipping out under its bottom edge
  * as new ones arrive. A picture, so it's hidden from assistive technology.
  */
