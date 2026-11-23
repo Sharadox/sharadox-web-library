@@ -15,11 +15,11 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library':
-        specifier: 0.7.0-amazon-ses.42
-        version: 0.7.0-amazon-ses.42
+        specifier: ^0.7.0
+        version: 0.7.0
       '@sharadox/form-web-library':
-        specifier: 0.8.2-amazon-ses.48
-        version: 0.8.2-amazon-ses.48(react@19.3.1)
+        specifier: ^0.8.2
+        version: 0.8.2(react@19.3.1)
       '@sharadox/globe-web-library':
         specifier: ^0.2.3
         version: 0.2.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -54,8 +54,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.11.0
+        version: 0.11.0
       marked:
         specifier: ^17.0.6
         version: 17.0.6
@@ -73,8 +73,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       '@sharadox/test-web-library':
-        specifier: ^0.7.0
-        version: 0.7.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
+        specifier: ^0.9.0
+        version: 0.9.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.3
         version: 0.1.3(turbo@2.11.10)
@@ -828,8 +828,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/email-web-library@0.7.0-amazon-ses.42':
-    resolution: {integrity: sha512-/V6T1iL4ROHe3h3jtiySTq4PS5rNVNQgjPr8cWJjSpaEVVTG5drdiNWW2FvluumPwkIkkQDBHcuVtAbb3t1wDg==}
+  '@sharadox/email-web-library@0.7.0':
+    resolution: {integrity: sha512-3YB7nMd4fM9BhGED413KLr0A8FIb1iGYkrIBBkvbwqKMOh0AWxA51R3YaSCxn5MlZx8Qp8vqXPS160jti8qoUg==}
     engines: {node: '>=26'}
 
   '@sharadox/es-lint-configuration-web-library@0.1.2':
@@ -843,8 +843,8 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.8.2-amazon-ses.48':
-    resolution: {integrity: sha512-jzXWinjJxUZi8M47VikB6q60qrzM864chFWWF7vkRKO//oDtzZOz73x1xh6lK1l3ybOkRGLnt2PhUBtJsaSofA==}
+  '@sharadox/form-web-library@0.8.2':
+    resolution: {integrity: sha512-Fw5DlORN7HwBRGdQIdsuBVJyEPW6K3k1+LfpqRjEsX8vCHx/11h5H/lALsI5GzFKAe+fSxO31p8/wZge2Za8Nw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -945,8 +945,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/test-web-library@0.7.0':
-    resolution: {integrity: sha512-GkCuIIWYvzRSLpAZMUe+20zaUw/TvgrG9WfS6MmBRZ2awFktc1UXVuJT79Ts3ZyyzaOnY55fpt/Wm8pJtOatvQ==}
+  '@sharadox/test-web-library@0.9.0':
+    resolution: {integrity: sha512-3N5jiIuTj5K8w6di8jY1g4K1+986UZ4RlXGsz4ZDEZcog34XkfKWEGEIARd4XS23z8+zNl8Sai3afdoE0ypa0Q==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -991,6 +991,10 @@ packages:
 
   '@sharadox/web-library@0.10.0':
     resolution: {integrity: sha512-AJ73a6ULYqAOwUVpaYOPQbvwObCUD0O9NRzP5ASKj7jiGbcs+H7iDZ6bHYdlaxCSo1NTWhne+0hyAvg8JfXMZg==}
+    engines: {node: '>=26'}
+
+  '@sharadox/web-library@0.11.0':
+    resolution: {integrity: sha512-ELDop1Y1M2se8oJb5qPe8OhLkW8tvlIj5Ik8rYQblUI4bSjoOybkAi0TV2vh4ifVBmr5v+sAIX7zT/Cep9FC1g==}
     engines: {node: '>=26'}
 
   '@sharadox/web-library@0.8.0':
@@ -2986,10 +2990,10 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react-dom
 
-  '@sharadox/email-web-library@0.7.0-amazon-ses.42':
+  '@sharadox/email-web-library@0.7.0':
     dependencies:
       '@aws-sdk/client-sesv2': 3.1175.0
-      '@sharadox/web-library': 0.10.0
+      '@sharadox/web-library': 0.11.0
       '@vercel/oidc-aws-credentials-provider': 3.3.21
       nodemailer: 10.5.0
 
@@ -3004,11 +3008,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.8.2-amazon-ses.48(react@19.3.1)':
+  '@sharadox/form-web-library@0.8.2(react@19.3.1)':
     dependencies:
-      '@sharadox/email-web-library': 0.7.0-amazon-ses.42
+      '@sharadox/email-web-library': 0.7.0
       '@sharadox/icon-web-library': 0.6.1(react@19.3.1)
-      '@sharadox/web-library': 0.10.0
+      '@sharadox/web-library': 0.11.0
     optionalDependencies:
       react: 19.3.1
 
@@ -3093,9 +3097,9 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/test-web-library@0.7.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
+  '@sharadox/test-web-library@0.9.0(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
     dependencies:
-      '@sharadox/web-library': 0.8.0
+      '@sharadox/web-library': 0.11.0
     optionalDependencies:
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
@@ -3126,6 +3130,8 @@ snapshots:
       - vite
 
   '@sharadox/web-library@0.10.0': {}
+
+  '@sharadox/web-library@0.11.0': {}
 
   '@sharadox/web-library@0.8.0': {}
 
