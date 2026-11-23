@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.4
+
+Contact emails can go through Amazon SES without a stored password (email-web-library 0.7, form-web-library 0.8.2).
+
 ## 0.54.3
 
 Sharadox libraries are required with caret ranges, so their patches reach every site (email-web-library 0.6.1 among them).
