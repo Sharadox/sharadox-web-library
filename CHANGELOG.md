@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.5
+
+Uses motion 14 (no change to the animations).
+
 ## 0.54.4
 
 Contact emails can go through Amazon SES without a stored password (email-web-library 0.7, form-web-library 0.8.2).
