@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@sharadox/animation-web-library':
-        specifier: 0.4.1-motion.44
-        version: 0.4.1-motion.44(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.4.1
+        version: 0.4.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library':
-        specifier: 0.4.1-motion.31
-        version: 0.4.1-motion.31(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.4.1
+        version: 0.4.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library':
         specifier: ^0.7.0
         version: 0.7.0
@@ -73,8 +73,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       '@sharadox/test-web-library':
-        specifier: 0.9.0-motion.52
-        version: 0.9.0-motion.52(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
+        specifier: ^0.9.1
+        version: 0.9.1(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.3
         version: 0.1.3(turbo@2.11.10)
@@ -82,8 +82,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(typescript@6.0.3)
       '@sharadox/vitest-configuration-web-library':
-        specifier: 0.2.1-motion.25
-        version: 0.2.1-motion.25(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)
+        specifier: ^0.2.1
+        version: 0.2.1(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)
       '@testing-library/dom':
         specifier: ^10.4.2
         version: 10.4.2
@@ -816,14 +816,14 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@sharadox/animation-web-library@0.4.1-motion.44':
-    resolution: {integrity: sha512-0OJ4Wy2vUYf6OHlo3FupRmZWVG+qD4g8vYTVuLjnC7aLmzQjb4eofJnoSPdBZ5+PtlWw/VuIBpTw8AgGSA77Aw==}
+  '@sharadox/animation-web-library@0.4.1':
+    resolution: {integrity: sha512-TIaAZaku0/tkyk/+FLZIu2jUIyxAYUvw+J0fJCBkKY5BeZKmQBgCEk1aTlgSF6F0lGWapdrnWsFwQzA2evt8oA==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/consent-web-library@0.4.1-motion.31':
-    resolution: {integrity: sha512-eWWHzaDQFBdqeqYG2eWhm324giCVXLU9qB+UKV+ZEgl5kZ8jCU1LpC/kZlwsEOF2Ex48mwoR+rmSzyoyMR+mSw==}
+  '@sharadox/consent-web-library@0.4.1':
+    resolution: {integrity: sha512-CN+BKiv51STneZfGnGSWOtm+gAsbOAVum666HXYD9Cz2QTajo+szXDe8AxD79Lt0JLq/mU04okrG0N/Q81HgUg==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -945,8 +945,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/test-web-library@0.9.0-motion.52':
-    resolution: {integrity: sha512-FyB+C3sTfLzLW0YNM5ZpNbW4kGvI76e1wXFP6jfOg6t9p6JIT4C1t7LPhsuaClQyrMipRoMbls1XPPA7vmzqcA==}
+  '@sharadox/test-web-library@0.9.1':
+    resolution: {integrity: sha512-B+qmyvqAEcWxCCJjxmWaTSQLjC6jpoTZIDwkaInRvtXNKv7pWHoQBayeRwnEG7U6FAhZ4NC4qAfzIOJhPSDrIQ==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -982,8 +982,8 @@ packages:
     peerDependencies:
       typescript: '>=6'
 
-  '@sharadox/vitest-configuration-web-library@0.2.1-motion.25':
-    resolution: {integrity: sha512-M5Tc0iPnjgIO4T0M1HV4nmxnPz4IIfuLHDbycDn7ycXiwpDLjKkRDFZKCP2IfepJAhZ7h3s1oSgkG3tSmwDLSg==}
+  '@sharadox/vitest-configuration-web-library@0.2.1':
+    resolution: {integrity: sha512-CRUXEVjNjJGYQbzzICL355Aoy29mkmRToMKEBNHCQ+kCGyvoX3Ypnoj6ZvdFxeP3b6mPGomhfuujNInS9RUNNQ==}
     engines: {node: '>=26'}
     peerDependencies:
       '@vitest/coverage-v8': '>=5'
@@ -2972,18 +2972,18 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.4.1-motion.44(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.4.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/web-library': 0.10.0
+      '@sharadox/web-library': 0.11.0
       motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
       - react-dom
       - remix
 
-  '@sharadox/consent-web-library@0.4.1-motion.31(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/consent-web-library@0.4.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/web-library': 0.8.0
+      '@sharadox/web-library': 0.11.0
       motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
@@ -3097,7 +3097,7 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/test-web-library@0.9.0-motion.52(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
+  '@sharadox/test-web-library@0.9.1(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
     dependencies:
       '@sharadox/web-library': 0.11.0
     optionalDependencies:
@@ -3118,7 +3118,7 @@ snapshots:
     dependencies:
       typescript: 6.0.3
 
-  '@sharadox/vitest-configuration-web-library@0.2.1-motion.25(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)':
+  '@sharadox/vitest-configuration-web-library@0.2.1(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)':
     dependencies:
       '@vitejs/plugin-react': 6.3.0(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))
       '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
