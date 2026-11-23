@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.6
+
+Workflows from git-hub-action-library v0.2.2: npm Trusted Publishing only
+
 ## 0.54.5
 
 Uses motion 14 (no change to the animations).
