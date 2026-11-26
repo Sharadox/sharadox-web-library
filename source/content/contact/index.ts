@@ -5,7 +5,7 @@ import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/serv
 export const CONTACT = {
   /** The company the form's emails come from: "Sharadox" (contact@web.sharadox.com). */
   sender: "Sharadox",
-  title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
+  title: { en: "Let's Make It Simple.", pt: "Vamos Simplificar." },
   text: {
     en: "Tell us about your brand and what you need. We'll get back to you shortly.",
     pt: "Fale-nos da sua marca e do que precisa. Respondemos em breve.",
@@ -20,7 +20,7 @@ export const CONTACT = {
   reach: { en: "Leave an email, a phone number, or both.", pt: "Deixe um email, um telefone, ou ambos." },
   company: { en: "Company (optional)", pt: "Empresa (opcional)" },
   needs: {
-    label: { en: "What do you need?", pt: "Do que precisa?" },
+    label: { en: "What Do You Need?", pt: "Do que Precisa?" },
     /** One choice per service card, grouped like the services, then "Something Else". Each appears in the email in the visitor's language. */
     groups: SERVICES.items.map((service) => ({
       key: service.key,
@@ -84,5 +84,5 @@ export const CONTACT = {
   direct: { en: "Or write to us directly", pt: "Ou escreva-nos diretamente" },
 } as const;
 
-/** One of the "What do you need?" choices: a service card, "unsure" or "not-listed". */
+/** One of the "What Do You Need?" choices: a service card, "unsure" or "not-listed". */
 export type NeedKey = ServiceCardKey | "unsure" | "not-listed";

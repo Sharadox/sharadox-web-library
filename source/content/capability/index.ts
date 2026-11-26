@@ -1,6 +1,6 @@
 /** "Capabilities": everything each discipline delivers, listed in full (from SERVICES), and what always comes with it. */
 export const CAPABILITY = {
-  title: { en: "Everything, in detail.", pt: "Tudo, em detalhe." },
+  title: { en: "Everything, in Detail.", pt: "Tudo, em Detalhe." },
   /** Under the sheet: what comes with every project, whatever it is. */
   included: {
     title: { en: "Always included", pt: "Sempre incluído" },

@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.7
+
+Every title is in Title Case ("Technologies That Simplify the World.", "Tecnologias que Simplificam o Mundo."), the questions and the 404 page too, except those shown in capitals.
+
 ## 0.54.6
 
 Workflows from git-hub-action-library v0.2.2: npm Trusted Publishing only

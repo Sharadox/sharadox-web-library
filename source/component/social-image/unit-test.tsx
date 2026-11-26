@@ -30,8 +30,8 @@ test("draws the mark at half the shorter side, alone or with the headline", asyn
     [1920, 1080],
   ]);
   expect(texts(calls[0]![0])).toEqual([]);
-  expect(texts(calls[1]![0]).join(" ")).toBe("Tecnologias que simplificam o mundo.");
-  expect(texts(calls[2]![0]).join(" ")).toBe("Technologies that simplify the world.");
+  expect(texts(calls[1]![0]).join(" ")).toBe("Tecnologias que Simplificam o Mundo.");
+  expect(texts(calls[2]![0]).join(" ")).toBe("Technologies That Simplify the World.");
   expect(calls.map(([element]) => markWidth(element))).toEqual([540, 540, 540]);
 });
 
@@ -47,5 +47,5 @@ test("draws the background alone, and the email card in proportion (at three tim
   expect(markWidth(card)).toBe(216);
   expect(card!.props.style.borderRadius).toBe(36);
   expect(card!.props.style.gap).toBeCloseTo(38.4);
-  expect(texts(card).join(" ")).toBe("Technologies that simplify the world.");
+  expect(texts(card).join(" ")).toBe("Technologies That Simplify the World.");
 });

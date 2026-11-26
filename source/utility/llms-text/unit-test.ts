@@ -4,7 +4,7 @@ import { llmsText } from "@sharadox/sharadox-web-library/utility/llms-text";
 
 test("describes Sharadox for AI assistants in llms.txt form", () => {
   const text = llmsText();
-  expect(text.startsWith("# Sharadox\n\n> Technologies that simplify the world.\n\nSharadox is a brand studio")).toBe(
+  expect(text.startsWith("# Sharadox\n\n> Technologies That Simplify the World.\n\nSharadox is a brand studio")).toBe(
     true,
   );
   for (const service of SERVICES.items)
