@@ -45,7 +45,7 @@ export const PORTFOLIO = {
       pt: "Isto é uma demonstração, por isso nada foi enviado. No site, este pedido segue diretamente para a caixa de correio da oficina.",
     },
     /** The end's title, over the way to the site and the way back. */
-    visitTitle: { en: "See it live", pt: "Veja-o ao vivo" },
+    visitTitle: { en: "See It Live", pt: "Veja-o ao Vivo" },
     visit: { en: "Visit", pt: "Visitar" },
     back: { en: "Back to the Portfolio", pt: "Voltar ao Portefólio" },
   },
@@ -55,7 +55,7 @@ export const PORTFOLIO = {
       /** The project's name, over its headline and in its page's title. */
       title: "Luis Pires Decor Website & Rebranding",
       client: "Luis Pires Decor",
-      name: { en: "A craft of decades, now easy to find.", pt: "Um ofício de décadas, agora fácil de encontrar." },
+      name: { en: "A Craft of Decades, Now Easy to Find.", pt: "Um Ofício de Décadas, Agora Fácil de Encontrar." },
       text: {
         en: "An upholstery and interiors workshop in the Algarve since 1996. A renewed brand, and a bilingual website built to be found: described for search engines and written so AI assistants understand it, so whoever asks for an upholsterer in the Algarve is pointed its way. Inside, a 3D monogram, a scroll-driven timelapse, a fabric studio, a filterable portfolio and booking requests straight to the workshop's inbox, on its own domain, with professional email and an app customers can install.",
         pt: "Uma oficina de estofos e decoração no Algarve desde 1996. Uma marca renovada, e um website bilingue feito para ser encontrado: descrito para os motores de busca e escrito para que os assistentes de IA o compreendam, para que quem procura um estofador no Algarve chegue até ela. Lá dentro, um monograma em 3D, um timelapse guiado pelo scroll, um estúdio de tecidos, um portefólio com filtros e pedidos de visita diretos para a caixa de correio da oficina, no seu próprio domínio, com email profissional e uma aplicação que os clientes podem instalar.",
@@ -89,7 +89,7 @@ export const PORTFOLIO = {
       chapters: [
         {
           key: "hero",
-          title: { en: "The monogram, in real 3D", pt: "O monograma, em 3D a sério" },
+          title: { en: "The Monogram, in Real 3D", pt: "O Monograma, em 3D a Sério" },
           text: {
             en: "The first screen greets visitors with the brand itself: the gold monogram floating over black satin that ripples under a warm light. Bring the pointer close and it turns to face you; grab it, and spin it.",
             pt: "O primeiro ecrã recebe os visitantes com a própria marca: o monograma dourado a flutuar sobre cetim preto que ondula sob uma luz quente. Aproxime o cursor e ele vira-se para si; agarre-o, e faça-o girar.",
@@ -111,7 +111,7 @@ export const PORTFOLIO = {
         },
         {
           key: "sequence",
-          title: { en: "From frame to finish", pt: "Da estrutura ao acabamento" },
+          title: { en: "From Frame to Finish", pt: "Da Estrutura ao Acabamento" },
           text: {
             en: "Seven stages of one Chesterfield, from the bare frame to the finished sofa, told as a timelapse that your own scrolling drives.",
             pt: "Sete etapas de um Chesterfield, da estrutura nua ao sofá terminado, contadas como um timelapse guiado pelo seu próprio scroll.",
@@ -133,7 +133,7 @@ export const PORTFOLIO = {
         },
         {
           key: "fabric",
-          title: { en: "The showroom, in your hands", pt: "O showroom nas suas mãos" },
+          title: { en: "The Showroom, in Your Hands", pt: "O Showroom nas Suas Mãos" },
           text: {
             en: "Choose a fabric family and a color, and the 3D cushion is dressed in it, the new cloth wiping over the last.",
             pt: "Escolha uma família de tecidos e uma cor, e a almofada em 3D veste-se com ela, o novo tecido a passar sobre o anterior.",
@@ -155,7 +155,7 @@ export const PORTFOLIO = {
         },
         {
           key: "work",
-          title: { en: "The work, on an editorial wall", pt: "O trabalho, numa parede editorial" },
+          title: { en: "The Work, on an Editorial Wall", pt: "O Trabalho, numa Parede Editorial" },
           text: {
             en: "The workshop's real projects, laid out like a magazine spread and filtered by what they show.",
             pt: "Os projetos reais da oficina, dispostos como numa revista e filtrados pelo que mostram.",
@@ -177,7 +177,7 @@ export const PORTFOLIO = {
         },
         {
           key: "booking",
-          title: { en: "Booking a visit", pt: "Marcar uma visita" },
+          title: { en: "Booking a Visit", pt: "Marcar uma Visita" },
           text: {
             en: "The way into the workshop: a request that reaches its inbox at once, and an automatic reply to the visitor, in their own language.",
             pt: "A porta de entrada da oficina: um pedido que chega de imediato à sua caixa de correio, e uma resposta automática ao visitante, na sua própria língua.",

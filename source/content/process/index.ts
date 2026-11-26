@@ -1,7 +1,7 @@
 /** "How we work" section. */
 export const PROCESS = {
   eyebrow: { en: "How we work", pt: "Como trabalhamos" },
-  title: { en: "Simple, on purpose.", pt: "Simples, de propósito." },
+  title: { en: "Simple, on Purpose.", pt: "Simples, de Propósito." },
   steps: [
     {
       number: "01",

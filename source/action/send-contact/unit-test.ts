@@ -20,7 +20,7 @@ describe("sendContact", () => {
     expect([...logo.content.slice(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
   });
 
-  test("names every 'What do you need?' choice in English and Portuguese, as the form shows it", () => {
+  test("names every 'What Do You Need?' choice in English and Portuguese, as the form shows it", () => {
     const choices = options.choices as Record<string, { en: string; pt: string }>;
     expect(Object.fromEntries(Object.entries(choices).map(([key, name]) => [key, name.en]))).toEqual({
       website: "Website",

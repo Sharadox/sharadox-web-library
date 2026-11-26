@@ -42,8 +42,8 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3(react@19.3.1)
       '@sharadox/privacy-web-library':
-        specifier: ^0.1.4
-        version: 0.1.4(react@19.3.1)
+        specifier: 0.2.0-title-case.32
+        version: 0.2.0-title-case.32(react@19.3.1)
       '@sharadox/scroll-web-library':
         specifier: ^0.7.3
         version: 0.7.3(next@16.4.5(@babel/core@7.29.13)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -926,8 +926,8 @@ packages:
     resolution: {integrity: sha512-SFqfnfMqr2KoK5w/KAwYOS4NQGkOYPLzLhY/O/pVNLpzGPC24C/djE/v/0Agh91HGaLQO591DV1QHvwJw07N3w==}
     engines: {node: '>=26'}
 
-  '@sharadox/privacy-web-library@0.1.4':
-    resolution: {integrity: sha512-ou9MgEOEcXsUl7BYXTwG3+Xe0kyKNpLN1dZzgsQwACoAwGQKItCH15vEnkX09DSn16nWLR14e6/xoz7TXndKdg==}
+  '@sharadox/privacy-web-library@0.2.0-title-case.32':
+    resolution: {integrity: sha512-eXKJCeGJKIe1w4406jZZhC9GLRFhOcFOB+MGeQrkSb1imtYdCvzoMHfhbST2yTnMg7zUSrhmez4LR25DwrlWFQ==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -3082,7 +3082,7 @@ snapshots:
 
   '@sharadox/prettier-configuration-web-library@0.1.2': {}
 
-  '@sharadox/privacy-web-library@0.1.4(react@19.3.1)':
+  '@sharadox/privacy-web-library@0.2.0-title-case.32(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.11.1
     optionalDependencies:

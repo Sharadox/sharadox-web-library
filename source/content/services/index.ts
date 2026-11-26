@@ -5,7 +5,7 @@
  */
 export const SERVICES = {
   eyebrow: { en: "Services", pt: "Serviços" },
-  title: { en: "Pick where to start.", pt: "Escolha por onde começar." },
+  title: { en: "Pick Where to Start.", pt: "Escolha por Onde Começar." },
   items: [
     {
       key: "web",
@@ -362,7 +362,7 @@ export const SERVICES = {
   ],
   /** After every service: for ideas that fit none of them. */
   unlisted: {
-    title: { en: "Didn't find the service you were looking for?", pt: "Não encontrou o serviço que procurava?" },
+    title: { en: "Didn't Find the Service You Were Looking for?", pt: "Não Encontrou o Serviço que Procurava?" },
     text: {
       en: "Tell us your idea. Let's talk it through and see how we can help.",
       pt: "Conte-nos a sua ideia. Vamos falar sobre ela e ver como podemos ajudar.",
