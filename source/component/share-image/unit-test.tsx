@@ -10,5 +10,5 @@ test("renders the card at the asked size with the slogan in Geist", async () => 
   const [element, options] = shareImage.mock.calls[0]! as [unknown, { width: number; fonts: { name: string }[] }];
   expect(options.width).toBe(1200);
   expect(options.fonts.map((font) => font.name)).toEqual(["Geist", "GeistMono"]);
-  expect(JSON.stringify(element)).toContain("Tecnologias que Simplificam o Mundo");
+  expect(JSON.stringify(element)).toContain("Tecnologias que simplificam o mundo");
 });

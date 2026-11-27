@@ -17,7 +17,7 @@ import type { ProjectPageProperties } from "@sharadox/sharadox-web-library/compo
  * A project's own page. It opens with the project's name and the headline, the whole story, the details, the services we
  * made, and the first screen on a computer and a phone. Then a word on what follows: a few of the parts we're proudest
  * of, chapter by chapter, each explained (what it is, how it works) and then running live in a window, the website's
- * own components, across the whole width of the page as on the site itself. At the end, "See It Live": the site
+ * own components, across the whole width of the page as on the site itself. At the end, "See it live": the site
  * itself, in a new tab, and the way back to the project's button in the portfolio.
  *
  * @example

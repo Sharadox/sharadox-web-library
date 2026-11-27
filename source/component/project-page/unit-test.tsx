@@ -22,7 +22,7 @@ test("opens with the story, then numbers the chapters it is given, live, and end
     />,
   );
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-    "Luis Pires Decor Website & RebrandingA Craft of Decades, Now Easy to Find.",
+    "Luis Pires Decor Website & RebrandingA craft of decades, now easy to find.",
   );
   expect(screen.getByText(/AI assistants/)).toBeDefined();
   // It says what follows: a few parts, each explained, then live.
@@ -34,7 +34,7 @@ test("opens with the story, then numbers the chapters it is given, live, and end
   expect(screen.getByText(/sending only tells you it's a demo/)).toBeDefined();
   // Only the chapters given are shown, numbered in turn.
   const chapters = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
-  expect(chapters).toEqual(["The Monogram, in Real 3D", "Booking a Visit", "See It Live"]);
+  expect(chapters).toEqual(["The monogram, in real 3D", "Booking a visit", "See it live"]);
   expect(screen.getByText("02")).toBeDefined();
   expect(screen.getByText("The hero, live")).toBeDefined();
   expect(screen.getAllByText("Live · luispiresdecor.com")).toHaveLength(2);
@@ -48,12 +48,12 @@ test("opens with the story, then numbers the chapters it is given, live, and end
 
 test("speaks Portuguese", () => {
   render(<ProjectPage project={project} locale="pt" chapters={{ work: <p>O trabalho</p> }} />);
-  expect(screen.getByRole("heading", { name: "O Trabalho, numa Parede Editorial" })).toBeDefined();
+  expect(screen.getByRole("heading", { name: "O trabalho, numa parede editorial" })).toBeDefined();
   expect(screen.getByText("Ao vivo · luispiresdecor.com")).toBeDefined();
   expect(screen.getByText("Como funciona")).toBeDefined();
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-    "Luis Pires Decor Website & RebrandingUm Ofício de Décadas, Agora Fácil de Encontrar.",
+    "Luis Pires Decor Website & RebrandingUm ofício de décadas, agora fácil de encontrar.",
   );
-  expect(screen.getByRole("heading", { level: 2, name: "Veja-o ao Vivo" })).toBeDefined();
+  expect(screen.getByRole("heading", { level: 2, name: "Veja-o ao vivo" })).toBeDefined();
   expect(screen.getByRole("link", { name: "Visitar luispiresdecor.com" })).toBeDefined();
 });

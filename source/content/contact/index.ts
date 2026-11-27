@@ -5,7 +5,7 @@ import type { ServiceCardKey } from "@sharadox/sharadox-web-library/content/serv
 export const CONTACT = {
   /** The company the form's emails come from: "Sharadox" (contact@web.sharadox.com). */
   sender: "Sharadox",
-  title: { en: "Let's Make It Simple.", pt: "Vamos Simplificar." },
+  title: { en: "Let's make it simple.", pt: "Vamos simplificar." },
   text: {
     en: "Tell us about your brand and what you need. We'll get back to you shortly.",
     pt: "Fale-nos da sua marca e do que precisa. Respondemos em breve.",

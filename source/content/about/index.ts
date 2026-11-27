@@ -11,7 +11,7 @@ export const ABOUT = {
   },
   brand: {
     eyebrow: { en: "Brand", pt: "Marca" },
-    title: { en: "Your Whole Brand, Online.", pt: "Toda a Sua Marca, Online." },
+    title: { en: "Your whole brand, online.", pt: "Toda a sua marca, online." },
     text: {
       en: "Identity, website, apps, social media and campaigns, designed, built and grown by one studio, so everything your customers see feels like one.",
       pt: "Identidade, website, aplicações, redes sociais e campanhas, desenhados, construídos e impulsionados por um só estúdio, para que tudo o que os seus clientes veem pareça um só.",
@@ -23,7 +23,7 @@ export const ABOUT = {
   },
   business: {
     eyebrow: { en: "Platforms", pt: "Plataformas" },
-    title: { en: "Your Business, Run from Anywhere.", pt: "O Seu Negócio, Gerido de Qualquer Lugar." },
+    title: { en: "Your business, run from anywhere.", pt: "O seu negócio, gerido de qualquer lugar." },
     text: {
       en: "A platform made for the way your company works, from the office to the warehouse floor. Everything that can run on its own does. Every job your people do by hand reaches the right person as a simple task on their phone, and is ticked off there. You see it all happen, and run the whole business, from anywhere in the world.",
       pt: "Uma plataforma feita para a forma como a sua empresa trabalha, do escritório ao armazém. Tudo o que pode andar sozinho anda. Cada trabalho feito à mão pela sua equipa chega à pessoa certa como uma tarefa simples no telemóvel, e é dado como feito ali mesmo. Vê tudo a acontecer, e gere todo o negócio, a partir de qualquer lugar do mundo.",

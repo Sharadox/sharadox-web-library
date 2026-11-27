@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.8
+
+Headings are back in sentence case (the slogan, page and section titles, questions, project chapters); buttons, menus and labels stay in Title Case.
+
 ## 0.54.7
 
 Every title is in Title Case ("Technologies That Simplify the World.", "Tecnologias que Simplificam o Mundo."), the questions and the 404 page too, except those shown in capitals.
