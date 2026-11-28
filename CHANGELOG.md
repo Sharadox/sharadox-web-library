@@ -2,6 +2,10 @@
 
 What changed in each version of `@sharadox/sharadox-web-library`, newest first.
 
+## 0.54.9
+
+PrivacyPage takes remembered: what else a site of the family keeps in the browser.
+
 ## 0.54.8
 
 Headings are back in sentence case (the slogan, page and section titles, questions, project chapters); buttons, menus and labels stay in Title Case.

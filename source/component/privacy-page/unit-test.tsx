@@ -25,3 +25,14 @@ test("the footer marks the privacy policy as the current page there", () => {
   expect(screen.getByRole("link", { name: "Privacy Policy" }).getAttribute("aria-current")).toBe("page");
   expect(screen.getByRole("link", { name: "License" }).getAttribute("aria-current")).toBeNull();
 });
+
+test("a site of the family adds what else it keeps in the browser", () => {
+  render(
+    <PrivacyPage
+      locale="en"
+      remembered={[{ en: "the options you chose on the component pages", pt: "as opções que escolheu" }]}
+    />,
+  );
+  expect(document.body.textContent).toContain("the style you chose");
+  expect(document.body.textContent).toContain("the options you chose on the component pages");
+});
